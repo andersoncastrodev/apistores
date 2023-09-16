@@ -1,6 +1,8 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.mapper.EstadoMapper;
 import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.out.EstadoOut;
 import br.com.asoft.apistores.service.EstadoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,16 +20,11 @@ public class EstadoController {
 
     private final EstadoService estadoService;
 
+    private final EstadoMapper estadoMapper;
+
     @GetMapping()
-    public List<Estado> buscaTodos(){
-
-        log.info("INFORMAÇÃO {}","Todos os Estados");
-
-        log.error("ERROR {}","Valor ou Objeto");
-        log.warn("PERIGO {}","Valor ou Objeto");
-        log.debug("GEBUG {}","Valor ou Objeto");
-
-
-        return estadoService.allEstados();
+    public List<EstadoOut> buscaTodos(){
+        List<EstadoOut> estados = estadoMapper.toListEstadoOut( estadoService.allEstados());
+        return estados;
     }
 }
