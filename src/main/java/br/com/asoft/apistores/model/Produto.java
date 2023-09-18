@@ -19,7 +19,7 @@ public class Produto {
 
     private String descricao;
 
-    private BigDecimal valorComprar;
+    private BigDecimal valorCompra;
 
     private BigDecimal valorVenda;
 
