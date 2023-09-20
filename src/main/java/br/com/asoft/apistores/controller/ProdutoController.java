@@ -1,6 +1,8 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.mapper.ProdutoMapper;
 import br.com.asoft.apistores.model.Produto;
+import br.com.asoft.apistores.out.ProdutoOut;
 import br.com.asoft.apistores.service.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +18,12 @@ public class ProdutoController {
 
     private final ProdutoService produtoService;
 
+    private final ProdutoMapper produtoMapper;
+
     @GetMapping
-    public List<Produto> buscaTodos(){
-        return produtoService.allTodos();
+    public List<ProdutoOut> buscaTodos(){
+        List<ProdutoOut> produtos = produtoMapper.toListProdutoOut(produtoService.allTodos());
+        return produtos;
     }
 
 
