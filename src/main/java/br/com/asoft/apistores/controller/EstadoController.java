@@ -7,6 +7,7 @@ import br.com.asoft.apistores.service.EstadoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +26,13 @@ public class EstadoController {
     @GetMapping()
     public List<EstadoOut> buscaTodos(){
         List<EstadoOut> estados = estadoMapper.toListEstadoOut( estadoService.allEstados());
+        log.info("INFORMATION:{}","Consulta da Todos os Estados");
         return estados;
+    }
+
+    @GetMapping("/{id}")
+    public EstadoOut buscaPorId(@PathVariable Long id){
+
+        return null;
     }
 }
