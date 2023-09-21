@@ -9,6 +9,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface EstadoMapper {
-    EstadoOut toEstadoOut(Endereco endereco);
+    EstadoOut toEstadoOut(Estado estado);
     List<EstadoOut> toListEstadoOut(List<Estado> estados);
 }
