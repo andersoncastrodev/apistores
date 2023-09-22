@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.respository.CidadeRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +18,13 @@ public class CidadeService {
         return cidadeRepository.findAll();
     }
 
+    public Cidade findId(Long id){
+        return tryOrFaill(id);
+    }
+
+    public Cidade tryOrFaill(Long id){
+        return cidadeRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundExceptions("Cidade",id));
+    }
 
 }
