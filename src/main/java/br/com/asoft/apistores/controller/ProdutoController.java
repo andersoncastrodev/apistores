@@ -6,6 +6,7 @@ import br.com.asoft.apistores.out.ProdutoOut;
 import br.com.asoft.apistores.service.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,12 @@ public class ProdutoController {
     public List<ProdutoOut> buscaTodos(){
         List<ProdutoOut> produtos = produtoMapper.toListProdutoOut(produtoService.allTodos());
         return produtos;
+    }
+
+    @GetMapping("/{id}")
+    public ProdutoOut buscaPorId(@PathVariable Long id){
+        ProdutoOut produtoOut = produtoMapper.toProdutoOut(produtoService.findId(id));
+        return produtoOut;
     }
 
 
