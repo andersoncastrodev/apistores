@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.respository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,5 +16,14 @@ public class PessoaService {
 
     public List<Pessoa> allPessoas(){
         return pessoaRepository.findAll();
+    }
+
+    public Pessoa findId(Long id){
+        return tryOrFaill(id);
+    }
+
+    public Pessoa tryOrFaill(Long id){
+        return pessoaRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundExceptions("Pessoa",id));
     }
 }

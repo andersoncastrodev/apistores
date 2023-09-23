@@ -6,6 +6,7 @@ import br.com.asoft.apistores.out.PessoaOut;
 import br.com.asoft.apistores.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +26,12 @@ public class PessoaController {
         List<PessoaOut> pessoas = pessoaMapper.toListPessoaOut(pessoaService.allPessoas());
         return pessoas;
     }
+
+    @GetMapping("/{id}")
+    public PessoaOut buscaPorId(@PathVariable Long id){
+        PessoaOut pessoaOut = pessoaMapper.toPessoaOut(pessoaService.findId(id));
+        return pessoaOut;
+    }
+
 
 }
