@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Fornecedor;
 import br.com.asoft.apistores.respository.FornecedorRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,5 +16,14 @@ public class FornecedorService {
 
     public List<Fornecedor> allTodos(){
         return fornecedorRepository.findAll();
+    }
+
+    public Fornecedor findId(Long id){
+        return tryOrFaill(id);
+    }
+
+    public Fornecedor tryOrFaill(Long id){
+        return fornecedorRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundExceptions("Fornecedor", id));
     }
 }
