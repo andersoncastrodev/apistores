@@ -1,15 +1,14 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.inp.EstadoInp;
 import br.com.asoft.apistores.mapper.EstadoMapper;
 import br.com.asoft.apistores.model.Estado;
 import br.com.asoft.apistores.out.EstadoOut;
 import br.com.asoft.apistores.service.EstadoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,4 +34,15 @@ public class EstadoController {
         EstadoOut estadoOut = estadoMapper.toEstadoOut( estadoService.findId(id));
         return estadoOut;
     }
+
+    @PostMapping
+    public EstadoOut salvarEstado(@RequestBody @Valid EstadoInp estadoInp){
+
+        Estado estado = estadoMapper.toEstado(estadoInp);
+
+        EstadoOut estadoOut = estadoMapper.toEstadoOut(estadoService.saveEstado(estado));
+
+        return estadoOut;
+    }
+
 }

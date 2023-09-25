@@ -31,4 +31,8 @@ public class EnderecoController {
     public EnderecoOut buscaPorId(@PathVariable Long id){
         return enderecoMapper.toEnderecoOut(enderecoService.findId(id));
     }
+
+
+
+
 }
