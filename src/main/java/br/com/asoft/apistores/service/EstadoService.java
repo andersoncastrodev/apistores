@@ -19,14 +19,14 @@ public class EstadoService {
     }
 
     public Estado findId(Long id){
-        return tryOrFaill(id);
+        return tryOrFail(id);
     }
 
     public Estado saveEstado(Estado estado){
        return estadoRepository.save(estado);
     }
 
-    public Estado tryOrFaill(Long id){
+    public Estado tryOrFail(Long id){
         return estadoRepository.findById(id)
                 .orElseThrow( ()-> new EntityNotFoundExceptions("Estado",id));
     }

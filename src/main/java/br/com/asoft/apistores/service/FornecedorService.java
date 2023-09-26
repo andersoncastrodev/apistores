@@ -19,10 +19,10 @@ public class FornecedorService {
     }
 
     public Fornecedor findId(Long id){
-        return tryOrFaill(id);
+        return tryOrFail(id);
     }
 
-    public Fornecedor tryOrFaill(Long id){
+    public Fornecedor tryOrFail(Long id){
         return fornecedorRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Fornecedor", id));
     }

@@ -19,10 +19,10 @@ public class ProdutoService {
     }
 
     public Produto findId(Long id){
-        return tryOrFaill(id);
+        return tryOrFail(id);
     }
 
-    public Produto tryOrFaill(Long id){
+    public Produto tryOrFail(Long id){
         return produtoRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Produto",id));
     }

@@ -19,10 +19,10 @@ public class CidadeService {
     }
 
     public Cidade findId(Long id){
-        return tryOrFaill(id);
+        return tryOrFail(id);
     }
 
-    public Cidade tryOrFaill(Long id){
+    public Cidade tryOrFail(Long id){
         return cidadeRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Cidade",id));
     }

@@ -19,10 +19,10 @@ public class PessoaService {
     }
 
     public Pessoa findId(Long id){
-        return tryOrFaill(id);
+        return tryOrFail(id);
     }
 
-    public Pessoa tryOrFaill(Long id){
+    public Pessoa tryOrFail(Long id){
         return pessoaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Pessoa",id));
     }

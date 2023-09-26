@@ -22,21 +22,21 @@ public class EnderecoService {
     }
 
     public Endereco findId(Long id){
-        return tryOrFaill(id);
+        return tryOrFail(id);
     }
 
     public Endereco saveEndereco(Endereco endereco){
 
         Long cidadeId = endereco.getCidade().getId();
 
-        Cidade cidade = cidadeService.tryOrFaill(cidadeId);
+        Cidade cidade = cidadeService.tryOrFail(cidadeId);
 
         endereco.setCidade(cidade);
 
         return enderecoRepository.save(endereco);
     }
 
-    public Endereco tryOrFaill(Long id){
+    public Endereco tryOrFail(Long id){
         return enderecoRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Endereco",id));
     }
