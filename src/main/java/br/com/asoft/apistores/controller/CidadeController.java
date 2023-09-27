@@ -1,13 +1,13 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.inp.CidadeInp;
 import br.com.asoft.apistores.mapper.CidadeMapper;
+import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.out.CidadeOut;
 import br.com.asoft.apistores.service.CidadeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +33,15 @@ public class CidadeController {
         return cidadeMapper.toCidadeOut(cidadeService.findId(id));
     }
 
+    @PostMapping
+    public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp){
+
+        Cidade cidade = cidadeMapper.toCidade(cidadeInp);
+
+        CidadeOut cidadeOut = cidadeMapper.toCidadeOut( cidadeService.saveCidade(cidade));
+
+        return cidadeOut;
+
+    }
 
 }
