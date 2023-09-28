@@ -8,8 +8,6 @@ import lombok.Setter;
 @Setter
 public class EstadoInp {
 
-    private Long id;
-
     @NotBlank
     private String nome;
 
