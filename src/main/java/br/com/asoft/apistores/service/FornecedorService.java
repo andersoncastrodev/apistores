@@ -22,6 +22,10 @@ public class FornecedorService {
         return tryOrFail(id);
     }
 
+    public Fornecedor saveFonecedor(Fornecedor fornecedor){
+        return fornecedorRepository.save(fornecedor);
+    }
+
     public Fornecedor tryOrFail(Long id){
         return fornecedorRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Fornecedor", id));
