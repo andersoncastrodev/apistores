@@ -26,4 +26,8 @@ public class PessoaService {
         return pessoaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Pessoa",id));
     }
+
+    public Pessoa savePessoa(Pessoa pessoa){
+        return pessoaRepository.save(pessoa);
+    }
 }

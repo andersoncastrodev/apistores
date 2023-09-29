@@ -1,14 +1,13 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.inp.PessoaInp;
 import br.com.asoft.apistores.mapper.PessoaMapper;
 import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.out.PessoaOut;
 import br.com.asoft.apistores.service.PessoaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -32,6 +31,13 @@ public class PessoaController {
         PessoaOut pessoaOut = pessoaMapper.toPessoaOut(pessoaService.findId(id));
         return pessoaOut;
     }
+
+    @PostMapping
+    public PessoaOut salvarPessoa(@RequestBody @Valid PessoaInp pessoaInp){
+
+        return pessoaMapper.toPessoaOut( pessoaService.savePessoa(pessoaMapper.toPessoa(pessoaInp)));
+    }
+
 
 
 }
