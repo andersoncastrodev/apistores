@@ -22,9 +22,15 @@ public class ProdutoService {
         return tryOrFail(id);
     }
 
+    public Produto salvaProduto(Produto produto){
+        return produtoRepository.save(produto);
+    }
+
     public Produto tryOrFail(Long id){
         return produtoRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Produto",id));
     }
+
+
 
 }
