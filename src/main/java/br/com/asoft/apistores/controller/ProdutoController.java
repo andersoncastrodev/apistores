@@ -35,7 +35,11 @@ public class ProdutoController {
     @PostMapping
     public ProdutoOut salvarProduto(@RequestBody @Valid ProdutoInp produtoInp){
 
-        return produtoMapper.toProdutoOut( produtoService.salvaProduto(produtoMapper.toProduto(produtoInp)));
+        Produto produto = produtoMapper.toProduto(produtoInp);
+
+        ProdutoOut produtoOut = produtoMapper.toProdutoOut(produtoService.salvaProduto(produto));
+
+        return produtoOut;
     }
 
 
