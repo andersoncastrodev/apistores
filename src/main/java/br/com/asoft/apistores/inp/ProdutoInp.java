@@ -20,4 +20,7 @@ public class ProdutoInp {
     @NotNull
     private BigDecimal valorVenda;
 
+    @NotNull
+    private FornecedorIdInp fornecedor;
+
 }
