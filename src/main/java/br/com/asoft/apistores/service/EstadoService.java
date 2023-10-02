@@ -26,11 +26,6 @@ public class EstadoService {
        return estadoRepository.save(estado);
     }
 
-    public Estado updateEstado(Estado estado){
-
-        return null;
-    }
-
     public Estado tryOrFail(Long id){
         return estadoRepository.findById(id)
                 .orElseThrow( ()-> new EntityNotFoundExceptions("Estado",id));

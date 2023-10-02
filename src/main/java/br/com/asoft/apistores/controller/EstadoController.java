@@ -46,13 +46,15 @@ public class EstadoController {
     }
 
     @PutMapping("/{id}")
-    public EstadoOut atualizarEstado(@RequestBody @Valid EstadoInp estadoInp, @RequestParam Long id){
+    public EstadoOut atualizarEstado(@RequestBody @Valid EstadoInp estadoInp, @PathVariable Long id){
 
         Estado estadoAtual = estadoService.findId(id);
 
         Estado estadoNovo = estadoMapper.copyToEstado(estadoInp,estadoAtual);
 
-        return ;
+        return estadoMapper.toEstadoOut( estadoService.saveEstado(estadoNovo));
     }
+
+
 
 }
