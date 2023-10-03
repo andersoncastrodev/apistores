@@ -26,6 +26,14 @@ public class EstadoService {
        return estadoRepository.save(estado);
     }
 
+    public void deleteEstado(Long id){
+
+        Estado estado = findId(id);
+
+        estadoRepository.delete(estado);
+        estadoRepository.flush();
+
+    }
     public Estado tryOrFail(Long id){
         return estadoRepository.findById(id)
                 .orElseThrow( ()-> new EntityNotFoundExceptions("Estado",id));

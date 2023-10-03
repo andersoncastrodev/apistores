@@ -55,6 +55,10 @@ public class EstadoController {
         return estadoMapper.toEstadoOut( estadoService.saveEstado(estadoNovo));
     }
 
+    @DeleteMapping("{id}")
+    public void ExcluirEstado(@PathVariable Long id){
+        estadoService.deleteEstado(id);
+    }
 
 
 }
