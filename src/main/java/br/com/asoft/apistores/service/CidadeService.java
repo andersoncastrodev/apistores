@@ -36,6 +36,15 @@ public class CidadeService {
         return cidadeRepository.save(cidade);
     }
 
+    public void deletarCidade(Long id){
+
+        Cidade cidade = tryOrFail(id);
+
+        cidadeRepository.delete(cidade);
+
+        cidadeRepository.flush();
+
+    }
     public Cidade tryOrFail(Long id){
         return cidadeRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Cidade",id));

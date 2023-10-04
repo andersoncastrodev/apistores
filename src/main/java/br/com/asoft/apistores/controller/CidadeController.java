@@ -49,9 +49,16 @@ public class CidadeController {
 
         Cidade cidadeAtual = cidadeService.findId(id);
 
-        cidadeAtual = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
+        Cidade cidadeNova = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
 
-        return cidadeMapper.toCidadeOut(cidadeService.saveCidade(cidadeAtual));
+        return cidadeMapper.toCidadeOut(cidadeService.saveCidade(cidadeNova));
     }
+
+    @DeleteMapping("/{id}")
+    public void excluirCidade(@PathVariable Long id){
+
+        cidadeService.deletarCidade(id);
+    }
+
 
 }

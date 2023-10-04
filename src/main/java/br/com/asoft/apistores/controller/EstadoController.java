@@ -56,7 +56,7 @@ public class EstadoController {
     }
 
     @DeleteMapping("{id}")
-    public void ExcluirEstado(@PathVariable Long id){
+    public void excluirEstado(@PathVariable Long id){
         estadoService.deleteEstado(id);
     }
 
