@@ -44,4 +44,14 @@ public class CidadeController {
 
     }
 
+    @PutMapping("/{id}")
+    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id){
+
+        Cidade cidadeAtual = cidadeService.findId(id);
+
+        cidadeAtual = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
+
+        return cidadeMapper.toCidadeOut(cidadeService.saveCidade(cidadeAtual));
+    }
+
 }
