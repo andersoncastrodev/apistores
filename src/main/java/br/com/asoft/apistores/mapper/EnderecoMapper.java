@@ -5,6 +5,7 @@ import br.com.asoft.apistores.inp.EnderecoInp;
 import br.com.asoft.apistores.model.Endereco;
 import br.com.asoft.apistores.out.EnderecoOut;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -14,6 +15,8 @@ public interface EnderecoMapper {
     EnderecoOut toEnderecoOut(Endereco endereco);
 
     Endereco toEndereco(EnderecoInp enderecoInp);
+
+    Endereco copyToEndereco(EnderecoInp enderecoInp, @MappingTarget Endereco endereco);
 
     List<EnderecoOut> toListEnderecoOut(List<Endereco> enderecos);
 }

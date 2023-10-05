@@ -42,6 +42,16 @@ public class EnderecoController {
           return enderecoOut;
     }
 
+    @PutMapping("/{id}")
+    public Endereco atualizarEndereco(@RequestBody @Valid EnderecoInp enderecoInp, @PathVariable Long id){
+
+        Endereco enderecoAtual = enderecoService.findId(id);
+
+        Endereco enderecoNovo = enderecoMapper.copyToEndereco(enderecoInp,enderecoAtual);
+
+        return enderecoService.saveEndereco(enderecoNovo);
+    }
+
 
 
 
