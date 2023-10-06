@@ -52,7 +52,12 @@ public class EnderecoController {
         return enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(enderecoNovo));
     }
 
+    @DeleteMapping("/{id}")
+    public void excluirEndereco(@PathVariable Long id){
 
+        enderecoService.deleteEndereco(id);
+
+    }
 
 
 }

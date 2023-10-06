@@ -36,6 +36,14 @@ public class EnderecoService {
         return enderecoRepository.save(endereco);
     }
 
+    public void deleteEndereco(Long id){
+
+        Endereco endereco = findId(id);
+
+        enderecoRepository.delete(endereco);
+        enderecoRepository.flush();
+    }
+
     public Endereco tryOrFail(Long id){
         return enderecoRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Endereco",id));
