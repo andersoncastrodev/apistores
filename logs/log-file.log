@@ -32,3 +32,6 @@
 2023-10-06T07:04:27.803-03:00  INFO 46225 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-10-06T07:04:27.804-03:00  INFO 46225 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-10-06T07:04:27.964-03:00  WARN 46225 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.asoft.apistores.exceptions.EntityNotFoundExceptions: Não existe um cadastro de Endereco com o código 55]
+2023-10-06T07:09:21.762-03:00  INFO 46225 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-06T07:09:21.764-03:00  INFO 46225 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-06T07:09:21.782-03:00  INFO 46225 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

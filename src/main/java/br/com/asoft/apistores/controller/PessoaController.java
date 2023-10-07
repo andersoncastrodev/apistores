@@ -38,6 +38,9 @@ public class PessoaController {
         return pessoaMapper.toPessoaOut( pessoaService.savePessoa(pessoaMapper.toPessoa(pessoaInp)));
     }
 
+    public void excluirPessoa(){
+
+    }
 
 
 }
