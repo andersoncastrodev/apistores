@@ -40,6 +40,7 @@ public class PessoaController {
 
     public void excluirPessoa(){
 
+        Pessoa pessoa;
     }
 
 
