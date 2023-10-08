@@ -22,12 +22,18 @@ public class PessoaService {
         return tryOrFail(id);
     }
 
+    public Pessoa savePessoa(Pessoa pessoa){
+        return pessoaRepository.save(pessoa);
+    }
+
+    public void deletePessoa(Long id){
+        Pessoa pessoa = findId(id);
+        pessoaRepository.delete(pessoa);
+        pessoaRepository.flush();
+    }
+
     public Pessoa tryOrFail(Long id){
         return pessoaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Pessoa",id));
-    }
-
-    public Pessoa savePessoa(Pessoa pessoa){
-        return pessoaRepository.save(pessoa);
     }
 }

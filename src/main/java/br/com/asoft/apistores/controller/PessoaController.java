@@ -48,9 +48,9 @@ public class PessoaController {
         return pessoaMapper.toPessoaOut(pessoaService.savePessoa(pessoaNova));
     }
 
-    public void excluirPessoa(){
-
-        Pessoa pessoa;
+    @DeleteMapping("/{id}")
+    public void excluirPessoa(@PathVariable Long id){
+        pessoaService.deletePessoa(id);
     }
 
 
