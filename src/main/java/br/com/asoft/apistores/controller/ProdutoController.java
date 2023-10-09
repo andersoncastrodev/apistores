@@ -42,6 +42,18 @@ public class ProdutoController {
         return produtoOut;
     }
 
+    @PutMapping("/{id}")
+    public ProdutoOut alteraProduto(@RequestBody ProdutoInp produtoInp, @PathVariable Long id){
+
+        Produto produtoAtual = produtoService.findId(id);
+
+        Produto produtoNovo = produtoMapper.copyToProduto(produtoInp,produtoAtual);
+
+        return produtoMapper.toProdutoOut(produtoService.salvaProduto(produtoNovo));
+
+    }
+
+
 
 
 }
