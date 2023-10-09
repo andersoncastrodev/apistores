@@ -36,6 +36,14 @@ public class ProdutoService {
         return produtoRepository.save(produto);
     }
 
+    public void deletarProduto(Long id){
+
+        Produto produto = findId(id);
+
+        produtoRepository.delete(produto);
+        produtoRepository.flush();
+    }
+
     public Produto tryOrFail(Long id){
         return produtoRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Produto",id));

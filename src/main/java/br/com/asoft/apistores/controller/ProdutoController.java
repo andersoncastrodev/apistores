@@ -53,6 +53,12 @@ public class ProdutoController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public void excluirProduto(@PathVariable Long id){
+
+        produtoService.deletarProduto(id);
+    }
+
 
 
 
