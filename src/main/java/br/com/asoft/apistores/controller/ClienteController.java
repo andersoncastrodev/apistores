@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.out.ClienteOut;
 import br.com.asoft.apistores.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,9 @@ public class ClienteController {
 
     private final ClienteService clienteService;
 
+    public ClienteOut todosClientes(){
+        return null;
+    }
 
 
 }
