@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.respository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,11 @@ public class ClienteService {
 
     public List<Cliente> findAllCliente(){
         return clienteRepository.findAll();
+    }
+
+    public Cliente tryOrFail(Long id){
+        return clienteRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundExceptions("Cliente",id));
     }
 
 

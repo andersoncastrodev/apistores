@@ -20,6 +20,6 @@ public class Cliente {
     private String tipo;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "pesssoa_id")
+    @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 }
