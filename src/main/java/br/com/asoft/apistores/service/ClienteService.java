@@ -18,6 +18,9 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
+    public Cliente findId(Long id){
+        return tryOrFail(id);
+    }
     public Cliente tryOrFail(Long id){
         return clienteRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Cliente",id));

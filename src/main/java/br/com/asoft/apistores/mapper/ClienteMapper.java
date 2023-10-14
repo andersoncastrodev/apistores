@@ -13,6 +13,8 @@ public interface ClienteMapper {
 
     Cliente toCliente(ClienteInp clienteInp);
 
+    ClienteOut toClienteOut(Cliente cliente);
+
     List<ClienteOut> toListClienteOut(List<Cliente> clientes);
 
 }
