@@ -32,3 +32,6 @@
 2023-10-14T16:14:52.190-03:00  INFO 53562 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-10-14T16:14:52.192-03:00  INFO 53562 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2023-10-14T16:14:52.330-03:00  WARN 53562 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [br.com.asoft.apistores.exceptions.EntityNotFoundExceptions: Não existe um cadastro de Cliente com o código 1]
+2023-10-14T16:16:39.998-03:00  INFO 53562 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-14T16:16:40.000-03:00  INFO 53562 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-14T16:16:40.013-03:00  INFO 53562 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

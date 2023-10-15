@@ -21,6 +21,11 @@ public class ClienteService {
     public Cliente findId(Long id){
         return tryOrFail(id);
     }
+
+    public Cliente saveCliente(Cliente cliente){
+        return clienteRepository.save(cliente);
+    }
+
     public Cliente tryOrFail(Long id){
         return clienteRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Cliente",id));

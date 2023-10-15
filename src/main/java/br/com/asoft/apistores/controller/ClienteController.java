@@ -1,13 +1,12 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.inp.ClienteInp;
 import br.com.asoft.apistores.mapper.ClienteMapper;
+import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.out.ClienteOut;
 import br.com.asoft.apistores.service.ClienteService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,9 +29,11 @@ public class ClienteController {
         return clienteMapper.toClienteOut(clienteService.findId(id));
     }
 
-
-
-
+    @PostMapping
+    public ClienteOut salvaCliente(@RequestBody ClienteInp clienteInp){
+        Cliente cliente = clienteMapper.toCliente(clienteInp);
+        return clienteMapper.toClienteOut(clienteService.saveCliente(cliente));
+    }
 
 
 }
