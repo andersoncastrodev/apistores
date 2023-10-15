@@ -12,5 +12,6 @@ public class ClienteInp {
 
     private String tipo;
 
-    private Pessoa pessoa;
+//    private Pessoa pessoa;
+    private PessoaIdInp pessoa;
 }

@@ -31,7 +31,9 @@ public class ClienteController {
 
     @PostMapping
     public ClienteOut salvaCliente(@RequestBody ClienteInp clienteInp){
+
         Cliente cliente = clienteMapper.toCliente(clienteInp);
+
         return clienteMapper.toClienteOut(clienteService.saveCliente(cliente));
     }
 
