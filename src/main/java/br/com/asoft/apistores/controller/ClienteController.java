@@ -5,6 +5,7 @@ import br.com.asoft.apistores.mapper.ClienteMapper;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.out.ClienteOut;
 import br.com.asoft.apistores.service.ClienteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ClienteOut salvaCliente(@RequestBody ClienteInp clienteInp){
+    public ClienteOut salvaCliente(@RequestBody @Valid ClienteInp clienteInp){
 
         Cliente cliente = clienteMapper.toCliente(clienteInp);
 
