@@ -10,5 +10,4 @@ public class CidadeIdInp {
 
     private Long id;
 
-
 }

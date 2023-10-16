@@ -1,6 +1,8 @@
 package br.com.asoft.apistores.inp;
 
 import br.com.asoft.apistores.model.Pessoa;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +12,9 @@ public class ClienteInp {
 
     private Long id;
 
+    @NotBlank
     private String tipo;
 
-//    private Pessoa pessoa;
+    @NotNull
     private PessoaIdInp pessoa;
 }
