@@ -27,9 +27,9 @@ public class ClienteService {
 
     public Cliente saveCliente(Cliente cliente){
 
-//        Pessoa pessoa = pessoaService.findId(cliente.getPessoa().getId());
-//
-//        cliente.setPessoa(pessoa);
+        Pessoa pessoa = pessoaService.findId(cliente.getPessoa().getId());
+
+        cliente.setPessoa(pessoa);
 
         return clienteRepository.save(cliente);
     }
