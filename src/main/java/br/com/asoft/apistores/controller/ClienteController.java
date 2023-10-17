@@ -32,10 +32,19 @@ public class ClienteController {
 
     @PostMapping
     public ClienteOut salvaCliente(@RequestBody @Valid ClienteInp clienteInp){
-
         Cliente cliente = clienteMapper.toCliente(clienteInp);
-
         return clienteMapper.toClienteOut(clienteService.saveCliente(cliente));
+    }
+
+    @PutMapping("/{id}")
+    public ClienteOut atualizaCliente(@RequestBody @Valid ClienteInp clienteInp, @PathVariable Long id){
+
+        Cliente clienteAtual = clienteService.findId(id);
+
+        Cliente clienteUpdate = clienteMapper.copyToCliente(clienteInp,clienteAtual);
+
+        return clienteMapper.toClienteOut(clienteService.saveCliente(clienteUpdate));
+
     }
 
 

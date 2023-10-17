@@ -2,6 +2,7 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Cliente;
+import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.respository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ public class ClienteService {
 
     private final ClienteRepository clienteRepository;
 
+    private final PessoaService pessoaService;
+
     public List<Cliente> findAllCliente(){
         return clienteRepository.findAll();
     }
@@ -23,6 +26,11 @@ public class ClienteService {
     }
 
     public Cliente saveCliente(Cliente cliente){
+
+//        Pessoa pessoa = pessoaService.findId(cliente.getPessoa().getId());
+//
+//        cliente.setPessoa(pessoa);
+
         return clienteRepository.save(cliente);
     }
 
