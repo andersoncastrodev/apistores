@@ -34,6 +34,15 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+    public void deleteCliente(Long id){
+
+        Cliente cliente = findId(id);
+
+        clienteRepository.delete(cliente);
+
+        clienteRepository.flush();
+    }
+
     public Cliente tryOrFail(Long id){
         return clienteRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Cliente",id));
