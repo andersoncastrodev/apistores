@@ -1,29 +1,26 @@
 package br.com.asoft.apistores.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Venda {
+public class Usuario {
 
     @Id
     @EqualsAndHashCode.Include
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
 
+    private String login;
 
-    private Cliente cliente;
+    private String senha;
 
-    private Date dataVenda;
-
-    private BigDecimal valorTotal;
 }
