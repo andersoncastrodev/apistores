@@ -19,7 +19,7 @@ public class Usuario {
 
     private String senha;
 
-    @ManyToOne
+    @OneToOne(optional = false)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
