@@ -13,7 +13,6 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
-
     public List<Usuario> allTodos(){
         return usuarioRepository.findAll();
     }
