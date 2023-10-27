@@ -5,8 +5,6 @@ import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.out.ClienteOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Mapper(componentModel = "spring")

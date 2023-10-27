@@ -8,7 +8,6 @@ import br.com.asoft.apistores.service.ClienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -51,6 +50,4 @@ public class ClienteController {
     public void excluirCliente(@PathVariable Long id){
         clienteService.deleteCliente(id);
     }
-
-
 }

@@ -47,7 +47,4 @@ public class ClienteService {
         return clienteRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Cliente",id));
     }
-
-
-
 }
