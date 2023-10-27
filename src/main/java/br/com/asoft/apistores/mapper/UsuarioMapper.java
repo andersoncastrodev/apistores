@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
 
-    UsuarioOut toUsuarioOut(Usuario usuario);
-
-    List<UsuarioOut> toListUsuarioOut(List<Usuario> usuarios);
+//    UsuarioOut toUsuarioOut(Usuario usuario);
+//
+//    List<UsuarioOut> toListUsuarioOut(List<Usuario> usuarios);
 }

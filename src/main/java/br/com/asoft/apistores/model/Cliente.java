@@ -19,7 +19,7 @@ public class Cliente {
 
     private String tipo;
 
-    @OneToOne(optional = false)
+    @OneToOne
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 }

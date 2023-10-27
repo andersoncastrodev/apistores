@@ -1,5 +1,5 @@
 create table endereco(
-  id int8 not null,
+  id serial not null,
   rua varchar(100) not null,
   cep varchar (10),
   id_cidade int8 not null,
