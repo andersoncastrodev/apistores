@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-//@RestController
-//@RequestMapping("usuarios")
-//@RequiredArgsConstructor
+@RestController
+@RequestMapping("usuarios")
+@RequiredArgsConstructor
 public class UsuarioController {
 
-//    private final UsuarioService usuarioService;
-//
-//    private final UsuarioMapper usuarioMapper;
+    private final UsuarioService usuarioService;
 
-//    @GetMapping
-//    public List<UsuarioOut> listarUsuarios(){
-////        return usuarioMapper.toListUsuarioOut( usuarioService.allTodos());
-//    }
+    private final UsuarioMapper usuarioMapper;
+
+    @GetMapping
+    public List<UsuarioOut> listarUsuarios(){
+        return usuarioMapper.toListUsuarioOut( usuarioService.allTodos());
+    }
 
 }
