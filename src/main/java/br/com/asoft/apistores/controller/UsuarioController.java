@@ -25,9 +25,8 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public UsuarioOut buscaId(@PathVariable Long id){
-
-        return null;
+    public UsuarioOut buscaPorId(@PathVariable Long id){
+        return usuarioMapper.toUsuarioOut(usuarioService.findId(id));
     }
 
 }

@@ -19,13 +19,13 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
-    public Usuario findById(Long id){
-        return tryOrFaill(id);
+    public Usuario findId(Long id){
+        return tryOrFail(id);
     }
 
 
-    public Usuario tryOrFaill(Long id){
+    public Usuario tryOrFail(Long id){
         return usuarioRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Usuario",id));
+                .orElseThrow( ()-> new EntityNotFoundExceptions("Usuario",id) );
     }
 }
