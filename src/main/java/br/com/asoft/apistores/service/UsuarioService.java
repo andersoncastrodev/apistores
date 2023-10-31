@@ -23,6 +23,9 @@ public class UsuarioService {
         return tryOrFail(id);
     }
 
+    public Usuario saveUsuario(Usuario usuario){
+        return usuarioRepository.save(usuario);
+    }
 
     public Usuario tryOrFail(Long id){
         return usuarioRepository.findById(id)

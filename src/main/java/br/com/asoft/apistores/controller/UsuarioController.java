@@ -1,13 +1,13 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.inp.UsuarioInp;
 import br.com.asoft.apistores.mapper.UsuarioMapper;
+import br.com.asoft.apistores.model.Usuario;
 import br.com.asoft.apistores.out.UsuarioOut;
 import br.com.asoft.apistores.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -28,5 +28,12 @@ public class UsuarioController {
     public UsuarioOut buscaPorId(@PathVariable Long id){
         return usuarioMapper.toUsuarioOut(usuarioService.findId(id));
     }
+
+    @PostMapping
+    public UsuarioOut salvarUsuario(UsuarioInp usuarioInp ){
+        Usuario usuario = usuarioService.saveUsuario( usuarioMapper.toUsuario(usuarioInp) );
+        return usuarioMapper.toUsuarioOut(usuario);
+    }
+
 
 }
