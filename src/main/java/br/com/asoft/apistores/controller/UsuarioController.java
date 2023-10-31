@@ -5,6 +5,7 @@ import br.com.asoft.apistores.mapper.UsuarioMapper;
 import br.com.asoft.apistores.model.Usuario;
 import br.com.asoft.apistores.out.UsuarioOut;
 import br.com.asoft.apistores.service.UsuarioService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public UsuarioOut salvarUsuario(UsuarioInp usuarioInp ){
+    public UsuarioOut salvarUsuario(@RequestBody @Valid UsuarioInp usuarioInp ){
         Usuario usuario = usuarioService.saveUsuario( usuarioMapper.toUsuario(usuarioInp) );
         return usuarioMapper.toUsuarioOut(usuario);
     }
