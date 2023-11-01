@@ -36,5 +36,10 @@ public class UsuarioController {
         return usuarioMapper.toUsuarioOut(usuario);
     }
 
+    @PutMapping("/id")
+    public UsuarioOut atualizarUsuario(@RequestBody @Valid UsuarioInp usuarioInp, @PathVariable Long id){
+
+
+    }
 
 }
