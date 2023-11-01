@@ -1,186 +1,74 @@
-2023-10-31T09:11:44.027-03:00  INFO 206011 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Starting ApistoresApplication using Java 17.0.8.1 with PID 206011 (/home/anderson/IdeaProjects/apistores/target/classes started by anderson in /home/anderson/IdeaProjects/apistores)
-2023-10-31T09:11:44.054-03:00  INFO 206011 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-10-31T09:11:44.123-03:00  INFO 206011 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-10-31T09:11:44.124-03:00  INFO 206011 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-31T09:11:45.056-03:00  INFO 206011 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-31T09:11:45.174-03:00  INFO 206011 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 8 JPA repository interfaces.
-2023-10-31T09:11:45.887-03:00  INFO 206011 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-10-31T09:11:45.899-03:00  INFO 206011 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-31T09:11:45.899-03:00  INFO 206011 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
-2023-10-31T09:11:45.964-03:00  INFO 206011 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-31T09:11:45.965-03:00  INFO 206011 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1841 ms
-2023-10-31T09:11:46.136-03:00  INFO 206011 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.5.1 by Redgate
-2023-10-31T09:11:46.136-03:00  INFO 206011 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
-2023-10-31T09:11:46.136-03:00  INFO 206011 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
-2023-10-31T09:11:46.157-03:00  INFO 206011 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-31T09:11:46.525-03:00  INFO 206011 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6057c2be
-2023-10-31T09:11:46.527-03:00  INFO 206011 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-31T09:11:46.545-03:00  INFO 206011 --- [restartedMain] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/apistore (PostgreSQL 14.9)
-2023-10-31T09:11:46.592-03:00  INFO 206011 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.029s)
-2023-10-31T09:11:46.626-03:00  INFO 206011 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 8
-2023-10-31T09:11:46.627-03:00  INFO 206011 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2023-10-31T09:11:46.818-03:00  INFO 206011 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-31T09:11:46.892-03:00  INFO 206011 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-10-31T09:11:47.244-03:00  INFO 206011 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-10-31T09:11:48.020-03:00  INFO 206011 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-10-31T09:11:48.030-03:00  INFO 206011 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:11:48.594-03:00  WARN 206011 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-10-31T09:11:48.969-03:00  INFO 206011 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-10-31T09:11:49.014-03:00  INFO 206011 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-10-31T09:11:49.023-03:00  INFO 206011 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 5.579 seconds (process running for 7.056)
-2023-10-31T09:11:53.854-03:00  INFO 206011 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-10-31T09:11:53.855-03:00  INFO 206011 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-10-31T09:11:53.856-03:00  INFO 206011 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-10-31T09:11:53.980-03:00  WARN 206011 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.jpa.JpaSystemException: ids for this class must be manually assigned before calling save(): br.com.asoft.apistores.model.Usuario]
-2023-10-31T09:14:39.349-03:00  INFO 206011 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:14:39.352-03:00  INFO 206011 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-10-31T09:14:39.369-03:00  INFO 206011 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-10-31T09:14:43.148-03:00  INFO 206536 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Starting ApistoresApplication using Java 17.0.8.1 with PID 206536 (/home/anderson/IdeaProjects/apistores/target/classes started by anderson in /home/anderson/IdeaProjects/apistores)
-2023-10-31T09:14:43.158-03:00  INFO 206536 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-10-31T09:14:43.265-03:00  INFO 206536 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-10-31T09:14:43.266-03:00  INFO 206536 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-31T09:14:44.338-03:00  INFO 206536 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-31T09:14:44.429-03:00  INFO 206536 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 8 JPA repository interfaces.
-2023-10-31T09:14:45.159-03:00  INFO 206536 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-10-31T09:14:45.170-03:00  INFO 206536 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-31T09:14:45.171-03:00  INFO 206536 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
-2023-10-31T09:14:45.246-03:00  INFO 206536 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-31T09:14:45.247-03:00  INFO 206536 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1980 ms
-2023-10-31T09:14:45.445-03:00  INFO 206536 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.5.1 by Redgate
-2023-10-31T09:14:45.445-03:00  INFO 206536 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
-2023-10-31T09:14:45.445-03:00  INFO 206536 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
-2023-10-31T09:14:45.453-03:00  INFO 206536 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-31T09:14:45.709-03:00  INFO 206536 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@594cde31
-2023-10-31T09:14:45.710-03:00  INFO 206536 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-31T09:14:45.736-03:00  INFO 206536 --- [restartedMain] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/apistore (PostgreSQL 14.9)
-2023-10-31T09:14:45.783-03:00  INFO 206536 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.029s)
-2023-10-31T09:14:45.841-03:00  INFO 206536 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 8
-2023-10-31T09:14:45.842-03:00  INFO 206536 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2023-10-31T09:14:45.948-03:00  INFO 206536 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-31T09:14:45.996-03:00  INFO 206536 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-10-31T09:14:46.325-03:00  INFO 206536 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-10-31T09:14:47.063-03:00  INFO 206536 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-10-31T09:14:47.072-03:00  INFO 206536 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:14:47.548-03:00  WARN 206536 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-10-31T09:14:47.871-03:00  INFO 206536 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-10-31T09:14:47.896-03:00  INFO 206536 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-10-31T09:14:47.906-03:00  INFO 206536 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 5.333 seconds (process running for 5.938)
-2023-10-31T09:14:52.192-03:00  INFO 206536 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-10-31T09:14:52.193-03:00  INFO 206536 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-10-31T09:14:52.194-03:00  INFO 206536 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-10-31T09:14:52.295-03:00  WARN 206536 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'java.lang.Long br.com.asoft.apistores.inp.UsuarioInp.getId()']
-2023-10-31T09:17:00.063-03:00  WARN 206536 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m14s251ms425µs184ns).
-2023-10-31T09:17:02.043-03:00  WARN 206536 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'java.lang.Long br.com.asoft.apistores.inp.UsuarioInp.getId()']
-2023-10-31T09:17:20.891-03:00  INFO 206536 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:17:20.894-03:00  INFO 206536 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-10-31T09:17:20.910-03:00  INFO 206536 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-10-31T09:17:24.241-03:00  INFO 206984 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Starting ApistoresApplication using Java 17.0.8.1 with PID 206984 (/home/anderson/IdeaProjects/apistores/target/classes started by anderson in /home/anderson/IdeaProjects/apistores)
-2023-10-31T09:17:24.248-03:00  INFO 206984 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-10-31T09:17:24.316-03:00  INFO 206984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-10-31T09:17:24.319-03:00  INFO 206984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-31T09:17:25.115-03:00  INFO 206984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-31T09:17:25.205-03:00  INFO 206984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83 ms. Found 8 JPA repository interfaces.
-2023-10-31T09:17:25.909-03:00  INFO 206984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-10-31T09:17:25.919-03:00  INFO 206984 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-31T09:17:25.920-03:00  INFO 206984 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
-2023-10-31T09:17:25.984-03:00  INFO 206984 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-31T09:17:25.986-03:00  INFO 206984 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1665 ms
-2023-10-31T09:17:26.146-03:00  INFO 206984 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.5.1 by Redgate
-2023-10-31T09:17:26.146-03:00  INFO 206984 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
-2023-10-31T09:17:26.147-03:00  INFO 206984 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
-2023-10-31T09:17:26.154-03:00  INFO 206984 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-31T09:17:26.410-03:00  INFO 206984 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1a4c63f8
-2023-10-31T09:17:26.413-03:00  INFO 206984 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-31T09:17:26.432-03:00  INFO 206984 --- [restartedMain] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/apistore (PostgreSQL 14.9)
-2023-10-31T09:17:26.477-03:00  INFO 206984 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.028s)
-2023-10-31T09:17:26.518-03:00  INFO 206984 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 8
-2023-10-31T09:17:26.519-03:00  INFO 206984 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2023-10-31T09:17:26.595-03:00  INFO 206984 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-31T09:17:26.635-03:00  INFO 206984 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-10-31T09:17:26.954-03:00  INFO 206984 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-10-31T09:17:27.843-03:00  INFO 206984 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-10-31T09:17:27.852-03:00  INFO 206984 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:17:28.331-03:00  WARN 206984 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-10-31T09:17:28.645-03:00  INFO 206984 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-10-31T09:17:28.692-03:00  INFO 206984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-10-31T09:17:28.703-03:00  INFO 206984 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 5.012 seconds (process running for 5.887)
-2023-10-31T09:17:32.888-03:00  INFO 206984 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-10-31T09:17:32.889-03:00  INFO 206984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-10-31T09:17:32.893-03:00  INFO 206984 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
-2023-10-31T09:17:43.219-03:00  WARN 206984 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [jakarta.servlet.ServletException: Handler dispatch failed: java.lang.NoSuchMethodError: 'java.lang.Long br.com.asoft.apistores.inp.UsuarioInp.getId()']
-2023-10-31T09:18:09.385-03:00  INFO 206984 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:18:09.388-03:00  INFO 206984 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-10-31T09:18:09.404-03:00  INFO 206984 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-10-31T09:18:12.318-03:00  INFO 207246 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Starting ApistoresApplication using Java 17.0.8.1 with PID 207246 (/home/anderson/IdeaProjects/apistores/target/classes started by anderson in /home/anderson/IdeaProjects/apistores)
-2023-10-31T09:18:12.321-03:00  INFO 207246 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-10-31T09:18:12.421-03:00  INFO 207246 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-10-31T09:18:12.422-03:00  INFO 207246 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-31T09:18:13.279-03:00  INFO 207246 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-31T09:18:13.427-03:00  INFO 207246 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140 ms. Found 8 JPA repository interfaces.
-2023-10-31T09:18:14.286-03:00  INFO 207246 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-10-31T09:18:14.297-03:00  INFO 207246 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-31T09:18:14.298-03:00  INFO 207246 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
-2023-10-31T09:18:14.362-03:00  INFO 207246 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-31T09:18:14.362-03:00  INFO 207246 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1940 ms
-2023-10-31T09:18:14.545-03:00  INFO 207246 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.5.1 by Redgate
-2023-10-31T09:18:14.546-03:00  INFO 207246 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
-2023-10-31T09:18:14.546-03:00  INFO 207246 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
-2023-10-31T09:18:14.555-03:00  INFO 207246 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-31T09:18:14.887-03:00  INFO 207246 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3ae601fe
-2023-10-31T09:18:14.889-03:00  INFO 207246 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-31T09:18:14.903-03:00  INFO 207246 --- [restartedMain] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/apistore (PostgreSQL 14.9)
-2023-10-31T09:18:14.942-03:00  INFO 207246 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.023s)
-2023-10-31T09:18:14.974-03:00  INFO 207246 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 8
-2023-10-31T09:18:14.976-03:00  INFO 207246 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2023-10-31T09:18:15.061-03:00  INFO 207246 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-31T09:18:15.108-03:00  INFO 207246 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-10-31T09:18:15.377-03:00  INFO 207246 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-10-31T09:18:16.205-03:00  INFO 207246 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-10-31T09:18:16.214-03:00  INFO 207246 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:18:16.672-03:00  WARN 207246 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-10-31T09:18:16.946-03:00  INFO 207246 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-10-31T09:18:16.983-03:00  INFO 207246 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-10-31T09:18:16.992-03:00  INFO 207246 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 5.162 seconds (process running for 5.682)
-2023-10-31T09:18:24.436-03:00  INFO 207246 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-10-31T09:18:24.436-03:00  INFO 207246 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-10-31T09:18:24.437-03:00  INFO 207246 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-10-31T09:18:24.617-03:00  WARN 207246 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.jpa.JpaSystemException: ids for this class must be manually assigned before calling save(): br.com.asoft.apistores.model.Usuario]
-2023-10-31T09:19:27.027-03:00  INFO 207246 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:19:27.029-03:00  INFO 207246 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-10-31T09:19:27.042-03:00  INFO 207246 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-10-31T09:19:30.297-03:00  INFO 207466 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Starting ApistoresApplication using Java 17.0.8.1 with PID 207466 (/home/anderson/IdeaProjects/apistores/target/classes started by anderson in /home/anderson/IdeaProjects/apistores)
-2023-10-31T09:19:30.305-03:00  INFO 207466 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-10-31T09:19:30.409-03:00  INFO 207466 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-10-31T09:19:30.410-03:00  INFO 207466 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-31T09:19:31.180-03:00  INFO 207466 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-31T09:19:31.269-03:00  INFO 207466 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 80 ms. Found 8 JPA repository interfaces.
-2023-10-31T09:19:31.906-03:00  INFO 207466 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-10-31T09:19:31.916-03:00  INFO 207466 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-31T09:19:31.917-03:00  INFO 207466 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
-2023-10-31T09:19:31.974-03:00  INFO 207466 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-31T09:19:31.975-03:00  INFO 207466 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1565 ms
-2023-10-31T09:19:32.136-03:00  INFO 207466 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.5.1 by Redgate
-2023-10-31T09:19:32.136-03:00  INFO 207466 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
-2023-10-31T09:19:32.137-03:00  INFO 207466 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
-2023-10-31T09:19:32.147-03:00  INFO 207466 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-31T09:19:32.437-03:00  INFO 207466 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2810ce50
-2023-10-31T09:19:32.439-03:00  INFO 207466 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-31T09:19:32.459-03:00  INFO 207466 --- [restartedMain] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/apistore (PostgreSQL 14.9)
-2023-10-31T09:19:32.502-03:00  INFO 207466 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.025s)
-2023-10-31T09:19:32.535-03:00  INFO 207466 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 8
-2023-10-31T09:19:32.536-03:00  INFO 207466 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2023-10-31T09:19:32.618-03:00  INFO 207466 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-31T09:19:32.669-03:00  INFO 207466 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-10-31T09:19:32.965-03:00  INFO 207466 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-10-31T09:19:33.698-03:00  INFO 207466 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-10-31T09:19:33.706-03:00  INFO 207466 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:19:34.172-03:00  WARN 207466 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-10-31T09:19:34.470-03:00  INFO 207466 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-10-31T09:19:34.525-03:00  INFO 207466 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-10-31T09:19:34.533-03:00  INFO 207466 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 4.82 seconds (process running for 5.551)
-2023-10-31T09:19:37.873-03:00  INFO 207466 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-10-31T09:19:37.873-03:00  INFO 207466 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-10-31T09:19:37.875-03:00  INFO 207466 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-10-31T09:21:26.915-03:00  INFO 207466 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-10-31T09:21:26.918-03:00  INFO 207466 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-10-31T09:21:26.936-03:00  INFO 207466 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-01T14:11:01.556-03:00  INFO 157853 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Starting ApistoresApplication using Java 17.0.8.1 with PID 157853 (/home/anderson/IdeaProjects/apistores/target/classes started by anderson in /home/anderson/IdeaProjects/apistores)
+2023-11-01T14:11:01.566-03:00  INFO 157853 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-11-01T14:11:01.684-03:00  INFO 157853 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-01T14:11:01.684-03:00  INFO 157853 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-01T14:11:02.978-03:00  INFO 157853 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-01T14:11:03.114-03:00  INFO 157853 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 8 JPA repository interfaces.
+2023-11-01T14:11:04.005-03:00  INFO 157853 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-11-01T14:11:04.015-03:00  INFO 157853 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-01T14:11:04.016-03:00  INFO 157853 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
+2023-11-01T14:11:04.081-03:00  INFO 157853 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-01T14:11:04.083-03:00  INFO 157853 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2396 ms
+2023-11-01T14:11:04.326-03:00  INFO 157853 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.5.1 by Redgate
+2023-11-01T14:11:04.326-03:00  INFO 157853 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
+2023-11-01T14:11:04.327-03:00  INFO 157853 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
+2023-11-01T14:11:04.340-03:00  INFO 157853 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-01T14:11:04.681-03:00  INFO 157853 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7be7441c
+2023-11-01T14:11:04.683-03:00  INFO 157853 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-01T14:11:04.701-03:00  INFO 157853 --- [restartedMain] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/apistore (PostgreSQL 14.9)
+2023-11-01T14:11:04.754-03:00  INFO 157853 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.035s)
+2023-11-01T14:11:04.792-03:00  INFO 157853 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 8
+2023-11-01T14:11:04.792-03:00  INFO 157853 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2023-11-01T14:11:04.909-03:00  INFO 157853 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-01T14:11:04.973-03:00  INFO 157853 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-11-01T14:11:05.255-03:00  INFO 157853 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-11-01T14:11:06.229-03:00  INFO 157853 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-01T14:11:06.236-03:00  INFO 157853 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-01T14:11:06.843-03:00  WARN 157853 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-01T14:11:07.221-03:00  INFO 157853 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-11-01T14:11:07.255-03:00  INFO 157853 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-01T14:11:07.265-03:00  INFO 157853 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 6.192 seconds (process running for 7.116)
+2023-11-01T14:11:46.299-03:00  INFO 157853 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-01T14:11:46.299-03:00  INFO 157853 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-01T14:11:46.301-03:00  INFO 157853 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-01T14:11:46.324-03:00  WARN 157853 --- [http-nio-8080-exec-2] o.s.web.servlet.PageNotFound             : Request method 'POST' is not supported
+2023-11-01T14:11:46.387-03:00  WARN 157853 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2023-11-01T14:11:59.550-03:00  WARN 157853 --- [http-nio-8080-exec-3] o.s.web.servlet.PageNotFound             : Request method 'PUT' is not supported
+2023-11-01T14:11:59.551-03:00  WARN 157853 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'PUT' is not supported]
+2023-11-01T14:12:44.894-03:00  INFO 157853 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-01T14:12:44.897-03:00  INFO 157853 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-11-01T14:12:44.913-03:00  INFO 157853 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-11-01T14:12:53.299-03:00  INFO 158263 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Starting ApistoresApplication using Java 17.0.8.1 with PID 158263 (/home/anderson/IdeaProjects/apistores/target/classes started by anderson in /home/anderson/IdeaProjects/apistores)
+2023-11-01T14:12:53.302-03:00  INFO 158263 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-11-01T14:12:53.350-03:00  INFO 158263 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-01T14:12:53.350-03:00  INFO 158263 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-01T14:12:54.245-03:00  INFO 158263 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-01T14:12:54.335-03:00  INFO 158263 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 8 JPA repository interfaces.
+2023-11-01T14:12:55.203-03:00  INFO 158263 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-11-01T14:12:55.214-03:00  INFO 158263 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-11-01T14:12:55.215-03:00  INFO 158263 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.12]
+2023-11-01T14:12:55.279-03:00  INFO 158263 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-11-01T14:12:55.280-03:00  INFO 158263 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1929 ms
+2023-11-01T14:12:55.535-03:00  INFO 158263 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 9.5.1 by Redgate
+2023-11-01T14:12:55.535-03:00  INFO 158263 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : See what's new here: https://flywaydb.org/documentation/learnmore/releaseNotes#9.5.1
+2023-11-01T14:12:55.535-03:00  INFO 158263 --- [restartedMain] o.f.c.internal.license.VersionPrinter    : 
+2023-11-01T14:12:55.545-03:00  INFO 158263 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-11-01T14:12:55.897-03:00  INFO 158263 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@58491a6e
+2023-11-01T14:12:55.914-03:00  INFO 158263 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-11-01T14:12:55.949-03:00  INFO 158263 --- [restartedMain] o.f.c.i.database.base.BaseDatabaseType   : Database: jdbc:postgresql://localhost:5432/apistore (PostgreSQL 14.9)
+2023-11-01T14:12:56.033-03:00  INFO 158263 --- [restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 8 migrations (execution time 00:00.052s)
+2023-11-01T14:12:56.100-03:00  INFO 158263 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 8
+2023-11-01T14:12:56.101-03:00  INFO 158263 --- [restartedMain] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2023-11-01T14:12:56.273-03:00  INFO 158263 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-01T14:12:56.336-03:00  INFO 158263 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-11-01T14:12:56.711-03:00  INFO 158263 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-11-01T14:12:57.841-03:00  INFO 158263 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-01T14:12:57.850-03:00  INFO 158263 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-01T14:12:58.548-03:00  WARN 158263 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-01T14:12:59.033-03:00  INFO 158263 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-11-01T14:12:59.086-03:00  INFO 158263 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-01T14:12:59.104-03:00  INFO 158263 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 6.279 seconds (process running for 7.44)
+2023-11-01T14:13:07.008-03:00  INFO 158263 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-01T14:13:07.009-03:00  INFO 158263 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-11-01T14:13:07.010-03:00  INFO 158263 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-11-01T14:13:07.361-03:00  WARN 158263 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.jpa.JpaSystemException: identifier of an instance of br.com.asoft.apistores.model.Usuario was altered from null to 1]
