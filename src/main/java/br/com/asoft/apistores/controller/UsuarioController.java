@@ -37,8 +37,13 @@ public class UsuarioController {
     }
 
     @PutMapping("/id")
-    public UsuarioOut atualizarUsuario(@RequestBody @Valid UsuarioInp usuarioInp, @PathVariable Long id){
+    public UsuarioOut alterarUsuario(@RequestBody @Valid UsuarioInp usuarioInp, @PathVariable Long id){
 
+        Usuario usuarioAtual = usuarioService.findId(id);
+
+        Usuario usuarioNovo = usuarioMapper.copyToUsuario(usuarioInp,usuarioAtual);
+
+        return usuarioMapper.toUsuarioOut(usuarioService.saveUsuario(usuarioNovo));
 
     }
 
