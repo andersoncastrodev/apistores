@@ -47,4 +47,9 @@ public class UsuarioController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public void excluirUsuario(@PathVariable Long id){
+
+    }
+
 }

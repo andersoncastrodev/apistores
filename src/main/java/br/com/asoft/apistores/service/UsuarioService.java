@@ -27,6 +27,15 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+    public void deleteUsuario(Long id){
+
+        Usuario usuario = findId(id);
+
+        usuarioRepository.delete(usuario);
+        usuarioRepository.flush();
+
+    }
+
     public Usuario tryOrFail(Long id){
         return usuarioRepository.findById(id)
                 .orElseThrow( ()-> new EntityNotFoundExceptions("Usuario",id) );
