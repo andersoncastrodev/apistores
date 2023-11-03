@@ -14,6 +14,8 @@ public interface FornecedorMapper {
 
     Fornecedor toFornecedor(FornecedorInp fornecedorInp);
 
+    Fornecedor copyToFornecedorOut(FornecedorInp fornecedorInp);
+
     List<FornecedorOut> toListFornecedorOut(List<Fornecedor> fornecedores);
 
 
