@@ -4,6 +4,7 @@ import br.com.asoft.apistores.inp.FornecedorInp;
 import br.com.asoft.apistores.model.Fornecedor;
 import br.com.asoft.apistores.out.FornecedorOut;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface FornecedorMapper {
 
     Fornecedor toFornecedor(FornecedorInp fornecedorInp);
 
-    Fornecedor copyToFornecedorOut(FornecedorInp fornecedorInp);
+    Fornecedor copyToFornecedor(FornecedorInp fornecedorInp, @MappingTarget Fornecedor fornecedor);
 
     List<FornecedorOut> toListFornecedorOut(List<Fornecedor> fornecedores);
 

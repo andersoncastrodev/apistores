@@ -36,9 +36,14 @@ public class FornecedorController {
         return fornecedorMapper.toFornecedorOut( fornecedorService.saveFonecedor(fornecedorMapper.toFornecedor(fornecedorInp)));
     }
 
+    @PutMapping("/{id}")
     public FornecedorOut alterarFornecedor(@RequestBody @Valid FornecedorInp fornecedorInp, @PathVariable Long id){
 
+        Fornecedor fornecedorAtual = fornecedorService.findId(id);
 
+        Fornecedor fornecedorNovo = fornecedorMapper.copyToFornecedor(fornecedorInp, fornecedorAtual);
+
+        return fornecedorMapper.toFornecedorOut(fornecedorService.saveFonecedor(fornecedorNovo));
     }
 
 }
