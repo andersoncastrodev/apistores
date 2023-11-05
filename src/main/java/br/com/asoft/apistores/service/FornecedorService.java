@@ -26,6 +26,11 @@ public class FornecedorService {
         return fornecedorRepository.save(fornecedor);
     }
 
+    public void deletarFornecedor(Long id){
+        Fornecedor fornecedor = findId(id);
+        fornecedorRepository.delete(fornecedor);
+        fornecedorRepository.flush();
+    }
     public Fornecedor tryOrFail(Long id){
         return fornecedorRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Fornecedor", id));

@@ -46,4 +46,9 @@ public class FornecedorController {
         return fornecedorMapper.toFornecedorOut(fornecedorService.saveFonecedor(fornecedorNovo));
     }
 
+    @DeleteMapping("/{id}")
+    public void excluirFornecedor(Long id){
+        fornecedorService.deletarFornecedor(id);
+    }
+
 }
