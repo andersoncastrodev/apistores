@@ -47,7 +47,7 @@ public class FornecedorController {
     }
 
     @DeleteMapping("/{id}")
-    public void excluirFornecedor(Long id){
+    public void excluirFornecedor(@PathVariable Long id){
         fornecedorService.deletarFornecedor(id);
     }
 
