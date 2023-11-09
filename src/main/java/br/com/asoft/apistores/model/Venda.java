@@ -23,7 +23,7 @@ public class Venda {
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_cod")
     private Cliente cliente;
 
     private BigDecimal valorTotal;
