@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Venda;
 import br.com.asoft.apistores.respository.VendaRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,5 +16,15 @@ public class VendaService {
 
     public List<Venda> allTodas(){
         return vendaRepository.findAll();
+    }
+
+    public Venda findIbVenda(Long id){
+        return tryOrFail(id);
+    }
+
+    public Venda tryOrFail(Long id){
+
+        return vendaRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundExceptions("Venda",id));
     }
 }
