@@ -18,7 +18,7 @@ public class VendaService {
         return vendaRepository.findAll();
     }
 
-    public Venda findIbVenda(Long id){
+    public Venda findId(Long id){
         return tryOrFail(id);
     }
 

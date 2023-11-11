@@ -26,9 +26,9 @@ public class VendaController {
         return  vendaMapper.toListVendaOut( vendaService.allTodas());
     }
 
-    @GetMapping("{/id}")
-    public VendaOut codigoVenda(@PathVariable Long id){
-        return vendaMapper.toVendaOut( vendaService.findIbVenda(id));
+    @GetMapping("/{id}")
+    public VendaOut buscaPorId(@PathVariable Long id){g
+        return vendaMapper.toVendaOut( vendaService.findId(id));
     }
 
 }
