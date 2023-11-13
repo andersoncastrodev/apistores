@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,12 +19,16 @@ import java.math.BigDecimal;
 public class VendaInp {
 
 
-    private Long id;
+/*    @NotBlank
+    private Long id;*/
 
+    @NotNull
     private Usuario usuario;
 
+    @NotNull
     private Cliente cliente;
 
+    @NotBlank
     private BigDecimal valorTotal;
 
 }

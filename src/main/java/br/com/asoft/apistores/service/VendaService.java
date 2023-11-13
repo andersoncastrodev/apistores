@@ -1,6 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.mapper.VendaMapper;
 import br.com.asoft.apistores.model.Venda;
 import br.com.asoft.apistores.respository.VendaRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,10 @@ public class VendaService {
 
     public Venda findId(Long id){
         return tryOrFail(id);
+    }
+
+    public Venda saveVenda(Venda venda){
+        return vendaRepository.save(venda);
     }
 
     public Venda tryOrFail(Long id){

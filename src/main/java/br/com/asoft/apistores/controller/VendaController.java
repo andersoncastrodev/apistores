@@ -3,8 +3,10 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.VendaInp;
 import br.com.asoft.apistores.mapper.VendaMapper;
+import br.com.asoft.apistores.model.Venda;
 import br.com.asoft.apistores.out.VendaOut;
 import br.com.asoft.apistores.service.VendaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +32,10 @@ public class VendaController {
     }
 
     @PostMapping
-    public VendaOut salvaVenda(@RequestBody VendaInp vendaInp){
+    public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp){
 
+        Venda venda = vendaService.saveVenda(vendaMapper.toVenda(vendaInp));
+       return vendaMapper.toVendaOut(venda);
     }
 
 
