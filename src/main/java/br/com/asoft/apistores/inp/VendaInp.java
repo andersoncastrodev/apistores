@@ -23,12 +23,12 @@ public class VendaInp {
     private Long id;*/
 
     @NotNull
-    private Usuario usuario;
+    private UsuarioInpId usuario;
 
     @NotNull
-    private Cliente cliente;
+    private ClienteInpId cliente;
 
-    @NotBlank
+    @NotNull
     private BigDecimal valorTotal;
 
 }
