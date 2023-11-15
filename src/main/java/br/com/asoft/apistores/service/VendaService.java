@@ -27,6 +27,11 @@ public class VendaService {
         return vendaRepository.save(venda);
     }
 
+    public void deleteVenda(Long id){
+        Venda venda = tryOrFail(id);
+        vendaRepository.delete(venda);
+    }
+
     public Venda tryOrFail(Long id){
 
         return vendaRepository.findById(id)

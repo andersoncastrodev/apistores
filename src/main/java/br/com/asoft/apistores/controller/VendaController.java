@@ -38,5 +38,9 @@ public class VendaController {
        return vendaMapper.toVendaOut(venda);
     }
 
+    @DeleteMapping
+    public void excluirVenda(@PathVariable Long id){
+            vendaService.deleteVenda(id);
+    }
 
 }
