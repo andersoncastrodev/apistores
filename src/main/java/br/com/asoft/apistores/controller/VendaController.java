@@ -38,6 +38,14 @@ public class VendaController {
        return vendaMapper.toVendaOut(venda);
     }
 
+    @PutMapping("{/id}")
+    public VendaOut alterarVenda(@RequestBody VendaInp vendaInp, @PathVariable Long id){
+        Venda vendaAtual = vendaService.findId(id);
+
+        Venda vendaNova = vendaMapper.copyToVendaInp(vendaInp, vendaAtual);
+
+        return vendaMapper.toVendaOut(vendaService.saveVenda(vendaNova));
+    }
     @DeleteMapping("/{id}")
     public void excluirVenda(@PathVariable Long id){
             vendaService.deleteVenda(id);
