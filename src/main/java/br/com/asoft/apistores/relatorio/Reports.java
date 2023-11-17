@@ -24,6 +24,7 @@ public final class Reports {
         this.byteOutStream = new ByteArrayOutputStream();
         this.pdfDocument = new PdfDocument(new PdfWriter(this.byteOutStream));
         this.document = new Document(this.pdfDocument);
+
         this.document.setMargins(5f,10f,10f,5f);
     }
 
@@ -36,7 +37,7 @@ public final class Reports {
     }
 
     public void addNewLine() {
-        this.document.add(new Paragraph("\n"));
+        this.document.add(new Paragraph(" ").setMargins(2f,10f,2f,5f));
     }
 
     public void addParagraph(Paragraph paragraph) {
@@ -51,6 +52,8 @@ public final class Reports {
         this.table = new Table(columnWidth);
         this.table.useAllAvailableWidth();
         this.table.setTextAlignment(TextAlignment.CENTER);
+
+//        this.table.setMargins(5f,10f,10f,5f);
     }
 
     public void addTableHeader(String... headers) {

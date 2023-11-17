@@ -49,10 +49,30 @@ public class PessoaService {
         Reports reports = Reports.getInstance();
 
         reports.addParagraph(new Paragraph("Lista de Pessoas")
+                .setMargins(1f,5f,1f,5f)
                 .setFontSize(28)
                 .setTextAlignment(TextAlignment.CENTER)
                 .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
 
+        reports.addNewLine();
+
+        reports.openTable(3);
+
+        reports.addTableHeader("Codigo","Nome","Telefone");
+
+        List<Pessoa> pessoas = allPessoas();
+
+        for (Pessoa pessoa : pessoas){
+
+            reports.addTableColumn(pessoa.getId());
+            reports.addTableColumn(pessoa.getNome());
+            reports.addTableColumn(pessoa.getTelefone());
+
+        }
+
+        //reports.addTableFooter();
+
+        reports.closeTable();
 
 //        reports.closeTable();
         reports.closeDocument();
