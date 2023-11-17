@@ -2,10 +2,17 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Pessoa;
+import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.PessoaRepository;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -35,5 +42,21 @@ public class PessoaService {
     public Pessoa tryOrFail(Long id){
         return pessoaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Pessoa",id));
+    }
+
+    public ByteArrayInputStream relatorioTodasPessoas() throws IOException {
+
+        Reports reports = Reports.getInstance();
+
+        reports.addParagraph(new Paragraph("Lista de Pessoas")
+                .setFontSize(28)
+                .setTextAlignment(TextAlignment.CENTER)
+                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+
+
+//        reports.closeTable();
+        reports.closeDocument();
+
+        return reports.getByteArrayInputStream();
     }
 }

@@ -38,7 +38,7 @@ public class VendaController {
        return vendaMapper.toVendaOut(venda);
     }
 
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public VendaOut alterarVenda(@RequestBody VendaInp vendaInp, @PathVariable Long id){
         Venda vendaAtual = vendaService.findId(id);
 
