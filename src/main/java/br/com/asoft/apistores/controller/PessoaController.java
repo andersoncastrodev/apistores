@@ -59,13 +59,13 @@ public class PessoaController {
         pessoaService.deletePessoa(id);
     }
 
-    @GetMapping("/relatorioPessoas")
+    @GetMapping("/relatoriopessoas")
     public ResponseEntity<InputStreamResource> relatorioPessoas() {
 
         try {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=students.pdf");
+        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
 
         InputStreamResource relatorio = new InputStreamResource( pessoaService.relatorioTodasPessoas());
 

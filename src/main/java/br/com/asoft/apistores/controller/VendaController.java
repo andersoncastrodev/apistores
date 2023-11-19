@@ -8,8 +8,14 @@ import br.com.asoft.apistores.out.VendaOut;
 import br.com.asoft.apistores.service.VendaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -51,4 +57,24 @@ public class VendaController {
             vendaService.deleteVenda(id);
     }
 
+
+    @GetMapping("/relatoriovendas")
+    public ResponseEntity<InputStreamResource> relatorioPessoas() {
+
+        try {
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "inline; filename=vendas.pdf");
+
+            InputStreamResource relatorio = new InputStreamResource(vendaService.relatorioTodasVendas());
+
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(relatorio);
+
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
