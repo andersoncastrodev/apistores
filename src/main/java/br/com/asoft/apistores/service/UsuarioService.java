@@ -59,6 +59,26 @@ public class UsuarioService {
                 .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
 
         reports.addNewLine();
+
+        reports.openTable(4);
+
+        reports.addTableHeader("Codigo","Login","Senha","Nome");
+
+
+        List<Usuario> usuarios = allTodos();
+
+        for (Usuario usuario: usuarios){
+            reports.addTableColumn(usuario.getId());
+            reports.addTableColumn(usuario.getLogin());
+            reports.addTableColumn(usuario.getSenha());
+            reports.addTableColumn(usuario.getPessoa().getNome());
+        }
+
+        reports.closeTable();
+
+        reports.closeDocument();
+
+        return reports.getByteArrayInputStream();
     }
 
 }
