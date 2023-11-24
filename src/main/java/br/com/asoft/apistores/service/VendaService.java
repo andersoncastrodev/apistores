@@ -45,6 +45,7 @@ public class VendaService {
                 .orElseThrow(()-> new EntityNotFoundExceptions("Venda",id));
     }
 
+
     public ByteArrayInputStream relatorioTodasVendas() throws IOException {
 
         Reports reports = Reports.getInstance();
