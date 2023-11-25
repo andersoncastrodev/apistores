@@ -22,15 +22,10 @@ public class ItenVenda {
     @JoinColumn(name = "venda_id")
     private Venda venda;
 
-
     private Long quant;
-
 
     private BigDecimal valorUnid;
 
-
     private BigDecimal valorTotal;
-
-
 
 }
