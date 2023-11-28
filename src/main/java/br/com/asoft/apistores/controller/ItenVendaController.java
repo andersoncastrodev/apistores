@@ -1,12 +1,9 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.mapper.ItemVendaMapper;
-
-import br.com.asoft.apistores.model.ItenVenda;
 import br.com.asoft.apistores.out.ItenVendaOut;
 import br.com.asoft.apistores.service.ItenVendaService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +21,7 @@ public class ItenVendaController{
 
     @GetMapping
     public List<ItenVendaOut> todasItenVendas(){
-        List<ItenVenda> itenVendas = itenVendaService.allTodos();
-        return itenVendaMapper.toListItemVendaOut(itenVendas);
+
+        return itenVendaMapper.toListItemVendaOut(itenVendaService.allTodos());
     }
 }
