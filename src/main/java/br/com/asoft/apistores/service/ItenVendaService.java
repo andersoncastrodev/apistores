@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.service;
 
-import br.com.asoft.apistores.respository.ItenVenda;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ public class ItenVendaService {
 
     private final ItenVenda itenVenda;
 
-    public List<ItenVenda> findAll(){
+    public List<ItenVenda> allTodos(){
        return itenVenda.findAll();
     }
 
