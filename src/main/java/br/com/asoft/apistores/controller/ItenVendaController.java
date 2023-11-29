@@ -21,7 +21,10 @@ public class ItenVendaController{
 
     @GetMapping
     public List<ItenVendaOut> todasItenVendas(){
-
         return itenVendaMapper.toListItemVendaOut(itenVendaService.allTodos());
+    }
+
+    public ItenVendaOut buscaIdVenda(){
+
     }
 }

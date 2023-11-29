@@ -18,4 +18,8 @@ public class ItenVendaService {
        return itenVendaRepository.findAll();
     }
 
+    public ItenVenda findById(Long id){
+        return itenVendaRepository.findById();
+    }
+
 }
