@@ -5,6 +5,7 @@ import br.com.asoft.apistores.out.ItenVendaOut;
 import br.com.asoft.apistores.service.ItenVendaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,8 @@ public class ItenVendaController{
         return itenVendaMapper.toListItemVendaOut(itenVendaService.allTodos());
     }
 
-    public ItenVendaOut buscaIdVenda(){
-
+    @GetMapping("/{id}")
+    public ItenVendaOut buscaIdVenda(@PathVariable Long id){
+        return itenVendaMapper.toItenVendaOut(itenVendaService.findId(id));
     }
 }
