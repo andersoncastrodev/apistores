@@ -28,10 +28,11 @@ public class ItemVendaController {
         return itenVendaMapper.toItenVendaOut(itenVendaService.findId(id));
     }
 
-//    @PostMapping
-//    public ItemVendaOut salvaItemVenda(@RequestBody ItemVendaInp itenVendaInp){
-//
-//    }
+    @PostMapping
+    public ItemVendaOut salvaItemVenda(@RequestBody ItemVendaInp itenVendaInp){
+
+
+    }
 
 
 }
