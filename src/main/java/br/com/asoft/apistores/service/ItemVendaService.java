@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ItenVendaService {
+public class ItemVendaService {
 
     private final ItenVendaRepository itenVendaRepository;
 
@@ -22,6 +22,7 @@ public class ItenVendaService {
     public ItenVenda findId(Long id){
         return tryOrFaill(id);
     }
+
 
     public ItenVenda tryOrFaill(Long id){
         return itenVendaRepository.findById(id)

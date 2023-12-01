@@ -1,9 +1,7 @@
 package br.com.asoft.apistores.mapper;
 
-import br.com.asoft.apistores.model.Fornecedor;
 import br.com.asoft.apistores.model.ItenVenda;
-import br.com.asoft.apistores.out.FornecedorOut;
-import br.com.asoft.apistores.out.ItenVendaOut;
+import br.com.asoft.apistores.out.ItemVendaOut;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -11,8 +9,8 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ItemVendaMapper {
 
-    ItenVendaOut toItenVendaOut(ItenVenda itenVenda);
+    ItemVendaOut toItenVendaOut(ItenVenda itenVenda);
 
-    List<ItenVendaOut> toListItemVendaOut(List<ItenVenda> itenVendas);
+    List<ItemVendaOut> toListItemVendaOut(List<ItenVenda> itenVendas);
 
 }
