@@ -59,3 +59,6 @@
 2023-12-01T07:30:39.871-03:00  INFO 104251 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2023-12-01T07:30:39.897-03:00  INFO 104251 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2023-12-01T07:30:39.906-03:00  INFO 104251 --- [restartedMain] b.c.a.apistores.ApistoresApplication     : Started ApistoresApplication in 4.568 seconds (process running for 5.094)
+2023-12-01T07:42:40.310-03:00  INFO 104251 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-12-01T07:42:40.312-03:00  INFO 104251 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-12-01T07:42:40.327-03:00  INFO 104251 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

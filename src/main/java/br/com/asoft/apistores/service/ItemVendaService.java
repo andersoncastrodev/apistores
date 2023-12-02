@@ -2,8 +2,9 @@ package br.com.asoft.apistores.service;
 
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.model.ItemVenda;
 import br.com.asoft.apistores.model.ItenVenda;
-import br.com.asoft.apistores.respository.ItenVendaRepository;
+import br.com.asoft.apistores.respository.ItemVendaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,19 +14,22 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemVendaService {
 
-    private final ItenVendaRepository itenVendaRepository;
+    private final ItemVendaRepository itemVendaRepository;
 
-    public List<ItenVenda> allTodos(){
-       return itenVendaRepository.findAll();
+    public List<ItemVenda> allTodos(){
+       return itemVendaRepository.findAll();
     }
 
-    public ItenVenda findId(Long id){
+    public ItemVenda findId(Long id){
         return tryOrFaill(id);
     }
 
+    public ItemVenda saveIntVenda(ItemVenda itenVenda){
+        return itemVendaRepository.save(itenVenda);
+    }
 
-    public ItenVenda tryOrFaill(Long id){
-        return itenVendaRepository.findById(id)
+    public ItemVenda tryOrFaill(Long id){
+        return itemVendaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("ItenVenda",id));
     }
 
