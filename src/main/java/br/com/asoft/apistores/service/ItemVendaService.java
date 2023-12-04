@@ -3,7 +3,6 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.ItemVenda;
-import br.com.asoft.apistores.model.ItenVenda;
 import br.com.asoft.apistores.respository.ItemVendaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ public class ItemVendaService {
         return tryOrFaill(id);
     }
 
-    public ItemVenda saveIntVenda(ItemVenda itenVenda){
+    public ItemVenda saveItemVenda(ItemVenda itenVenda){
         return itemVendaRepository.save(itenVenda);
     }
 

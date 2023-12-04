@@ -30,8 +30,8 @@ public class ItemVendaController {
     }
 
     @PostMapping
-    public ItemVendaOut salvaItemVenda(@RequestBody ItemVendaInp itenVendaInp){
-        ItemVenda itemVenda = itemVendaService.saveIntVenda( itemVendaMapper.toItenVenda(itenVendaInp));
+    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp){
+        ItemVenda itemVenda = itemVendaService.saveItemVenda( itemVendaMapper.toItenVenda(itenVendaInp));
         return itemVendaMapper.toItenVendaOut(itemVenda);
 
     }
