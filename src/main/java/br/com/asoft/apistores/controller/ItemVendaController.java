@@ -1,10 +1,13 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.inp.FornecedorInp;
 import br.com.asoft.apistores.inp.ItemVendaInp;
 import br.com.asoft.apistores.mapper.ItemVendaMapper;
+import br.com.asoft.apistores.model.Fornecedor;
 import br.com.asoft.apistores.model.ItemVenda;
 import br.com.asoft.apistores.out.ItemVendaOut;
 import br.com.asoft.apistores.service.ItemVendaService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +38,17 @@ public class ItemVendaController {
         return itemVendaMapper.toItenVendaOut(itemVenda);
 
     }
+
+    @PutMapping("/{id}")
+    public ItemVendaOut alterarFornecedor(@RequestBody @Valid FornecedorInp fornecedorInp, @PathVariable Long id){
+
+        ItemVenda itemVendaAtual = itemVendaService.findId(id);
+
+        ItemVenda itemVendaNovo = itemVendaMapper.copyToFornecedor(fornecedorInp, fornecedorAtual);
+
+        return fornecedorMapper.toFornecedorOut(fornecedorService.saveFonecedor(fornecedorNovo));
+    }
+
 
 
 }
