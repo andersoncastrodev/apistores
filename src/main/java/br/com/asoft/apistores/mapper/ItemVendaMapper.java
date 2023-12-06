@@ -4,6 +4,7 @@ import br.com.asoft.apistores.inp.ItemVendaInp;
 import br.com.asoft.apistores.model.ItemVenda;
 import br.com.asoft.apistores.out.ItemVendaOut;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface ItemVendaMapper {
 
     ItemVenda toItenVenda(ItemVendaInp itenVendaInp);
 
+    ItemVenda copyToItemVenda(ItemVendaInp itemVendaInp, @MappingTarget ItemVenda itemVenda);
     List<ItemVendaOut> toListItemVendaOut(List<ItemVenda> itenVendas);
 
 }

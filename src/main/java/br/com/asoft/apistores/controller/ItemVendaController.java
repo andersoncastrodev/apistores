@@ -40,13 +40,13 @@ public class ItemVendaController {
     }
 
     @PutMapping("/{id}")
-    public ItemVendaOut alterarFornecedor(@RequestBody @Valid FornecedorInp fornecedorInp, @PathVariable Long id){
+    public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id){
 
         ItemVenda itemVendaAtual = itemVendaService.findId(id);
 
-        ItemVenda itemVendaNovo = itemVendaMapper.copyToFornecedor(fornecedorInp, fornecedorAtual);
+        ItemVenda itemVendaNovo = itemVendaMapper.copyToItemVenda(itemVendaInp, itemVendaAtual);
 
-        return fornecedorMapper.toFornecedorOut(fornecedorService.saveFonecedor(fornecedorNovo));
+        return itemVendaMapper.toItenVendaOut(itemVendaService.saveItemVenda(itemVendaNovo));
     }
 
 
