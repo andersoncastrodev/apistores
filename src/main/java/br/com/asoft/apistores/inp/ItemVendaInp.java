@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class ItemVendaInp {
 
     @NotNull
-    private Venda venda;
+    private VendaInpId venda;
 
     @NotBlank
     private Long quant;
