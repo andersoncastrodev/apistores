@@ -49,6 +49,11 @@ public class ItemVendaController {
         return itemVendaMapper.toItenVendaOut(itemVendaService.saveItemVenda(itemVendaNovo));
     }
 
+    @DeleteMapping("/{id}")
+    public void excluirItemVenda(@PathVariable Long id){
+        itemVendaService.deletarItemVenda(id);
+    }
+
 
 
 

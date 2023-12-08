@@ -37,6 +37,12 @@ public class ItemVendaService {
         return itemVendaRepository.save(itenVenda);
     }
 
+    public void deletarItemVenda(Long id){
+        ItemVenda itemVenda = findId(id);
+        itemVendaRepository.delete(itemVenda);
+        itemVendaRepository.flush();
+    }
+
     public ItemVenda tryOrFaill(Long id){
         return itemVendaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("ItenVenda",id));
