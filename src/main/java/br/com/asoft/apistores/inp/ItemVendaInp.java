@@ -16,7 +16,7 @@ public class ItemVendaInp {
     @NotNull
     private VendaInpId venda;
 
-    @NotBlank
+    @NotNull
     private Long quant;
 
     @NotNull
