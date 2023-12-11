@@ -3,7 +3,6 @@ package br.com.asoft.apistores.service;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Usuario;
 
-import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.UsuarioRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
