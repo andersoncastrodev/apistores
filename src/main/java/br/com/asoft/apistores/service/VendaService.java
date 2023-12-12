@@ -2,6 +2,7 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Venda;
+import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.VendaRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -46,7 +47,7 @@ public class VendaService {
 
     public ByteArrayInputStream relatorioTodasVendas() throws IOException {
 
-        Reports reports = Reports.getInstance();
+        Reports reports = new Reports(false);
 
         reports.addParagraph(new Paragraph("Vendas")
                 .setFontSize(28)
@@ -55,19 +56,18 @@ public class VendaService {
         );
 
         reports.addNewLine();
-        reports.openTable(4);
+        reports.openTable(1f,1f,1f,1f);
         reports.addTableHeader("Codigo","Usuario","Cliente","Valor Total");
 
         List<Venda> vendas = allTodas();
 
         for (Venda venda: vendas) {
-            reports.addTableColumn(venda.getId());
-            reports.addTableColumn(venda.getUsuario().getLogin());
-            reports.addTableColumn(venda.getCliente().getPessoa().getNome());
-            reports.addTableColumn(venda.getValorTotal());
+            reports.addCellCenter(venda.getId());
+            reports.addCellCenter(venda.getUsuario().getLogin());
+            reports.addCellCenter(venda.getCliente().getPessoa().getNome());
+            reports.addCellCenter(venda.getValorTotal());
         }
 
-        reports.addTableFooter("Final do relatorio");
         reports.closeTable();
         reports.closeDocument();
 
