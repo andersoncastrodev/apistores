@@ -2,6 +2,7 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Pessoa;
+import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.PessoaRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -45,7 +46,7 @@ public class PessoaService {
 
     public ByteArrayInputStream relatorioTodasPessoas() throws IOException {
 
-        Reports reports = Reports.getInstance();
+        Reports reports = new Reports(false);
 
         reports.addParagraph(new Paragraph("Lista de Pessoas")
                 .setMargins(1f,5f,1f,5f)
@@ -55,7 +56,7 @@ public class PessoaService {
 
         reports.addNewLine();
 
-        reports.openTable(3);
+        reports.openTable(1f,1f,1f);
 
         reports.addTableHeader("Codigo","Nome","Telefone");
 
@@ -63,17 +64,14 @@ public class PessoaService {
 
         for (Pessoa pessoa : pessoas){
 
-            reports.addTableColumn(pessoa.getId());
-            reports.addTableColumn(pessoa.getNome());
-            reports.addTableColumn(pessoa.getTelefone());
+            reports.addCellCenter(pessoa.getId());
+            reports.addCellCenter(pessoa.getNome());
+            reports.addCellCenter(pessoa.getTelefone());
 
         }
 
-        //reports.addTableFooter();
-
         reports.closeTable();
 
-//        reports.closeTable();
         reports.closeDocument();
 
         return reports.getByteArrayInputStream();

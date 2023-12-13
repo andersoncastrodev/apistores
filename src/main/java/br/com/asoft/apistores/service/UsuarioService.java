@@ -3,6 +3,7 @@ package br.com.asoft.apistores.service;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Usuario;
 
+import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.UsuarioRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
@@ -49,7 +50,7 @@ public class UsuarioService {
 
     public ByteArrayInputStream relatorioUsuarios() throws IOException {
 
-        Reports reports = Reports.getInstance();
+        Reports reports = new Reports(false);
 
         reports.addParagraph(new Paragraph("Lista de Usuarios")
                 .setMargins(1f,5f,1f,5f)
@@ -59,7 +60,7 @@ public class UsuarioService {
 
         reports.addNewLine();
 
-        reports.openTable(4);
+        reports.openTable(1f,1f,1f,1f);
 
         reports.addTableHeader("Codigo","Login","Senha","Nome");
 
@@ -67,10 +68,10 @@ public class UsuarioService {
         List<Usuario> usuarios = allTodos();
 
         for (Usuario usuario: usuarios){
-            reports.addTableColumn(usuario.getId());
-            reports.addTableColumn(usuario.getLogin());
-            reports.addTableColumn(usuario.getSenha());
-            reports.addTableColumn(usuario.getPessoa().getNome());
+            reports.addCellCenter(usuario.getId());
+            reports.addCellCenter(usuario.getLogin());
+            reports.addCellCenter(usuario.getSenha());
+            reports.addCellCenter(usuario.getPessoa().getNome());
         }
 
         reports.closeTable();
