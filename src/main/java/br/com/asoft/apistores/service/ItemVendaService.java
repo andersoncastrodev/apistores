@@ -3,11 +3,19 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.ItemVenda;
+import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.model.Venda;
+import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.ItemVendaRepository;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -46,6 +54,40 @@ public class ItemVendaService {
     public ItemVenda tryOrFaill(Long id){
         return itemVendaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("ItenVenda",id));
+    }
+
+    public ByteArrayInputStream relatorioItemVenda() throws IOException {
+
+        Reports reports = new Reports(false);
+
+        reports.addParagraph(new Paragraph("Lista dos Itens da Venda")
+                .setMargins(1f,5f,1f,5f)
+                .setFontSize(28)
+                .setTextAlignment(TextAlignment.CENTER)
+                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+
+        reports.addNewLine();
+
+        reports.openTable(1f,1f,1f);
+
+        reports.addTableHeader("Codigo","Nome","Telefone");
+
+        List<ItemVenda> itemVendas = allTodos();
+
+        for (ItemVenda itemVenda : itemVendas){
+
+            reports.addCellCenter(itemVenda.getId());
+            reports.addCellCenter(itemVenda.getQuant());
+            reports.addCellCenter(itemVenda.getValorUnid());
+            reports.addCellCenter(itemVenda.getValorTotal());
+
+        }
+
+        reports.closeTable();
+
+        reports.closeDocument();
+
+        return reports.getByteArrayInputStream();
     }
 
 }
