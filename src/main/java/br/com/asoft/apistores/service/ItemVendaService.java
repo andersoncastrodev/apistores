@@ -70,13 +70,14 @@ public class ItemVendaService {
 
         reports.openTable(1f,1f,1f);
 
-        reports.addTableHeader("Codigo","Nome","Telefone");
+        reports.addTableHeader("Codigo Item","Codigo Venda","Quantidade","Valor Unidade","Valor Total");
 
         List<ItemVenda> itemVendas = allTodos();
 
         for (ItemVenda itemVenda : itemVendas){
 
             reports.addCellCenter(itemVenda.getId());
+            reports.addCellCenter(itemVenda.getVenda().getId());
             reports.addCellCenter(itemVenda.getQuant());
             reports.addCellCenter(itemVenda.getValorUnid());
             reports.addCellCenter(itemVenda.getValorTotal());
