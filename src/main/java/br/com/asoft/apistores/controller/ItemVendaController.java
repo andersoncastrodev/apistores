@@ -69,7 +69,7 @@ public class ItemVendaController {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
 
-            InputStreamResource relatorio = new InputStreamResource( itemVendaService.relatorioTodasPessoas());
+            InputStreamResource relatorio = new InputStreamResource(itemVendaService.relatorioItemVenda());
 
             return ResponseEntity.ok()
                     .headers(headers)
@@ -80,7 +80,7 @@ public class ItemVendaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
-
+    }
 
 
 
