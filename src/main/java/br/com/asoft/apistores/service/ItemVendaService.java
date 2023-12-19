@@ -68,7 +68,7 @@ public class ItemVendaService {
 
         reports.addNewLine();
 
-        reports.openTable(1f,1f,1f);
+        reports.openTable(1f,1f,1f,1f,1f);
 
         reports.addTableHeader("Codigo Item","Codigo Venda","Quantidade","Valor Unidade","Valor Total");
 
