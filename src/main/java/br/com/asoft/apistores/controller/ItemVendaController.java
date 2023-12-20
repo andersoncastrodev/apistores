@@ -39,14 +39,14 @@ public class ItemVendaController {
     }
 
     @PostMapping
-    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp){
+    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp) {
         ItemVenda itemVenda = itemVendaService.saveItemVenda( itemVendaMapper.toItenVenda(itenVendaInp));
         return itemVendaMapper.toItenVendaOut(itemVenda);
 
     }
 
     @PutMapping("/{id}")
-    public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id){
+    public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id) {
 
         ItemVenda itemVendaAtual = itemVendaService.findId(id);
 
@@ -56,7 +56,7 @@ public class ItemVendaController {
     }
 
     @DeleteMapping("/{id}")
-    public void excluirItemVenda(@PathVariable Long id){
+    public void excluirItemVenda(@PathVariable Long id) {
         itemVendaService.deletarItemVenda(id);
     }
 

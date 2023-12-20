@@ -74,7 +74,7 @@ public class ItemVendaService {
 
         List<ItemVenda> itemVendas = allTodos();
 
-        for (ItemVenda itemVenda : itemVendas){
+        for (ItemVenda itemVenda : itemVendas) {
 
             reports.addCellCenter(itemVenda.getId());
             reports.addCellCenter(itemVenda.getVenda().getId());

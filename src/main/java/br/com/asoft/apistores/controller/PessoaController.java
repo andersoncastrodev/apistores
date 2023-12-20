@@ -49,7 +49,7 @@ public class PessoaController {
     }
 
     @DeleteMapping("/{id}")
-    public void excluirPessoa(@PathVariable Long id){
+    public void excluirPessoa(@PathVariable Long id) {
         pessoaService.deletePessoa(id);
     }
 
