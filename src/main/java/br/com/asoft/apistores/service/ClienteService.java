@@ -72,7 +72,7 @@ public class ClienteService {
 
         List<Cliente> clientes = findAllCliente();
 
-        for (Cliente cliente: clientes){
+        for (Cliente cliente: clientes) {
 
             reports.addCellCenter(cliente.getPessoa().getId());
             reports.addCellCenter(cliente.getPessoa().getNome());
