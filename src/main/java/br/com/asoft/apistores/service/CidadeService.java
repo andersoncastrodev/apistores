@@ -3,10 +3,17 @@ package br.com.asoft.apistores.service;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.CidadeRepository;
+import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -48,6 +55,35 @@ public class CidadeService {
     public Cidade tryOrFail(Long id){
         return cidadeRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Cidade",id));
+    }
+
+    public ByteArrayInputStream relatorioCidade() throws IOException {
+
+        Reports reports = new Reports(false);
+
+        reports.addParagraph(new Paragraph("Lista de Cidades")
+                .setMargins(1f,5f,1f,5f)
+                .setFontSize(28)
+                .setTextAlignment(TextAlignment.CENTER)
+                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+
+        reports.addNewLine();
+        reports.openTable(1f,1f,1f,1f);
+        reports.addTableHeader("Codigo","Nome","Estado");
+
+        List<Cidade> cidades = allCidades();
+
+        for (Cidade cidade : cidades){
+
+            reports.addCellCenter(cidade.getId());
+            reports.addCellCenter(cidade.getNome());
+            reports.addCellCenter(cidade.getEstado().getNome());
+        }
+
+        reports.closeTable();
+        reports.closeDocument();
+
+        return reports.getByteArrayInputStream();
     }
 
 }
