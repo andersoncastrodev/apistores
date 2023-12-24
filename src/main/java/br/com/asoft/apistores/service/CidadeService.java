@@ -62,13 +62,13 @@ public class CidadeService {
         Reports reports = new Reports(false);
 
         reports.addParagraph(new Paragraph("Lista de Cidades")
-                .setMargins(1f,5f,1f,5f)
+                .setMargins(1f,2f,2f,5f)
                 .setFontSize(28)
                 .setTextAlignment(TextAlignment.CENTER)
                 .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
 
         reports.addNewLine();
-        reports.openTable(1f,1f,1f,1f);
+        reports.openTable(1f,1f,1f);
         reports.addTableHeader("Codigo","Nome","Estado");
 
         List<Cidade> cidades = allCidades();
