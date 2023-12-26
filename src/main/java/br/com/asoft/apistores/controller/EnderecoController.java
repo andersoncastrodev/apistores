@@ -1,6 +1,5 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.inp.EnderecoIdInp;
 import br.com.asoft.apistores.inp.EnderecoInp;
 import br.com.asoft.apistores.mapper.EnderecoMapper;
 import br.com.asoft.apistores.model.Endereco;
@@ -8,8 +7,14 @@ import br.com.asoft.apistores.out.EnderecoOut;
 import br.com.asoft.apistores.service.EnderecoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -22,43 +27,65 @@ public class EnderecoController {
     private final EnderecoMapper enderecoMapper;
 
     @GetMapping
-    public List<EnderecoOut> buscaTodos(){
+    public List<EnderecoOut> buscaTodos() {
         List<EnderecoOut> enderecos = enderecoMapper.toListEnderecoOut(enderecoService.allEndereco());
         return enderecos;
     }
 
     @GetMapping("/{id}")
-    public EnderecoOut buscaPorId(@PathVariable Long id){
+    public EnderecoOut buscaPorId(@PathVariable Long id) {
         return enderecoMapper.toEnderecoOut(enderecoService.findId(id));
     }
 
     @PostMapping
-    public EnderecoOut salvarEndereco(@RequestBody @Valid EnderecoInp enderecoInp){
+    public EnderecoOut salvarEndereco(@RequestBody @Valid EnderecoInp enderecoInp) {
 
-          Endereco endereco = enderecoMapper.toEndereco(enderecoInp);
+        Endereco endereco = enderecoMapper.toEndereco(enderecoInp);
 
-          EnderecoOut enderecoOut = enderecoMapper.toEnderecoOut( enderecoService.saveEndereco(endereco) );
+        EnderecoOut enderecoOut = enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(endereco));
 
-          return enderecoOut;
+        return enderecoOut;
     }
 
     @PutMapping("/{id}")
-    public EnderecoOut atualizarEndereco(@RequestBody @Valid EnderecoInp enderecoInp, @PathVariable Long id){
+    public EnderecoOut atualizarEndereco(@RequestBody @Valid EnderecoInp enderecoInp, @PathVariable Long id) {
 
         Endereco enderecoAtual = enderecoService.findId(id);
 
-        Endereco enderecoNovo = enderecoMapper.copyToEndereco(enderecoInp,enderecoAtual);
+        Endereco enderecoNovo = enderecoMapper.copyToEndereco(enderecoInp, enderecoAtual);
 
         return enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(enderecoNovo));
     }
 
     @DeleteMapping("/{id}")
-    public void excluirEndereco(@PathVariable Long id){
+    public void excluirEndereco(@PathVariable Long id) {
 
         enderecoService.deleteEndereco(id);
 
     }
 
+    @GetMapping("/relatorioendereco")
+    public ResponseEntity<InputStreamResource> relatorioEndereco() {
+
+        try {
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
+
+
+            InputStreamResource relatorio = new InputStreamResource(enderecoService.relatorioEndereco());
+
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(relatorio);
+
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
 
 
 }
