@@ -8,6 +8,8 @@ import br.com.asoft.apistores.service.EstadoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,6 +62,11 @@ public class EstadoController {
         estadoService.deleteEstado(id);
     }
 
+    @GetMapping("/relatorioestados")
+    public ResponseEntity<InputStreamResource> relatorioEstados() {
+
+        return null;
+    }
 
 
 }
