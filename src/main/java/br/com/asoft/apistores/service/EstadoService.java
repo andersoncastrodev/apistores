@@ -62,6 +62,13 @@ public class EstadoService {
 
         List<Estado> estados = allEstados();
 
+        for (Estado estado: estados) {
+
+            reports.addCellCenter(estado.getId());
+            reports.addCellCenter(estado.getNome());
+            reports.addCellCenter(estado.getSigla());
+        }
+
         reports.closeTable();
         reports.closeDocument();
 

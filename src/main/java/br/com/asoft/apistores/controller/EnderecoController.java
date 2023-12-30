@@ -70,7 +70,7 @@ public class EnderecoController {
         try {
 
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
+            headers.add("Content-Disposition", "inline; filename=endereco.pdf");
 
 
             InputStreamResource relatorio = new InputStreamResource(enderecoService.relatorioEndereco());

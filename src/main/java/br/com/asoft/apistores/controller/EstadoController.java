@@ -72,7 +72,7 @@ public class EstadoController {
         try {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
+        headers.add("Content-Disposition", "inline; filename=estados.pdf");
 
         InputStreamResource relatorio = new InputStreamResource(estadoService.relatorioEstado());
 
