@@ -7,6 +7,8 @@ import br.com.asoft.apistores.out.FornecedorOut;
 import br.com.asoft.apistores.service.FornecedorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,6 +51,12 @@ public class FornecedorController {
     @DeleteMapping("/{id}")
     public void excluirFornecedor(@PathVariable Long id){
         fornecedorService.deletarFornecedor(id);
+    }
+
+    @GetMapping("/relatoriofornecedor")
+    public ResponseEntity<InputStreamResource> relatorioFornecedores() {
+
+        return null;
     }
 
 
