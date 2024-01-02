@@ -7,8 +7,14 @@ import br.com.asoft.apistores.out.PessoaOut;
 import br.com.asoft.apistores.service.PessoaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -52,6 +58,28 @@ public class PessoaController {
     public void excluirPessoa(@PathVariable Long id) {
         pessoaService.deletePessoa(id);
     }
+
+    @GetMapping("/relatoriopessoas")
+    public ResponseEntity<InputStreamResource> relatorioPessoas() {
+
+        try {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=fornecedores.pdf");
+
+        InputStreamResource relatorio = new InputStreamResource(pessoaService.relatorioTodasPessoas());
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(relatorio);
+
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+    }
+
 
 
 }
