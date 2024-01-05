@@ -65,6 +65,7 @@ public class ProdutoController {
         produtoService.deletarProduto(id);
     }
 
+    @GetMapping("/relatorioprodutos")
     public ResponseEntity<InputStreamResource> relatorioPessoas() {
 
         try {
