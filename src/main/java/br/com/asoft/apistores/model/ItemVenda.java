@@ -22,10 +22,15 @@ public class ItemVenda {
     @JoinColumn(name = "venda_id")
     private Venda venda;
 
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
+
     private Long quant;
 
     private BigDecimal valorUnid;
 
     private BigDecimal valorTotal;
+
 
 }
