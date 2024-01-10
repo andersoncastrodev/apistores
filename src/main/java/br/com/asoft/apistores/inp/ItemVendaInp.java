@@ -17,6 +17,9 @@ public class ItemVendaInp {
     private VendaInpId venda;
 
     @NotNull
+    private ProdutoInp produto;
+
+    @NotNull
     private Long quant;
 
     @NotNull

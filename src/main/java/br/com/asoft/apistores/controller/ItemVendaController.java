@@ -29,12 +29,12 @@ public class ItemVendaController {
     private final ItemVendaMapper itemVendaMapper;
 
     @GetMapping
-    public List<ItemVendaOut> todasItenVendas(){
+    public List<ItemVendaOut> todasItenVendas() {
         return itemVendaMapper.toListItemVendaOut(itemVendaService.allTodos());
     }
 
     @GetMapping("/{id}")
-    public ItemVendaOut buscaIdVenda(@PathVariable Long id){
+    public ItemVendaOut buscaIdVenda(@PathVariable Long id) {
         return itemVendaMapper.toItenVendaOut(itemVendaService.findId(id));
     }
 
