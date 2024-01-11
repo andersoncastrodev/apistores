@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.inp;
 
+import br.com.asoft.apistores.model.Produto;
 import br.com.asoft.apistores.model.Venda;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -17,7 +18,7 @@ public class ItemVendaInp {
     private VendaInpId venda;
 
     @NotNull
-    private ProdutoInp produto;
+    private ProdutoInpId produto;
 
     @NotNull
     private Long quant;
