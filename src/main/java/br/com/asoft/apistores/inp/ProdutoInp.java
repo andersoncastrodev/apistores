@@ -23,5 +23,4 @@ public class ProdutoInp {
     @NotNull
     private FornecedorIdInp fornecedor;
 
-
 }
