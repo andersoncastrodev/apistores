@@ -5,6 +5,7 @@ import br.com.asoft.apistores.mapper.ClienteMapper;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.out.ClienteOut;
 import br.com.asoft.apistores.service.ClienteService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -54,6 +55,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Busca por Codigo")
     public void excluirCliente(@PathVariable Long id){
         clienteService.deleteCliente(id);
     }
