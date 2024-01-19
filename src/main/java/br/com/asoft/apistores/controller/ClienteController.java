@@ -55,7 +55,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Busca por Codigo")
+    //@Operation(summary = "Busca por Codigo")
     public void excluirCliente(@PathVariable Long id){
         clienteService.deleteCliente(id);
     }

@@ -13,9 +13,9 @@ public class OpenApiConfig {
     public OpenAPI customOpenApi(){
         return new OpenAPI()
                 .info(new Info()
-                        .title("Public-Notices")
-                        .description("Public-Notices Editais - Unipex")
-                        .contact(new Contact().name("unichristus"))
+                        .title("Api Venda Store")
+                        .description("Api Venda Store - ASoft")
+                        .contact(new Contact().name("asoftSistemas"))
                         .version("1.0.0") );
 
     }
