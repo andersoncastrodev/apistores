@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class OpenApiConfig {
 
-//    @Bean
-//    public OpenAPI customOpenApi(){
-//        return new OpenAPI()
-//                .info(new Info()
-//                        .title("Api Venda Store")
-//                        .description("Api Venda Store - ASoft")
-//                        .contact(new Contact().name("asoftSistemas"))
-//                        .version("1.0.0") );
-//
-//    }
+    @Bean
+    public OpenAPI customOpenApi(){
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Api Venda Store")
+                        .description("Api Venda Store - ASoft")
+                        .contact(new Contact().name("asoftSistemas"))
+                        .version("1.0.0") );
+
+    }
 
 }
