@@ -66,7 +66,7 @@ public class CidadeController {
     }
 
     @GetMapping("/relatoriocidades")
-    public ResponseEntity<InputStreamResource> relatorioCidades(){
+    public ResponseEntity<InputStreamResource> relatorioCidades() {
 
         try {
 

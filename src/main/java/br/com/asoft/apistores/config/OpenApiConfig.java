@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI customOpenApi(){
+    public OpenAPI customOpenApi() {
         return new OpenAPI()
                 .info(new Info()
                         .title("Api Venda Store")
