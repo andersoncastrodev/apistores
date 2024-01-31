@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.TipoPagamento;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,5 +20,6 @@ public class FormaDePagamento {
     @Column(name = "descricao")
     private String descricao;
 
+    private TipoPagamento pagamento;
 
 }
