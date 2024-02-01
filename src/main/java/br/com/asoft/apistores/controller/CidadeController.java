@@ -8,6 +8,8 @@ import br.com.asoft.apistores.service.CidadeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +28,9 @@ public class CidadeController {
     private final CidadeMapper cidadeMapper;
 
     @GetMapping
-    public List<CidadeOut> buscarTodas(){
+    public Page<CidadeOut> buscarTodas(Pageable pageable){
 
-        List<CidadeOut> cidades = cidadeMapper.toListCidadeOut(cidadeService.allCidades());
+        Page<CidadeOut> cidades = cidadeMapper.toListCidadePageOut(cidadeService.allCidades(pageable));
 
         return cidades;
     }

@@ -10,6 +10,8 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -24,8 +26,8 @@ public class CidadeService {
 
     private final EstadoService estadoService;
 
-    public List<Cidade> allCidades(){
-        return cidadeRepository.findAll();
+    public Page<Cidade> allCidades(Pageable pageable){
+        return cidadeRepository.findAll(pageable);
     }
 
     public Cidade findId(Long id){
