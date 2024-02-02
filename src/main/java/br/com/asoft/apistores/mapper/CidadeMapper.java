@@ -19,6 +19,4 @@ public interface CidadeMapper {
     Cidade copyToCidade(CidadeInp cidadeInp, @MappingTarget Cidade cidade);
     List<CidadeOut> toListCidadeOut(List<Cidade> cidades);
 
-    Page<CidadeOut> toListCidadePageOut(Page<Cidade> cidades);
-
 }

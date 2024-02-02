@@ -9,12 +9,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -30,9 +30,13 @@ public class CidadeController {
     @GetMapping
     public Page<CidadeOut> buscarTodas(Pageable pageable){
 
-        Page<CidadeOut> cidades = cidadeMapper.toListCidadePageOut(cidadeService.allCidades(pageable));
+        Page<Cidade> cidadesPage = cidadeService.allCidadesPage(pageable);
 
-        return cidades;
+        List<CidadeOut> cidadesOutList = cidadeMapper.toListCidadeOut(cidadesPage.getContent());
+
+        Page<CidadeOut> cidadesPageOut = new PageImpl<>(cidadesOutList,pageable,cidadesPage.getTotalPages());
+
+        return cidadesPageOut;
     }
 
     @GetMapping("/{id}")

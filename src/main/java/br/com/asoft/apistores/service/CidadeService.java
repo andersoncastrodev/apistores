@@ -26,8 +26,12 @@ public class CidadeService {
 
     private final EstadoService estadoService;
 
-    public Page<Cidade> allCidades(Pageable pageable){
+    public Page<Cidade> allCidadesPage(Pageable pageable){
         return cidadeRepository.findAll(pageable);
+    }
+
+    public List<Cidade> allCidades(){
+        return cidadeRepository.findAll();
     }
 
     public Cidade findId(Long id){
