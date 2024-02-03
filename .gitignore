@@ -3,6 +3,10 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+### Tirando os Logs do git ###
+./logs/*.log
+./logs/*.gz
+./logs/*.tmp
 
 ### STS ###
 .apt_generated
