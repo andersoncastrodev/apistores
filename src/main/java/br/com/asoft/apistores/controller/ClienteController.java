@@ -9,6 +9,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,8 +31,16 @@ public class ClienteController {
     private final ClienteMapper clienteMapper;
 
     @GetMapping
-    public List<ClienteOut> todosClientes(){
-        return clienteMapper.toListClienteOut(clienteService.findAllCliente());
+    public Page<ClienteOut> todosClientes(Pageable pageable){
+
+        Page<Cliente> clientePage = clienteService.allClientePage(pageable);
+
+        List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
+
+        Page<ClienteOut> clientePageOut = new PageImpl<>(clienteOutList,pageable,clientePage.getTotalPages());
+
+        return clientePageOut;
+
     }
 
     @GetMapping("/{id}")
