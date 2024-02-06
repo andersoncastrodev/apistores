@@ -31,7 +31,7 @@ public class ClienteController {
     private final ClienteMapper clienteMapper;
 
     @GetMapping
-    public Page<ClienteOut> todosClientes(Pageable pageable){
+    public Page<ClienteOut> todosClientes(Pageable pageable) {
 
         Page<Cliente> clientePage = clienteService.allClientePage(pageable);
 
@@ -42,6 +42,12 @@ public class ClienteController {
         return clientePageOut;
 
     }
+
+// SEM PAGINACAO
+//    @GetMapping
+//    public List<ClienteOut> todosClientes(){
+//        return clienteMapper.toListClienteOut(clienteService.findAllCliente());
+//    }
 
     @GetMapping("/{id}")
     public ClienteOut buscarPorId(@PathVariable Long id){

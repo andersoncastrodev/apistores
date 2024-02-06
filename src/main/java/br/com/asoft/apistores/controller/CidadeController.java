@@ -28,7 +28,7 @@ public class CidadeController {
     private final CidadeMapper cidadeMapper;
 
     @GetMapping
-    public Page<CidadeOut> buscarTodas(Pageable pageable){
+    public Page<CidadeOut> buscarTodas(Pageable pageable) {
 
         Page<Cidade> cidadesPage = cidadeService.allCidadesPage(pageable);
 
@@ -38,6 +38,13 @@ public class CidadeController {
 
         return cidadesPageOut;
     }
+
+    // SEM PAGINAÇÃO
+//    @GetMapping
+//    public List<CidadeOut> buscarTodas(){
+//        List<CidadeOut> cidades = cidadeMapper.toListCidadeOut(cidadeService.allCidades());
+//        return cidades;
+//    }
 
     @GetMapping("/{id}")
     public CidadeOut buscarPorId(@PathVariable Long id){
