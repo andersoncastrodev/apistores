@@ -8,6 +8,9 @@ import br.com.asoft.apistores.service.EnderecoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,10 +30,21 @@ public class EnderecoController {
     private final EnderecoMapper enderecoMapper;
 
     @GetMapping
-    public List<EnderecoOut> buscaTodos() {
-        List<EnderecoOut> enderecos = enderecoMapper.toListEnderecoOut(enderecoService.allEndereco());
-        return enderecos;
+    public Page<EnderecoOut> buscaTodos(Pageable pageable){
+
+        Page<Endereco> enderecoPage = enderecoService.allEnderecoPage(pageable);
+
+        List<EnderecoOut> enderecoOutList = enderecoMapper.toListEnderecoOut(enderecoPage.getContent());
+
+        Page<EnderecoOut> enderecoPageOuts = new PageImpl<>(enderecoOutList,pageable,enderecoPage.getTotalPages());
+
+        return enderecoPageOuts;
     }
+//    @GetMapping
+//    public List<EnderecoOut> buscaTodos() {
+//        List<EnderecoOut> enderecos = enderecoMapper.toListEnderecoOut(enderecoService.allEndereco());
+//        return enderecos;
+//    }
 
     @GetMapping("/{id}")
     public EnderecoOut buscaPorId(@PathVariable Long id) {

@@ -10,6 +10,8 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -23,6 +25,10 @@ public class EnderecoService {
     private final EnderecoRepository enderecoRepository;
 
     private final CidadeService cidadeService;
+
+    public Page<Endereco> allEnderecoPage(Pageable pageable){
+        return enderecoRepository.findAll(pageable);
+    }
 
     public List<Endereco> allEndereco(){
         return enderecoRepository.findAll();
