@@ -9,6 +9,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,12 +31,23 @@ public class EstadoController {
 
     private final EstadoMapper estadoMapper;
 
-    @GetMapping()
-    public List<EstadoOut> buscaTodos(){
-        List<EstadoOut> estados = estadoMapper.toListEstadoOut( estadoService.allEstados());
-        log.info("INFORMATION:{}","Consulta da Todos os Estados");
-        return estados;
+    @GetMapping
+    public Page<EstadoOut> buscaTodos(Pageable pageable){
+
+        Page<Estado> estadoPage = estadoService.allEstadosPage(pageable);
+
+        List<EstadoOut> estadoOutsList = estadoMapper.toListEstadoOut(estadoPage.getContent());
+
+        Page<EstadoOut> estadoOutPage = new PageImpl<>(estadoOutsList,pageable,estadoPage.getTotalPages());
+
+        return estadoOutPage;
     }
+//    @GetMapping()
+//    public List<EstadoOut> buscaTodos(){
+//        List<EstadoOut> estados = estadoMapper.toListEstadoOut( estadoService.allEstados());
+//        log.info("INFORMATION:{}","Consulta da Todos os Estados");
+//        return estados;
+//    }
 
     @GetMapping("/{id}")
     public EstadoOut buscaPorId(@PathVariable Long id){
