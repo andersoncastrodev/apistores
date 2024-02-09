@@ -8,6 +8,9 @@ import br.com.asoft.apistores.service.FornecedorService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,11 +28,23 @@ public class FornecedorController {
     private final FornecedorService fornecedorService;
 
     private final FornecedorMapper fornecedorMapper;
+
     @GetMapping
-    public List<FornecedorOut> buscaTodos(){
-        List<FornecedorOut> fornecedores = fornecedorMapper.toListFornecedorOut(fornecedorService.allTodos());
-        return fornecedores;
+    public Page<FornecedorOut> buscaTodos(Pageable pageable){
+
+        Page<Fornecedor> fornecedorPage = fornecedorService.allTodosPage(pageable);
+
+        List<FornecedorOut> fornecedorOutList = fornecedorMapper.toListFornecedorOut(fornecedorPage.getContent());
+
+        Page<FornecedorOut> fornecedorOutPage = new PageImpl<>(fornecedorOutList,pageable,fornecedorPage.getTotalPages());
+
+        return fornecedorOutPage;
     }
+//    @GetMapping
+//    public List<FornecedorOut> buscaTodos(){
+//        List<FornecedorOut> fornecedores = fornecedorMapper.toListFornecedorOut(fornecedorService.allTodos());
+//        return fornecedores;
+//    }
 
     @GetMapping("/{id}")
     public FornecedorOut buscaPorId(@PathVariable Long id) {
