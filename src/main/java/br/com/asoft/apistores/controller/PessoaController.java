@@ -8,6 +8,9 @@ import br.com.asoft.apistores.service.PessoaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,10 +30,22 @@ public class PessoaController {
     private final PessoaMapper pessoaMapper;
 
     @GetMapping
-    public List<PessoaOut> listaTodas(){
-        List<PessoaOut> pessoas = pessoaMapper.toListPessoaOut(pessoaService.allPessoas());
-        return pessoas;
+    public Page<PessoaOut> listaTodas(Pageable pageable) {
+
+        Page<Pessoa> pessoaPage = pessoaService.allPessoasPage(pageable);
+
+        List<PessoaOut> pessoaOutList = pessoaMapper.toListPessoaOut(pessoaPage.getContent());
+
+        Page<PessoaOut> pessoaOutPage = new PageImpl<>(pessoaOutList,pageable,pessoaPage.getTotalPages());
+
+        return pessoaOutPage;
     }
+
+//    @GetMapping
+//    public List<PessoaOut> listaTodas(){
+//        List<PessoaOut> pessoas = pessoaMapper.toListPessoaOut(pessoaService.allPessoas());
+//        return pessoas;
+//    }
 
     @GetMapping("/{id}")
     public PessoaOut buscaPorId(@PathVariable Long id){
