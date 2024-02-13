@@ -10,6 +10,9 @@ import br.com.asoft.apistores.service.ItemVendaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,9 +32,21 @@ public class ItemVendaController {
     private final ItemVendaMapper itemVendaMapper;
 
     @GetMapping
-    public List<ItemVendaOut> todasItenVendas() {
-        return itemVendaMapper.toListItemVendaOut(itemVendaService.allTodos());
+    public Page<ItemVendaOut> todasItenVendas(Pageable pageable) {
+
+        Page<ItemVenda> itemVendaPage = itemVendaService.allTodosPage(pageable);
+
+        List<ItemVendaOut> itemVendaOutsList = itemVendaMapper.toListItemVendaOut(itemVendaPage.getContent());
+
+        Page<ItemVendaOut> itemVendaOutPage = new PageImpl<>(itemVendaOutsList,pageable,itemVendaPage.getTotalPages());
+
+        return itemVendaOutPage;
+
     }
+//    @GetMapping
+//    public List<ItemVendaOut> todasItenVendas() {
+//        return itemVendaMapper.toListItemVendaOut(itemVendaService.allTodos());
+//    }
 
     @GetMapping("/{id}")
     public ItemVendaOut buscaIdVenda(@PathVariable Long id) {
