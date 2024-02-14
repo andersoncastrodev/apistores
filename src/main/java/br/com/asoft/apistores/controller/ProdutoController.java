@@ -26,11 +26,12 @@ public class ProdutoController {
 
     private final ProdutoMapper produtoMapper;
 
-    @GetMapping
-    public List<ProdutoOut> buscaTodos(){
-        List<ProdutoOut> produtos = produtoMapper.toListProdutoOut(produtoService.allTodos());
-        return produtos;
-    }
+
+//    @GetMapping
+//    public List<ProdutoOut> buscaTodos(){
+//        List<ProdutoOut> produtos = produtoMapper.toListProdutoOut(produtoService.allTodos());
+//        return produtos;
+//    }
 
     @GetMapping("/{id}")
     public ProdutoOut buscaPorId(@PathVariable Long id){
