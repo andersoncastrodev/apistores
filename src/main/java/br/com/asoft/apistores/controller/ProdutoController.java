@@ -8,6 +8,7 @@ import br.com.asoft.apistores.service.ProdutoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +27,13 @@ public class ProdutoController {
 
     private final ProdutoMapper produtoMapper;
 
+    @GetMapping
+    public Page<ProdutoOut> buscaTodos(){
+
+
+
+        return null;
+    }
 
 //    @GetMapping
 //    public List<ProdutoOut> buscaTodos(){
