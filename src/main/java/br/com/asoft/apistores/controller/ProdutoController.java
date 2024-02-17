@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -31,11 +32,13 @@ public class ProdutoController {
     @GetMapping
     public Page<ProdutoOut> buscaTodos(Pageable pageable){
 
-        Page<Produto> produtoPage =
+        Page<Produto> produtoPage = produtoService.allTodosPage(pageable);
 
+        List<ProdutoOut> produtoOutsList = produtoMapper.toListProdutoOut(produtoPage.getContent());
 
+        Page<ProdutoOut> produtoOutPage = new PageImpl<>(produtoOutsList,pageable,produtoPage.getTotalElements());
 
-        return null;
+        return produtoOutPage;
     }
 
 //    @GetMapping
