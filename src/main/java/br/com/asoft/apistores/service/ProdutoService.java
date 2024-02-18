@@ -26,7 +26,7 @@ public class ProdutoService {
 
     private final FornecedorService fornecedorService;
 
-    public Page<Produto> allTodosPage(Pageable pageable){
+    public Page<Produto> allTodosPage(Pageable pageable) {
         return produtoRepository.findAll(pageable);
     }
 

@@ -26,10 +26,11 @@ public class UsuarioController {
 
     private final UsuarioMapper usuarioMapper;
 
-    @GetMapping
-    public List<UsuarioOut> listarUsuarios(){
-        return usuarioMapper.toListUsuarioOut( usuarioService.allTodos());
-    }
+
+//    @GetMapping
+//    public List<UsuarioOut> listarUsuarios() {
+//        return usuarioMapper.toListUsuarioOut( usuarioService.allTodos());
+//    }
 
     @GetMapping("/{id}")
     public UsuarioOut buscaPorId(@PathVariable Long id){

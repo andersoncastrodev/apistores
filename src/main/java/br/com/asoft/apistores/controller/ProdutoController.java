@@ -30,7 +30,7 @@ public class ProdutoController {
     private final ProdutoMapper produtoMapper;
 
     @GetMapping
-    public Page<ProdutoOut> buscaTodos(Pageable pageable){
+    public Page<ProdutoOut> buscaTodos(Pageable pageable) {
 
         Page<Produto> produtoPage = produtoService.allTodosPage(pageable);
 
