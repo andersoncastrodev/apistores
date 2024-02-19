@@ -8,6 +8,7 @@ import br.com.asoft.apistores.service.UsuarioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,6 +28,11 @@ public class UsuarioController {
     private final UsuarioMapper usuarioMapper;
 
 
+    @GetMapping
+    public Page<UsuarioOut> listaUsuario(){
+
+        return null;
+    }
 //    @GetMapping
 //    public List<UsuarioOut> listarUsuarios() {
 //        return usuarioMapper.toListUsuarioOut( usuarioService.allTodos());
