@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -29,8 +30,9 @@ public class UsuarioController {
 
 
     @GetMapping
-    public Page<UsuarioOut> listaUsuario(){
+    public Page<UsuarioOut> listaUsuario(Pageable pageable){
 
+        Page<Usuario> usuariosPage = usuarioService.allTodos(pageable);
         return null;
     }
 //    @GetMapping
