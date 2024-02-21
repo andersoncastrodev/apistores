@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,8 +34,11 @@ public class UsuarioController {
     public Page<UsuarioOut> listaUsuario(Pageable pageable){
 
         Page<Usuario> usuariosPage = usuarioService.allTodos(pageable);
+        List<UsuarioOut> usuarioOutsList = usuarioMapper.toListUsuarioOut(usuariosPage.getContent());
+        Page<UsuarioOut> usuarioOutPage = new PageImpl<>(usuarioOutsList,pageable,usuariosPage.getTotalPages());
         return null;
     }
+
 //    @GetMapping
 //    public List<UsuarioOut> listarUsuarios() {
 //        return usuarioMapper.toListUsuarioOut( usuarioService.allTodos());
