@@ -35,13 +35,9 @@ public class ItemVendaController {
     public Page<ItemVendaOut> todasItenVendas(Pageable pageable) {
 
         Page<ItemVenda> itemVendaPage = itemVendaService.allTodosPage(pageable);
-
         List<ItemVendaOut> itemVendaOutsList = itemVendaMapper.toListItemVendaOut(itemVendaPage.getContent());
-
         Page<ItemVendaOut> itemVendaOutPage = new PageImpl<>(itemVendaOutsList,pageable,itemVendaPage.getTotalPages());
-
         return itemVendaOutPage;
-
     }
 //    @GetMapping
 //    public List<ItemVendaOut> todasItenVendas() {
