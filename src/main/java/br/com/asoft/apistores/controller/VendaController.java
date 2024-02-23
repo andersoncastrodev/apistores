@@ -31,6 +31,9 @@ public class VendaController {
 
     @GetMapping
     public Page<VendaOut> listaVendas(Pageable pageable){
+
+
+
      //   return  vendaMapper.toListVendaOut( vendaService.allTodas());
         return null;
     }
