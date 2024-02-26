@@ -17,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -31,16 +30,15 @@ public class VendaController {
     private final VendaMapper vendaMapper;
 
     @GetMapping
-    public Page<VendaOut> listaVendas(Pageable pageable){
+    public Page<VendaOut> listaVendas(Pageable pageable) {
 
         Page<Venda> vendaPage = vendaService.allTodas(pageable);
 
-        List<VendaOut> vendaOuts = vendaMapper.toListVendaOut(vendaPage.getContent());
+        List<VendaOut> vendaOutsList = vendaMapper.toListVendaOut(vendaPage.getContent());
 
-    //    Page<VendaOut> vendaOutPage = new PageImpl<>(vendaOutPage,pageable, vendaPage.getTotalElements());
+        Page<VendaOut> vendaOutPage = new PageImpl<>(vendaOutsList,pageable, vendaPage.getTotalElements());
 
-     //   return  vendaMapper.toListVendaOut( vendaService.allTodas());
-        return null;
+        return vendaOutPage;
     }
 
 //    @GetMapping
