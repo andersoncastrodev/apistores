@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.TipoPagamento;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,5 +27,7 @@ public class Venda {
     private Cliente cliente;
 
     private BigDecimal valorTotal;
+
+    private TipoPagamento tipoPagamento;
 
 }
