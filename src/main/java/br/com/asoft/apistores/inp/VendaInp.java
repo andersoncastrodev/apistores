@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.inp;
 
+import br.com.asoft.apistores.enums.TipoPagamento;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.model.Usuario;
 import jakarta.persistence.GeneratedValue;
@@ -30,5 +31,7 @@ public class VendaInp {
 
     @NotNull
     private BigDecimal valorTotal;
+
+    private TipoPagamento tipoPagamento;
 
 }

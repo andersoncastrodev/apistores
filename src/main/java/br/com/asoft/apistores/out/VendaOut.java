@@ -1,6 +1,7 @@
 package br.com.asoft.apistores.out;
 
 
+import br.com.asoft.apistores.enums.TipoPagamento;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.model.Usuario;
 import lombok.Getter;
@@ -19,5 +20,7 @@ public class VendaOut {
     private Cliente cliente;
 
     private BigDecimal valorTotal;
+
+    //private TipoPagamento tipoPagamento;
 
 }
