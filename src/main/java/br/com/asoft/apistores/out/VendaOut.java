@@ -21,6 +21,6 @@ public class VendaOut {
 
     private BigDecimal valorTotal;
 
-    //private TipoPagamento tipoPagamento;
+    private TipoPagamento tipoPagamento;
 
 }
