@@ -5,4 +5,9 @@ public enum TipoPagamento {
     DINHEIRO,
     CARTAO,
     PIX
+
+    public TipoPagamento(){
+
+    }
+
 }
