@@ -6,8 +6,6 @@ public enum TipoPagamento {
     CARTAO,
     PIX
 
-    public TipoPagamento(){
 
-    }
 
 }
