@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.dtointerface.PessoaNome;
 import br.com.asoft.apistores.inp.PessoaInp;
 import br.com.asoft.apistores.mapper.PessoaMapper;
 import br.com.asoft.apistores.model.Pessoa;
@@ -7,6 +8,7 @@ import br.com.asoft.apistores.out.PessoaOut;
 import br.com.asoft.apistores.service.PessoaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.ansi.Ansi8BitColor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -39,6 +42,46 @@ public class PessoaController {
         Page<PessoaOut> pessoaOutPage = new PageImpl<>(pessoaOutList,pageable,pessoaPage.getTotalPages());
 
         return pessoaOutPage;
+    }
+
+    // Consulta para testar os Repository
+    // Gerado as consultas
+    // Aqui não vamos seguir o padrao de DTO, ex Classes Out e Inp ,
+    // Pq é so para teste mesmo.
+
+//    @GetMapping("/consultasgerais")
+//    public List<Pessoa> buscaGeral(){
+//
+//        List<Pessoa> pessoas = pessoaService.todosPessoaPorOrdemDescrente();
+//
+//        return pessoas ;
+//    }
+
+    @GetMapping("/consultascustomizadas")
+    public List<PessoaNome> buscaCustomizada() {
+
+        //Aqui vem todos os dados do objeto.
+        //Mas quero pegar apenas no nome.
+
+//        List<Pessoa> pessoasTodosOsDados = pessoaService.todosPessoaPorOrdemDescrente();
+//
+//        List<String> pessoasNome = new ArrayList<>();
+//
+//        for (Pessoa pessoasTodosOsDado : pessoasTodosOsDados) {
+//            pessoasNome.add(pessoasTodosOsDado.getNome());
+//        }
+
+        List<PessoaNome> pessoaNomes = pessoaService.todosPessoaPorOrdemDescrente();
+
+//        String teste = pessoaNomes.toString();
+//        System.out.printf("String completa: %s", teste);
+//
+//        for (PessoaNome pessoaNome : pessoaNomes) {
+//            String nome = pessoaNome.getNome();
+//            System.out.printf("Resultado: %s", nome);
+//        }
+
+        return pessoaNomes;
     }
 
 //    @GetMapping

@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.dtointerface.PessoaNome;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.relatorio.Reports;
@@ -33,6 +34,20 @@ public class PessoaService {
     public Pessoa findId(Long id){
         return tryOrFail(id);
     }
+
+    //Consulta Customizados para teste das Consultas
+    // no Repository
+
+    public List<PessoaNome> todosPessoaPorOrdemDescrente() {
+        return pessoaRepository.findAllByOrderByIdDesc();
+    }
+
+    public List<Pessoa> todosPessoasPorOrdemAcrecente(String nome) {
+
+        return pessoaRepository.findAllByNomeOrderByIdAsc(nome);
+    }
+
+
 
     public Pessoa savePessoa(Pessoa pessoa){
         return pessoaRepository.save(pessoa);
