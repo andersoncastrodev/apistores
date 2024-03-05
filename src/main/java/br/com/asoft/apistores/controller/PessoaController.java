@@ -57,6 +57,8 @@ public class PessoaController {
 //        return pessoas ;
 //    }
 
+    // INICIO DE CONSULTA CUSTOMIZADAS ///
+
     @GetMapping("/consultascustomizadas")
     public List<PessoaNome> buscaCustomizada() {
 
@@ -83,6 +85,14 @@ public class PessoaController {
 
         return pessoaNomes;
     }
+
+    @GetMapping("/consultapornome/{nome}")
+    public boolean consultaPessoaPorNome(@PathVariable String nome ) {
+        return pessoaService.verificaSePessoaExiste(nome);
+    }
+
+
+    // FIM DAS CONSULTA CUSTOMIZADAS ///
 
 //    @GetMapping
 //    public List<PessoaOut> listaTodas(){

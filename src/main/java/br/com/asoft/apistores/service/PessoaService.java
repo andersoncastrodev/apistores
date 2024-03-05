@@ -47,7 +47,12 @@ public class PessoaService {
         return pessoaRepository.findAllByNomeOrderByIdAsc(nome);
     }
 
+    public boolean verificaSePessoaExiste(String nome) {
+        return pessoaRepository.existsByNome(nome);
+    }
 
+
+    // ------   FIM DAS CONSULTA CUSTOMIZADAS ------------ //
 
     public Pessoa savePessoa(Pessoa pessoa){
         return pessoaRepository.save(pessoa);

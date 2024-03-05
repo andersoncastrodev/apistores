@@ -14,5 +14,8 @@ public interface PessoaRepository extends JpaRepository<Pessoa,Long> {
 
     List<PessoaNome> findAllByOrderByIdDesc();
 
+    //Para saber se exist uma Pessoa com esse nome.
+    boolean existsByNome(String nome);
+
 
 }
