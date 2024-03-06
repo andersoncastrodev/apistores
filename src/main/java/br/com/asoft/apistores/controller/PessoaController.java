@@ -113,7 +113,7 @@ public class PessoaController {
     }
 
     @PutMapping("/{id}")
-    public PessoaOut alterarPessoa(@RequestBody PessoaInp pessoaInp, @PathVariable Long id){
+    public PessoaOut alterarPessoa(@RequestBody PessoaInp pessoaInp, @PathVariable Long id) {
 
         Pessoa pessoaAtual = pessoaService.findId(id);
 
