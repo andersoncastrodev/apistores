@@ -8,11 +8,17 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Pessoa {
+public class Pessoa implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 3618878463591514140L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
