@@ -54,7 +54,7 @@ public class PessoaService {
 
     // ------   FIM DAS CONSULTA CUSTOMIZADAS ------------ //
 
-    public Pessoa savePessoa(Pessoa pessoa){
+    public Pessoa savePessoa(Pessoa pessoa) {
         return pessoaRepository.save(pessoa);
     }
 

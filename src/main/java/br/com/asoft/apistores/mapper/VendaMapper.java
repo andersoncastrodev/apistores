@@ -1,6 +1,5 @@
 package br.com.asoft.apistores.mapper;
 
-import br.com.asoft.apistores.controller.VendaController;
 import br.com.asoft.apistores.inp.VendaInp;
 import br.com.asoft.apistores.model.Venda;
 import br.com.asoft.apistores.out.VendaOut;

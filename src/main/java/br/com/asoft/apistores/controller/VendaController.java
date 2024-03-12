@@ -52,7 +52,7 @@ public class VendaController {
     }
 
     @PostMapping
-    public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp){
+    public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp) {
 
         Venda venda = vendaService.saveVenda(vendaMapper.toVenda(vendaInp));
        return vendaMapper.toVendaOut(venda);
