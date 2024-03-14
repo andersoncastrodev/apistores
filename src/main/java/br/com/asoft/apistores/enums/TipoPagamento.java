@@ -6,6 +6,4 @@ public enum TipoPagamento {
     CARTAO,
     PIX
 
-
-
 }
