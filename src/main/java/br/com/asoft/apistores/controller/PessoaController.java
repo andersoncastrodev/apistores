@@ -49,13 +49,13 @@ public class PessoaController {
     // Aqui não vamos seguir o padrao de DTO, ex Classes Out e Inp ,
     // Pq é so para teste mesmo.
 
-    @GetMapping("/consultasgerais")
-    public List<Pessoa> buscaGeral(){
-
-        List<Pessoa> pessoas = pessoaService.todosPessoaPorOrdemDescrente();
-
-        return pessoas ;
-    }
+//    @GetMapping("/consultasgerais")
+//    public List<Pessoa> buscaGeral(){
+//
+//        List<Pessoa> pessoas = pessoaService.todosPessoaPorOrdemDescrente();
+//
+//        return pessoas ;
+//    }
 
     // INICIO DE CONSULTA CUSTOMIZADAS ///
 
