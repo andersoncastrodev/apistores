@@ -65,13 +65,13 @@ public class PessoaController {
         //Aqui vem todos os dados do objeto.
         //Mas quero pegar apenas no nome.
 
-//        List<Pessoa> pessoasTodosOsDados = pessoaService.todosPessoaPorOrdemDescrente();
-//
-//        List<String> pessoasNome = new ArrayList<>();
-//
-//        for (Pessoa pessoasTodosOsDado : pessoasTodosOsDados) {
-//            pessoasNome.add(pessoasTodosOsDado.getNome());
-//        }
+        List<Pessoa> pessoasTodosOsDados = pessoaService.todosPessoaPorOrdemDescrente();
+
+        List<String> pessoasNome = new ArrayList<>();
+
+        for (Pessoa pessoasTodosOsDado : pessoasTodosOsDados) {
+            pessoasNome.add(pessoasTodosOsDado.getNome());
+        }
 //
         List<PessoaNome> pessoaNomes = pessoaService.todosPessoaPorOrdemDescrente();
 
