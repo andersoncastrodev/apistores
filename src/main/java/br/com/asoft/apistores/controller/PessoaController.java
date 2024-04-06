@@ -73,10 +73,10 @@ public class PessoaController {
 //            pessoasNome.add(pessoasTodosOsDado.getNome());
 //        }
 //
-        List<PessoaNome> pessoaNomes = pessoaService.todosPessoaPorOrdemDescrente();
-
-        String teste = pessoaNomes.toString();
-        System.out.printf("String completa: %s", teste);
+//        List<PessoaNome> pessoaNomes = pessoaService.todosPessoaPorOrdemDescrente();
+//
+//        String teste = pessoaNomes.toString();
+//        System.out.printf("String completa: %s", teste);
 
         for (PessoaNome pessoaNome : pessoaNomes) {
             String nome = pessoaNome.getNome();
