@@ -78,10 +78,10 @@ public class PessoaController {
         String teste = pessoaNomes.toString();
         System.out.printf("String completa: %s", teste);
 
-        for (PessoaNome pessoaNome : pessoaNomes) {
-            String nome = pessoaNome.getNome();
-            System.out.printf("Resultado: %s", nome);
-        }
+//        for (PessoaNome pessoaNome : pessoaNomes) {
+//            String nome = pessoaNome.getNome();
+//            System.out.printf("Resultado: %s", nome);
+//        }
 
         return pessoaNomes;
     }
