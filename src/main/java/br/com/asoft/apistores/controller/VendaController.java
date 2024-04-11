@@ -41,10 +41,10 @@ public class VendaController {
         return vendaOutPage;
     }
 
-    @GetMapping
-    public List<VendaOut> listaVendas(){
-        return  vendaMapper.toListVendaOut( vendaService.allTodas());
-    }
+//    @GetMapping
+//    public List<VendaOut> listaVendas(){
+//        return  vendaMapper.toListVendaOut( vendaService.allTodas());
+//    }
 
     @GetMapping("/{id}")
     public VendaOut buscaPorId(@PathVariable Long id){
