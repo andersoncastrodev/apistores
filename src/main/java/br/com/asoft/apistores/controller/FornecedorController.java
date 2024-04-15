@@ -29,17 +29,17 @@ public class FornecedorController {
 
     private final FornecedorMapper fornecedorMapper;
 
-    @GetMapping
-    public Page<FornecedorOut> buscaTodos(Pageable pageable){
-
-        Page<Fornecedor> fornecedorPage = fornecedorService.allTodosPage(pageable);
-
-        List<FornecedorOut> fornecedorOutList = fornecedorMapper.toListFornecedorOut(fornecedorPage.getContent());
-
-        Page<FornecedorOut> fornecedorOutPage = new PageImpl<>(fornecedorOutList,pageable,fornecedorPage.getTotalPages());
-
-        return fornecedorOutPage;
-    }
+//    @GetMapping
+//    public Page<FornecedorOut> buscaTodos(Pageable pageable){
+//
+//        Page<Fornecedor> fornecedorPage = fornecedorService.allTodosPage(pageable);
+//
+//        List<FornecedorOut> fornecedorOutList = fornecedorMapper.toListFornecedorOut(fornecedorPage.getContent());
+//
+//        Page<FornecedorOut> fornecedorOutPage = new PageImpl<>(fornecedorOutList,pageable,fornecedorPage.getTotalPages());
+//
+//        return fornecedorOutPage;
+//    }
 //    @GetMapping
 //    public List<FornecedorOut> buscaTodos(){
 //        List<FornecedorOut> fornecedores = fornecedorMapper.toListFornecedorOut(fornecedorService.allTodos());
