@@ -12,8 +12,7 @@ public class CidadeSpecification {
     public Specification<Cidade> filter(CidadeFilter cidadeFilter) {
         return (root, query, criteriaBuilder) -> {
 
-
-            var predicates = new ArrayList<>();
+            ArrayList<Object> predicates = new ArrayList<>();
 
             if(cidadeFilter.getNome() != null ) {
                 predicates.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("nome")),"%"+cidadeFilter.getNome()+"%"));
