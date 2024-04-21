@@ -1,10 +1,12 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.filter.CidadeFilter;
 import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.model.Estado;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.CidadeRepository;
+import br.com.asoft.apistores.specifications.CidadeSpecification;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
@@ -25,8 +27,8 @@ public class CidadeService {
 
     private final EstadoService estadoService;
 
-    public Page<Cidade> allCidadesPage(Pageable pageable){
-        return cidadeRepository.findAll(pageable);
+    public Page<Cidade> allCidadesPage(CidadeFilter cidadeFilter,Pageable pageable){
+        return cidadeRepository.findAll(CidadeSpecification.filter(cidadeFilter), pageable);
     }
 
     public List<Cidade> allCidades(){

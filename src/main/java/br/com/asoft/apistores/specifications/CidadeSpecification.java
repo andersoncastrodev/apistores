@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class CidadeSpecification {
 
-    public Specification<Cidade> filter(CidadeFilter cidadeFilter) {
+    public static Specification<Cidade> filter(CidadeFilter cidadeFilter) {
         return (root, query, criteriaBuilder) -> {
 
             ArrayList<Object> predicates = new ArrayList<>();
