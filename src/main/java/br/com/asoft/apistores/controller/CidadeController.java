@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.filter.CidadeFilter;
 import br.com.asoft.apistores.inp.CidadeInp;
 import br.com.asoft.apistores.mapper.CidadeMapper;
 import br.com.asoft.apistores.model.Cidade;
@@ -28,9 +29,9 @@ public class CidadeController {
     private final CidadeMapper cidadeMapper;
 
     @GetMapping
-    public Page<CidadeOut> buscarTodas(Pageable pageable) {
+    public Page<CidadeOut> buscarTodas(CidadeFilter cidadeFilter, Pageable pageable) {
 
-        Page<Cidade> cidadesPage = cidadeService.allCidadesPage(pageable);
+        Page<Cidade> cidadesPage = cidadeService.allCidadesPage(cidadeFilter, pageable);
 
         List<CidadeOut> cidadesOutList = cidadeMapper.toListCidadeOut(cidadesPage.getContent());
 
