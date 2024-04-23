@@ -35,7 +35,7 @@ public class CidadeController {
 
         List<CidadeOut> cidadesOutList = cidadeMapper.toListCidadeOut(cidadesPage.getContent());
 
-        Page<CidadeOut> cidadesPageOut = new PageImpl<>(cidadesOutList,pageable,cidadesPage.getTotalPages());
+        Page<CidadeOut> cidadesPageOut = new PageImpl<>(cidadesOutList,pageable,cidadesPage.getTotalElements());
 
         return cidadesPageOut;
     }
