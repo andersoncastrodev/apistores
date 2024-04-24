@@ -53,7 +53,7 @@ public class CidadeController {
     }
 
     @PostMapping
-    public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp){
+    public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp) {
 
         Cidade cidade = cidadeMapper.toCidade(cidadeInp);
 
@@ -64,7 +64,7 @@ public class CidadeController {
     }
 
     @PutMapping("/{id}")
-    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id){
+    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id) {
 
         Cidade cidadeAtual = cidadeService.findId(id);
 
