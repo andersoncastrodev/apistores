@@ -1,10 +1,12 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.filter.ClienteFilter;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.ClienteRepository;
+import br.com.asoft.apistores.specifications.ClienteSpecification;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
@@ -27,8 +29,8 @@ public class ClienteService {
 
     private final PessoaService pessoaService;
 
-    public Page<Cliente> allClientePage(Pageable pageable){
-        return clienteRepository.findAll(pageable);
+    public Page<Cliente> allClientePage(ClienteFilter clienteFilter, Pageable pageable){
+        return clienteRepository.findAll(ClienteSpecification.filter(clienteFilter),pageable);
     }
 
     public List<Cliente> findAllCliente(){
