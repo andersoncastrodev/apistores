@@ -33,7 +33,7 @@ public class ClienteService {
         return clienteRepository.findAll(ClienteSpecification.filter(clienteFilter),pageable);
     }
 
-    public List<Cliente> findAllCliente(){
+    public List<Cliente> findAllCliente() {
         return clienteRepository.findAll();
     }
 
