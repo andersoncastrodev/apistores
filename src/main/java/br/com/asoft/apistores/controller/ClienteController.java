@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.filter.ClienteFilter;
 import br.com.asoft.apistores.inp.ClienteInp;
 import br.com.asoft.apistores.mapper.ClienteMapper;
 import br.com.asoft.apistores.model.Cliente;
@@ -31,9 +32,11 @@ public class ClienteController {
     private final ClienteMapper clienteMapper;
 
     @GetMapping
-    public Page<ClienteOut> todosClientes(Pageable pageable) {
+    public Page<ClienteOut> todosClientes(ClienteFilter clienteFilter, Pageable pageable) {
 
-        Page<Cliente> clientePage = clienteService.allClientePage(pageable);
+        Page<Cliente> clientePage = clienteService.allClientePage(clienteFilter, pageable);
+
+      //  Page<Cliente> clientePage = clienteService.allClientePage2(pageable);
 
         List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
 

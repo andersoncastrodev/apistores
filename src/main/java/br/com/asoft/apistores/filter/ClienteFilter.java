@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.filter;
 
+import br.com.asoft.apistores.inp.PessoaInp;
 import br.com.asoft.apistores.model.Pessoa;
 import lombok.Getter;
 import lombok.Setter;

@@ -14,11 +14,12 @@ public class ClienteSpecification {
 
             var preditaces = new ArrayList<>();
 
-            // Fazendo a junção com a entidade Pessoa
-            root.join("pessoa");
-
             // Adicionando o critério de Like para o nome da pessoa
-            if (clienteFilter.getPessoa().getNome() != null) {
+            if (clienteFilter.getPessoa() != null && clienteFilter.getPessoa().getNome() != null) {
+
+                // Fazendo a junção com a entidade Pessoa
+                root.join("pessoa");
+
                 preditaces.add(criteriaBuilder.like(root.get("pessoa").get(("nome")), "%"+clienteFilter.getPessoa().getNome()+"%"));
             }
 
