@@ -21,4 +21,6 @@ public class Cliente {
     @OneToOne
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
+
+
 }

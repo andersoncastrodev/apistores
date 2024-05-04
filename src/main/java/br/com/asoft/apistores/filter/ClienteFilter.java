@@ -1,7 +1,5 @@
 package br.com.asoft.apistores.filter;
 
-import br.com.asoft.apistores.inp.PessoaInp;
-import br.com.asoft.apistores.model.Pessoa;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,5 +11,18 @@ public class ClienteFilter {
 
     private String tipo;
 
-    private Pessoa pessoa;
+    //[ NÃO PODE FAZER a REFERENCIA DE CLASSE Assim no Filtro]
+    // Não funcionar assim.
+
+    //private Pessoa pessoa;
+
+    // Atribuitos que tem dentro da classe PESSOA.
+    //[ Dentro da classe Pessoa tenho um atributo "nome "]
+
+    private String nome; //Atributo da classe Pessoa.
+
+    private String telefone; //Atributo da classe Pessoa.
+
+    //Se tiver Mais é só ir Adicionando.
+
 }
