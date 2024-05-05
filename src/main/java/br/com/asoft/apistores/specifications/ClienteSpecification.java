@@ -4,7 +4,6 @@ import br.com.asoft.apistores.filter.ClienteFilter;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.model.Pessoa;
 import jakarta.persistence.criteria.Join;
-import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -23,12 +22,12 @@ public class ClienteSpecification {
 
             if ( clienteFilter.getNome() != null) {
                 // nome = É o nome de um atributo da Entidade(Pessoa)
-                preditaces.add(criteriaBuilder.like(clientePessoaJoin.get("nome"), "%"+clienteFilter.getNome()+"%") );
+                preditaces.add(criteriaBuilder.like(clientePessoaJoin.get("nome"),"%"+clienteFilter.getNome()+"%") );
 
             }
-            if (clienteFilter.getTelefone() != null){
+            if (clienteFilter.getTelefone() != null) {
                 // telefone = É o nome de um atributo da Entidade(Pessoa)
-                preditaces.add(criteriaBuilder.equal(clientePessoaJoin.get("telefone"), clienteFilter.getTelefone()));
+                preditaces.add(criteriaBuilder.equal(clientePessoaJoin.get("telefone"),clienteFilter.getTelefone()));
             }
 
             return criteriaBuilder.and(preditaces.toArray(new Predicate[0]));
@@ -36,4 +35,5 @@ public class ClienteSpecification {
         };
 
     }
+
 }

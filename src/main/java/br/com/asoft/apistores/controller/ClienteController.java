@@ -36,8 +36,6 @@ public class ClienteController {
 
         Page<Cliente> clientePage = clienteService.allClientePage(clienteFilter, pageable);
 
-      //  Page<Cliente> clientePage = clienteService.allClientePage2(pageable);
-
         List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
 
         Page<ClienteOut> clientePageOut = new PageImpl<>(clienteOutList,pageable,clientePage.getTotalPages());

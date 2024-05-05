@@ -30,6 +30,7 @@ public class ClienteService {
     private final PessoaService pessoaService;
 
     public Page<Cliente> allClientePage(ClienteFilter clienteFilter, Pageable pageable){
+
         return clienteRepository.findAll(ClienteSpecification.filter(clienteFilter),pageable);
     }
 
