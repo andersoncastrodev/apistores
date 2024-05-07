@@ -66,7 +66,7 @@ public class CidadeService {
 
     public ByteArrayInputStream relatorioCidade() throws IOException {
 
-        Reports reports = new Reports(false);
+        Reports reports = new Reports(Reports.Page.VERTICAL);
 
         reports.addParagraph(new Paragraph("Lista de Cidades")
                 .setMargins(1f,2f,2f,5f)

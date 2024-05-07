@@ -53,7 +53,7 @@ public class EstadoService {
 
     public ByteArrayInputStream relatorioEstado() throws IOException {
 
-        Reports reports = new Reports(false);
+        Reports reports = new Reports(Reports.Page.HORIZONTAL);
 
         reports.addParagraph(new Paragraph("Lista de Estados")
                 .setMargins(1f,5f,1f,5)

@@ -71,7 +71,7 @@ public class PessoaService {
 
     public ByteArrayInputStream relatorioTodasPessoas() throws IOException {
 
-        Reports reports = new Reports(false);
+        Reports reports = new Reports(Reports.Page.VERTICAL);
 
         reports.addParagraph(new Paragraph("Lista de Pessoas")
                 .setMargins(1f,5f,1f,5f)

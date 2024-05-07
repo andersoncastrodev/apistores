@@ -52,7 +52,7 @@ public class VendaService {
 
     public ByteArrayInputStream relatorioTodasVendas() throws IOException {
 
-        Reports reports = new Reports(false);
+        Reports reports = new Reports(Reports.Page.VERTICAL);
 
         reports.addParagraph(new Paragraph("Vendas")
                 .setFontSize(28)

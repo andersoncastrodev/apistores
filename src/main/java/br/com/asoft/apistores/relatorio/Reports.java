@@ -31,11 +31,16 @@ public final class Reports {
     private PdfDocument pdfDocument;
     private ByteArrayOutputStream byteOutStream;
     private Table table;
+    private final String imagePath = "Scheduler-Service/src/main/resources/static/logo.png";
+    public enum Page {
+        VERTICAL,
+        HORIZONTAL
+    }
 
-    public Reports(boolean rotatePage) {
+    public Reports(Page page) {
         this.byteOutStream = new ByteArrayOutputStream();
         this.pdfDocument = new PdfDocument(new PdfWriter(this.byteOutStream));
-        PageSize pageSize = rotatePage ? PageSize.A4.rotate() : PageSize.A4;
+        PageSize pageSize = page.ordinal() == 1 ? PageSize.A4.rotate() : PageSize.A4;
         this.document = new Document(this.pdfDocument, pageSize);
         this.document.setMargins(10f, 10f, 10f, 10f);
     }
@@ -71,7 +76,7 @@ public final class Reports {
         this.table.addCell(cell1);
     }
 
-    public void addCellRichtBordeLess(String cell) {
+    public void addCellRightBordeLess(String cell) {
         Cell cell1 = new Cell().add(new Paragraph(cell))
                 .setTextAlignment(TextAlignment.RIGHT)
                 .setBorder(null);
@@ -122,7 +127,6 @@ public final class Reports {
     }
 
     public void addTableHeader(String... headers) {
-        //this.validateTable();
         for (String header : headers) {
             Cell headerCell = new Cell().add(new Paragraph(header));
             headerCell.setBackgroundColor(new DeviceRgb(192, 192, 192));//Cinza Claro
@@ -137,7 +141,6 @@ public final class Reports {
     }
 
     public Image addLogo() throws MalformedURLException {
-        String imagePath = "Scheduler-Service/src/main/resources/static/logo.png";
         ImageData imageData = ImageDataFactory.create(imagePath);
         Image image = new Image(imageData);
         image.setWidth(130f);
@@ -146,7 +149,6 @@ public final class Reports {
     }
 
     public void addLogoDocument() throws MalformedURLException {
-        String imagePath = "Scheduler-Service/src/main/resources/static/logo.png";
         ImageData imageData = ImageDataFactory.create(imagePath);
         Image image = new Image(imageData);
         image.setWidth(130f);

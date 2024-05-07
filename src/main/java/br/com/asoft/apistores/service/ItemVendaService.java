@@ -64,7 +64,7 @@ public class ItemVendaService {
 
     public ByteArrayInputStream relatorioItemVenda() throws IOException {
 
-        Reports reports = new Reports(false);
+        Reports reports = new Reports(Reports.Page.VERTICAL);
 
         reports.addParagraph(new Paragraph("Lista dos Itens da Venda")
                 .setMargins(1f,5f,1f,5f)

@@ -17,7 +17,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -71,7 +70,7 @@ public class ClienteService {
 
     public ByteArrayInputStream relatorioCliente() throws IOException {
 
-        Reports reports = new Reports(false);
+        Reports reports = new Reports(Reports.Page.HORIZONTAL);
 
         reports.addParagraph( new Paragraph("Lista de Cliente")
                 .setMargins(1f,5f,1f,5f)
@@ -80,7 +79,9 @@ public class ClienteService {
                 .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
 
         reports.addNewLine();
+
         reports.openTable(1f,1f,1f,1f);
+
         reports.addTableHeader("Codigo Pessoa","Nome","Telefone","Tipo");
 
         List<Cliente> clientes = findAllCliente();
