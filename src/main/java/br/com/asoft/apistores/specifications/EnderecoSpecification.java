@@ -17,6 +17,12 @@ public class EnderecoSpecification {
                 predicates.add(criteriaBuilder.equal(root.get("id"), enderecoFilter.getId()));
             }
 
+            if (enderecoFilter.getRua() != null) {
+
+                predicates.add(criteriaBuilder.equal(root.get("rua"), enderecoFilter.getRua()));
+
+            }
+
           return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 
         };
