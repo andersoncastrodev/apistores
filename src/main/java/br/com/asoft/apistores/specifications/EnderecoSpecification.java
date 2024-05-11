@@ -18,9 +18,10 @@ public class EnderecoSpecification {
             }
 
             if (enderecoFilter.getRua() != null) {
-
                 predicates.add(criteriaBuilder.equal(root.get("rua"), enderecoFilter.getRua()));
-
+            }
+            if (enderecoFilter.getCep() != null ) {
+                predicates.add(criteriaBuilder.equal(root.get("cep"), enderecoFilter.getCep()));
             }
 
           return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
