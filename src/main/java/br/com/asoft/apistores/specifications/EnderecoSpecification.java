@@ -29,6 +29,9 @@ public class EnderecoSpecification {
             if (enderecoFilter.getNomeestado() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("nome"), enderecoFilter.getNomeestado()));
             }
+            if (enderecoFilter.getSigla() != null ) {
+                predicates.add(criteriaBuilder.equal(root.get("sigla"), enderecoFilter.getSigla()));
+            }
 
           return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 
