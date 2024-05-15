@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.filter.EnderecoFilter;
 import br.com.asoft.apistores.inp.EnderecoInp;
 import br.com.asoft.apistores.mapper.EnderecoMapper;
 import br.com.asoft.apistores.model.Endereco;
@@ -30,7 +31,7 @@ public class EnderecoController {
     private final EnderecoMapper enderecoMapper;
 
     @GetMapping
-    public Page<EnderecoOut> buscaTodos(Pageable pageable){
+    public Page<EnderecoOut> buscaTodos(EnderecoFilter enderecoFilter, Pageable pageable) {
 
         Page<Endereco> enderecoPage = enderecoService.allEnderecoPage(pageable);
 
