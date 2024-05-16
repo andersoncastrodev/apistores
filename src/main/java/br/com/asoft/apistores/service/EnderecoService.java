@@ -1,10 +1,12 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.filter.EnderecoFilter;
 import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.model.Endereco;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.EnderecoRepository;
+import br.com.asoft.apistores.specifications.EnderecoSpecification;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
@@ -26,8 +28,8 @@ public class EnderecoService {
 
     private final CidadeService cidadeService;
 
-    public Page<Endereco> allEnderecoPage(Pageable pageable){
-        return enderecoRepository.findAll(pageable);
+    public Page<Endereco> allEnderecoPage(EnderecoFilter enderecoFilter, Pageable pageable){
+        return enderecoRepository.findAll(EnderecoSpecification.filter(enderecoFilter), pageable);
     }
 
     public List<Endereco> allEndereco(){
