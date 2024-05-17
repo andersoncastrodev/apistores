@@ -33,7 +33,7 @@ public class EnderecoController {
     @GetMapping
     public Page<EnderecoOut> buscaTodos(EnderecoFilter enderecoFilter, Pageable pageable) {
 
-        Page<Endereco> enderecoPage = enderecoService.allEnderecoPage(pageable);
+        Page<Endereco> enderecoPage = enderecoService.allEnderecoPage(enderecoFilter, pageable);
 
         List<EnderecoOut> enderecoOutList = enderecoMapper.toListEnderecoOut(enderecoPage.getContent());
 
