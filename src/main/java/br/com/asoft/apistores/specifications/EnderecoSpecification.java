@@ -1,7 +1,9 @@
 package br.com.asoft.apistores.specifications;
 
 import br.com.asoft.apistores.filter.EnderecoFilter;
+import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.model.Endereco;
+import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import java.util.ArrayList;
@@ -12,6 +14,9 @@ public class EnderecoSpecification {
         return (root, query, criteriaBuilder) -> {
 
             var predicates = new ArrayList<Predicate>();
+
+            //Fazendo o JOIN Nessarios
+            Join<Endereco, Cidade> enderecoCidadeJoin = root.join("id_cidade");
 
             if (enderecoFilter.getId() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("id"), enderecoFilter.getId()));
