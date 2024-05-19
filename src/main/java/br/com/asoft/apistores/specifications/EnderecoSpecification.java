@@ -3,6 +3,7 @@ package br.com.asoft.apistores.specifications;
 import br.com.asoft.apistores.filter.EnderecoFilter;
 import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.model.Endereco;
+import br.com.asoft.apistores.model.Estado;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -16,7 +17,14 @@ public class EnderecoSpecification {
             var predicates = new ArrayList<Predicate>();
 
             //Fazendo o JOIN Nessarios
-            Join<Endereco, Cidade> enderecoCidadeJoin = root.join("id_cidade");
+            Join<Endereco, Cidade> enderecoCidadeJoin = root.join("cidade");
+
+            Join<Cidade, Estado> cidadeEstadoJoin = enderecoCidadeJoin.join("estado");
+
+            // Fazendo o JOIN necessário
+          //  Join<Endereco, Cidade> enderecoCidadeJoin = root.join("cidade");
+          //  Join<Cidade, Estado> cidadeEstadoJoin = enderecoCidadeJoin.join("estado");
+
 
             if (enderecoFilter.getId() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("id"), enderecoFilter.getId()));
@@ -29,13 +37,15 @@ public class EnderecoSpecification {
                 predicates.add(criteriaBuilder.equal(root.get("cep"), enderecoFilter.getCep()));
             }
             if (enderecoFilter.getNomecidade() != null) {
-                predicates.add(criteriaBuilder.equal(root.get("nome"), enderecoFilter.getNomecidade()));
+                predicates.add(criteriaBuilder.equal( enderecoCidadeJoin.get("nome"), enderecoFilter.getNomecidade()));
             }
             if (enderecoFilter.getNomeestado() != null) {
-                predicates.add(criteriaBuilder.equal(root.get("nome"), enderecoFilter.getNomeestado()));
+                //predicates.add(criteriaBuilder.equal(root.get("nome"), enderecoFilter.getNomeestado()));
+                predicates.add(criteriaBuilder.equal(cidadeEstadoJoin.get("nome"), enderecoFilter.getNomeestado()));
             }
             if (enderecoFilter.getSigla() != null ) {
-                predicates.add(criteriaBuilder.equal(root.get("sigla"), enderecoFilter.getSigla()));
+              //  predicates.add(criteriaBuilder.equal(root.get("sigla"), enderecoFilter.getSigla()));
+                predicates.add(criteriaBuilder.equal(cidadeEstadoJoin.get("sigla"), enderecoFilter.getSigla()));
             }
 
           return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
