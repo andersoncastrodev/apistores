@@ -19,11 +19,8 @@ public class EnderecoSpecification {
             //Fazendo o JOIN Nessarios
             Join<Endereco, Cidade> enderecoCidadeJoin = root.join("cidade");
 
+            //OBS: pega o ultimo join e FAZ outro JOIN.
             Join<Cidade, Estado> cidadeEstadoJoin = enderecoCidadeJoin.join("estado");
-
-            // Fazendo o JOIN necessário
-          //  Join<Endereco, Cidade> enderecoCidadeJoin = root.join("cidade");
-          //  Join<Cidade, Estado> cidadeEstadoJoin = enderecoCidadeJoin.join("estado");
 
 
             if (enderecoFilter.getId() != null) {
