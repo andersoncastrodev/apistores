@@ -22,7 +22,6 @@ public class EnderecoSpecification {
             //OBS: pega o ultimo join e FAZ outro JOIN.
             Join<Cidade, Estado> cidadeEstadoJoin = enderecoCidadeJoin.join("estado");
 
-
             if (enderecoFilter.getId() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("id"), enderecoFilter.getId()));
             }

@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EnderecoRepository extends JpaRepository<Endereco, Long>, JpaSpecificationExecutor<Endereco> {
+public interface EnderecoRepository extends JpaRepository<Endereco, Long>,
+        JpaSpecificationExecutor<Endereco> {
 }
