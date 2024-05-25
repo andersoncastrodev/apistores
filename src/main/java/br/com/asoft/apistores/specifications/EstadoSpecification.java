@@ -14,6 +14,13 @@ public class EstadoSpecification {
 
             var predicates = new ArrayList<>();
 
+            if(estadoFilter.getSigla() != null ) {
+
+            }
+            if(estadoFilter.getNome() != null ) {
+
+            }
+
 
 
             return null;
