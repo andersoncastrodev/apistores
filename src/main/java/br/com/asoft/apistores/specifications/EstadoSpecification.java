@@ -16,9 +16,11 @@ public class EstadoSpecification {
 
             if(estadoFilter.getSigla() != null ) {
 
+                predicates.add(criteriaBuilder.equal(root.get("sigla"), estadoFilter.getSigla()));
             }
             if(estadoFilter.getNome() != null ) {
 
+                predicates.add(criteriaBuilder.like(root.get("nome"), "%"+ estadoFilter.getNome()+"%"));
             }
 
 
