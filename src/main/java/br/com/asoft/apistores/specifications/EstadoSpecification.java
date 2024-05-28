@@ -2,10 +2,9 @@ package br.com.asoft.apistores.specifications;
 
 import br.com.asoft.apistores.filter.EstadoFilter;
 import br.com.asoft.apistores.model.Estado;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
-
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class EstadoSpecification {
 
@@ -23,9 +22,7 @@ public class EstadoSpecification {
                 predicates.add(criteriaBuilder.like(root.get("nome"), "%"+ estadoFilter.getNome()+"%"));
             }
 
-
-
-            return null;
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
 }
