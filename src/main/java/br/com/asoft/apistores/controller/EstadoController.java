@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.filter.EstadoFilter;
 import br.com.asoft.apistores.inp.EstadoInp;
 import br.com.asoft.apistores.mapper.EstadoMapper;
 import br.com.asoft.apistores.model.Estado;
@@ -32,7 +33,7 @@ public class EstadoController {
     private final EstadoMapper estadoMapper;
 
     @GetMapping
-    public Page<EstadoOut> buscaTodos(Pageable pageable){
+    public Page<EstadoOut> buscaTodos(EstadoFilter estadoFilter, Pageable pageable){
 
         Page<Estado> estadoPage = estadoService.allEstadosPage(pageable);
 
