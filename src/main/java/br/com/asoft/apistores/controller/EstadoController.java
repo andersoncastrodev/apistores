@@ -35,11 +35,11 @@ public class EstadoController {
     @GetMapping
     public Page<EstadoOut> buscaTodos(EstadoFilter estadoFilter, Pageable pageable){
 
-        Page<Estado> estadoPage = estadoService.allEstadosPage(pageable);
+        Page<Estado> estadoPage = estadoService.allEstadosPage(estadoFilter, pageable);
 
         List<EstadoOut> estadoOutsList = estadoMapper.toListEstadoOut(estadoPage.getContent());
 
-        Page<EstadoOut> estadoOutPage = new PageImpl<>(estadoOutsList,pageable,estadoPage.getTotalPages());
+        Page<EstadoOut> estadoOutPage = new PageImpl<>(estadoOutsList,pageable,estadoPage.getTotalElements());
 
         return estadoOutPage;
     }

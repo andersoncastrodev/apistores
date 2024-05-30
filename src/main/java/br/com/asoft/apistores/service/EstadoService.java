@@ -1,6 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.filter.EstadoFilter;
 import br.com.asoft.apistores.model.Estado;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.EstadoRepository;
@@ -23,7 +24,7 @@ public class EstadoService {
 
     private final EstadoRepository estadoRepository;
 
-    public Page<Estado> allEstadosPage(Pageable pageable){
+    public Page<Estado> allEstadosPage(EstadoFilter estadoFilter, Pageable pageable){
         return estadoRepository.findAll(pageable);
     }
     public List<Estado> allEstados(){
