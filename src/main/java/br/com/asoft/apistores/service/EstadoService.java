@@ -5,6 +5,7 @@ import br.com.asoft.apistores.filter.EstadoFilter;
 import br.com.asoft.apistores.model.Estado;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.EstadoRepository;
+import br.com.asoft.apistores.specifications.EstadoSpecification;
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.layout.element.Paragraph;
@@ -24,8 +25,8 @@ public class EstadoService {
 
     private final EstadoRepository estadoRepository;
 
-    public Page<Estado> allEstadosPage(EstadoFilter estadoFilter, Pageable pageable){
-        return estadoRepository.findAll(pageable);
+    public Page<Estado> allEstadosPage(EstadoFilter estadoFilter, Pageable pageable) {
+        return estadoRepository.findAll(EstadoSpecification.filter(estadoFilter), pageable);
     }
     public List<Estado> allEstados(){
         return estadoRepository.findAll();
