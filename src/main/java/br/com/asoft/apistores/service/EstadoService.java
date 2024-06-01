@@ -32,11 +32,11 @@ public class EstadoService {
         return estadoRepository.findAll();
     }
 
-    public Estado findId(Long id){
+    public Estado findId(Long id) {
         return tryOrFail(id);
     }
 
-    public Estado saveEstado(Estado estado){
+    public Estado saveEstado(Estado estado) {
        return estadoRepository.save(estado);
     }
 
@@ -48,7 +48,7 @@ public class EstadoService {
         estadoRepository.flush();
 
     }
-    public Estado tryOrFail(Long id){
+    public Estado tryOrFail(Long id) {
         return estadoRepository.findById(id)
                 .orElseThrow( ()-> new EntityNotFoundExceptions("Estado",id));
     }

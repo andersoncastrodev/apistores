@@ -33,7 +33,7 @@ public class EstadoController {
     private final EstadoMapper estadoMapper;
 
     @GetMapping
-    public Page<EstadoOut> buscaTodos(EstadoFilter estadoFilter, Pageable pageable){
+    public Page<EstadoOut> buscaTodos(EstadoFilter estadoFilter, Pageable pageable) {
 
         Page<Estado> estadoPage = estadoService.allEstadosPage(estadoFilter, pageable);
 
