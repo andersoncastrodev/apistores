@@ -28,7 +28,7 @@ public class EstadoService {
     public Page<Estado> allEstadosPage(EstadoFilter estadoFilter, Pageable pageable) {
         return estadoRepository.findAll(EstadoSpecification.filter(estadoFilter), pageable);
     }
-    public List<Estado> allEstados(){
+    public List<Estado> allEstados() {
         return estadoRepository.findAll();
     }
 
