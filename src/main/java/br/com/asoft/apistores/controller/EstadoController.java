@@ -51,7 +51,7 @@ public class EstadoController {
 //    }
 
     @GetMapping("/{id}")
-    public EstadoOut buscaPorId(@PathVariable Long id){
+    public EstadoOut buscaPorId(@PathVariable Long id) {
         EstadoOut estadoOut = estadoMapper.toEstadoOut( estadoService.findId(id));
         return estadoOut;
     }
