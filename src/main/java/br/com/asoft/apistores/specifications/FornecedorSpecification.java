@@ -3,9 +3,7 @@ package br.com.asoft.apistores.specifications;
 import br.com.asoft.apistores.filter.FornecedorFilter;
 import br.com.asoft.apistores.model.Fornecedor;
 import org.springframework.data.jpa.domain.Specification;
-
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class FornecedorSpecification {
 
@@ -15,7 +13,9 @@ public class FornecedorSpecification {
 
             var predicates = new ArrayList<>();
 
-            //if
+            if (fornecedorFilter != null ) {
+
+            }
             return null;
         };
 
