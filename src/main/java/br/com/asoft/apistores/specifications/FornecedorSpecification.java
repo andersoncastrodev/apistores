@@ -13,9 +13,10 @@ public class FornecedorSpecification {
 
             var predicates = new ArrayList<>();
 
-            if (fornecedorFilter != null ) {
-
+            if (fornecedorFilter.getNome() != null ) {
+                predicates.add(criteriaBuilder.equal(root.get("nome"), fornecedorFilter.getNome()));
             }
+
             return null;
         };
 
