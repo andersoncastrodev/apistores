@@ -16,6 +16,9 @@ public class FornecedorSpecification {
             if (fornecedorFilter.getNome() != null ) {
                 predicates.add(criteriaBuilder.equal(root.get("nome"), fornecedorFilter.getNome()));
             }
+            if (fornecedorFilter.getSigla() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("sigla"), fornecedorFilter.getNome()));
+            }
 
             return null;
         };
