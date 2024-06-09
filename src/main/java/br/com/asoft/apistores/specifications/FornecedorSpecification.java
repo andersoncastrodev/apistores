@@ -2,6 +2,7 @@ package br.com.asoft.apistores.specifications;
 
 import br.com.asoft.apistores.filter.FornecedorFilter;
 import br.com.asoft.apistores.model.Fornecedor;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class FornecedorSpecification {
                 predicates.add(criteriaBuilder.equal(root.get("sigla"), fornecedorFilter.getNome()));
             }
 
-            return null;
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
 
     }
