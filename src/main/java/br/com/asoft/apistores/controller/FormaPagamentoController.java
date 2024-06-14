@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.controller;
 
+import br.com.asoft.apistores.out.FormaPagamentoOut;
 import br.com.asoft.apistores.service.FormaPagamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ public class FormaPagamentoController {
     private final FormaPagamentoService formaPagamentoService;
 
 
-    public List<FormaPagamentoOUt>
+    //public List<FormaPagamentoOut>
 
 
 }
