@@ -16,7 +16,9 @@ public class FormaPagamentoController {
     private final FormaPagamentoService formaPagamentoService;
 
 
-    //public List<FormaPagamentoOut>
+   public List<FormaPagamentoOut> findAllFormagamento(){
+       return  null;
+   }
 
 
 }
