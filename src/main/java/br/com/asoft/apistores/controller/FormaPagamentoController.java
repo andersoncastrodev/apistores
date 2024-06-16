@@ -17,7 +17,7 @@ public class FormaPagamentoController {
 
 
    public List<FormaPagamentoOut> findAllFormagamento(){
-       return  null;
+     //  return  null;
    }
 
 
