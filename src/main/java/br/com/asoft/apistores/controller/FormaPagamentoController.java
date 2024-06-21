@@ -19,14 +19,13 @@ public class FormaPagamentoController {
 
     private final FormaPagamentoMapper formaDePagamentoMapper;
 
-
     @GetMapping
-   public List<FormaPagamentoOut> findAllFormagamento(){
+    public List<FormaPagamentoOut> findAllFormagamento() {
 
-       List<FormaPagamentoOut>  formaPagamentoOuts ;
+        List<FormaPagamentoOut> formaPagamentoOuts = formaDePagamentoMapper.toListFormaPagamentoOut(formaPagamentoService.findAll());
 
-       return  null;
-   }
+        return formaPagamentoOuts;
+    }
 
 
 }
