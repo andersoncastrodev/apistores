@@ -10,6 +10,6 @@ public class FormaPagamentoInp {
 
     private Long id;
     private String descricao;
-    private TipoPagamento pagamento;
+    private TipoPagamento tipoPagamento;
 
 }

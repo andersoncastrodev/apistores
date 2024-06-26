@@ -20,6 +20,6 @@ public class FormaDePagamento {
     @Column(name = "descricao")
     private String descricao;
 
-    private TipoPagamento pagamento;
+    private TipoPagamento tipoPagamento;
 
 }
