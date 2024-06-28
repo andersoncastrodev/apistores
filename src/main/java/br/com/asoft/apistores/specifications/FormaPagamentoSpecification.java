@@ -19,7 +19,9 @@ public class FormaPagamentoSpecification {
             if( formaPagamentoFilter.getId() != null ) {
                 predicates.add(criteriaBuilder.equal(root.get("id"), formaPagamentoFilter.getId()));
             }
-
+            if (formaPagamentoFilter.getDescricao() != null ){
+                predicates.add(criteriaBuilder.equal(root.get("descricao"), formaPagamentoFilter.getDescricao()));
+            }
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };

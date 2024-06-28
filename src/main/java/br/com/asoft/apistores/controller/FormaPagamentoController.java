@@ -24,7 +24,6 @@ public class FormaPagamentoController {
     @GetMapping
     public List<FormaPagamentoOut> findAllFormagamento(FormaPagamentoFilter formaPagamentoFilter, Pageable pageable) {
 
-
         List<FormaPagamentoOut> formaPagamentoOuts = formaDePagamentoMapper.toListFormaPagamentoOut(formaPagamentoService.findAll());
 
         return formaPagamentoOuts;
