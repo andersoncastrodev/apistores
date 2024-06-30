@@ -2,9 +2,12 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.filter.FormaPagamentoFilter;
 import br.com.asoft.apistores.mapper.FormaPagamentoMapper;
+import br.com.asoft.apistores.model.FormaDePagamento;
 import br.com.asoft.apistores.out.FormaPagamentoOut;
 import br.com.asoft.apistores.service.FormaPagamentoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +25,17 @@ public class FormaPagamentoController {
     private final FormaPagamentoMapper formaDePagamentoMapper;
 
     @GetMapping
-    public List<FormaPagamentoOut> findAllFormagamento(FormaPagamentoFilter formaPagamentoFilter, Pageable pageable) {
+    public Page<FormaPagamentoOut> findAllFormagamento(FormaPagamentoFilter formaPagamentoFilter, Pageable pageable) {
 
-        List<FormaPagamentoOut> formaPagamentoOuts = formaDePagamentoMapper.toListFormaPagamentoOut(formaPagamentoService.findAll());
+        Page<FormaDePagamento> formaPagamentoPage = formaPagamentoService.findAll(formaPagamentoFilter, pageable);
 
-        return formaPagamentoOuts;
+        List<FormaPagamentoOut> listFormaPagamentoOutList = formaDePagamentoMapper.toListFormaPagamentoOut(formaPagamentoPage.getContent());
+
+        Page<FormaPagamentoOut> formaPagamentoOut = new PageImpl<>(listFormaPagamentoOutList,pageable,formaPagamentoPage.getTotalPages());
+
+        return formaPagamentoOut;
     }
+
 
 
 }
