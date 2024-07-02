@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/formapagamento")
 @RequiredArgsConstructor
-public class FormaPagamentoController {
+public class FormaDePagamentoController {
 
     private final FormaPagamentoService formaPagamentoService;
 
