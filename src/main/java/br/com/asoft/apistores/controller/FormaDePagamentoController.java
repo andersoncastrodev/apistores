@@ -38,7 +38,7 @@ public class FormaDePagamentoController {
     }
 
     @GetMapping("/{id}")
-    public FormaPagamentoOut findById(@PathVariable Long id){
+    public FormaPagamentoOut findById(@PathVariable Long id) {
 
         return null;
     }
