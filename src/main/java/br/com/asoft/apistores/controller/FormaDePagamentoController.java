@@ -43,6 +43,10 @@ public class FormaDePagamentoController {
         return null;
     }
 
+    public List<FormaDePagamento> findAllFormaPagamento(){
+        return null;
+    }
+
 
 
 }
