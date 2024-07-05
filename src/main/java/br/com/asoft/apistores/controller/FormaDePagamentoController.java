@@ -26,7 +26,7 @@ public class FormaDePagamentoController {
     private final FormaPagamentoMapper formaDePagamentoMapper;
 
     @GetMapping
-    public Page<FormaPagamentoOut> findAllFormagamento(FormaPagamentoFilter formaPagamentoFilter, Pageable pageable) {
+    public Page<FormaPagamentoOut> findAllFormagamento(FormaPagamentoFilter formaPagamentoFilter, Pageable pageable) {git
 
         Page<FormaDePagamento> formaPagamentoPage = formaPagamentoService.findAll(formaPagamentoFilter, pageable);
 
@@ -43,7 +43,7 @@ public class FormaDePagamentoController {
         return null;
     }
 
-    public List<FormaDePagamento> findAllFormaPagamento(){
+    public List<FormaDePagamento> findAllFormaPagamento() {
         return null;
     }
 
