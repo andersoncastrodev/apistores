@@ -37,11 +37,11 @@ public class FormaDePagamentoController {
         return formaPagamentoOut;
     }
 
-//    @GetMapping("/{id}")
-//    public FormaPagamentoOut findById(@PathVariable Long id) {
-//        String nome = "texto";
-//        return null;
-//    }
+    @GetMapping("/{id}")
+    public FormaPagamentoOut findById(@PathVariable Long id) {
+        String nome = "texto";
+        return null;
+    }
 
 
 }
