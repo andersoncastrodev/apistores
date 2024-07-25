@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -37,11 +36,11 @@ public class FormaDePagamentoController {
         return formaPagamentoOut;
     }
 
-    @GetMapping("/{id}")
-    public FormaPagamentoOut findById(@PathVariable Long id) {
-        String nome = "texto";
-        return null;
-    }
+//    @GetMapping("/{id}")
+//    public FormaPagamentoOut findById(@PathVariable Long id) {
+//        String nome = "texto";
+//        return null;
+//    }
 
 
 }
