@@ -42,12 +42,12 @@ public class EstadoController {
 
         return estadoOutPage;
     }
-//    @GetMapping()
-//    public List<EstadoOut> buscaTodos(){
-//        List<EstadoOut> estados = estadoMapper.toListEstadoOut( estadoService.allEstados());
-//        log.info("INFORMATION:{}","Consulta da Todos os Estados");
-//        return estados;
-//    }
+    @GetMapping()
+    public List<EstadoOut> buscaTodos(){
+        List<EstadoOut> estados = estadoMapper.toListEstadoOut( estadoService.allEstados());
+        log.info("INFORMATION:{}","Consulta da Todos os Estados");
+        return estados;
+    }
 
     @GetMapping("/{id}")
     public EstadoOut buscaPorId(@PathVariable Long id) {
