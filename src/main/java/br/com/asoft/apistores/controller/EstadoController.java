@@ -49,11 +49,11 @@ public class EstadoController {
 //        return estados;
 //    }
 
-//    @GetMapping("/{id}")
-//    public EstadoOut buscaPorId(@PathVariable Long id) {
-//        EstadoOut estadoOut = estadoMapper.toEstadoOut( estadoService.findId(id));
-//        return estadoOut;
-//    }
+    @GetMapping("/{id}")
+    public EstadoOut buscaPorId(@PathVariable Long id) {
+        EstadoOut estadoOut = estadoMapper.toEstadoOut( estadoService.findId(id));
+        return estadoOut;
+    }
 
     @PostMapping
     public EstadoOut salvarEstado(@RequestBody @Valid EstadoInp estadoInp){
