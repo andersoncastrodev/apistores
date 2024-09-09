@@ -41,11 +41,11 @@ public class EnderecoController {
 
         return enderecoPageOuts;
     }
-    @GetMapping
-    public List<EnderecoOut> buscaTodos() {
-        List<EnderecoOut> enderecos = enderecoMapper.toListEnderecoOut(enderecoService.allEndereco());
-        return enderecos;
-    }
+//    @GetMapping
+//    public List<EnderecoOut> buscaTodos() {
+//        List<EnderecoOut> enderecos = enderecoMapper.toListEnderecoOut(enderecoService.allEndereco());
+//        return enderecos;
+//    }
 
     @GetMapping("/{id}")
     public EnderecoOut buscaPorId(@PathVariable Long id) {
