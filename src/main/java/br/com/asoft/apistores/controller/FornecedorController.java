@@ -40,11 +40,11 @@ public class FornecedorController {
 
         return fornecedorOutPage;
     }
-//    @GetMapping
-//    public List<FornecedorOut> buscaTodos(){
-//        List<FornecedorOut> fornecedores = fornecedorMapper.toListFornecedorOut(fornecedorService.allTodos());
-//        return fornecedores;
-//    }
+    @GetMapping
+    public List<FornecedorOut> buscaTodos(){
+        List<FornecedorOut> fornecedores = fornecedorMapper.toListFornecedorOut(fornecedorService.allTodos());
+        return fornecedores;
+    }
 
     @GetMapping("/{id}")
     public FornecedorOut buscaPorId(@PathVariable Long id) {
