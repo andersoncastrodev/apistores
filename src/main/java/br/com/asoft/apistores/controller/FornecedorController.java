@@ -46,11 +46,11 @@ public class FornecedorController {
 //        return fornecedores;
 //    }
 
-//    @GetMapping("/{id}")
-//    public FornecedorOut buscaPorId(@PathVariable Long id) {
-//        FornecedorOut fornecedorOut = fornecedorMapper.toFornecedorOut(fornecedorService.findId(id));
-//        return fornecedorOut;
-//    }
+    @GetMapping("/{id}")
+    public FornecedorOut buscaPorId(@PathVariable Long id) {
+        FornecedorOut fornecedorOut = fornecedorMapper.toFornecedorOut(fornecedorService.findId(id));
+        return fornecedorOut;
+    }
 
     @PostMapping
     public FornecedorOut salvarFornecedor(@RequestBody @Valid FornecedorInp fornecedorInp){
