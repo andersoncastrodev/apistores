@@ -50,10 +50,10 @@ public class ClienteController {
 //    }
 //    }
 
-    @GetMapping("/{id}")
-    public ClienteOut buscarPorId(@PathVariable Long id){
-        return clienteMapper.toClienteOut(clienteService.findId(id));
-    }
+//    @GetMapping("/{id}")
+//    public ClienteOut buscarPorId(@PathVariable Long id){
+//        return clienteMapper.toClienteOut(clienteService.findId(id));
+//    }
 
     @PostMapping
     public ClienteOut salvaCliente(@RequestBody @Valid ClienteInp clienteInp){
