@@ -6,7 +6,6 @@ import br.com.asoft.apistores.mapper.ClienteMapper;
 import br.com.asoft.apistores.model.Cliente;
 import br.com.asoft.apistores.out.ClienteOut;
 import br.com.asoft.apistores.service.ClienteService;
-import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -51,10 +50,10 @@ public class ClienteController {
 //    }
 //    }
 
-//    @GetMapping("/{id}")
-//    public ClienteOut buscarPorId(@PathVariable Long id){
-//        return clienteMapper.toClienteOut(clienteService.findId(id));
-//    }
+    @GetMapping("/{id}")
+    public ClienteOut buscarPorId(@PathVariable Long id){
+        return clienteMapper.toClienteOut(clienteService.findId(id));
+    }
 
     @PostMapping
     public ClienteOut salvaCliente(@RequestBody @Valid ClienteInp clienteInp){
