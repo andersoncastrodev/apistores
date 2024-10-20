@@ -46,11 +46,11 @@ public class EnderecoController {
 //        List<EnderecoOut> enderecos = enderecoMapper.toListEnderecoOut(enderecoService.allEndereco());
 //        return enderecos;
 //    }
-
-    @GetMapping("/{id}")
-    public EnderecoOut buscaPorId(@PathVariable Long id) {
-        return enderecoMapper.toEnderecoOut(enderecoService.findId(id));
-    }
+//
+//    @GetMapping("/{id}")
+//    public EnderecoOut buscaPorId(@PathVariable Long id) {
+//        return enderecoMapper.toEnderecoOut(enderecoService.findId(id));
+//    }
 
     @PostMapping
     public EnderecoOut salvarEndereco(@RequestBody @Valid EnderecoInp enderecoInp) {
