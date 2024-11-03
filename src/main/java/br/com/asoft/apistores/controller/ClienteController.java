@@ -31,17 +31,17 @@ public class ClienteController {
     private final ClienteMapper clienteMapper;
 
     @GetMapping
-    public Page<ClienteOut> todosClientes(ClienteFilter clienteFilter, Pageable pageable) {
-
-        Page<Cliente> clientePage = clienteService.allClientePage(clienteFilter, pageable);
-
-        List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
-
-        Page<ClienteOut> clientePageOut = new PageImpl<>(clienteOutList,pageable,clientePage.getTotalPages());
-
-        return clientePageOut;
-
-    }
+//    public Page<ClienteOut> todosClientes(ClienteFilter clienteFilter, Pageable pageable) {
+//
+//        Page<Cliente> clientePage = clienteService.allClientePage(clienteFilter, pageable);
+//
+//        List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
+//
+//        Page<ClienteOut> clientePageOut = new PageImpl<>(clienteOutList,pageable,clientePage.getTotalPages());
+//
+//        return clientePageOut;
+//
+//    }
 
 // SEM PAGINACAO
 //    @GetMapping
