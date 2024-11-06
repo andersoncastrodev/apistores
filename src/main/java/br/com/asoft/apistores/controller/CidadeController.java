@@ -41,11 +41,11 @@ public class CidadeController {
     }
 
     // SEM PAGINAÇÃO
-//    @GetMapping
-//    public List<CidadeOut> buscarTodas(){
-//        List<CidadeOut> cidades = cidadeMapper.toListCidadeOut(cidadeService.allCidades());
-//        return cidades;
-//    }
+    @GetMapping
+    public List<CidadeOut> buscarTodas(){
+        List<CidadeOut> cidades = cidadeMapper.toListCidadeOut(cidadeService.allCidades());
+        return cidades;
+    }
 
     @GetMapping("/{id}")
     public CidadeOut buscarPorId(@PathVariable Long id){
