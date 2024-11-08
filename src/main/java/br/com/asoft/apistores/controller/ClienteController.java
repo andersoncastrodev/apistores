@@ -45,10 +45,10 @@ public class ClienteController {
 
 // SEM PAGINACAO
 //    @GetMapping
-   public List<ClienteOut> todosClientes(){
-        return clienteMapper.toListClienteOut(clienteService.findAllCliente());
-    }
-    }
+//   public List<ClienteOut> todosClientes(){
+//        return clienteMapper.toListClienteOut(clienteService.findAllCliente());
+//    }
+//    }
 
     @GetMapping("/{id}")
     public ClienteOut buscarPorId(@PathVariable Long id){
