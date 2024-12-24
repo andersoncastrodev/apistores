@@ -49,12 +49,12 @@ public class ItemVendaController {
         return itemVendaMapper.toItenVendaOut(itemVendaService.findId(id));
     }
 
-//    @PostMapping
-//    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp) {
-//        ItemVenda itemVenda = itemVendaService.saveItemVenda( itemVendaMapper.toItenVenda(itenVendaInp));
-//        return itemVendaMapper.toItenVendaOut(itemVenda);
-//
-//    }
+    @PostMapping
+    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp) {
+        ItemVenda itemVenda = itemVendaService.saveItemVenda( itemVendaMapper.toItenVenda(itenVendaInp));
+        return itemVendaMapper.toItenVendaOut(itemVenda);
+
+    }
 
     @PutMapping("/{id}")
     public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id) {
