@@ -48,7 +48,7 @@ public class ClienteController {
 //   public List<ClienteOut> todosClientes(){
 //        return clienteMapper.toListClienteOut(clienteService.findAllCliente());
 //    }
-//    }
+   }
 
     @GetMapping("/{id}")
     public ClienteOut buscarPorId(@PathVariable Long id){
