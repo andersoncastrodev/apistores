@@ -5,7 +5,6 @@ import br.com.asoft.apistores.model.Cidade;
 import br.com.asoft.apistores.out.CidadeOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ public interface CidadeMapper {
     Cidade toCidade(CidadeInp cidadeInp);
 
     Cidade copyToCidade(CidadeInp cidadeInp, @MappingTarget Cidade cidade);
+
     List<CidadeOut> toListCidadeOut(List<Cidade> cidades);
 
 }

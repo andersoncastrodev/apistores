@@ -33,6 +33,7 @@ public class ClienteController {
     @GetMapping
     public Page<ClienteOut> todosClientes(ClienteFilter clienteFilter, Pageable pageable) {
 
+
         Page<Cliente> clientePage = clienteService.allClientePage(clienteFilter, pageable);
 
         List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());

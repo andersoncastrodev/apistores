@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("cidades")
+@RequestMapping("/cidades")
 @RequiredArgsConstructor
 public class CidadeController {
 
@@ -41,11 +41,11 @@ public class CidadeController {
     }
 
     // SEM PAGINAÇÃO
-    @GetMapping
-    public List<CidadeOut> buscarTodas(){
-        List<CidadeOut> cidades = cidadeMapper.toListCidadeOut(cidadeService.allCidades());
-        return cidades;
-    }
+//    @GetMapping
+//    public List<CidadeOut> buscarTodas(){
+//        List<CidadeOut> cidades = cidadeMapper.toListCidadeOut(cidadeService.allCidades());
+//        return cidades;
+//    }
 
     @GetMapping("/{id}")
     public CidadeOut buscarPorId(@PathVariable Long id){
@@ -63,15 +63,15 @@ public class CidadeController {
 
     }
 
-    @PutMapping("/{id}")
-    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id) {
-
-        Cidade cidadeAtual = cidadeService.findId(id);
-
-        Cidade cidadeNova = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
-
-        return cidadeMapper.toCidadeOut(cidadeService.saveCidade(cidadeNova));
-    }
+//    @PutMapping("/{id}")
+//    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id) {
+//
+//        Cidade cidadeAtual = cidadeService.findId(id);
+//
+//        Cidade cidadeNova = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
+//
+//        return cidadeMapper.toCidadeOut(cidadeService.saveCidade(cidadeNova));
+//    }
 
     @DeleteMapping("/{id}")
     public void excluirCidade(@PathVariable Long id){
