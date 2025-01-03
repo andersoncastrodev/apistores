@@ -8,10 +8,10 @@ import lombok.Setter;
 @Setter
 public class PessoaInp {
 
-//    @NotBlank
-//    private String nome;
-//
-//    @NotBlank
-//    private String telefone;
+    @NotBlank
+    private String nome;
+
+    @NotBlank
+    private String telefone;
 
 }
