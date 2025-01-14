@@ -132,8 +132,8 @@ public class PessoaController {
 
         try {
 
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
 
         InputStreamResource relatorio = new InputStreamResource(pessoaService.relatorioTodasPessoas());
 
