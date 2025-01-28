@@ -112,15 +112,15 @@ public class PessoaController {
         return pessoaMapper.toPessoaOut( pessoaService.savePessoa(pessoaMapper.toPessoa(pessoaInp)));
     }
 
-    @PutMapping("/{id}")
-    public PessoaOut alterarPessoa(@RequestBody PessoaInp pessoaInp, @PathVariable Long id) {
-
-        Pessoa pessoaAtual = pessoaService.findId(id);
-
-        Pessoa pessoaNova = pessoaMapper.copyToPessoa(pessoaInp,pessoaAtual);
-
-        return pessoaMapper.toPessoaOut(pessoaService.savePessoa(pessoaNova));
-    }
+//    @PutMapping("/{id}")
+//    public PessoaOut alterarPessoa(@RequestBody PessoaInp pessoaInp, @PathVariable Long id) {
+//
+//        Pessoa pessoaAtual = pessoaService.findId(id);
+//
+//        Pessoa pessoaNova = pessoaMapper.copyToPessoa(pessoaInp,pessoaAtual);
+//
+//        return pessoaMapper.toPessoaOut(pessoaService.savePessoa(pessoaNova));
+//    }
 
     @DeleteMapping("/{id}")
     public void excluirPessoa(@PathVariable Long id) {
