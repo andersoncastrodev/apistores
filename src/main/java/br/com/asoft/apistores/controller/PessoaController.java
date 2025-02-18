@@ -122,10 +122,10 @@ public class PessoaController {
         return pessoaMapper.toPessoaOut(pessoaService.savePessoa(pessoaNova));
     }
 
-    @DeleteMapping("/{id}")
-    public void excluirPessoa(@PathVariable Long id) {
-        pessoaService.deletePessoa(id);
-    }
+//    @DeleteMapping("/{id}")
+//    public void excluirPessoa(@PathVariable Long id) {
+//        pessoaService.deletePessoa(id);
+//    }
 
     @GetMapping("/relatoriopessoas")
     public ResponseEntity<InputStreamResource> relatorioPessoas() {
