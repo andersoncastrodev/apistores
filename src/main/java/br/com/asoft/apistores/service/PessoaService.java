@@ -38,9 +38,9 @@ public class PessoaService {
     //Consulta Customizados para teste das Consultas
     // no Repository
 
-    public List<PessoaNome> todosPessoaPorOrdemDescrente() {
-        return pessoaRepository.findAllByOrderByIdDesc();
-    }
+//    public List<PessoaNome> todosPessoaPorOrdemDescrente() {
+//        return pessoaRepository.findAllByOrderByIdDesc();
+//    }
 
     public List<Pessoa> todosPessoasPorOrdemAcrecente(String nome) {
 
