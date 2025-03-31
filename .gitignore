@@ -35,3 +35,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# ADICIONANDO AS CHAVES DO PROJETO NO GIT IGNORE , PARA QUE NINGUEM VEJA CONTEUDO - IMPORTANTE
+src/main/resources/app.pub
+src/main/resources/app.key
