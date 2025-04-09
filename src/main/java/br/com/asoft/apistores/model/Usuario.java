@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -23,5 +25,7 @@ public class Usuario {
     @OneToOne(optional = false)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
+
+    private List<String> roles;
 
 }
