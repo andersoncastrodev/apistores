@@ -16,10 +16,10 @@ public class TokenService {
 
         var user = usuarioService.findId(usuario.getId());
 
-//        var now = Instant.now();
-//        var expiresIn = 46000L;
-//
-//        var scope = "read write";
+        var now = Instant.now();
+        var expiresIn = 46000L;
+
+        var scope = "read write";
 
         return null;
     }
