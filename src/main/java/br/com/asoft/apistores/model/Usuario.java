@@ -25,7 +25,7 @@ public class Usuario {
     @OneToOne(optional = false)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
-//
-//    private List<String> roles;
+
+    private List<String> roles;
 
 }
