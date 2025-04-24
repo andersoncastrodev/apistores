@@ -60,9 +60,9 @@ public class SecurityConfig {
     }
 
     //Cria uma maneira de encripar as senhas do usuario
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
 }
