@@ -1,10 +1,10 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.UsuarioInp;
-import br.com.asoft.apistores.mapper.UsuarioMapper;
+import br.com.asoft.apistores.mapper.UsersMapper;
 import br.com.asoft.apistores.model.Users;
 import br.com.asoft.apistores.out.UsuarioOut;
-import br.com.asoft.apistores.service.UsuarioService;
+import br.com.asoft.apistores.service.UsersService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -25,50 +25,50 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsersController {
 
-    private final UsuarioService usuarioService;
+    private final UsersService usersService;
 
-    private final UsuarioMapper usuarioMapper;
+    private final UsersMapper usersMapper;
 
 
     @GetMapping
     public Page<UsuarioOut> listaUsuario(Pageable pageable){
 
-        Page<Users> usuariosPage = usuarioService.allTodos(pageable);
-        List<UsuarioOut> usuarioOutsList = usuarioMapper.toListUsuarioOut(usuariosPage.getContent());
+        Page<Users> usuariosPage = usersService.allTodos(pageable);
+        List<UsuarioOut> usuarioOutsList = usersMapper.toListUsuarioOut(usuariosPage.getContent());
         Page<UsuarioOut> usuarioOutPage = new PageImpl<>(usuarioOutsList,pageable,usuariosPage.getTotalPages());
         return null;
     }
 
 //    @GetMapping
 //    public List<UsuarioOut> listarUsuarios() {
-//        return usuarioMapper.toListUsuarioOut( usuarioService.allTodos());
+//        return usersMapper.toListUsuarioOut( usersService.allTodos());
 //    }
 
     @GetMapping("/{id}")
     public UsuarioOut buscaPorId(@PathVariable Long id){
-        return usuarioMapper.toUsuarioOut(usuarioService.findId(id));
+        return usersMapper.toUsuarioOut(usersService.findId(id));
     }
 
     @PostMapping
     public UsuarioOut salvarUsuario(@RequestBody @Valid UsuarioInp usuarioInp ){
-        Users users = usuarioService.saveUsuario( usuarioMapper.toUsuario(usuarioInp) );
-        return usuarioMapper.toUsuarioOut(users);
+        Users users = usersService.saveUsuario( usersMapper.toUsuario(usuarioInp) );
+        return usersMapper.toUsuarioOut(users);
     }
 
     @PutMapping("/{id}")
     public UsuarioOut alterarUsuario(@RequestBody @Valid UsuarioInp usuarioInp, @PathVariable Long id){
 
-        Users usersAtual = usuarioService.findId(id);
+        Users usersAtual = usersService.findId(id);
 
-        Users usersNovo = usuarioMapper.copyToUsuario(usuarioInp, usersAtual);
+        Users usersNovo = usersMapper.copyToUsuario(usuarioInp, usersAtual);
 
-        return usuarioMapper.toUsuarioOut(usuarioService.saveUsuario(usersNovo));
+        return usersMapper.toUsuarioOut(usersService.saveUsuario(usersNovo));
 
     }
 
     @DeleteMapping("/{id}")
     public void excluirUsuario(@PathVariable Long id){
-          usuarioService.deleteUsuario(id);
+          usersService.deleteUsuario(id);
     }
 
     @GetMapping("/relatoriousuarios")
@@ -80,7 +80,7 @@ public class UsersController {
 
         headers.add("Content-Disposition", "inline; filename=vendas.pdf");
 
-        InputStreamResource relatorio = new InputStreamResource( usuarioService.relatorioUsuarios());
+        InputStreamResource relatorio = new InputStreamResource( usersService.relatorioUsuarios());
 
         return ResponseEntity.ok()
                 .headers(headers)

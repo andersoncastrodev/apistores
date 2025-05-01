@@ -1,10 +1,10 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.ItemVendaInp;
-import br.com.asoft.apistores.mapper.ItemVendaMapper;
+import br.com.asoft.apistores.mapper.ItemSaleMapper;
 import br.com.asoft.apistores.model.ItemSale;
 import br.com.asoft.apistores.out.ItemVendaOut;
-import br.com.asoft.apistores.service.ItemVendaService;
+import br.com.asoft.apistores.service.ItemSaleService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -25,48 +25,48 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemSaleController {
 
-    private final ItemVendaService itemVendaService;
+    private final ItemSaleService itemSaleService;
 
-    private final ItemVendaMapper itemVendaMapper;
+    private final ItemSaleMapper itemSaleMapper;
 
     @GetMapping
     public Page<ItemVendaOut> todasItenVendas(Pageable pageable) {
 
-        Page<ItemSale> itemVendaPage = itemVendaService.allTodosPage(pageable);
-        List<ItemVendaOut> itemVendaOutsList = itemVendaMapper.toListItemVendaOut(itemVendaPage.getContent());
+        Page<ItemSale> itemVendaPage = itemSaleService.allTodosPage(pageable);
+        List<ItemVendaOut> itemVendaOutsList = itemSaleMapper.toListItemVendaOut(itemVendaPage.getContent());
         Page<ItemVendaOut> itemVendaOutPage = new PageImpl<>(itemVendaOutsList,pageable,itemVendaPage.getTotalPages());
         return itemVendaOutPage;
     }
 //    @GetMapping
 //    public List<ItemVendaOut> todasItenVendas() {
-//        return itemVendaMapper.toListItemVendaOut(itemVendaService.allTodos());
+//        return itemSaleMapper.toListItemVendaOut(itemSaleService.allTodos());
 //    }
 
     @GetMapping("/{id}")
     public ItemVendaOut buscaIdVenda(@PathVariable Long id) {
-        return itemVendaMapper.toItenVendaOut(itemVendaService.findId(id));
+        return itemSaleMapper.toItenVendaOut(itemSaleService.findId(id));
     }
 
 //    @PostMapping
 //    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp) {
-//        ItemSale itemVenda = itemVendaService.saveItemVenda( itemVendaMapper.toItenVenda(itenVendaInp));
-//        return itemVendaMapper.toItenVendaOut(itemVenda);
+//        ItemSale itemVenda = itemSaleService.saveItemVenda( itemSaleMapper.toItenVenda(itenVendaInp));
+//        return itemSaleMapper.toItenVendaOut(itemVenda);
 //
 //    }
 
     @PutMapping("/{id}")
     public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id) {
 
-        ItemSale itemSaleAtual = itemVendaService.findId(id);
+        ItemSale itemSaleAtual = itemSaleService.findId(id);
 
-        ItemSale itemSaleNovo = itemVendaMapper.copyToItemVenda(itemVendaInp, itemSaleAtual);
+        ItemSale itemSaleNovo = itemSaleMapper.copyToItemVenda(itemVendaInp, itemSaleAtual);
 
-        return itemVendaMapper.toItenVendaOut(itemVendaService.saveItemVenda(itemSaleNovo));
+        return itemSaleMapper.toItenVendaOut(itemSaleService.saveItemVenda(itemSaleNovo));
     }
 
     @DeleteMapping("/{id}")
     public void excluirItemVenda(@PathVariable Long id) {
-        itemVendaService.deletarItemVenda(id);
+        itemSaleService.deletarItemVenda(id);
     }
 
 
@@ -78,7 +78,7 @@ public class ItemSaleController {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
 
-            InputStreamResource relatorio = new InputStreamResource(itemVendaService.relatorioItemVenda());
+            InputStreamResource relatorio = new InputStreamResource(itemSaleService.relatorioItemVenda());
 
             return ResponseEntity.ok()
                     .headers(headers)

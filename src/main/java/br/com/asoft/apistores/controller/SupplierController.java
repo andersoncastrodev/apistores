@@ -1,10 +1,10 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.FornecedorInp;
-import br.com.asoft.apistores.mapper.FornecedorMapper;
+import br.com.asoft.apistores.mapper.SupplierMapper;
 import br.com.asoft.apistores.model.Supplier;
 import br.com.asoft.apistores.out.FornecedorOut;
-import br.com.asoft.apistores.service.FornecedorService;
+import br.com.asoft.apistores.service.SuppilerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -25,16 +25,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SupplierController {
 
-    private final FornecedorService fornecedorService;
+    private final SuppilerService suppilerService;
 
-    private final FornecedorMapper fornecedorMapper;
+    private final SupplierMapper supplierMapper;
 
     @GetMapping
     public Page<FornecedorOut> buscaTodos(Pageable pageable){
 
-        Page<Supplier> fornecedorPage = fornecedorService.allTodosPage(pageable);
+        Page<Supplier> fornecedorPage = suppilerService.allTodosPage(pageable);
 
-        List<FornecedorOut> fornecedorOutList = fornecedorMapper.toListFornecedorOut(fornecedorPage.getContent());
+        List<FornecedorOut> fornecedorOutList = supplierMapper.toListFornecedorOut(fornecedorPage.getContent());
 
         Page<FornecedorOut> fornecedorOutPage = new PageImpl<>(fornecedorOutList,pageable,fornecedorPage.getTotalPages());
 
@@ -42,34 +42,34 @@ public class SupplierController {
     }
 //    @GetMapping
 //    public List<FornecedorOut> buscaTodos(){
-//        List<FornecedorOut> fornecedores = fornecedorMapper.toListFornecedorOut(fornecedorService.allTodos());
+//        List<FornecedorOut> fornecedores = supplierMapper.toListFornecedorOut(suppilerService.allTodos());
 //        return fornecedores;
 //    }
 
     @GetMapping("/{id}")
     public FornecedorOut buscaPorId(@PathVariable Long id) {
-        FornecedorOut fornecedorOut = fornecedorMapper.toFornecedorOut(fornecedorService.findId(id));
+        FornecedorOut fornecedorOut = supplierMapper.toFornecedorOut(suppilerService.findId(id));
         return fornecedorOut;
     }
 
     @PostMapping
     public FornecedorOut salvarFornecedor(@RequestBody @Valid FornecedorInp fornecedorInp){
-        return fornecedorMapper.toFornecedorOut( fornecedorService.saveFonecedor(fornecedorMapper.toFornecedor(fornecedorInp)));
+        return supplierMapper.toFornecedorOut( suppilerService.saveFonecedor(supplierMapper.toFornecedor(fornecedorInp)));
     }
 
     @PutMapping("/{id}")
     public FornecedorOut alterarFornecedor(@RequestBody @Valid FornecedorInp fornecedorInp, @PathVariable Long id){
 
-        Supplier supplierAtual = fornecedorService.findId(id);
+        Supplier supplierAtual = suppilerService.findId(id);
 
-        Supplier supplierNovo = fornecedorMapper.copyToFornecedor(fornecedorInp, supplierAtual);
+        Supplier supplierNovo = supplierMapper.copyToFornecedor(fornecedorInp, supplierAtual);
 
-        return fornecedorMapper.toFornecedorOut(fornecedorService.saveFonecedor(supplierNovo));
+        return supplierMapper.toFornecedorOut(suppilerService.saveFonecedor(supplierNovo));
     }
 
     @DeleteMapping("/{id}")
     public void excluirFornecedor(@PathVariable Long id){
-        fornecedorService.deletarFornecedor(id);
+        suppilerService.deletarFornecedor(id);
     }
 
     @GetMapping("/relatoriofornecedor")
@@ -80,7 +80,7 @@ public class SupplierController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=fornecedores.pdf");
 
-        InputStreamResource relatorio = new InputStreamResource(fornecedorService.relatorioFornecedor());
+        InputStreamResource relatorio = new InputStreamResource(suppilerService.relatorioFornecedor());
 
         return ResponseEntity.ok()
                 .headers(headers)

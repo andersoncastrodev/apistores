@@ -2,10 +2,10 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.filter.ClientFilter;
 import br.com.asoft.apistores.inp.ClienteInp;
-import br.com.asoft.apistores.mapper.ClienteMapper;
+import br.com.asoft.apistores.mapper.ClientMapper;
 import br.com.asoft.apistores.model.Client;
 import br.com.asoft.apistores.out.ClienteOut;
-import br.com.asoft.apistores.service.ClienteService;
+import br.com.asoft.apistores.service.ClientService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -26,17 +26,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClientController {
 
-    private final ClienteService clienteService;
+    private final ClientService clientService;
 
-    private final ClienteMapper clienteMapper;
+    private final ClientMapper clientMapper;
 
     @GetMapping
     public Page<ClienteOut> todosClientes(ClientFilter clientFilter, Pageable pageable) {
 
 
-        Page<Client> clientePage = clienteService.allClientePage(clientFilter, pageable);
+        Page<Client> clientePage = clientService.allClientePage(clientFilter, pageable);
 
-        List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
+        List<ClienteOut> clienteOutList = clientMapper.toListClienteOut(clientePage.getContent());
 
         Page<ClienteOut> clientePageOut = new PageImpl<>(clienteOutList,pageable,clientePage.getTotalPages());
 
@@ -47,36 +47,36 @@ public class ClientController {
 // SEM PAGINACAO
 //    @GetMapping
 //   public List<ClienteOut> todosClientes(){
-//        return clienteMapper.toListClienteOut(clienteService.findAllCliente());
+//        return clientMapper.toListClienteOut(clientService.findAllCliente());
 //    }
 //    }
 
     @GetMapping("/{id}")
     public ClienteOut buscarPorId(@PathVariable Long id){
-        return clienteMapper.toClienteOut(clienteService.findId(id));
+        return clientMapper.toClienteOut(clientService.findId(id));
     }
 
     @PostMapping
     public ClienteOut salvaCliente(@RequestBody @Valid ClienteInp clienteInp){
-        Client client = clienteMapper.toCliente(clienteInp);
-        return clienteMapper.toClienteOut(clienteService.saveCliente(client));
+        Client client = clientMapper.toCliente(clienteInp);
+        return clientMapper.toClienteOut(clientService.saveCliente(client));
     }
 
     @PutMapping("/{id}")
     public ClienteOut atualizaCliente(@RequestBody @Valid ClienteInp clienteInp, @PathVariable Long id){
 
-        Client clientAtual = clienteService.findId(id);
+        Client clientAtual = clientService.findId(id);
 
-        Client clientUpdate = clienteMapper.copyToCliente(clienteInp, clientAtual);
+        Client clientUpdate = clientMapper.copyToCliente(clienteInp, clientAtual);
 
-        return clienteMapper.toClienteOut(clienteService.saveCliente(clientUpdate));
+        return clientMapper.toClienteOut(clientService.saveCliente(clientUpdate));
 
     }
 
     @DeleteMapping("/{id}")
     //@Operation(summary = "Busca por Codigo")
     public void excluirCliente(@PathVariable Long id){
-        clienteService.deleteCliente(id);
+        clientService.deleteCliente(id);
     }
 
     @GetMapping("/relatoriocliente")
@@ -87,7 +87,7 @@ public class ClientController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
 
-        InputStreamResource relatorio = new InputStreamResource( clienteService.relatorioCliente());
+        InputStreamResource relatorio = new InputStreamResource( clientService.relatorioCliente());
 
         return ResponseEntity.ok()
                 .headers(headers)

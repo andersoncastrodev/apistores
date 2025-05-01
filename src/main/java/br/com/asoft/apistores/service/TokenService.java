@@ -10,11 +10,11 @@ import java.time.Instant;
 @AllArgsConstructor
 public class TokenService {
 
-    private UsuarioService usuarioService;
+    private UsersService usersService;
 
     public String gerarToken(Users users) {
 
-        var user = usuarioService.findId(users.getId());
+        var user = usersService.findId(users.getId());
 
         var now = Instant.now();
         var expiresIn = 46000L;

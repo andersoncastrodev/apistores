@@ -2,10 +2,10 @@ package br.com.asoft.apistores.controller;
 
 
 import br.com.asoft.apistores.inp.VendaInp;
-import br.com.asoft.apistores.mapper.VendaMapper;
+import br.com.asoft.apistores.mapper.SalesMapper;
 import br.com.asoft.apistores.model.Sales;
 import br.com.asoft.apistores.out.VendaOut;
-import br.com.asoft.apistores.service.VendaService;
+import br.com.asoft.apistores.service.SalesService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -25,16 +25,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SalesController {
 
-    private final VendaService vendaService;
+    private final SalesService salesService;
 
-    private final VendaMapper vendaMapper;
+    private final SalesMapper salesMapper;
 
     @GetMapping
     public Page<VendaOut> listaVendas(Pageable pageable) {
 
-        Page<Sales> vendaPage = vendaService.allTodas(pageable);
+        Page<Sales> vendaPage = salesService.allTodas(pageable);
 
-        List<VendaOut> vendaOutsList = vendaMapper.toListVendaOut(vendaPage.getContent());
+        List<VendaOut> vendaOutsList = salesMapper.toListVendaOut(vendaPage.getContent());
 
         Page<VendaOut> vendaOutPage = new PageImpl<>(vendaOutsList,pageable, vendaPage.getTotalElements());
 
@@ -43,32 +43,32 @@ public class SalesController {
 
 //    @GetMapping
 //    public List<VendaOut> listaVendas(){
-//        return  vendaMapper.toListVendaOut( vendaService.allTodas());
+//        return  salesMapper.toListVendaOut( salesService.allTodas());
 //    }
 
     @GetMapping("/{id}")
     public VendaOut buscaPorId(@PathVariable Long id){
-        return vendaMapper.toVendaOut( vendaService.findId(id));
+        return salesMapper.toVendaOut( salesService.findId(id));
     }
 
     @PostMapping
     public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp) {
 
-        Sales sales = vendaService.saveVenda(vendaMapper.toVenda(vendaInp));
-       return vendaMapper.toVendaOut(sales);
+        Sales sales = salesService.saveVenda(salesMapper.toVenda(vendaInp));
+       return salesMapper.toVendaOut(sales);
     }
 
     @PutMapping("/{id}")
     public VendaOut alterarVenda(@RequestBody VendaInp vendaInp, @PathVariable Long id){
-        Sales salesAtual = vendaService.findId(id);
+        Sales salesAtual = salesService.findId(id);
 
-        Sales salesNova = vendaMapper.copyToVendaInp(vendaInp, salesAtual);
+        Sales salesNova = salesMapper.copyToVendaInp(vendaInp, salesAtual);
 
-        return vendaMapper.toVendaOut(vendaService.saveVenda(salesNova));
+        return salesMapper.toVendaOut(salesService.saveVenda(salesNova));
     }
     @DeleteMapping("/{id}")
     public void excluirVenda(@PathVariable Long id){
-            vendaService.deleteVenda(id);
+            salesService.deleteVenda(id);
     }
 
 
@@ -80,7 +80,7 @@ public class SalesController {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Disposition", "inline; filename=vendas.pdf");
 
-            InputStreamResource relatorio = new InputStreamResource(vendaService.relatorioTodasVendas());
+            InputStreamResource relatorio = new InputStreamResource(salesService.relatorioTodasVendas());
 
             return ResponseEntity.ok()
                     .headers(headers)

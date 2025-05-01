@@ -2,10 +2,10 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.filter.AddressFilter;
 import br.com.asoft.apistores.inp.EnderecoInp;
-import br.com.asoft.apistores.mapper.EnderecoMapper;
+import br.com.asoft.apistores.mapper.AddressMapper;
 import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.out.EnderecoOut;
-import br.com.asoft.apistores.service.EnderecoService;
+import br.com.asoft.apistores.service.AddressService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -26,16 +26,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressController {
 
-    private final EnderecoService enderecoService;
+    private final AddressService addressService;
 
-    private final EnderecoMapper enderecoMapper;
+    private final AddressMapper addressMapper;
 
     @GetMapping
     public Page<EnderecoOut> buscaTodos(AddressFilter addressFilter, Pageable pageable) {
 
-        Page<Address> enderecoPage = enderecoService.allEnderecoPage(addressFilter, pageable);
+        Page<Address> enderecoPage = addressService.allEnderecoPage(addressFilter, pageable);
 
-        List<EnderecoOut> enderecoOutList = enderecoMapper.toListEnderecoOut(enderecoPage.getContent());
+        List<EnderecoOut> enderecoOutList = addressMapper.toListEnderecoOut(enderecoPage.getContent());
 
         Page<EnderecoOut> enderecoPageOuts = new PageImpl<>(enderecoOutList,pageable,enderecoPage.getTotalPages());
 
@@ -43,21 +43,21 @@ public class AddressController {
     }
 //    @GetMapping
 //    public List<EnderecoOut> buscaTodos() {
-//        List<EnderecoOut> enderecos = enderecoMapper.toListEnderecoOut(enderecoService.allEndereco());
+//        List<EnderecoOut> enderecos = addressMapper.toListEnderecoOut(addressService.allEndereco());
 //        return enderecos;
 //    }
 //
     @GetMapping("/{id}")
     public EnderecoOut buscaPorId(@PathVariable Long id) {
-        return enderecoMapper.toEnderecoOut(enderecoService.findId(id));
+        return addressMapper.toEnderecoOut(addressService.findId(id));
     }
 
     @PostMapping
     public EnderecoOut salvarEndereco(@RequestBody @Valid EnderecoInp enderecoInp) {
 
-        Address address = enderecoMapper.toEndereco(enderecoInp);
+        Address address = addressMapper.toEndereco(enderecoInp);
 
-        EnderecoOut enderecoOut = enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(address));
+        EnderecoOut enderecoOut = addressMapper.toEnderecoOut(addressService.saveEndereco(address));
 
         return enderecoOut;
     }
@@ -65,17 +65,17 @@ public class AddressController {
     @PutMapping("/{id}")
     public EnderecoOut atualizarEndereco(@RequestBody @Valid EnderecoInp enderecoInp, @PathVariable Long id) {
 
-        Address addressAtual = enderecoService.findId(id);
+        Address addressAtual = addressService.findId(id);
 
-        Address addressNovo = enderecoMapper.copyToEndereco(enderecoInp, addressAtual);
+        Address addressNovo = addressMapper.copyToEndereco(enderecoInp, addressAtual);
 
-        return enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(addressNovo));
+        return addressMapper.toEnderecoOut(addressService.saveEndereco(addressNovo));
     }
 
     @DeleteMapping("/{id}")
     public void excluirEndereco(@PathVariable Long id) {
 
-        enderecoService.deleteEndereco(id);
+        addressService.deleteEndereco(id);
 
     }
 
@@ -88,7 +88,7 @@ public class AddressController {
             headers.add("Content-Disposition", "inline; filename=endereco.pdf");
 
 
-            InputStreamResource relatorio = new InputStreamResource(enderecoService.relatorioEndereco());
+            InputStreamResource relatorio = new InputStreamResource(addressService.relatorioEndereco());
 
 
         return ResponseEntity.ok()

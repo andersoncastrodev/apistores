@@ -2,10 +2,10 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.filter.StateFilter;
 import br.com.asoft.apistores.inp.EstadoInp;
-import br.com.asoft.apistores.mapper.EstadoMapper;
+import br.com.asoft.apistores.mapper.StateMapper;
 import br.com.asoft.apistores.model.State;
 import br.com.asoft.apistores.out.EstadoOut;
-import br.com.asoft.apistores.service.EstadoService;
+import br.com.asoft.apistores.service.StateService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,16 +27,16 @@ import java.util.List;
 @Slf4j
 public class StateController {
 
-    private final EstadoService estadoService;
+    private final StateService stateService;
 
-    private final EstadoMapper estadoMapper;
+    private final StateMapper stateMapper;
 
     @GetMapping
     public Page<EstadoOut> buscaTodos(StateFilter stateFilter, Pageable pageable) {
 
-        Page<State> estadoPage = estadoService.allEstadosPage(stateFilter, pageable);
+        Page<State> estadoPage = stateService.allEstadosPage(stateFilter, pageable);
 
-        List<EstadoOut> estadoOutsList = estadoMapper.toListEstadoOut(estadoPage.getContent());
+        List<EstadoOut> estadoOutsList = stateMapper.toListEstadoOut(estadoPage.getContent());
 
         Page<EstadoOut> estadoOutPage = new PageImpl<>(estadoOutsList,pageable,estadoPage.getTotalElements());
 
@@ -44,23 +44,23 @@ public class StateController {
     }
 //    @GetMapping()
 //    public List<EstadoOut> buscaTodos(){
-//        List<EstadoOut> estados = estadoMapper.toListEstadoOut( estadoService.allEstados());
+//        List<EstadoOut> estados = stateMapper.toListEstadoOut( stateService.allEstados());
 //        log.info("INFORMATION:{}","Consulta da Todos os Estados");
 //        return estados;
 //    }
 
     @GetMapping("/{id}")
     public EstadoOut buscaPorId(@PathVariable Long id) {
-        EstadoOut estadoOut = estadoMapper.toEstadoOut( estadoService.findId(id));
+        EstadoOut estadoOut = stateMapper.toEstadoOut( stateService.findId(id));
         return estadoOut;
     }
 
     @PostMapping
     public EstadoOut salvarEstado(@RequestBody @Valid EstadoInp estadoInp){
 
-        State state = estadoMapper.toEstado(estadoInp);
+        State state = stateMapper.toEstado(estadoInp);
 
-        EstadoOut estadoOut = estadoMapper.toEstadoOut(estadoService.saveEstado(state));
+        EstadoOut estadoOut = stateMapper.toEstadoOut(stateService.saveEstado(state));
 
         return estadoOut;
     }
@@ -68,16 +68,16 @@ public class StateController {
     @PutMapping("/{id}")
     public EstadoOut atualizarEstado(@RequestBody @Valid EstadoInp estadoInp, @PathVariable Long id){
 
-        State stateAtual = estadoService.findId(id);
+        State stateAtual = stateService.findId(id);
 
-        State stateNovo = estadoMapper.copyToEstado(estadoInp, stateAtual);
+        State stateNovo = stateMapper.copyToEstado(estadoInp, stateAtual);
 
-        return estadoMapper.toEstadoOut( estadoService.saveEstado(stateNovo));
+        return stateMapper.toEstadoOut( stateService.saveEstado(stateNovo));
     }
 
     @DeleteMapping("{id}")
     public void excluirEstado(@PathVariable Long id){
-        estadoService.deleteEstado(id);
+        stateService.deleteEstado(id);
     }
 
     @GetMapping("/relatorioestados")
@@ -88,7 +88,7 @@ public class StateController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=estados.pdf");
 
-        InputStreamResource relatorio = new InputStreamResource(estadoService.relatorioEstado());
+        InputStreamResource relatorio = new InputStreamResource(stateService.relatorioEstado());
 
         return ResponseEntity.ok()
                 .headers(headers)

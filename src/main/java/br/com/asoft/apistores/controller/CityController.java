@@ -2,10 +2,10 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.filter.CityFilter;
 import br.com.asoft.apistores.inp.CidadeInp;
-import br.com.asoft.apistores.mapper.CidadeMapper;
+import br.com.asoft.apistores.mapper.CityMapper;
 import br.com.asoft.apistores.model.City;
 import br.com.asoft.apistores.out.CidadeOut;
-import br.com.asoft.apistores.service.CidadeService;
+import br.com.asoft.apistores.service.CityService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -24,16 +24,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CityController {
 
-    private final CidadeService cidadeService;
+    private final CityService cityService;
 
-    private final CidadeMapper cidadeMapper;
+    private final CityMapper cityMapper;
 
     @GetMapping
     public Page<CidadeOut> buscarTodas(CityFilter cityFilter, Pageable pageable) {
 
-        Page<City> cidadesPage = cidadeService.allCidadesPage(cityFilter, pageable);
+        Page<City> cidadesPage = cityService.allCidadesPage(cityFilter, pageable);
 
-        List<CidadeOut> cidadesOutList = cidadeMapper.toListCidadeOut(cidadesPage.getContent());
+        List<CidadeOut> cidadesOutList = cityMapper.toListCidadeOut(cidadesPage.getContent());
 
         Page<CidadeOut> cidadesPageOut = new PageImpl<>(cidadesOutList,pageable,cidadesPage.getTotalElements());
 
@@ -43,21 +43,21 @@ public class CityController {
     // SEM PAGINAÇÃO
 //    @GetMapping
 //    public List<CidadeOut> buscarTodas(){
-//        List<CidadeOut> cidades = cidadeMapper.toListCidadeOut(cidadeService.allCidades());
+//        List<CidadeOut> cidades = cityMapper.toListCidadeOut(cityService.allCidades());
 //        return cidades;
 //    }
 
     @GetMapping("/{id}")
     public CidadeOut buscarPorId(@PathVariable Long id){
-        return cidadeMapper.toCidadeOut(cidadeService.findId(id));
+        return cityMapper.toCidadeOut(cityService.findId(id));
     }
 
     @PostMapping
     public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp) {
 
-        City city = cidadeMapper.toCidade(cidadeInp);
+        City city = cityMapper.toCidade(cidadeInp);
 
-        CidadeOut cidadeOut = cidadeMapper.toCidadeOut( cidadeService.saveCidade(city));
+        CidadeOut cidadeOut = cityMapper.toCidadeOut( cityService.saveCidade(city));
 
         return cidadeOut;
 
@@ -66,17 +66,17 @@ public class CityController {
 //    @PutMapping("/{id}")
 //    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id) {
 //
-//        City cidadeAtual = cidadeService.findId(id);
+//        City cidadeAtual = cityService.findId(id);
 //
-//        City cidadeNova = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
+//        City cidadeNova = cityMapper.copyToCidade(cidadeInp,cidadeAtual);
 //
-//        return cidadeMapper.toCidadeOut(cidadeService.saveCidade(cidadeNova));
+//        return cityMapper.toCidadeOut(cityService.saveCidade(cidadeNova));
 //    }
 
     @DeleteMapping("/{id}")
     public void excluirCidade(@PathVariable Long id){
 
-        cidadeService.deletarCidade(id);
+        cityService.deletarCidade(id);
     }
 
     @GetMapping("/relatoriocidades")
@@ -87,7 +87,7 @@ public class CityController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
 
-        InputStreamResource relatorio = new InputStreamResource(cidadeService.relatorioCidade());
+        InputStreamResource relatorio = new InputStreamResource(cityService.relatorioCidade());
 
         return ResponseEntity.ok()
                 .headers(headers)

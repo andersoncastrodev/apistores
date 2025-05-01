@@ -1,10 +1,10 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.ProdutoInp;
-import br.com.asoft.apistores.mapper.ProdutoMapper;
+import br.com.asoft.apistores.mapper.ProductMapper;
 import br.com.asoft.apistores.model.Product;
 import br.com.asoft.apistores.out.ProdutoOut;
-import br.com.asoft.apistores.service.ProdutoService;
+import br.com.asoft.apistores.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
@@ -25,16 +25,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
-    private final ProdutoService produtoService;
+    private final ProductService productService;
 
-    private final ProdutoMapper produtoMapper;
+    private final ProductMapper productMapper;
 
     @GetMapping
     public Page<ProdutoOut> buscaTodos(Pageable pageable) {
 
-        Page<Product> produtoPage = produtoService.allTodosPage(pageable);
+        Page<Product> produtoPage = productService.allTodosPage(pageable);
 
-        List<ProdutoOut> produtoOutsList = produtoMapper.toListProdutoOut(produtoPage.getContent());
+        List<ProdutoOut> produtoOutsList = productMapper.toListProdutoOut(produtoPage.getContent());
 
         Page<ProdutoOut> produtoOutPage = new PageImpl<>(produtoOutsList,pageable,produtoPage.getTotalElements());
 
@@ -43,22 +43,22 @@ public class ProductController {
 
 //    @GetMapping
 //    public List<ProdutoOut> buscaTodos(){
-//        List<ProdutoOut> produtos = produtoMapper.toListProdutoOut(produtoService.allTodos());
+//        List<ProdutoOut> produtos = productMapper.toListProdutoOut(productService.allTodos());
 //        return produtos;
 //    }
 
     @GetMapping("/{id}")
     public ProdutoOut buscaPorId(@PathVariable Long id){
-        ProdutoOut produtoOut = produtoMapper.toProdutoOut(produtoService.findId(id));
+        ProdutoOut produtoOut = productMapper.toProdutoOut(productService.findId(id));
         return produtoOut;
     }
 
     @PostMapping
     public ProdutoOut salvarProduto(@RequestBody @Valid ProdutoInp produtoInp){
 
-        Product product = produtoMapper.toProduto(produtoInp);
+        Product product = productMapper.toProduto(produtoInp);
 
-        ProdutoOut produtoOut = produtoMapper.toProdutoOut(produtoService.salvaProduto(product));
+        ProdutoOut produtoOut = productMapper.toProdutoOut(productService.salvaProduto(product));
 
         return produtoOut;
     }
@@ -66,18 +66,18 @@ public class ProductController {
     @PutMapping("/{id}")
     public ProdutoOut alteraProduto(@RequestBody ProdutoInp produtoInp, @PathVariable Long id){
 
-        Product productAtual = produtoService.findId(id);
+        Product productAtual = productService.findId(id);
 
-        Product productNovo = produtoMapper.copyToProduto(produtoInp, productAtual);
+        Product productNovo = productMapper.copyToProduto(produtoInp, productAtual);
 
-        return produtoMapper.toProdutoOut(produtoService.salvaProduto(productNovo));
+        return productMapper.toProdutoOut(productService.salvaProduto(productNovo));
 
     }
 
     @DeleteMapping("/{id}")
     public void excluirProduto(@PathVariable Long id){
 
-        produtoService.deletarProduto(id);
+        productService.deletarProduto(id);
     }
 
     @GetMapping("/relatorioprodutos")
@@ -88,7 +88,7 @@ public class ProductController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
 
-        InputStreamResource relatorio = new InputStreamResource(produtoService.relatorioTodosProdutos());
+        InputStreamResource relatorio = new InputStreamResource(productService.relatorioTodosProdutos());
 
         return ResponseEntity.ok()
                 .headers(headers)
