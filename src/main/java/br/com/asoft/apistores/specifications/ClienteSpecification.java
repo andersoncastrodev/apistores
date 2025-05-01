@@ -1,8 +1,7 @@
 package br.com.asoft.apistores.specifications;
 
 import br.com.asoft.apistores.filter.ClienteFilter;
-import br.com.asoft.apistores.model.Cliente;
-import br.com.asoft.apistores.model.Pessoa;
+import br.com.asoft.apistores.model.Client;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -11,14 +10,14 @@ import java.util.ArrayList;
 
 public class ClienteSpecification {
 
-    public static Specification<Cliente> filter(ClienteFilter clienteFilter) {
+    public static Specification<Client> filter(ClienteFilter clienteFilter) {
         return (root, query, criteriaBuilder) -> {
 
             var preditaces = new ArrayList<Predicate>();
 
             // Fazendo o Join como a Entidade(Pessoa).
-            // pessoa = É o nome de um atributo na Entidade(Cliente)
-            Join<Cliente,Pessoa> clientePessoaJoin = root.join("pessoa");
+            // pessoa = É o nome de um atributo na Entidade(Client)
+            Join<Client,Pessoa> clientePessoaJoin = root.join("pessoa");
 
             if ( clienteFilter.getNome() != null) {
                 // nome = É o nome de um atributo da Entidade(Pessoa)

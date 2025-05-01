@@ -3,12 +3,10 @@ package br.com.asoft.apistores.controller;
 import br.com.asoft.apistores.dtointerface.PessoaNome;
 import br.com.asoft.apistores.inp.PessoaInp;
 import br.com.asoft.apistores.mapper.PessoaMapper;
-import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.out.PessoaOut;
 import br.com.asoft.apistores.service.PessoaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.ansi.Ansi8BitColor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

@@ -2,7 +2,7 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.filter.EstadoFilter;
-import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.model.State;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.EstadoRepository;
 import br.com.asoft.apistores.specifications.EstadoSpecification;
@@ -25,32 +25,32 @@ public class EstadoService {
 
     private final EstadoRepository estadoRepository;
 
-    public Page<Estado> allEstadosPage(EstadoFilter estadoFilter, Pageable pageable) {
+    public Page<State> allEstadosPage(EstadoFilter estadoFilter, Pageable pageable) {
         return estadoRepository.findAll(EstadoSpecification.filter(estadoFilter), pageable);
     }
-    public List<Estado> allEstados() {
+    public List<State> allEstados() {
         return estadoRepository.findAll();
     }
 
-    public Estado findId(Long id) {
+    public State findId(Long id) {
         return tryOrFail(id);
     }
 
-    public Estado saveEstado(Estado estado) {
-       return estadoRepository.save(estado);
+    public State saveEstado(State state) {
+       return estadoRepository.save(state);
     }
 
     public void deleteEstado(Long id){
 
-        Estado estado = findId(id);
+        State state = findId(id);
 
-        estadoRepository.delete(estado);
+        estadoRepository.delete(state);
         estadoRepository.flush();
 
     }
-    public Estado tryOrFail(Long id) {
+    public State tryOrFail(Long id) {
         return estadoRepository.findById(id)
-                .orElseThrow( ()-> new EntityNotFoundExceptions("Estado",id));
+                .orElseThrow( ()-> new EntityNotFoundExceptions("State",id));
     }
 
     public ByteArrayInputStream relatorioEstado() throws IOException {
@@ -65,15 +65,15 @@ public class EstadoService {
 
         reports.addNewLine();
         reports.openTable(1f,1f,1f);
-        reports.addTableHeader("Codigo","Nome","Estado");
+        reports.addTableHeader("Codigo","Nome","State");
 
-        List<Estado> estados = allEstados();
+        List<State> states = allEstados();
 
-        for (Estado estado: estados) {
+        for (State state : states) {
 
-            reports.addCellCenter(estado.getId());
-            reports.addCellCenter(estado.getNome());
-            reports.addCellCenter(estado.getSigla());
+            reports.addCellCenter(state.getId());
+            reports.addCellCenter(state.getNome());
+            reports.addCellCenter(state.getSigla());
         }
 
         reports.closeTable();

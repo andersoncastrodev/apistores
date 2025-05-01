@@ -9,19 +9,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Endereco {
+public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String rua;
+    private String street;
 
     private String cep;
 
     @ManyToOne
-    @JoinColumn(name = "id_cidade")
-    private Cidade cidade;
+    @JoinColumn(name = "id_city")
+    private City city;
 
 }

@@ -2,8 +2,8 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.filter.CidadeFilter;
-import br.com.asoft.apistores.model.Cidade;
-import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.model.City;
+import br.com.asoft.apistores.model.State;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.CidadeRepository;
 import br.com.asoft.apistores.specifications.CidadeSpecification;
@@ -27,41 +27,41 @@ public class CidadeService {
 
     private final EstadoService estadoService;
 
-    public Page<Cidade> allCidadesPage(CidadeFilter cidadeFilter,Pageable pageable){
+    public Page<City> allCidadesPage(CidadeFilter cidadeFilter, Pageable pageable){
         return cidadeRepository.findAll(CidadeSpecification.filter(cidadeFilter), pageable);
     }
 
-    public List<Cidade> allCidades(){
+    public List<City> allCidades(){
         return cidadeRepository.findAll();
     }
 
-    public Cidade findId(Long id){
+    public City findId(Long id){
         return tryOrFail(id);
     }
 
-    public Cidade saveCidade(Cidade cidade){
+    public City saveCidade(City city){
 
-        Long estadoId = cidade.getEstado().getId();
+        Long estadoId = city.getState().getId();
 
-        Estado estado = estadoService.tryOrFail(estadoId);
+        State state = estadoService.tryOrFail(estadoId);
 
-        cidade.setEstado(estado);
+        city.setState(state);
 
-        return cidadeRepository.save(cidade);
+        return cidadeRepository.save(city);
     }
 
     public void deletarCidade(Long id){
 
-        Cidade cidade = tryOrFail(id);
+        City city = tryOrFail(id);
 
-        cidadeRepository.delete(cidade);
+        cidadeRepository.delete(city);
 
         cidadeRepository.flush();
 
     }
-    public Cidade tryOrFail(Long id){
+    public City tryOrFail(Long id){
         return cidadeRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Cidade",id));
+                .orElseThrow(()-> new EntityNotFoundExceptions("City",id));
     }
 
     public ByteArrayInputStream relatorioCidade() throws IOException {
@@ -76,15 +76,15 @@ public class CidadeService {
 
         reports.addNewLine();
         reports.openTable(1f,1f,1f);
-        reports.addTableHeader("Codigo","Nome","Estado");
+        reports.addTableHeader("Codigo","Nome","State");
 
-        List<Cidade> cidades = allCidades();
+        List<City> cities = allCidades();
 
-        for (Cidade cidade : cidades){
+        for (City city : cities){
 
-            reports.addCellCenter(cidade.getId());
-            reports.addCellCenter(cidade.getNome());
-            reports.addCellCenter(cidade.getEstado().getNome());
+            reports.addCellCenter(city.getId());
+            reports.addCellCenter(city.getNome());
+            reports.addCellCenter(city.getState().getNome());
         }
 
         reports.closeTable();

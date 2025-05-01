@@ -12,17 +12,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Pessoa {
+public class State {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String nome;
+    private String name;
 
-    private String telefone;
-
+    private String acronym;
 
 
 }

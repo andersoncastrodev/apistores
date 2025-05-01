@@ -1,8 +1,7 @@
 package br.com.asoft.apistores.mapper;
 
 import br.com.asoft.apistores.inp.EstadoInp;
-import br.com.asoft.apistores.model.Endereco;
-import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.model.State;
 import br.com.asoft.apistores.out.EstadoOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -11,11 +10,11 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface EstadoMapper {
-    EstadoOut toEstadoOut(Estado estado);
+    EstadoOut toEstadoOut(State state);
 
-    Estado toEstado(EstadoInp estadoInp);
+    State toEstado(EstadoInp estadoInp);
 
-    Estado copyToEstado(EstadoInp estadoInp, @MappingTarget Estado estado);
+    State copyToEstado(EstadoInp estadoInp, @MappingTarget State state);
 
-    List<EstadoOut> toListEstadoOut(List<Estado> estados);
+    List<EstadoOut> toListEstadoOut(List<State> states);
 }

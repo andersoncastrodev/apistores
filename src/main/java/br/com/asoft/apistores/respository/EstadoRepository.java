@@ -1,10 +1,10 @@
 package br.com.asoft.apistores.respository;
 
-import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.model.State;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EstadoRepository extends JpaRepository<Estado,Long>, JpaSpecificationExecutor<Estado> {
+public interface EstadoRepository extends JpaRepository<State,Long>, JpaSpecificationExecutor<State> {
 }

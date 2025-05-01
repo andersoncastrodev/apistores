@@ -1,11 +1,7 @@
 package br.com.asoft.apistores.inp;
 
-import br.com.asoft.apistores.model.Pessoa;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,5 @@
 package br.com.asoft.apistores.inp;
 
-import br.com.asoft.apistores.model.Pessoa;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

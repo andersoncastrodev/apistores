@@ -1,9 +1,9 @@
 package br.com.asoft.apistores.specifications;
 
 import br.com.asoft.apistores.filter.EnderecoFilter;
-import br.com.asoft.apistores.model.Cidade;
-import br.com.asoft.apistores.model.Endereco;
-import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.model.Address;
+import br.com.asoft.apistores.model.City;
+import br.com.asoft.apistores.model.State;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -11,16 +11,16 @@ import java.util.ArrayList;
 
 public class EnderecoSpecification {
 
-    public static Specification<Endereco> filter(EnderecoFilter enderecoFilter) {
+    public static Specification<Address> filter(EnderecoFilter enderecoFilter) {
         return (root, query, criteriaBuilder) -> {
 
             var predicates = new ArrayList<Predicate>();
 
             //Fazendo o JOIN Nessarios
-            Join<Endereco, Cidade> enderecoCidadeJoin = root.join("cidade");
+            Join<Address, City> enderecoCidadeJoin = root.join("cidade");
 
             //OBS: pega o ultimo join e FAZ outro JOIN.
-            Join<Cidade, Estado> cidadeEstadoJoin = enderecoCidadeJoin.join("estado");
+            Join<City, State> cidadeEstadoJoin = enderecoCidadeJoin.join("estado");
 
             if (enderecoFilter.getId() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("id"), enderecoFilter.getId()));

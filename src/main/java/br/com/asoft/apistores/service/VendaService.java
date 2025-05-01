@@ -62,14 +62,14 @@ public class VendaService {
 
         reports.addNewLine();
         reports.openTable(1f,1f,1f,1f);
-        reports.addTableHeader("Codigo","Usuario","Cliente","Valor Total");
+        reports.addTableHeader("Codigo","Usuario","Client","Valor Total");
 
         List<Venda> vendas = allTodas();
 
         for (Venda venda: vendas) {
             reports.addCellCenter(venda.getId());
             reports.addCellCenter(venda.getUsuario().getLogin());
-            reports.addCellCenter(venda.getCliente().getPessoa().getNome());
+            reports.addCellCenter(venda.getClient().getPessoa().getNome());
             reports.addCellCenter(venda.getValorTotal());
         }
 

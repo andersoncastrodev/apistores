@@ -2,8 +2,8 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.filter.EnderecoFilter;
-import br.com.asoft.apistores.model.Cidade;
-import br.com.asoft.apistores.model.Endereco;
+import br.com.asoft.apistores.model.Address;
+import br.com.asoft.apistores.model.City;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.EnderecoRepository;
 import br.com.asoft.apistores.specifications.EnderecoSpecification;
@@ -28,47 +28,47 @@ public class EnderecoService {
 
     private final CidadeService cidadeService;
 
-    public Page<Endereco> allEnderecoPage(EnderecoFilter enderecoFilter, Pageable pageable){
+    public Page<Address> allEnderecoPage(EnderecoFilter enderecoFilter, Pageable pageable){
         return enderecoRepository.findAll(EnderecoSpecification.filter(enderecoFilter), pageable);
     }
 
-    public List<Endereco> allEndereco(){
+    public List<Address> allEndereco(){
         return enderecoRepository.findAll();
     }
 
-    public Endereco findId(Long id){
+    public Address findId(Long id){
         return tryOrFail(id);
     }
 
-    public Endereco saveEndereco(Endereco endereco){
+    public Address saveEndereco(Address address){
 
-        Long cidadeId = endereco.getCidade().getId();
+        Long cidadeId = address.getCity().getId();
 
-        Cidade cidade = cidadeService.tryOrFail(cidadeId);
+        City city = cidadeService.tryOrFail(cidadeId);
 
-        endereco.setCidade(cidade);
+        address.setCity(city);
 
-        return enderecoRepository.save(endereco);
+        return enderecoRepository.save(address);
     }
 
     public void deleteEndereco(Long id) {
 
-        Endereco endereco = findId(id);
+        Address address = findId(id);
 
-        enderecoRepository.delete(endereco);
+        enderecoRepository.delete(address);
         enderecoRepository.flush();
     }
 
-    public Endereco tryOrFail(Long id){
+    public Address tryOrFail(Long id){
         return enderecoRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Endereco",id));
+                .orElseThrow(()-> new EntityNotFoundExceptions("Address",id));
     }
 
     public ByteArrayInputStream relatorioEndereco() throws IOException {
 
         Reports reports = new Reports(Reports.Page.VERTICAL);
 
-        reports.addParagraph(new Paragraph("Lista de Endereco")
+        reports.addParagraph(new Paragraph("Lista de Address")
                 .setMargins(1f,5f,1f,5)
                 .setFontSize(28)
                 .setTextAlignment(TextAlignment.CENTER)
@@ -76,16 +76,16 @@ public class EnderecoService {
 
         reports.addNewLine();
         reports.openTable(1f,1f,1f,1f);
-        reports.addTableHeader("Codigo","Rua","Cep","Cidade");
+        reports.addTableHeader("Codigo","Rua","Cep","City");
 
-        List<Endereco> enderecos = allEndereco();
+        List<Address> addresses = allEndereco();
 
-        for(Endereco endereco : enderecos){
+        for(Address address : addresses){
 
-            reports.addCellCenter(endereco.getId());
-            reports.addCellCenter(endereco.getRua());
-            reports.addCellCenter(endereco.getCep());
-            reports.addCellCenter(endereco.getCidade().getNome());
+            reports.addCellCenter(address.getId());
+            reports.addCellCenter(address.getRua());
+            reports.addCellCenter(address.getCep());
+            reports.addCellCenter(address.getCity().getNome());
         }
 
         reports.closeTable();

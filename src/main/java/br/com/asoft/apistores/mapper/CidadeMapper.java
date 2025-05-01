@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.mapper;
 
 import br.com.asoft.apistores.inp.CidadeInp;
-import br.com.asoft.apistores.model.Cidade;
+import br.com.asoft.apistores.model.City;
 import br.com.asoft.apistores.out.CidadeOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -11,12 +11,12 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CidadeMapper {
 
-    CidadeOut toCidadeOut(Cidade cidade);
+    CidadeOut toCidadeOut(City city);
 
-    Cidade toCidade(CidadeInp cidadeInp);
+    City toCidade(CidadeInp cidadeInp);
 
-    Cidade copyToCidade(CidadeInp cidadeInp, @MappingTarget Cidade cidade);
+    City copyToCidade(CidadeInp cidadeInp, @MappingTarget City city);
 
-    List<CidadeOut> toListCidadeOut(List<Cidade> cidades);
+    List<CidadeOut> toListCidadeOut(List<City> cities);
 
 }

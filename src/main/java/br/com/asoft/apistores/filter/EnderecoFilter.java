@@ -13,19 +13,19 @@ public class EnderecoFilter {
 
     private String cep;
 
-    //Colocar os campos ( Atributos ) da Entidade Cidade:
+    //Colocar os campos ( Atributos ) da Entidade City:
     private String nomecidade; //aqui temos que mudar pq
-    // em Estado tambem temos um "Nome"
+    // em State tambem temos um "Nome"
 
-    // E dentro de Cidade Temos o Estado, Colocar
+    // E dentro de City Temos o State, Colocar
     // os campos ( Atributos ).
     private String nomeestado;
 
     private String sigla;
 
     //Resumindo. Vamos pesquisa por id,rua e cep da
-    // Entidade(Endereco)
-    // e por nomeCidade da Entidade(Cidade)
-    // e por nomeEstado e Sigla da Entidade(Estado.)
+    // Entidade(Address)
+    // e por nomeCidade da Entidade(City)
+    // e por nomeEstado e Sigla da Entidade(State.)
 
 }

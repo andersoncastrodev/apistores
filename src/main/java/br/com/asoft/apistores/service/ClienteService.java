@@ -2,8 +2,7 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.filter.ClienteFilter;
-import br.com.asoft.apistores.model.Cliente;
-import br.com.asoft.apistores.model.Pessoa;
+import br.com.asoft.apistores.model.Client;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.ClienteRepository;
 import br.com.asoft.apistores.specifications.ClienteSpecification;
@@ -27,51 +26,51 @@ public class ClienteService {
 
     private final PessoaService pessoaService;
 
-    public Page<Cliente> allClientePage(ClienteFilter clienteFilter, Pageable pageable){
+    public Page<Client> allClientePage(ClienteFilter clienteFilter, Pageable pageable){
 
         return clienteRepository.findAll(ClienteSpecification.filter(clienteFilter),pageable);
     }
 
-    public Page<Cliente> allClientePage2(Pageable pageable){
+    public Page<Client> allClientePage2(Pageable pageable){
         return clienteRepository.findAll(pageable);
     }
 
-    public List<Cliente> findAllCliente() {
+    public List<Client> findAllCliente() {
         return clienteRepository.findAll();
     }
 
-    public Cliente findId(Long id){
+    public Client findId(Long id){
         return tryOrFail(id);
     }
 
-    public Cliente saveCliente(Cliente cliente){
+    public Client saveCliente(Client client){
 
-        Pessoa pessoa = pessoaService.findId(cliente.getPessoa().getId());
+        Pessoa pessoa = pessoaService.findId(client.getPessoa().getId());
 
-        cliente.setPessoa(pessoa);
+        client.setPessoa(pessoa);
 
-        return clienteRepository.save(cliente);
+        return clienteRepository.save(client);
     }
 
     public void deleteCliente(Long id){
 
-        Cliente cliente = findId(id);
+        Client client = findId(id);
 
-        clienteRepository.delete(cliente);
+        clienteRepository.delete(client);
 
         clienteRepository.flush();
     }
 
-    public Cliente tryOrFail(Long id){
+    public Client tryOrFail(Long id){
         return clienteRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Cliente",id));
+                .orElseThrow(()-> new EntityNotFoundExceptions("Client",id));
     }
 
     public ByteArrayInputStream relatorioCliente() throws IOException {
 
         Reports reports = new Reports(Reports.Page.HORIZONTAL);
 
-        reports.addParagraph( new Paragraph("Lista de Cliente")
+        reports.addParagraph( new Paragraph("Lista de Client")
                 .setMargins(1f,5f,1f,5f)
                 .setFontSize(28)
                 .setTextAlignment(TextAlignment.CENTER)
@@ -83,14 +82,14 @@ public class ClienteService {
 
         reports.addTableHeader("Codigo Pessoa","Nome","Telefone","Tipo");
 
-        List<Cliente> clientes = findAllCliente();
+        List<Client> clients = findAllCliente();
 
-        for (Cliente cliente: clientes) {
+        for (Client client : clients) {
 
-            reports.addCellCenter(cliente.getPessoa().getId());
-            reports.addCellCenter(cliente.getPessoa().getNome());
-            reports.addCellCenter(cliente.getPessoa().getTelefone());
-            reports.addCellCenter(cliente.getTipo());
+            reports.addCellCenter(client.getPessoa().getId());
+            reports.addCellCenter(client.getPessoa().getNome());
+            reports.addCellCenter(client.getPessoa().getTelefone());
+            reports.addCellCenter(client.getTipo());
 
         }
 

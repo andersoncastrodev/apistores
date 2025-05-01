@@ -3,7 +3,6 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.ItemVenda;
-import br.com.asoft.apistores.model.Pessoa;
 import br.com.asoft.apistores.model.Venda;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.ItemVendaRepository;

@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.TypePerson;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -9,17 +10,29 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Cidade {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String nome;
+    private TypePerson typePerson;
 
-    @ManyToOne
-    @JoinColumn(name = "id_estado")
-    private Estado estado;
+    private String cpfOrCnpj;
+
+    private String rgOrIe;
+
+    private String name;
+
+    private String phoneNumber;
+
+    private String email;
+
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+
 
 }

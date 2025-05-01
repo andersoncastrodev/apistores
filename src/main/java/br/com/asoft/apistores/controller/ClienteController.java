@@ -3,7 +3,7 @@ package br.com.asoft.apistores.controller;
 import br.com.asoft.apistores.filter.ClienteFilter;
 import br.com.asoft.apistores.inp.ClienteInp;
 import br.com.asoft.apistores.mapper.ClienteMapper;
-import br.com.asoft.apistores.model.Cliente;
+import br.com.asoft.apistores.model.Client;
 import br.com.asoft.apistores.out.ClienteOut;
 import br.com.asoft.apistores.service.ClienteService;
 import jakarta.validation.Valid;
@@ -34,7 +34,7 @@ public class ClienteController {
     public Page<ClienteOut> todosClientes(ClienteFilter clienteFilter, Pageable pageable) {
 
 
-        Page<Cliente> clientePage = clienteService.allClientePage(clienteFilter, pageable);
+        Page<Client> clientePage = clienteService.allClientePage(clienteFilter, pageable);
 
         List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
 
@@ -58,18 +58,18 @@ public class ClienteController {
 
     @PostMapping
     public ClienteOut salvaCliente(@RequestBody @Valid ClienteInp clienteInp){
-        Cliente cliente = clienteMapper.toCliente(clienteInp);
-        return clienteMapper.toClienteOut(clienteService.saveCliente(cliente));
+        Client client = clienteMapper.toCliente(clienteInp);
+        return clienteMapper.toClienteOut(clienteService.saveCliente(client));
     }
 
     @PutMapping("/{id}")
     public ClienteOut atualizaCliente(@RequestBody @Valid ClienteInp clienteInp, @PathVariable Long id){
 
-        Cliente clienteAtual = clienteService.findId(id);
+        Client clientAtual = clienteService.findId(id);
 
-        Cliente clienteUpdate = clienteMapper.copyToCliente(clienteInp,clienteAtual);
+        Client clientUpdate = clienteMapper.copyToCliente(clienteInp, clientAtual);
 
-        return clienteMapper.toClienteOut(clienteService.saveCliente(clienteUpdate));
+        return clienteMapper.toClienteOut(clienteService.saveCliente(clientUpdate));
 
     }
 

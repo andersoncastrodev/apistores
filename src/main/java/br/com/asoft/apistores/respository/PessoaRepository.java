@@ -1,7 +1,6 @@
 package br.com.asoft.apistores.respository;
 
 import br.com.asoft.apistores.dtointerface.PessoaNome;
-import br.com.asoft.apistores.model.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

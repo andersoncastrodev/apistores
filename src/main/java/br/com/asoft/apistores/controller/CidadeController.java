@@ -3,7 +3,7 @@ package br.com.asoft.apistores.controller;
 import br.com.asoft.apistores.filter.CidadeFilter;
 import br.com.asoft.apistores.inp.CidadeInp;
 import br.com.asoft.apistores.mapper.CidadeMapper;
-import br.com.asoft.apistores.model.Cidade;
+import br.com.asoft.apistores.model.City;
 import br.com.asoft.apistores.out.CidadeOut;
 import br.com.asoft.apistores.service.CidadeService;
 import jakarta.validation.Valid;
@@ -31,7 +31,7 @@ public class CidadeController {
     @GetMapping
     public Page<CidadeOut> buscarTodas(CidadeFilter cidadeFilter, Pageable pageable) {
 
-        Page<Cidade> cidadesPage = cidadeService.allCidadesPage(cidadeFilter, pageable);
+        Page<City> cidadesPage = cidadeService.allCidadesPage(cidadeFilter, pageable);
 
         List<CidadeOut> cidadesOutList = cidadeMapper.toListCidadeOut(cidadesPage.getContent());
 
@@ -55,9 +55,9 @@ public class CidadeController {
     @PostMapping
     public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp) {
 
-        Cidade cidade = cidadeMapper.toCidade(cidadeInp);
+        City city = cidadeMapper.toCidade(cidadeInp);
 
-        CidadeOut cidadeOut = cidadeMapper.toCidadeOut( cidadeService.saveCidade(cidade));
+        CidadeOut cidadeOut = cidadeMapper.toCidadeOut( cidadeService.saveCidade(city));
 
         return cidadeOut;
 
@@ -66,9 +66,9 @@ public class CidadeController {
 //    @PutMapping("/{id}")
 //    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id) {
 //
-//        Cidade cidadeAtual = cidadeService.findId(id);
+//        City cidadeAtual = cidadeService.findId(id);
 //
-//        Cidade cidadeNova = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
+//        City cidadeNova = cidadeMapper.copyToCidade(cidadeInp,cidadeAtual);
 //
 //        return cidadeMapper.toCidadeOut(cidadeService.saveCidade(cidadeNova));
 //    }

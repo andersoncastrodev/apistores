@@ -3,7 +3,7 @@ package br.com.asoft.apistores.controller;
 import br.com.asoft.apistores.filter.EstadoFilter;
 import br.com.asoft.apistores.inp.EstadoInp;
 import br.com.asoft.apistores.mapper.EstadoMapper;
-import br.com.asoft.apistores.model.Estado;
+import br.com.asoft.apistores.model.State;
 import br.com.asoft.apistores.out.EstadoOut;
 import br.com.asoft.apistores.service.EstadoService;
 import jakarta.validation.Valid;
@@ -34,7 +34,7 @@ public class EstadoController {
     @GetMapping
     public Page<EstadoOut> buscaTodos(EstadoFilter estadoFilter, Pageable pageable) {
 
-        Page<Estado> estadoPage = estadoService.allEstadosPage(estadoFilter, pageable);
+        Page<State> estadoPage = estadoService.allEstadosPage(estadoFilter, pageable);
 
         List<EstadoOut> estadoOutsList = estadoMapper.toListEstadoOut(estadoPage.getContent());
 
@@ -58,9 +58,9 @@ public class EstadoController {
     @PostMapping
     public EstadoOut salvarEstado(@RequestBody @Valid EstadoInp estadoInp){
 
-        Estado estado = estadoMapper.toEstado(estadoInp);
+        State state = estadoMapper.toEstado(estadoInp);
 
-        EstadoOut estadoOut = estadoMapper.toEstadoOut(estadoService.saveEstado(estado));
+        EstadoOut estadoOut = estadoMapper.toEstadoOut(estadoService.saveEstado(state));
 
         return estadoOut;
     }
@@ -68,11 +68,11 @@ public class EstadoController {
     @PutMapping("/{id}")
     public EstadoOut atualizarEstado(@RequestBody @Valid EstadoInp estadoInp, @PathVariable Long id){
 
-        Estado estadoAtual = estadoService.findId(id);
+        State stateAtual = estadoService.findId(id);
 
-        Estado estadoNovo = estadoMapper.copyToEstado(estadoInp,estadoAtual);
+        State stateNovo = estadoMapper.copyToEstado(estadoInp, stateAtual);
 
-        return estadoMapper.toEstadoOut( estadoService.saveEstado(estadoNovo));
+        return estadoMapper.toEstadoOut( estadoService.saveEstado(stateNovo));
     }
 
     @DeleteMapping("{id}")

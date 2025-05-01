@@ -1,8 +1,7 @@
 package br.com.asoft.apistores.mapper;
 
-import br.com.asoft.apistores.inp.EnderecoIdInp;
 import br.com.asoft.apistores.inp.EnderecoInp;
-import br.com.asoft.apistores.model.Endereco;
+import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.out.EnderecoOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -12,11 +11,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EnderecoMapper {
 
-    EnderecoOut toEnderecoOut(Endereco endereco);
+    EnderecoOut toEnderecoOut(Address address);
 
-    Endereco toEndereco(EnderecoInp enderecoInp);
+    Address toEndereco(EnderecoInp enderecoInp);
 
-    Endereco copyToEndereco(EnderecoInp enderecoInp, @MappingTarget Endereco endereco);
+    Address copyToEndereco(EnderecoInp enderecoInp, @MappingTarget Address address);
 
-    List<EnderecoOut> toListEnderecoOut(List<Endereco> enderecos);
+    List<EnderecoOut> toListEnderecoOut(List<Address> addresses);
 }

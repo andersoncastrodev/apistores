@@ -3,7 +3,7 @@ package br.com.asoft.apistores.controller;
 import br.com.asoft.apistores.filter.EnderecoFilter;
 import br.com.asoft.apistores.inp.EnderecoInp;
 import br.com.asoft.apistores.mapper.EnderecoMapper;
-import br.com.asoft.apistores.model.Endereco;
+import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.out.EnderecoOut;
 import br.com.asoft.apistores.service.EnderecoService;
 import jakarta.validation.Valid;
@@ -33,7 +33,7 @@ public class EnderecoController {
     @GetMapping
     public Page<EnderecoOut> buscaTodos(EnderecoFilter enderecoFilter, Pageable pageable) {
 
-        Page<Endereco> enderecoPage = enderecoService.allEnderecoPage(enderecoFilter, pageable);
+        Page<Address> enderecoPage = enderecoService.allEnderecoPage(enderecoFilter, pageable);
 
         List<EnderecoOut> enderecoOutList = enderecoMapper.toListEnderecoOut(enderecoPage.getContent());
 
@@ -55,9 +55,9 @@ public class EnderecoController {
     @PostMapping
     public EnderecoOut salvarEndereco(@RequestBody @Valid EnderecoInp enderecoInp) {
 
-        Endereco endereco = enderecoMapper.toEndereco(enderecoInp);
+        Address address = enderecoMapper.toEndereco(enderecoInp);
 
-        EnderecoOut enderecoOut = enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(endereco));
+        EnderecoOut enderecoOut = enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(address));
 
         return enderecoOut;
     }
@@ -65,11 +65,11 @@ public class EnderecoController {
     @PutMapping("/{id}")
     public EnderecoOut atualizarEndereco(@RequestBody @Valid EnderecoInp enderecoInp, @PathVariable Long id) {
 
-        Endereco enderecoAtual = enderecoService.findId(id);
+        Address addressAtual = enderecoService.findId(id);
 
-        Endereco enderecoNovo = enderecoMapper.copyToEndereco(enderecoInp, enderecoAtual);
+        Address addressNovo = enderecoMapper.copyToEndereco(enderecoInp, addressAtual);
 
-        return enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(enderecoNovo));
+        return enderecoMapper.toEnderecoOut(enderecoService.saveEndereco(addressNovo));
     }
 
     @DeleteMapping("/{id}")

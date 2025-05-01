@@ -24,7 +24,7 @@ public class Venda {
 
     @ManyToOne
     @JoinColumn(name = "cliente_cod")
-    private Cliente cliente;
+    private Client client;
 
     private BigDecimal valorTotal;
 
