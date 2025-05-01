@@ -3,7 +3,7 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.VendaInp;
 import br.com.asoft.apistores.mapper.VendaMapper;
-import br.com.asoft.apistores.model.Venda;
+import br.com.asoft.apistores.model.Sales;
 import br.com.asoft.apistores.out.VendaOut;
 import br.com.asoft.apistores.service.VendaService;
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("vendas")
 @RequiredArgsConstructor
-public class VendaController {
+public class SalesController {
 
     private final VendaService vendaService;
 
@@ -32,7 +32,7 @@ public class VendaController {
     @GetMapping
     public Page<VendaOut> listaVendas(Pageable pageable) {
 
-        Page<Venda> vendaPage = vendaService.allTodas(pageable);
+        Page<Sales> vendaPage = vendaService.allTodas(pageable);
 
         List<VendaOut> vendaOutsList = vendaMapper.toListVendaOut(vendaPage.getContent());
 
@@ -54,17 +54,17 @@ public class VendaController {
     @PostMapping
     public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp) {
 
-        Venda venda = vendaService.saveVenda(vendaMapper.toVenda(vendaInp));
-       return vendaMapper.toVendaOut(venda);
+        Sales sales = vendaService.saveVenda(vendaMapper.toVenda(vendaInp));
+       return vendaMapper.toVendaOut(sales);
     }
 
     @PutMapping("/{id}")
     public VendaOut alterarVenda(@RequestBody VendaInp vendaInp, @PathVariable Long id){
-        Venda vendaAtual = vendaService.findId(id);
+        Sales salesAtual = vendaService.findId(id);
 
-        Venda vendaNova = vendaMapper.copyToVendaInp(vendaInp, vendaAtual);
+        Sales salesNova = vendaMapper.copyToVendaInp(vendaInp, salesAtual);
 
-        return vendaMapper.toVendaOut(vendaService.saveVenda(vendaNova));
+        return vendaMapper.toVendaOut(vendaService.saveVenda(salesNova));
     }
     @DeleteMapping("/{id}")
     public void excluirVenda(@PathVariable Long id){

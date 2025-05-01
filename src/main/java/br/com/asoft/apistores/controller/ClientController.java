@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.filter.ClienteFilter;
+import br.com.asoft.apistores.filter.ClientFilter;
 import br.com.asoft.apistores.inp.ClienteInp;
 import br.com.asoft.apistores.mapper.ClienteMapper;
 import br.com.asoft.apistores.model.Client;
@@ -24,17 +24,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/clientes")
 @RequiredArgsConstructor
-public class ClienteController {
+public class ClientController {
 
     private final ClienteService clienteService;
 
     private final ClienteMapper clienteMapper;
 
     @GetMapping
-    public Page<ClienteOut> todosClientes(ClienteFilter clienteFilter, Pageable pageable) {
+    public Page<ClienteOut> todosClientes(ClientFilter clientFilter, Pageable pageable) {
 
 
-        Page<Client> clientePage = clienteService.allClientePage(clienteFilter, pageable);
+        Page<Client> clientePage = clienteService.allClientePage(clientFilter, pageable);
 
         List<ClienteOut> clienteOutList = clienteMapper.toListClienteOut(clientePage.getContent());
 

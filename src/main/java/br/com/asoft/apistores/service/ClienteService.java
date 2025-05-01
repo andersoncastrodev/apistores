@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.filter.ClienteFilter;
+import br.com.asoft.apistores.filter.ClientFilter;
 import br.com.asoft.apistores.model.Client;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.ClienteRepository;
@@ -26,9 +26,9 @@ public class ClienteService {
 
     private final PessoaService pessoaService;
 
-    public Page<Client> allClientePage(ClienteFilter clienteFilter, Pageable pageable){
+    public Page<Client> allClientePage(ClientFilter clientFilter, Pageable pageable){
 
-        return clienteRepository.findAll(ClienteSpecification.filter(clienteFilter),pageable);
+        return clienteRepository.findAll(ClienteSpecification.filter(clientFilter),pageable);
     }
 
     public Page<Client> allClientePage2(Pageable pageable){

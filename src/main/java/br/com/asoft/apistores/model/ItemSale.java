@@ -4,33 +4,32 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ItemVenda {
+public class ItemSale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "venda_id")
-    private Venda venda;
-
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
-    private Produto produto;
-
     private Long quant;
 
-    private BigDecimal valorUnid;
+    private BigDecimal valueUnid;
 
-    private BigDecimal valorTotal;
+    private BigDecimal valueTotal;
+
+    @ManyToOne
+    @JoinColumn(name = "sales_id")
+    private Sales sales;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 
 }

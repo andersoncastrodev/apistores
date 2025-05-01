@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.model.Venda;
+import br.com.asoft.apistores.model.Sales;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.VendaRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
@@ -23,30 +23,30 @@ public class VendaService {
 
     private final VendaRepository vendaRepository;
 
-    public Page<Venda> allTodas(Pageable pageable){
+    public Page<Sales> allTodas(Pageable pageable){
         return vendaRepository.findAll(pageable);
     }
-    public List<Venda> allTodas(){
+    public List<Sales> allTodas(){
         return vendaRepository.findAll();
     }
 
-    public Venda findId(Long id){
+    public Sales findId(Long id){
         return tryOrFail(id);
     }
 
-    public Venda saveVenda(Venda venda){
-        return vendaRepository.save(venda);
+    public Sales saveVenda(Sales sales){
+        return vendaRepository.save(sales);
     }
 
     public void deleteVenda(Long id){
-        Venda venda = tryOrFail(id);
-        vendaRepository.delete(venda);
+        Sales sales = tryOrFail(id);
+        vendaRepository.delete(sales);
     }
 
-    public Venda tryOrFail(Long id){
+    public Sales tryOrFail(Long id){
 
         return vendaRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Venda",id));
+                .orElseThrow(()-> new EntityNotFoundExceptions("Sales",id));
     }
 
 
@@ -62,15 +62,15 @@ public class VendaService {
 
         reports.addNewLine();
         reports.openTable(1f,1f,1f,1f);
-        reports.addTableHeader("Codigo","Usuario","Client","Valor Total");
+        reports.addTableHeader("Codigo","Users","Client","Valor Total");
 
-        List<Venda> vendas = allTodas();
+        List<Sales> sales = allTodas();
 
-        for (Venda venda: vendas) {
-            reports.addCellCenter(venda.getId());
-            reports.addCellCenter(venda.getUsuario().getLogin());
-            reports.addCellCenter(venda.getClient().getPessoa().getNome());
-            reports.addCellCenter(venda.getValorTotal());
+        for (Sales sales : sales) {
+            reports.addCellCenter(sales.getId());
+            reports.addCellCenter(sales.getUsers().getLogin());
+            reports.addCellCenter(sales.getClient().getPessoa().getNome());
+            reports.addCellCenter(sales.getValorTotal());
         }
 
         reports.closeTable();

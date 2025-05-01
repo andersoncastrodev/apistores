@@ -6,13 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Client {
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +27,6 @@ public class Client {
 
     private String fantasyName;
 
-    private LocalDate dateBirth;
-
     private String phoneNumber;
 
     private String email;
@@ -38,5 +34,4 @@ public class Client {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-
 }

@@ -2,7 +2,7 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.UsuarioInp;
 import br.com.asoft.apistores.mapper.UsuarioMapper;
-import br.com.asoft.apistores.model.Usuario;
+import br.com.asoft.apistores.model.Users;
 import br.com.asoft.apistores.out.UsuarioOut;
 import br.com.asoft.apistores.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("usuarios")
 @RequiredArgsConstructor
-public class UsuarioController {
+public class UsersController {
 
     private final UsuarioService usuarioService;
 
@@ -33,7 +33,7 @@ public class UsuarioController {
     @GetMapping
     public Page<UsuarioOut> listaUsuario(Pageable pageable){
 
-        Page<Usuario> usuariosPage = usuarioService.allTodos(pageable);
+        Page<Users> usuariosPage = usuarioService.allTodos(pageable);
         List<UsuarioOut> usuarioOutsList = usuarioMapper.toListUsuarioOut(usuariosPage.getContent());
         Page<UsuarioOut> usuarioOutPage = new PageImpl<>(usuarioOutsList,pageable,usuariosPage.getTotalPages());
         return null;
@@ -51,18 +51,18 @@ public class UsuarioController {
 
     @PostMapping
     public UsuarioOut salvarUsuario(@RequestBody @Valid UsuarioInp usuarioInp ){
-        Usuario usuario = usuarioService.saveUsuario( usuarioMapper.toUsuario(usuarioInp) );
-        return usuarioMapper.toUsuarioOut(usuario);
+        Users users = usuarioService.saveUsuario( usuarioMapper.toUsuario(usuarioInp) );
+        return usuarioMapper.toUsuarioOut(users);
     }
 
     @PutMapping("/{id}")
     public UsuarioOut alterarUsuario(@RequestBody @Valid UsuarioInp usuarioInp, @PathVariable Long id){
 
-        Usuario usuarioAtual = usuarioService.findId(id);
+        Users usersAtual = usuarioService.findId(id);
 
-        Usuario usuarioNovo = usuarioMapper.copyToUsuario(usuarioInp,usuarioAtual);
+        Users usersNovo = usuarioMapper.copyToUsuario(usuarioInp, usersAtual);
 
-        return usuarioMapper.toUsuarioOut(usuarioService.saveUsuario(usuarioNovo));
+        return usuarioMapper.toUsuarioOut(usuarioService.saveUsuario(usersNovo));
 
     }
 

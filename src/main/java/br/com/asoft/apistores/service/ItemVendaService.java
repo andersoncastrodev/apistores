@@ -2,8 +2,8 @@ package br.com.asoft.apistores.service;
 
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.model.ItemVenda;
-import br.com.asoft.apistores.model.Venda;
+import br.com.asoft.apistores.model.ItemSale;
+import br.com.asoft.apistores.model.Sales;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.ItemVendaRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
@@ -27,36 +27,36 @@ public class ItemVendaService {
 
     private final VendaService vendaService;
 
-    public Page<ItemVenda> allTodosPage(Pageable pageable){
+    public Page<ItemSale> allTodosPage(Pageable pageable){
         return itemVendaRepository.findAll(pageable);
     }
 
-    public List<ItemVenda> allTodos(){
+    public List<ItemSale> allTodos(){
        return itemVendaRepository.findAll();
     }
 
-    public ItemVenda findId(Long id){
+    public ItemSale findId(Long id){
         return tryOrFaill(id);
     }
 
-    public ItemVenda saveItemVenda(ItemVenda itenVenda){
+    public ItemSale saveItemVenda(ItemSale itenVenda){
 
-        Long vendaId = itenVenda.getVenda().getId();
+        Long vendaId = itenVenda.getSales().getId();
 
-        Venda venda = vendaService.tryOrFail(vendaId);
+        Sales sales = vendaService.tryOrFail(vendaId);
 
-        itenVenda.setVenda(venda);
+        itenVenda.setSales(sales);
 
         return itemVendaRepository.save(itenVenda);
     }
 
     public void deletarItemVenda(Long id){
-        ItemVenda itemVenda = findId(id);
-        itemVendaRepository.delete(itemVenda);
+        ItemSale itemSale = findId(id);
+        itemVendaRepository.delete(itemSale);
         itemVendaRepository.flush();
     }
 
-    public ItemVenda tryOrFaill(Long id){
+    public ItemSale tryOrFaill(Long id){
         return itemVendaRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("ItenVenda",id));
     }
@@ -65,7 +65,7 @@ public class ItemVendaService {
 
         Reports reports = new Reports(Reports.Page.VERTICAL);
 
-        reports.addParagraph(new Paragraph("Lista dos Itens da Venda")
+        reports.addParagraph(new Paragraph("Lista dos Itens da Sales")
                 .setMargins(1f,5f,1f,5f)
                 .setFontSize(28)
                 .setTextAlignment(TextAlignment.CENTER)
@@ -75,17 +75,17 @@ public class ItemVendaService {
 
         reports.openTable(1f,1f,1f,1f,1f);
 
-        reports.addTableHeader("Codigo Item","Codigo Venda","Quantidade","Valor Unidade","Valor Total");
+        reports.addTableHeader("Codigo Item","Codigo Sales","Quantidade","Valor Unidade","Valor Total");
 
-        List<ItemVenda> itemVendas = allTodos();
+        List<ItemSale> itemSales = allTodos();
 
-        for (ItemVenda itemVenda : itemVendas) {
+        for (ItemSale itemSale : itemSales) {
 
-            reports.addCellCenter(itemVenda.getId());
-            reports.addCellCenter(itemVenda.getVenda().getId());
-            reports.addCellCenter(itemVenda.getQuant());
-            reports.addCellCenter(itemVenda.getValorUnid());
-            reports.addCellCenter(itemVenda.getValorTotal());
+            reports.addCellCenter(itemSale.getId());
+            reports.addCellCenter(itemSale.getSales().getId());
+            reports.addCellCenter(itemSale.getQuant());
+            reports.addCellCenter(itemSale.getValorUnid());
+            reports.addCellCenter(itemSale.getValorTotal());
 
         }
 

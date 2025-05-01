@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FornecedorFilter {
+public class CityFilter {
 
     private String nome;
-    private String sigla;
+
 }

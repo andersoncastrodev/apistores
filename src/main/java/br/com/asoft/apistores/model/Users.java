@@ -4,27 +4,37 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Usuario {
+public class Users {
 
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
+    private LocalDate birthDate;
+
+    private String email;
+
+    private String phone;
+
+    private String cpf;
+
     private String login;
 
-    private String senha;
+    private String password;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     private List<String> roles;
 

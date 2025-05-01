@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.out;
 
-import br.com.asoft.apistores.model.Venda;
+import br.com.asoft.apistores.model.Sales;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ public class ItemVendaOut {
 
     private Long id;
 
-    private Venda venda;
+    private Sales sales;
 
     private Long quant;
 

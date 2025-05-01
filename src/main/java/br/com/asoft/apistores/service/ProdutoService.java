@@ -1,8 +1,8 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.model.Fornecedor;
-import br.com.asoft.apistores.model.Produto;
+import br.com.asoft.apistores.model.Product;
+import br.com.asoft.apistores.model.Supplier;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.ProdutoRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
@@ -26,40 +26,40 @@ public class ProdutoService {
 
     private final FornecedorService fornecedorService;
 
-    public Page<Produto> allTodosPage(Pageable pageable) {
+    public Page<Product> allTodosPage(Pageable pageable) {
         return produtoRepository.findAll(pageable);
     }
 
-    public List<Produto> allTodos(){
+    public List<Product> allTodos(){
         return produtoRepository.findAll();
     }
 
-    public Produto findId(Long id){
+    public Product findId(Long id){
         return tryOrFail(id);
     }
 
-    public Produto salvaProduto(Produto produto){
+    public Product salvaProduto(Product product){
 
-        Long fornecedorId = produto.getFornecedor().getId();
+        Long fornecedorId = product.getSupplier().getId();
 
-        Fornecedor fornecedor = fornecedorService.tryOrFail(fornecedorId);
+        Supplier supplier = fornecedorService.tryOrFail(fornecedorId);
 
-        produto.setFornecedor(fornecedor);
+        product.setSupplier(supplier);
 
-        return produtoRepository.save(produto);
+        return produtoRepository.save(product);
     }
 
     public void deletarProduto(Long id){
 
-        Produto produto = findId(id);
+        Product product = findId(id);
 
-        produtoRepository.delete(produto);
+        produtoRepository.delete(product);
         produtoRepository.flush();
     }
 
-    public Produto tryOrFail(Long id){
+    public Product tryOrFail(Long id){
         return produtoRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Produto",id));
+                .orElseThrow(()-> new EntityNotFoundExceptions("Product",id));
     }
 
     public ByteArrayInputStream relatorioTodosProdutos() throws IOException {
@@ -76,17 +76,17 @@ public class ProdutoService {
 
         reports.openTable(1f,1f,1f,1f,1f);
 
-        reports.addTableHeader("Codigo","Descrição","Valor Comprar","Valor Venda","Fornecedor");
+        reports.addTableHeader("Codigo","Descrição","Valor Comprar","Valor Sales","Supplier");
 
-        List<Produto> produtos = allTodos();
+        List<Product> products = allTodos();
 
-        for (Produto produto : produtos ) {
+        for (Product product : products) {
 
-            reports.addCellCenter(produto.getId());
-            reports.addCellCenter(produto.getDescricao());
-            reports.addCellCenter(produto.getValorCompra());
-            reports.addCellCenter(produto.getValorVenda());
-            reports.addCellCenter(produto.getFornecedor().getNome());
+            reports.addCellCenter(product.getId());
+            reports.addCellCenter(product.getDescricao());
+            reports.addCellCenter(product.getValorCompra());
+            reports.addCellCenter(product.getValorVenda());
+            reports.addCellCenter(product.getSupplier().getNome());
         }
 
         reports.closeTable();

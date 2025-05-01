@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.specifications;
 
-import br.com.asoft.apistores.filter.EstadoFilter;
+import br.com.asoft.apistores.filter.StateFilter;
 import br.com.asoft.apistores.model.State;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
@@ -8,18 +8,18 @@ import java.util.ArrayList;
 
 public class EstadoSpecification {
 
-    public static Specification<State> filter(EstadoFilter estadoFilter) {
+    public static Specification<State> filter(StateFilter stateFilter) {
         return (root, query, criteriaBuilder) -> {
 
             var predicates = new ArrayList<>();
 
-            if(estadoFilter.getSigla() != null ) {
+            if(stateFilter.getSigla() != null ) {
 
-                predicates.add(criteriaBuilder.equal(root.get("sigla"), estadoFilter.getSigla()));
+                predicates.add(criteriaBuilder.equal(root.get("sigla"), stateFilter.getSigla()));
             }
-            if(estadoFilter.getNome() != null ) {
+            if(stateFilter.getNome() != null ) {
 
-                predicates.add(criteriaBuilder.like(root.get("nome"), "%"+ estadoFilter.getNome()+"%"));
+                predicates.add(criteriaBuilder.like(root.get("nome"), "%"+ stateFilter.getNome()+"%"));
             }
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));

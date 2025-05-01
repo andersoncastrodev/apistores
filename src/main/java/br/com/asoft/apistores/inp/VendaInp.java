@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.inp;
 
-import br.com.asoft.apistores.enums.TipoPagamento;
+import br.com.asoft.apistores.enums.TypePayment;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +24,6 @@ public class VendaInp {
     @NotNull
     private BigDecimal valorTotal;
 
-    private TipoPagamento tipoPagamento;
+    private TypePayment typePayment;
 
 }

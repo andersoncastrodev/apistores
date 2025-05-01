@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.filter.CidadeFilter;
+import br.com.asoft.apistores.filter.CityFilter;
 import br.com.asoft.apistores.model.City;
 import br.com.asoft.apistores.model.State;
 import br.com.asoft.apistores.relatorio.Reports;
@@ -27,8 +27,8 @@ public class CidadeService {
 
     private final EstadoService estadoService;
 
-    public Page<City> allCidadesPage(CidadeFilter cidadeFilter, Pageable pageable){
-        return cidadeRepository.findAll(CidadeSpecification.filter(cidadeFilter), pageable);
+    public Page<City> allCidadesPage(CityFilter cityFilter, Pageable pageable){
+        return cidadeRepository.findAll(CidadeSpecification.filter(cityFilter), pageable);
     }
 
     public List<City> allCidades(){

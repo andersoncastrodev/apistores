@@ -1,33 +1,42 @@
 package br.com.asoft.apistores.model;
 
-import br.com.asoft.apistores.enums.TipoPagamento;
+import br.com.asoft.apistores.enums.StatusSales;
+import br.com.asoft.apistores.enums.TypePayment;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Venda {
+public class Sales {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_cod")
-    private Usuario usuario;
+    private BigDecimal valueTotal;
+
+    private LocalDateTime dateSales;
+
+    private String observation;
+
+    private StatusSales statusSales;
+
+    private TypePayment typePayment;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_cod")
+    @JoinColumn(name = "users_id")
+    private Users users;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
 
-    private BigDecimal valorTotal;
-
-    private TipoPagamento tipoPagamento;
 
 }

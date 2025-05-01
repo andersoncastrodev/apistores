@@ -2,7 +2,7 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.ProdutoInp;
 import br.com.asoft.apistores.mapper.ProdutoMapper;
-import br.com.asoft.apistores.model.Produto;
+import br.com.asoft.apistores.model.Product;
 import br.com.asoft.apistores.out.ProdutoOut;
 import br.com.asoft.apistores.service.ProdutoService;
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("produtos")
 @RequiredArgsConstructor
-public class ProdutoController {
+public class ProductController {
 
     private final ProdutoService produtoService;
 
@@ -32,7 +32,7 @@ public class ProdutoController {
     @GetMapping
     public Page<ProdutoOut> buscaTodos(Pageable pageable) {
 
-        Page<Produto> produtoPage = produtoService.allTodosPage(pageable);
+        Page<Product> produtoPage = produtoService.allTodosPage(pageable);
 
         List<ProdutoOut> produtoOutsList = produtoMapper.toListProdutoOut(produtoPage.getContent());
 
@@ -56,9 +56,9 @@ public class ProdutoController {
     @PostMapping
     public ProdutoOut salvarProduto(@RequestBody @Valid ProdutoInp produtoInp){
 
-        Produto produto = produtoMapper.toProduto(produtoInp);
+        Product product = produtoMapper.toProduto(produtoInp);
 
-        ProdutoOut produtoOut = produtoMapper.toProdutoOut(produtoService.salvaProduto(produto));
+        ProdutoOut produtoOut = produtoMapper.toProdutoOut(produtoService.salvaProduto(product));
 
         return produtoOut;
     }
@@ -66,11 +66,11 @@ public class ProdutoController {
     @PutMapping("/{id}")
     public ProdutoOut alteraProduto(@RequestBody ProdutoInp produtoInp, @PathVariable Long id){
 
-        Produto produtoAtual = produtoService.findId(id);
+        Product productAtual = produtoService.findId(id);
 
-        Produto produtoNovo = produtoMapper.copyToProduto(produtoInp,produtoAtual);
+        Product productNovo = produtoMapper.copyToProduto(produtoInp, productAtual);
 
-        return produtoMapper.toProdutoOut(produtoService.salvaProduto(produtoNovo));
+        return produtoMapper.toProdutoOut(produtoService.salvaProduto(productNovo));
 
     }
 

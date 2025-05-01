@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.mapper;
 
 import br.com.asoft.apistores.inp.FornecedorInp;
-import br.com.asoft.apistores.model.Fornecedor;
+import br.com.asoft.apistores.model.Supplier;
 import br.com.asoft.apistores.out.FornecedorOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -11,13 +11,13 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface FornecedorMapper {
 
-    FornecedorOut toFornecedorOut(Fornecedor fornecedor);
+    FornecedorOut toFornecedorOut(Supplier supplier);
 
-    Fornecedor toFornecedor(FornecedorInp fornecedorInp);
+    Supplier toFornecedor(FornecedorInp fornecedorInp);
 
-    Fornecedor copyToFornecedor(FornecedorInp fornecedorInp, @MappingTarget Fornecedor fornecedor);
+    Supplier copyToFornecedor(FornecedorInp fornecedorInp, @MappingTarget Supplier supplier);
 
-    List<FornecedorOut> toListFornecedorOut(List<Fornecedor> fornecedores);
+    List<FornecedorOut> toListFornecedorOut(List<Supplier> fornecedores);
 
 
 }

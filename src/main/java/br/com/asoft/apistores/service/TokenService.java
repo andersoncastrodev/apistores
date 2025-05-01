@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.service;
 
-import br.com.asoft.apistores.model.Usuario;
+import br.com.asoft.apistores.model.Users;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ public class TokenService {
 
     private UsuarioService usuarioService;
 
-    public String gerarToken(Usuario usuario) {
+    public String gerarToken(Users users) {
 
-        var user = usuarioService.findId(usuario.getId());
+        var user = usuarioService.findId(users.getId());
 
         var now = Instant.now();
         var expiresIn = 46000L;

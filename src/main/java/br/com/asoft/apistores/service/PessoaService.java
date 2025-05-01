@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.service;
 
-import br.com.asoft.apistores.dtointerface.PessoaNome;
+import br.com.asoft.apistores.dtointerface.PersonName;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.PessoaRepository;
@@ -37,7 +37,7 @@ public class PessoaService {
     //Consulta Customizados para teste das Consultas
     // no Repository
 
-    public List<PessoaNome> todosPessoaPorOrdemDescrente() {
+    public List<PersonName> todosPessoaPorOrdemDescrente() {
         return pessoaRepository.findAllByOrderByIdDesc();
     }
 

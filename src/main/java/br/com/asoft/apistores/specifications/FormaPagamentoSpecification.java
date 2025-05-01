@@ -1,7 +1,5 @@
 package br.com.asoft.apistores.specifications;
 
-import br.com.asoft.apistores.filter.FormaPagamentoFilter;
-import br.com.asoft.apistores.model.FormaDePagamento;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 

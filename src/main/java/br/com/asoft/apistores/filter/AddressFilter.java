@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EnderecoFilter {
+public class AddressFilter {
 
     private Long id;
 

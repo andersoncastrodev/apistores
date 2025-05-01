@@ -1,10 +1,8 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.inp.FornecedorInp;
 import br.com.asoft.apistores.inp.ItemVendaInp;
 import br.com.asoft.apistores.mapper.ItemVendaMapper;
-import br.com.asoft.apistores.model.Fornecedor;
-import br.com.asoft.apistores.model.ItemVenda;
+import br.com.asoft.apistores.model.ItemSale;
 import br.com.asoft.apistores.out.ItemVendaOut;
 import br.com.asoft.apistores.service.ItemVendaService;
 import jakarta.validation.Valid;
@@ -25,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/itenvendas")
 @RequiredArgsConstructor
-public class ItemVendaController {
+public class ItemSaleController {
 
     private final ItemVendaService itemVendaService;
 
@@ -34,7 +32,7 @@ public class ItemVendaController {
     @GetMapping
     public Page<ItemVendaOut> todasItenVendas(Pageable pageable) {
 
-        Page<ItemVenda> itemVendaPage = itemVendaService.allTodosPage(pageable);
+        Page<ItemSale> itemVendaPage = itemVendaService.allTodosPage(pageable);
         List<ItemVendaOut> itemVendaOutsList = itemVendaMapper.toListItemVendaOut(itemVendaPage.getContent());
         Page<ItemVendaOut> itemVendaOutPage = new PageImpl<>(itemVendaOutsList,pageable,itemVendaPage.getTotalPages());
         return itemVendaOutPage;
@@ -51,7 +49,7 @@ public class ItemVendaController {
 
 //    @PostMapping
 //    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp) {
-//        ItemVenda itemVenda = itemVendaService.saveItemVenda( itemVendaMapper.toItenVenda(itenVendaInp));
+//        ItemSale itemVenda = itemVendaService.saveItemVenda( itemVendaMapper.toItenVenda(itenVendaInp));
 //        return itemVendaMapper.toItenVendaOut(itemVenda);
 //
 //    }
@@ -59,11 +57,11 @@ public class ItemVendaController {
     @PutMapping("/{id}")
     public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id) {
 
-        ItemVenda itemVendaAtual = itemVendaService.findId(id);
+        ItemSale itemSaleAtual = itemVendaService.findId(id);
 
-        ItemVenda itemVendaNovo = itemVendaMapper.copyToItemVenda(itemVendaInp, itemVendaAtual);
+        ItemSale itemSaleNovo = itemVendaMapper.copyToItemVenda(itemVendaInp, itemSaleAtual);
 
-        return itemVendaMapper.toItenVendaOut(itemVendaService.saveItemVenda(itemVendaNovo));
+        return itemVendaMapper.toItenVendaOut(itemVendaService.saveItemVenda(itemSaleNovo));
     }
 
     @DeleteMapping("/{id}")

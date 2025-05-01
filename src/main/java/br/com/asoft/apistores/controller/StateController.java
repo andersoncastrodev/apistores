@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.filter.EstadoFilter;
+import br.com.asoft.apistores.filter.StateFilter;
 import br.com.asoft.apistores.inp.EstadoInp;
 import br.com.asoft.apistores.mapper.EstadoMapper;
 import br.com.asoft.apistores.model.State;
@@ -25,16 +25,16 @@ import java.util.List;
 @RequestMapping("estados")
 @RequiredArgsConstructor
 @Slf4j
-public class EstadoController {
+public class StateController {
 
     private final EstadoService estadoService;
 
     private final EstadoMapper estadoMapper;
 
     @GetMapping
-    public Page<EstadoOut> buscaTodos(EstadoFilter estadoFilter, Pageable pageable) {
+    public Page<EstadoOut> buscaTodos(StateFilter stateFilter, Pageable pageable) {
 
-        Page<State> estadoPage = estadoService.allEstadosPage(estadoFilter, pageable);
+        Page<State> estadoPage = estadoService.allEstadosPage(stateFilter, pageable);
 
         List<EstadoOut> estadoOutsList = estadoMapper.toListEstadoOut(estadoPage.getContent());
 

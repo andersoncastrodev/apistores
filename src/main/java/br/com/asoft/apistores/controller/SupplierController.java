@@ -2,7 +2,7 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.FornecedorInp;
 import br.com.asoft.apistores.mapper.FornecedorMapper;
-import br.com.asoft.apistores.model.Fornecedor;
+import br.com.asoft.apistores.model.Supplier;
 import br.com.asoft.apistores.out.FornecedorOut;
 import br.com.asoft.apistores.service.FornecedorService;
 import jakarta.validation.Valid;
@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequestMapping("fornecedores")
 @RequiredArgsConstructor
-public class FornecedorController {
+public class SupplierController {
 
     private final FornecedorService fornecedorService;
 
@@ -32,7 +32,7 @@ public class FornecedorController {
     @GetMapping
     public Page<FornecedorOut> buscaTodos(Pageable pageable){
 
-        Page<Fornecedor> fornecedorPage = fornecedorService.allTodosPage(pageable);
+        Page<Supplier> fornecedorPage = fornecedorService.allTodosPage(pageable);
 
         List<FornecedorOut> fornecedorOutList = fornecedorMapper.toListFornecedorOut(fornecedorPage.getContent());
 
@@ -60,11 +60,11 @@ public class FornecedorController {
     @PutMapping("/{id}")
     public FornecedorOut alterarFornecedor(@RequestBody @Valid FornecedorInp fornecedorInp, @PathVariable Long id){
 
-        Fornecedor fornecedorAtual = fornecedorService.findId(id);
+        Supplier supplierAtual = fornecedorService.findId(id);
 
-        Fornecedor fornecedorNovo = fornecedorMapper.copyToFornecedor(fornecedorInp, fornecedorAtual);
+        Supplier supplierNovo = fornecedorMapper.copyToFornecedor(fornecedorInp, supplierAtual);
 
-        return fornecedorMapper.toFornecedorOut(fornecedorService.saveFonecedor(fornecedorNovo));
+        return fornecedorMapper.toFornecedorOut(fornecedorService.saveFonecedor(supplierNovo));
     }
 
     @DeleteMapping("/{id}")

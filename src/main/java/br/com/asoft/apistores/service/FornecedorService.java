@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.model.Fornecedor;
+import br.com.asoft.apistores.model.Supplier;
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.FornecedorRepository;
 import com.itextpdf.io.font.constants.StandardFonts;
@@ -23,30 +23,30 @@ public class FornecedorService {
 
     private final FornecedorRepository fornecedorRepository;
 
-    public Page<Fornecedor> allTodosPage(Pageable pageable){
+    public Page<Supplier> allTodosPage(Pageable pageable){
         return fornecedorRepository.findAll(pageable);
     }
 
-    public List<Fornecedor> allTodos(){
+    public List<Supplier> allTodos(){
         return fornecedorRepository.findAll();
     }
 
-    public Fornecedor findId(Long id){
+    public Supplier findId(Long id){
         return tryOrFail(id);
     }
 
-    public Fornecedor saveFonecedor(Fornecedor fornecedor){
-        return fornecedorRepository.save(fornecedor);
+    public Supplier saveFonecedor(Supplier supplier){
+        return fornecedorRepository.save(supplier);
     }
 
     public void deletarFornecedor(Long id){
-        Fornecedor fornecedor = findId(id);
-        fornecedorRepository.delete(fornecedor);
+        Supplier supplier = findId(id);
+        fornecedorRepository.delete(supplier);
         fornecedorRepository.flush();
     }
-    public Fornecedor tryOrFail(Long id){
+    public Supplier tryOrFail(Long id){
         return fornecedorRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Fornecedor", id));
+                .orElseThrow(()-> new EntityNotFoundExceptions("Supplier", id));
     }
 
     public ByteArrayInputStream relatorioFornecedor() throws IOException {
@@ -63,13 +63,13 @@ public class FornecedorService {
         reports.openTable(1f,1f,1f,1f);
         reports.addTableHeader("Codigo","Nome","Nome Fantasia","CNPJ / CPF");
 
-        List<Fornecedor> fornecedors = allTodos();
+        List<Supplier> suppliers = allTodos();
 
-        for (Fornecedor fornecedor : fornecedors) {
-            reports.addCellCenter(fornecedor.getId());
-            reports.addCellCenter(fornecedor.getNome());
-            reports.addCellCenter(fornecedor.getNomeFantasia());
-            reports.addCellCenter(fornecedor.getCpfcnpj());
+        for (Supplier supplier : suppliers) {
+            reports.addCellCenter(supplier.getId());
+            reports.addCellCenter(supplier.getNome());
+            reports.addCellCenter(supplier.getNomeFantasia());
+            reports.addCellCenter(supplier.getCpfcnpj());
         }
 
         reports.closeTable();

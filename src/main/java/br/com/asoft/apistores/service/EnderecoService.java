@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.filter.EnderecoFilter;
+import br.com.asoft.apistores.filter.AddressFilter;
 import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.model.City;
 import br.com.asoft.apistores.relatorio.Reports;
@@ -28,8 +28,8 @@ public class EnderecoService {
 
     private final CidadeService cidadeService;
 
-    public Page<Address> allEnderecoPage(EnderecoFilter enderecoFilter, Pageable pageable){
-        return enderecoRepository.findAll(EnderecoSpecification.filter(enderecoFilter), pageable);
+    public Page<Address> allEnderecoPage(AddressFilter addressFilter, Pageable pageable){
+        return enderecoRepository.findAll(EnderecoSpecification.filter(addressFilter), pageable);
     }
 
     public List<Address> allEndereco(){

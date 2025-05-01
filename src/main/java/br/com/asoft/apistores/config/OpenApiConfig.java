@@ -13,8 +13,8 @@ public class OpenApiConfig {
     public OpenAPI customOpenApi() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Api Venda Store")
-                        .description("Api Venda Store - ASoft")
+                        .title("Api Sales Store")
+                        .description("Api Sales Store - ASoft")
                         .contact(new Contact().name("asoftSistemas"))
                         .version("1.0.0") );
 

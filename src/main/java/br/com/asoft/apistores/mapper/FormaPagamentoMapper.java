@@ -1,7 +1,5 @@
 package br.com.asoft.apistores.mapper;
 
-import br.com.asoft.apistores.inp.FormaPagamentoInp;
-import br.com.asoft.apistores.model.FormaDePagamento;
 import br.com.asoft.apistores.out.FormaPagamentoOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

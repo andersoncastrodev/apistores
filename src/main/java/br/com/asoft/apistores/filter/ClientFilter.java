@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ClienteFilter {
+public class ClientFilter {
 
     private Long id;
 

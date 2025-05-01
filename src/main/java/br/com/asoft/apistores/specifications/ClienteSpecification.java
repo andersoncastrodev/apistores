@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.specifications;
 
-import br.com.asoft.apistores.filter.ClienteFilter;
+import br.com.asoft.apistores.filter.ClientFilter;
 import br.com.asoft.apistores.model.Client;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Predicate;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class ClienteSpecification {
 
-    public static Specification<Client> filter(ClienteFilter clienteFilter) {
+    public static Specification<Client> filter(ClientFilter clientFilter) {
         return (root, query, criteriaBuilder) -> {
 
             var preditaces = new ArrayList<Predicate>();
@@ -19,14 +19,14 @@ public class ClienteSpecification {
             // pessoa = É o nome de um atributo na Entidade(Client)
             Join<Client,Pessoa> clientePessoaJoin = root.join("pessoa");
 
-            if ( clienteFilter.getNome() != null) {
+            if ( clientFilter.getNome() != null) {
                 // nome = É o nome de um atributo da Entidade(Pessoa)
-                preditaces.add(criteriaBuilder.like(clientePessoaJoin.get("nome"),"%"+clienteFilter.getNome()+"%") );
+                preditaces.add(criteriaBuilder.like(clientePessoaJoin.get("nome"),"%"+ clientFilter.getNome()+"%") );
 
             }
-            if (clienteFilter.getTelefone() != null) {
+            if (clientFilter.getTelefone() != null) {
                 // telefone = É o nome de um atributo da Entidade(Pessoa)
-                preditaces.add(criteriaBuilder.equal(clientePessoaJoin.get("telefone"),clienteFilter.getTelefone()));
+                preditaces.add(criteriaBuilder.equal(clientePessoaJoin.get("telefone"), clientFilter.getTelefone()));
             }
 
             return criteriaBuilder.and(preditaces.toArray(new Predicate[0]));

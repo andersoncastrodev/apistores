@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.model.Usuario;
+import br.com.asoft.apistores.model.Users;
 
 import br.com.asoft.apistores.relatorio.Reports;
 import br.com.asoft.apistores.respository.UsuarioRepository;
@@ -23,34 +23,34 @@ public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
 
-    public Page<Usuario> allTodos(Pageable pageable){
+    public Page<Users> allTodos(Pageable pageable){
         return usuarioRepository.findAll(pageable);
     }
 
-    public List<Usuario> allTodos(){
+    public List<Users> allTodos(){
         return usuarioRepository.findAll();
     }
 
-    public Usuario findId(Long id){
+    public Users findId(Long id){
         return tryOrFail(id);
     }
 
-    public Usuario saveUsuario(Usuario usuario){
-        return usuarioRepository.save(usuario);
+    public Users saveUsuario(Users users){
+        return usuarioRepository.save(users);
     }
 
     public void deleteUsuario(Long id) {
 
-        Usuario usuario = findId(id);
+        Users users = findId(id);
 
-        usuarioRepository.delete(usuario);
+        usuarioRepository.delete(users);
         usuarioRepository.flush();
 
     }
 
-    public Usuario tryOrFail(Long id){
+    public Users tryOrFail(Long id){
         return usuarioRepository.findById(id)
-                .orElseThrow( ()-> new EntityNotFoundExceptions("Usuario",id) );
+                .orElseThrow( ()-> new EntityNotFoundExceptions("Users",id) );
     }
 
     public ByteArrayInputStream relatorioUsuarios() throws IOException {
@@ -70,13 +70,13 @@ public class UsuarioService {
         reports.addTableHeader("Codigo","Login","Senha","Nome");
 
 
-        List<Usuario> usuarios = allTodos();
+        List<Users> users = allTodos();
 
-        for (Usuario usuario: usuarios){
-            reports.addCellCenter(usuario.getId());
-            reports.addCellCenter(usuario.getLogin());
-            reports.addCellCenter(usuario.getSenha());
-            reports.addCellCenter(usuario.getPessoa().getNome());
+        for (Users users : users){
+            reports.addCellCenter(users.getId());
+            reports.addCellCenter(users.getLogin());
+            reports.addCellCenter(users.getSenha());
+            reports.addCellCenter(users.getPessoa().getNome());
         }
 
         reports.closeTable();

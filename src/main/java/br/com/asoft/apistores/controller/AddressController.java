@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.filter.EnderecoFilter;
+import br.com.asoft.apistores.filter.AddressFilter;
 import br.com.asoft.apistores.inp.EnderecoInp;
 import br.com.asoft.apistores.mapper.EnderecoMapper;
 import br.com.asoft.apistores.model.Address;
@@ -24,16 +24,16 @@ import java.util.List;
 @RestController
 @RequestMapping("enderecos")
 @RequiredArgsConstructor
-public class EnderecoController {
+public class AddressController {
 
     private final EnderecoService enderecoService;
 
     private final EnderecoMapper enderecoMapper;
 
     @GetMapping
-    public Page<EnderecoOut> buscaTodos(EnderecoFilter enderecoFilter, Pageable pageable) {
+    public Page<EnderecoOut> buscaTodos(AddressFilter addressFilter, Pageable pageable) {
 
-        Page<Address> enderecoPage = enderecoService.allEnderecoPage(enderecoFilter, pageable);
+        Page<Address> enderecoPage = enderecoService.allEnderecoPage(addressFilter, pageable);
 
         List<EnderecoOut> enderecoOutList = enderecoMapper.toListEnderecoOut(enderecoPage.getContent());
 
