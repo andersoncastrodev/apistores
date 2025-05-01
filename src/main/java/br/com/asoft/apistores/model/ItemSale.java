@@ -24,11 +24,11 @@ public class ItemSale {
     private BigDecimal valueTotal;
 
     @ManyToOne
-    @JoinColumn(name = "sales_id")
+    @JoinColumn(name = "id_sales")
     private Sales sales;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "id_product")
     private Product product;
 
 

@@ -14,6 +14,6 @@ public class UsuarioOut {
 
     private String senha;
 
-    private Pessoa pessoa;
+//    private Pessoa pessoa;
 
 }

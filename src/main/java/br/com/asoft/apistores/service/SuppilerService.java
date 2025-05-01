@@ -48,32 +48,32 @@ public class SuppilerService {
                 .orElseThrow(()-> new EntityNotFoundExceptions("Supplier", id));
     }
 
-    public ByteArrayInputStream relatorioFornecedor() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.VERTICAL);
-
-        reports.addParagraph( new Paragraph("Lista de Fornecedores")
-                .setMargins(1f,5f,1f,5f)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-        reports.openTable(1f,1f,1f,1f);
-        reports.addTableHeader("Codigo","Nome","Nome Fantasia","CNPJ / CPF");
-
-        List<Supplier> suppliers = allTodos();
-
-        for (Supplier supplier : suppliers) {
-            reports.addCellCenter(supplier.getId());
-            reports.addCellCenter(supplier.getNome());
-            reports.addCellCenter(supplier.getNomeFantasia());
-            reports.addCellCenter(supplier.getCpfcnpj());
-        }
-
-        reports.closeTable();
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-    }
+//    public ByteArrayInputStream relatorioFornecedor() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.VERTICAL);
+//
+//        reports.addParagraph( new Paragraph("Lista de Fornecedores")
+//                .setMargins(1f,5f,1f,5f)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//        reports.openTable(1f,1f,1f,1f);
+//        reports.addTableHeader("Codigo","Nome","Nome Fantasia","CNPJ / CPF");
+//
+//        List<Supplier> suppliers = allTodos();
+//
+//        for (Supplier supplier : suppliers) {
+//            reports.addCellCenter(supplier.getId());
+//            reports.addCellCenter(supplier.getNome());
+//            reports.addCellCenter(supplier.getNomeFantasia());
+//            reports.addCellCenter(supplier.getCpfcnpj());
+//        }
+//
+//        reports.closeTable();
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//    }
 }

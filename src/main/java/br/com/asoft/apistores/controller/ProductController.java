@@ -80,25 +80,25 @@ public class ProductController {
         productService.deletarProduto(id);
     }
 
-    @GetMapping("/relatorioprodutos")
-    public ResponseEntity<InputStreamResource> relatorioPessoas() {
-
-        try {
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
-
-        InputStreamResource relatorio = new InputStreamResource(productService.relatorioTodosProdutos());
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(relatorio);
-
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+//    @GetMapping("/relatorioprodutos")
+//    public ResponseEntity<InputStreamResource> relatorioPessoas() {
+//
+//        try {
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
+//
+//        InputStreamResource relatorio = new InputStreamResource(productService.relatorioTodosProdutos());
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(relatorio);
+//
+//        } catch (IOException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
 
 
 

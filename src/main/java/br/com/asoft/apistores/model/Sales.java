@@ -31,11 +31,11 @@ public class Sales {
     private TypePayment typePayment;
 
     @ManyToOne
-    @JoinColumn(name = "users_id")
+    @JoinColumn(name = "id_users")
     private Users users;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "id_client")
     private Client client;
 
 

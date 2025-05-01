@@ -60,39 +60,39 @@ public class ItemSaleService {
                 .orElseThrow(()-> new EntityNotFoundExceptions("ItenVenda",id));
     }
 
-    public ByteArrayInputStream relatorioItemVenda() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.VERTICAL);
-
-        reports.addParagraph(new Paragraph("Lista dos Itens da Sales")
-                .setMargins(1f,5f,1f,5f)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-
-        reports.openTable(1f,1f,1f,1f,1f);
-
-        reports.addTableHeader("Codigo Item","Codigo Sales","Quantidade","Valor Unidade","Valor Total");
-
-        List<ItemSale> itemSales = allTodos();
-
-        for (ItemSale itemSale : itemSales) {
-
-            reports.addCellCenter(itemSale.getId());
-            reports.addCellCenter(itemSale.getSales().getId());
-            reports.addCellCenter(itemSale.getQuant());
-            reports.addCellCenter(itemSale.getValorUnid());
-            reports.addCellCenter(itemSale.getValorTotal());
-
-        }
-
-        reports.closeTable();
-
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-    }
+//    public ByteArrayInputStream relatorioItemVenda() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.VERTICAL);
+//
+//        reports.addParagraph(new Paragraph("Lista dos Itens da Sales")
+//                .setMargins(1f,5f,1f,5f)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//
+//        reports.openTable(1f,1f,1f,1f,1f);
+//
+//        reports.addTableHeader("Codigo Item","Codigo Sales","Quantidade","Valor Unidade","Valor Total");
+//
+//        List<ItemSale> itemSales = allTodos();
+//
+//        for (ItemSale itemSale : itemSales) {
+//
+//            reports.addCellCenter(itemSale.getId());
+//            reports.addCellCenter(itemSale.getSales().getId());
+//            reports.addCellCenter(itemSale.getQuant());
+//            reports.addCellCenter(itemSale.getValorUnid());
+//            reports.addCellCenter(itemSale.getValorTotal());
+//
+//        }
+//
+//        reports.closeTable();
+//
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//    }
 
 }

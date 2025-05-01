@@ -27,7 +27,7 @@ public class Client {
 
     private String name;
 
-    private String fantasyName;
+    private String nameFantasy;
 
     private LocalDate dateBirth;
 
@@ -36,7 +36,7 @@ public class Client {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "id_address")
     private Address address;
 
 }

@@ -79,26 +79,26 @@ public class CityController {
         cityService.deletarCidade(id);
     }
 
-    @GetMapping("/relatoriocidades")
-    public ResponseEntity<InputStreamResource> relatorioCidades() {
-
-        try {
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
-
-        InputStreamResource relatorio = new InputStreamResource(cityService.relatorioCidade());
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(relatorio);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
+//    @GetMapping("/relatoriocidades")
+//    public ResponseEntity<InputStreamResource> relatorioCidades() {
+//
+//        try {
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Disposition", "inline; filename=pessoas.pdf");
+//
+//        InputStreamResource relatorio = new InputStreamResource(cityService.relatorioCidade());
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(relatorio);
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//
+//    }
 
 }

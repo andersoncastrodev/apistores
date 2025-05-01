@@ -63,34 +63,34 @@ public class AddressService {
                 .orElseThrow(()-> new EntityNotFoundExceptions("Address",id));
     }
 
-    public ByteArrayInputStream relatorioEndereco() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.VERTICAL);
-
-        reports.addParagraph(new Paragraph("Lista de Address")
-                .setMargins(1f,5f,1f,5)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-        reports.openTable(1f,1f,1f,1f);
-        reports.addTableHeader("Codigo","Rua","Cep","City");
-
-        List<Address> addresses = allEndereco();
-
-        for(Address address : addresses){
-
-            reports.addCellCenter(address.getId());
-            reports.addCellCenter(address.getRua());
-            reports.addCellCenter(address.getCep());
-            reports.addCellCenter(address.getCity().getNome());
-        }
-
-        reports.closeTable();
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-    }
+//    public ByteArrayInputStream relatorioEndereco() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.VERTICAL);
+//
+//        reports.addParagraph(new Paragraph("Lista de Address")
+//                .setMargins(1f,5f,1f,5)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//        reports.openTable(1f,1f,1f,1f);
+//        reports.addTableHeader("Codigo","Rua","Cep","City");
+//
+//        List<Address> addresses = allEndereco();
+//
+//        for(Address address : addresses){
+//
+//            reports.addCellCenter(address.getId());
+//            reports.addCellCenter(address.getRua());
+//            reports.addCellCenter(address.getCep());
+//            reports.addCellCenter(address.getCity().getNome());
+//        }
+//
+//        reports.closeTable();
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//    }
 
 }

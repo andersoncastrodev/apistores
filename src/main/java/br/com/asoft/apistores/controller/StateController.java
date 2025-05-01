@@ -80,26 +80,26 @@ public class StateController {
         stateService.deleteEstado(id);
     }
 
-    @GetMapping("/relatorioestados")
-    public ResponseEntity<InputStreamResource> relatorioEstados() {
-
-        try {
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=estados.pdf");
-
-        InputStreamResource relatorio = new InputStreamResource(stateService.relatorioEstado());
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(relatorio);
-
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-
-    }
+//    @GetMapping("/relatorioestados")
+//    public ResponseEntity<InputStreamResource> relatorioEstados() {
+//
+//        try {
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Disposition", "inline; filename=estados.pdf");
+//
+//        InputStreamResource relatorio = new InputStreamResource(stateService.relatorioEstado());
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(relatorio);
+//
+//        } catch (IOException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//
+//    }
 
 
 }

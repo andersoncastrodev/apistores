@@ -7,7 +7,7 @@ create table users (
    cpf varchar(50) not null,
    login varchar(50) not null,
    senha varchar(50) not null,
-   address varchar(50) not null,
+   id_address bigint not null,
    constraint users_pk primary key (id),
-   constraint address_fk foreign key (address) references address(id)
+   constraint address_fk foreign key (id_address) references address(id)
 );

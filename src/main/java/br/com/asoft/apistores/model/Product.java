@@ -38,7 +38,7 @@ public class Product {
     private BigDecimal valueSell; // valor de venda
 
     @ManyToOne
-    @JoinColumn(name = "supplier_id")
+    @JoinColumn(name = "id_supplier")
     private Supplier supplier; //fornecedor
 
 }

@@ -51,37 +51,37 @@ public class UsersService {
                 .orElseThrow( ()-> new EntityNotFoundExceptions("Users",id) );
     }
 
-    public ByteArrayInputStream relatorioUsuarios() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.VERTICAL);
-
-        reports.addParagraph(new Paragraph("Lista de Usuarios")
-                .setMargins(1f,5f,1f,5f)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-
-        reports.openTable(1f,1f,1f,1f);
-
-        reports.addTableHeader("Codigo","Login","Senha","Nome");
-
-
-        List<Users> users = allTodos();
-
-        for (Users users : users){
-            reports.addCellCenter(users.getId());
-            reports.addCellCenter(users.getLogin());
-            reports.addCellCenter(users.getSenha());
-            reports.addCellCenter(users.getPessoa().getNome());
-        }
-
-        reports.closeTable();
-
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-    }
+//    public ByteArrayInputStream relatorioUsuarios() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.VERTICAL);
+//
+//        reports.addParagraph(new Paragraph("Lista de Usuarios")
+//                .setMargins(1f,5f,1f,5f)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//
+//        reports.openTable(1f,1f,1f,1f);
+//
+//        reports.addTableHeader("Codigo","Login","Senha","Nome");
+//
+//
+//        List<Users> users = allTodos();
+//
+//        for (Users users : users){
+//            reports.addCellCenter(users.getId());
+//            reports.addCellCenter(users.getLogin());
+//            reports.addCellCenter(users.getSenha());
+//            reports.addCellCenter(users.getPessoa().getNome());
+//        }
+//
+//        reports.closeTable();
+//
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//    }
 
 }

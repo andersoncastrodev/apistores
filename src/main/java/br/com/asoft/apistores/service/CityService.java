@@ -63,33 +63,33 @@ public class CityService {
                 .orElseThrow(()-> new EntityNotFoundExceptions("City",id));
     }
 
-    public ByteArrayInputStream relatorioCidade() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.VERTICAL);
-
-        reports.addParagraph(new Paragraph("Lista de Cidades")
-                .setMargins(1f,2f,2f,5f)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-        reports.openTable(1f,1f,1f);
-        reports.addTableHeader("Codigo","Nome","State");
-
-        List<City> cities = allCidades();
-
-        for (City city : cities){
-
-            reports.addCellCenter(city.getId());
-            reports.addCellCenter(city.getNome());
-            reports.addCellCenter(city.getState().getNome());
-        }
-
-        reports.closeTable();
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-    }
+//    public ByteArrayInputStream relatorioCidade() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.VERTICAL);
+//
+//        reports.addParagraph(new Paragraph("Lista de Cidades")
+//                .setMargins(1f,2f,2f,5f)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//        reports.openTable(1f,1f,1f);
+//        reports.addTableHeader("Codigo","Nome","State");
+//
+//        List<City> cities = allCidades();
+//
+//        for (City city : cities){
+//
+//            reports.addCellCenter(city.getId());
+//            reports.addCellCenter(city.getNome());
+//            reports.addCellCenter(city.getState().getNome());
+//        }
+//
+//        reports.closeTable();
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//    }
 
 }

@@ -17,7 +17,7 @@ public class UsuarioInp {
     @NotBlank
     private String senha;
 
-    @NotNull
-    private Pessoa pessoa;
+//    @NotNull
+//    private Pessoa pessoa;
 
 }

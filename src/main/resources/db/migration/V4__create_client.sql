@@ -8,7 +8,7 @@ create table client (
     date_birth date not null,
     phone_number varchar(15) not null,
     email varchar(100) not null,
-    address_id int8 not null,
+    id_address bigint not null,
  constraint client_pk primary key (id),
- constraint client_fk foreign key (address_id) references address(id)
+ constraint client_fk foreign key (id_address) references address(id)
 );

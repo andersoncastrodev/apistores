@@ -11,5 +11,5 @@ public class ClienteOut {
 
     private String tipo;
 
-    private Pessoa pessoa;
+    //private Pessoa pessoa;
 }

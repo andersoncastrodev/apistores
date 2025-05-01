@@ -52,34 +52,34 @@ public class StateService {
                 .orElseThrow( ()-> new EntityNotFoundExceptions("State",id));
     }
 
-    public ByteArrayInputStream relatorioEstado() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.HORIZONTAL);
-
-        reports.addParagraph(new Paragraph("Lista de Estados")
-                .setMargins(1f,5f,1f,5)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-        reports.openTable(1f,1f,1f);
-        reports.addTableHeader("Codigo","Nome","State");
-
-        List<State> states = allEstados();
-
-        for (State state : states) {
-
-            reports.addCellCenter(state.getId());
-            reports.addCellCenter(state.getNome());
-            reports.addCellCenter(state.getSigla());
-        }
-
-        reports.closeTable();
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-    }
+//    public ByteArrayInputStream relatorioEstado() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.HORIZONTAL);
+//
+//        reports.addParagraph(new Paragraph("Lista de Estados")
+//                .setMargins(1f,5f,1f,5)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//        reports.openTable(1f,1f,1f);
+//        reports.addTableHeader("Codigo","Nome","State");
+//
+//        List<State> states = allEstados();
+//
+//        for (State state : states) {
+//
+//            reports.addCellCenter(state.getId());
+//            reports.addCellCenter(state.getNome());
+//            reports.addCellCenter(state.getSigla());
+//        }
+//
+//        reports.closeTable();
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//    }
 
 
 }

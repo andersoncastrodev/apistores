@@ -79,28 +79,28 @@ public class AddressController {
 
     }
 
-    @GetMapping("/relatorioendereco")
-    public ResponseEntity<InputStreamResource> relatorioEndereco() {
-
-        try {
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Disposition", "inline; filename=endereco.pdf");
-
-
-            InputStreamResource relatorio = new InputStreamResource(addressService.relatorioEndereco());
-
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(relatorio);
-
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-
-    }
+//    @GetMapping("/relatorioendereco")
+//    public ResponseEntity<InputStreamResource> relatorioEndereco() {
+//
+//        try {
+//
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.add("Content-Disposition", "inline; filename=endereco.pdf");
+//
+//
+//            InputStreamResource relatorio = new InputStreamResource(addressService.relatorioEndereco());
+//
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(relatorio);
+//
+//        } catch (IOException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//
+//    }
 
 
 }

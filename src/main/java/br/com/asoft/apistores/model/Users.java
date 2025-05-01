@@ -33,7 +33,7 @@ public class Users {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "id_address")
     private Address address;
 
     private List<String> roles;

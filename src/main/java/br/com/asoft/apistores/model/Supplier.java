@@ -25,13 +25,13 @@ public class Supplier {
 
     private String name;
 
-    private String fantasyName;
+    private String nameFantasy;
 
     private String phoneNumber;
 
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "id_address")
     private Address address;
 }

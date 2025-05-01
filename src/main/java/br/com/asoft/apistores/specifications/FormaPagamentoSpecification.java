@@ -8,20 +8,20 @@ import java.util.ArrayList;
 
 public class FormaPagamentoSpecification {
 
-    public static Specification<FormaDePagamento> filter(FormaPagamentoFilter formaPagamentoFilter){
-
-        return(root, query, criteriaBuilder) -> {
-
-            var predicates = new ArrayList<>();
-
-            if( formaPagamentoFilter.getId() != null ) {
-                predicates.add(criteriaBuilder.equal(root.get("id"), formaPagamentoFilter.getId()));
-            }
-            if (formaPagamentoFilter.getDescricao() != null ){
-                predicates.add(criteriaBuilder.equal(root.get("descricao"), formaPagamentoFilter.getDescricao()));
-            }
-
-            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
-        };
-    }
+//    public static Specification<FormaDePagamento> filter(FormaPagamentoFilter formaPagamentoFilter){
+//
+//        return(root, query, criteriaBuilder) -> {
+//
+//            var predicates = new ArrayList<>();
+//
+//            if( formaPagamentoFilter.getId() != null ) {
+//                predicates.add(criteriaBuilder.equal(root.get("id"), formaPagamentoFilter.getId()));
+//            }
+//            if (formaPagamentoFilter.getDescricao() != null ){
+//                predicates.add(criteriaBuilder.equal(root.get("descricao"), formaPagamentoFilter.getDescricao()));
+//            }
+//
+//            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+//        };
+//    }
 }

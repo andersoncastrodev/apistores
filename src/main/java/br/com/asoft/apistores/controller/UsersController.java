@@ -71,26 +71,26 @@ public class UsersController {
           usersService.deleteUsuario(id);
     }
 
-    @GetMapping("/relatoriousuarios")
-    public ResponseEntity<InputStreamResource> relatorioUsuarios(){
-
-        try {
-
-        HttpHeaders headers = new HttpHeaders();
-
-        headers.add("Content-Disposition", "inline; filename=vendas.pdf");
-
-        InputStreamResource relatorio = new InputStreamResource( usersService.relatorioUsuarios());
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(relatorio);
-
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-
-    }
+//    @GetMapping("/relatoriousuarios")
+//    public ResponseEntity<InputStreamResource> relatorioUsuarios(){
+//
+//        try {
+//
+//        HttpHeaders headers = new HttpHeaders();
+//
+//        headers.add("Content-Disposition", "inline; filename=vendas.pdf");
+//
+//        InputStreamResource relatorio = new InputStreamResource( usersService.relatorioUsuarios());
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(relatorio);
+//
+//        } catch (IOException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//
+//    }
 
 }

@@ -72,27 +72,27 @@ public class SupplierController {
         suppilerService.deletarFornecedor(id);
     }
 
-    @GetMapping("/relatoriofornecedor")
-    public ResponseEntity<InputStreamResource> relatorioFornecedores() {
-
-        try {
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "inline; filename=fornecedores.pdf");
-
-        InputStreamResource relatorio = new InputStreamResource(suppilerService.relatorioFornecedor());
-
-        return ResponseEntity.ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(relatorio);
-
-        } catch (IOException e) {
-
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-
-    }
+//    @GetMapping("/relatoriofornecedor")
+//    public ResponseEntity<InputStreamResource> relatorioFornecedores() {
+//
+//        try {
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Content-Disposition", "inline; filename=fornecedores.pdf");
+//
+//        InputStreamResource relatorio = new InputStreamResource(suppilerService.relatorioFornecedor());
+//
+//        return ResponseEntity.ok()
+//                .headers(headers)
+//                .contentType(MediaType.APPLICATION_PDF)
+//                .body(relatorio);
+//
+//        } catch (IOException e) {
+//
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//
+//    }
 
 
 

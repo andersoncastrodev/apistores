@@ -49,33 +49,33 @@ public class SalesService {
     }
 
 
-    public ByteArrayInputStream relatorioTodasVendas() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.VERTICAL);
-
-        reports.addParagraph(new Paragraph("Vendas")
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.LEFT)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD))
-        );
-
-        reports.addNewLine();
-        reports.openTable(1f,1f,1f,1f);
-        reports.addTableHeader("Codigo","Users","Client","Valor Total");
-
-        List<Sales> sales = allTodas();
-
-//        for (Sales sales : sales) {
-//            reports.addCellCenter(sales.getId());
-//            reports.addCellCenter(sales.getUsers().getLogin());
-//            //reports.addCellCenter(sales.getClient().getPessoa().getNome());
-//           // reports.addCellCenter(sales.getValorTotal());
-//        }
-
-        reports.closeTable();
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-
-    }
+//    public ByteArrayInputStream relatorioTodasVendas() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.VERTICAL);
+//
+//        reports.addParagraph(new Paragraph("Vendas")
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.LEFT)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD))
+//        );
+//
+//        reports.addNewLine();
+//        reports.openTable(1f,1f,1f,1f);
+//        reports.addTableHeader("Codigo","Users","Client","Valor Total");
+//
+//        List<Sales> sales = allTodas();
+//
+////        for (Sales sales : sales) {
+////            reports.addCellCenter(sales.getId());
+////            reports.addCellCenter(sales.getUsers().getLogin());
+////            //reports.addCellCenter(sales.getClient().getPessoa().getNome());
+////           // reports.addCellCenter(sales.getValorTotal());
+////        }
+//
+//        reports.closeTable();
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//
+//    }
 }

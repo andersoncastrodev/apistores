@@ -61,39 +61,39 @@ public class ProductService {
                 .orElseThrow(()-> new EntityNotFoundExceptions("Product",id));
     }
 
-    public ByteArrayInputStream relatorioTodosProdutos() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.VERTICAL);
-
-        reports.addParagraph( new Paragraph("Lista de Produtos")
-                .setMargins(1f,5f,1f,5f)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-
-        reports.openTable(1f,1f,1f,1f,1f);
-
-        reports.addTableHeader("Codigo","Descrição","Valor Comprar","Valor Sales","Supplier");
-
-        List<Product> products = allTodos();
-
-        for (Product product : products) {
-
-            reports.addCellCenter(product.getId());
-            reports.addCellCenter(product.getDescricao());
-            reports.addCellCenter(product.getValorCompra());
-            reports.addCellCenter(product.getValorVenda());
-            reports.addCellCenter(product.getSupplier().getNome());
-        }
-
-        reports.closeTable();
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-
-    }
+//    public ByteArrayInputStream relatorioTodosProdutos() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.VERTICAL);
+//
+//        reports.addParagraph( new Paragraph("Lista de Produtos")
+//                .setMargins(1f,5f,1f,5f)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//
+//        reports.openTable(1f,1f,1f,1f,1f);
+//
+//        reports.addTableHeader("Codigo","Descrição","Valor Comprar","Valor Sales","Supplier");
+//
+//        List<Product> products = allTodos();
+//
+//        for (Product product : products) {
+//
+//            reports.addCellCenter(product.getId());
+//            reports.addCellCenter(product.getDescricao());
+//            reports.addCellCenter(product.getValorCompra());
+//            reports.addCellCenter(product.getValorVenda());
+//            reports.addCellCenter(product.getSupplier().getNome());
+//        }
+//
+//        reports.closeTable();
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//
+//    }
 
 
 

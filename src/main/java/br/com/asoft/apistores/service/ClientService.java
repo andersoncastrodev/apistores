@@ -5,16 +5,10 @@ import br.com.asoft.apistores.filter.ClientFilter;
 import br.com.asoft.apistores.model.Client;
 import br.com.asoft.apistores.respository.ClientRepository;
 import br.com.asoft.apistores.specifications.ClienteSpecification;
-import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -22,8 +16,6 @@ import java.util.List;
 public class ClientService {
 
     private final ClientRepository clientRepository;
-
-    private final PessoaService pessoaService;
 
     public Page<Client> allClientePage(ClientFilter clientFilter, Pageable pageable){
 
@@ -43,10 +35,10 @@ public class ClientService {
     }
 
     public Client saveCliente(Client client){
-
-        Pessoa pessoa = pessoaService.findId(client.getPessoa().getId());
-
-        client.setPessoa(pessoa);
+//
+//        Pessoa pessoa = pessoaService.findId(client.getPessoa().getId());
+//
+//        client.setPessoa(pessoa);
 
         return clientRepository.save(client);
     }
@@ -65,37 +57,37 @@ public class ClientService {
                 .orElseThrow(()-> new EntityNotFoundExceptions("Client",id));
     }
 
-    public ByteArrayInputStream relatorioCliente() throws IOException {
-
-        Reports reports = new Reports(Reports.Page.HORIZONTAL);
-
-        reports.addParagraph( new Paragraph("Lista de Client")
-                .setMargins(1f,5f,1f,5f)
-                .setFontSize(28)
-                .setTextAlignment(TextAlignment.CENTER)
-                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-
-        reports.addNewLine();
-
-        reports.openTable(1f,1f,1f,1f);
-
-        reports.addTableHeader("Codigo Pessoa","Nome","Telefone","Tipo");
-
-        List<Client> clients = findAllCliente();
-
-        for (Client client : clients) {
-
-            reports.addCellCenter(client.getPessoa().getId());
-            reports.addCellCenter(client.getPessoa().getNome());
-            reports.addCellCenter(client.getPessoa().getTelefone());
-            reports.addCellCenter(client.getTipo());
-
-        }
-
-        reports.closeTable();
-        reports.closeDocument();
-
-        return reports.getByteArrayInputStream();
-
-    }
+//    public ByteArrayInputStream relatorioCliente() throws IOException {
+//
+//        Reports reports = new Reports(Reports.Page.HORIZONTAL);
+//
+//        reports.addParagraph( new Paragraph("Lista de Client")
+//                .setMargins(1f,5f,1f,5f)
+//                .setFontSize(28)
+//                .setTextAlignment(TextAlignment.CENTER)
+//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
+//
+//        reports.addNewLine();
+//
+//        reports.openTable(1f,1f,1f,1f);
+//
+//        reports.addTableHeader("Codigo Pessoa","Nome","Telefone","Tipo");
+//
+//        List<Client> clients = findAllCliente();
+//
+//        for (Client client : clients) {
+//
+//            reports.addCellCenter(client.getPessoa().getId());
+//            reports.addCellCenter(client.getPessoa().getNome());
+//            reports.addCellCenter(client.getPessoa().getTelefone());
+//            reports.addCellCenter(client.getTipo());
+//
+//        }
+//
+//        reports.closeTable();
+//        reports.closeDocument();
+//
+//        return reports.getByteArrayInputStream();
+//
+//    }
 }
