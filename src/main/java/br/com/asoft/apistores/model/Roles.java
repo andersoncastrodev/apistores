@@ -9,20 +9,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "address")
-public class Address {
+@Table(name = "roles")
+public class Roles {
 
+    // roles = papéis, são as premissões ques usuarios podem ter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String street;
-
-    private String cep;
-
-    @ManyToOne
-    @JoinColumn(name = "id_city")
-    private City city;
+    private String name;
 
 }

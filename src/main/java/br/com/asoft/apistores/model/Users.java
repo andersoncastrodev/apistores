@@ -6,11 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Table(name = "users")
 public class Users {
 
     @Id
@@ -32,10 +34,17 @@ public class Users {
 
     private String password;
 
+    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "id_users"),
+            inverseJoinColumns = @JoinColumn(name = "id_roles")
+    )
+    private Set<Roles> roles; // roles = papéis, são as premissões
+
+
     @OneToOne
     @JoinColumn(name = "id_address")
     private Address address;
-
-    private List<String> roles;
 
 }

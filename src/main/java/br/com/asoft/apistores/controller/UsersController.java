@@ -50,7 +50,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public UsuarioOut salvarUsuario(@RequestBody @Valid UsuarioInp usuarioInp ){
+    public UsuarioOut salvarUsuario(@RequestBody @Valid UsuarioInp usuarioInp ) {
         Users users = usersService.saveUsuario( usersMapper.toUsuario(usuarioInp) );
         return usersMapper.toUsuarioOut(users);
     }
