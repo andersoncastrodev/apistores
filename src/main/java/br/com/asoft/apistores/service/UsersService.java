@@ -3,17 +3,13 @@ package br.com.asoft.apistores.service;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Users;
 import br.com.asoft.apistores.respository.UsersRepository;
-import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,13 +17,31 @@ public class UsersService {
 
     private final UsersRepository usersRepository;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder; //Cria uma maneira de encripar as senhas do usuario
+
     public Page<Users> allTodos(Pageable pageable){
         return usersRepository.findAll(pageable);
     }
 
-    public List<Users> allTodos(){
-        return usersRepository.findAll();
+    public Optional<Users> findByUsersName(String name) {
+        return usersRepository.findByLogin(name);
     }
+
+    public boolean isLoginCorrect(String login, String password) {
+
+        Optional<Users> byUsersName = findByUsersName(login);
+
+        boolean matches = bCryptPasswordEncoder.matches(password, byUsersName.get().getPassword());
+
+        if (byUsersName.isEmpty() || matches) {
+            return true;
+        }
+        return false;
+    }
+
+//    public List<Users> allTodos(){
+//        return usersRepository.findAll();
+//    }
 
     public Users findId(Long id){
         return tryOrFail(id);
