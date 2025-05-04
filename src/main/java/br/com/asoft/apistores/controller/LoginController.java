@@ -1,15 +1,15 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.inp.LoginInp;
-import br.com.asoft.apistores.model.Users;
 import br.com.asoft.apistores.out.LoginOut;
 import br.com.asoft.apistores.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
