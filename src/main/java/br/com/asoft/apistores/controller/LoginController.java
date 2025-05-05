@@ -1,11 +1,12 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.inp.LoginInp;
-import br.com.asoft.apistores.out.LoginOut;
+import br.com.asoft.apistores.dto.LoginRequest;
+import br.com.asoft.apistores.dto.LoginResponse;
+import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.service.TokenService;
 import br.com.asoft.apistores.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,17 +17,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LoginController {
 
-    private UsersService usersService;
+    private final UsersService usersService;
+
+    private final TokenService tokenService;
 
     @PostMapping
-    public ResponseEntity<LoginOut> login(@RequestBody LoginInp loginInp) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
 
-        boolean loginCorrect = usersService.isLoginCorrect(loginInp.getUsername(), loginInp.getPassword());
+        //Validada do login usuario e senha
+        boolean loginCorrect = usersService.isLoginCorrect(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (!loginCorrect) {
-            throw new BadCredentialsException("Usuário não encontrado");
+            //throw new BadCredentialsException("Usuário não encontrado");
+            throw new EntityNotFoundExceptions("Usuário não encontrado");
         }
-        return ResponseEntity.ok().build();
+
+        LoginResponse loginResponse = tokenService.gerarToken(loginRequest);
+
+        return ResponseEntity.ok().body(loginResponse);
     }
 
 

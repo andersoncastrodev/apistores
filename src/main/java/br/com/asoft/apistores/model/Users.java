@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
+
 @Entity
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class Users {
 
     private String name;
 
-    private LocalDate birthDate;
+    private LocalDate dateBirth;
 
     private String email;
 
@@ -34,7 +35,8 @@ public class Users {
 
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    //@ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "id_users"),

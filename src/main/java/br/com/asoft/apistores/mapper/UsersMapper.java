@@ -1,5 +1,7 @@
 package br.com.asoft.apistores.mapper;
 
+import br.com.asoft.apistores.dto.UsersRequest;
+import br.com.asoft.apistores.dto.UsersResponse;
 import br.com.asoft.apistores.inp.UsuarioInp;
 import br.com.asoft.apistores.model.Users;
 import br.com.asoft.apistores.out.UsuarioOut;
@@ -11,11 +13,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UsersMapper {
 
-    UsuarioOut toUsuarioOut(Users users);
+    UsersResponse toUsersResponse(Users users);
 
-    Users toUsuario(UsuarioInp usuarioInp);
+    Users toUsers(UsersRequest usersRequest);
 
     Users copyToUsuario(UsuarioInp usuarioInp, @MappingTarget Users users);
 
-    List<UsuarioOut> toListUsuarioOut(List<Users> users);
+    List<UsersResponse> toListUsersResponse(List<Users> users);
 }

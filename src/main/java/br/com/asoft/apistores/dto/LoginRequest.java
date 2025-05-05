@@ -1,12 +1,13 @@
-package br.com.asoft.apistores.inp;
+package br.com.asoft.apistores.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Getter
 @Setter
-public class LoginInp {
+public class LoginRequest {
+
     private String username;
+
     private String password;
 }

@@ -19,7 +19,7 @@ public class UsersService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder; //Cria uma maneira de encripar as senhas do usuario
 
-    public Page<Users> allTodos(Pageable pageable){
+    public Page<Users> findAllUsers(Pageable pageable){
         return usersRepository.findAll(pageable);
     }
 
@@ -31,9 +31,12 @@ public class UsersService {
 
         Optional<Users> byUsersName = findByUsersName(login);
 
-        boolean matches = bCryptPasswordEncoder.matches(password, byUsersName.get().getPassword());
+       // boolean matches = bCryptPasswordEncoder.matches(password, byUsersName.get().getPassword());
 
-        if (byUsersName.isEmpty() || matches) {
+        boolean passwordValid = password.equals(byUsersName.get().getPassword());
+
+
+        if (byUsersName.isEmpty() || passwordValid) {
             return true;
         }
         return false;
@@ -47,7 +50,7 @@ public class UsersService {
         return tryOrFail(id);
     }
 
-    public Users saveUsuario(Users users){
+    public Users saverUsers(Users users) {
         return usersRepository.save(users);
     }
 

@@ -17,7 +17,7 @@ public class City {
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String nome;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "id_state")

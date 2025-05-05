@@ -5,7 +5,6 @@ import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.out.EnderecoOut;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-
 import java.util.List;
 
 @Mapper(componentModel = "spring")
