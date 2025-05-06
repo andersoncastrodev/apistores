@@ -19,39 +19,30 @@ public class UsersService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder; //Cria uma maneira de encripar as senhas do usuario
 
-    public Page<Users> findAllUsers(Pageable pageable){
+    public Page<Users> findAllUsers(Pageable pageable) {
         return usersRepository.findAll(pageable);
     }
 
-    public Optional<Users> findByUsersName(String name) {
-        return usersRepository.findByLogin(name);
-    }
-
-    public boolean isLoginCorrect(String login, String password) {
-
-        Optional<Users> byUsersName = findByUsersName(login);
-
-       // boolean matches = bCryptPasswordEncoder.matches(password, byUsersName.get().getPassword());
-
-        boolean passwordValid = password.equals(byUsersName.get().getPassword());
-
-
-        if (byUsersName.isEmpty() || passwordValid) {
-            return true;
-        }
-        return false;
-    }
-
-//    public List<Users> allTodos(){
-//        return usersRepository.findAll();
-//    }
-
-    public Users findId(Long id){
+    public Users findId(Long id) {
         return tryOrFail(id);
     }
 
     public Users saverUsers(Users users) {
+
+        //Verificar se a pessoas esta cadastrada
+        usersRepository.findByCpf(users.getCpf()).ifPresent(
+                u -> { throw new RuntimeException("Cpf ja cadastrado");
+            }
+        );
+
+        //faz a encriptação da senha do usuario
+        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+
         return usersRepository.save(users);
+    }
+
+    public Users findByLogin(String login) {
+        return usersRepository.findByLogin(login).orElseThrow(() -> new EntityNotFoundExceptions("Usuário não encontrado"));
     }
 
     public void deleteUsuario(Long id) {

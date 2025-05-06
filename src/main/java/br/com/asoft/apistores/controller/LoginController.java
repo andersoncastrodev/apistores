@@ -24,14 +24,6 @@ public class LoginController {
     @PostMapping
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
 
-        //Validada do login usuario e senha
-        boolean loginCorrect = usersService.isLoginCorrect(loginRequest.getUsername(), loginRequest.getPassword());
-
-        if (!loginCorrect) {
-            //throw new BadCredentialsException("Usuário não encontrado");
-            throw new EntityNotFoundExceptions("Usuário não encontrado");
-        }
-
         LoginResponse loginResponse = tokenService.gerarToken(loginRequest);
 
         return ResponseEntity.ok().body(loginResponse);

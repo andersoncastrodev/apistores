@@ -2,10 +2,8 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.dto.UsersRequest;
 import br.com.asoft.apistores.dto.UsersResponse;
-import br.com.asoft.apistores.inp.UsuarioInp;
 import br.com.asoft.apistores.mapper.UsersMapper;
 import br.com.asoft.apistores.model.Users;
-import br.com.asoft.apistores.out.UsuarioOut;
 import br.com.asoft.apistores.service.UsersService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +22,8 @@ public class UsersController {
 
     private final UsersMapper usersMapper;
 
-
     @GetMapping
     public Page<UsersResponse> listUsers(Pageable pageable) {
-
         Page<Users> usersPage = usersService.findAllUsers(pageable);
         List<UsersResponse> usersResponseList = usersMapper.toListUsersResponse(usersPage.getContent());
         Page<UsersResponse> usersResponsePage = new PageImpl<>(usersResponseList,pageable,usersPage.getTotalPages());
