@@ -39,10 +39,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/login").permitAll()
                         .requestMatchers(HttpMethod.POST,"/users").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/users").permitAll()
+                        //.requestMatchers(HttpMethod.GET,"/users").permitAll()
                         //.requestMatchers(HttpMethod.POST,"/user/clientes").permitAll()
-                        .anyRequest().authenticated())
-                .csrf( csrf -> csrf.disable())
+
+                        .anyRequest().authenticated()) // O resto exige autenticação
+
+                .csrf( csrf -> csrf.disable()) // Habilita o csrf quando for para produção
                 .oauth2ResourceServer( oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 

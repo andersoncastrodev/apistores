@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class UsersController {
     private final UsersMapper usersMapper;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public Page<UsersResponse> listUsers(Pageable pageable) {
         Page<Users> usersPage = usersService.findAllUsers(pageable);
         List<UsersResponse> usersResponseList = usersMapper.toListUsersResponse(usersPage.getContent());
