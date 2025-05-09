@@ -12,12 +12,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,6 +49,25 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<Object>(errorMessage, new HttpHeaders(),errorMessage.getStatus());
 
+    }
+
+
+    //Caso Um ERRO de Acesso Negado quando o Usuario nao tem permissao para Acessar o recurso
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
+
+        HttpStatus forbidden = HttpStatus.FORBIDDEN;
+
+        Problem errorMessage = Problem.builder()
+                .type(forbidden.series().name())
+                .title(forbidden.getReasonPhrase())
+                .detail(ProblemType.ACESSO_NEGADO.getType())
+                .timestamp(LocalDateTime.now())
+                .status(forbidden.value())
+                .userMessage(ex.getMessage())
+                .build();
+
+        return new ResponseEntity<Object>(errorMessage, new HttpHeaders(),errorMessage.getStatus());
     }
 
     //Caso Um ERRO qualquer de Negocio
@@ -164,6 +185,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
        // return super.handleHttpMessageNotReadable(ex, headers, status, request); ->ORIGINAL
     }
+
 
     //Caso Um ERRO de qualquer coisa. A Exception Geral.
     @ExceptionHandler(Exception.class)

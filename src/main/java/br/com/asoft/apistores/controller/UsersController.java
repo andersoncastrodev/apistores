@@ -24,7 +24,6 @@ public class UsersController {
     private final UsersMapper usersMapper;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public Page<UsersResponse> listUsers(Pageable pageable) {
         Page<Users> usersPage = usersService.findAllUsers(pageable);
         List<UsersResponse> usersResponseList = usersMapper.toListUsersResponse(usersPage.getContent());
@@ -43,6 +42,7 @@ public class UsersController {
 //    }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public UsersResponse saveUsers(@RequestBody @Valid UsersRequest usersRequest ) {
         Users users = usersService.saverUsers( usersMapper.toUsers(usersRequest) );
         return usersMapper.toUsersResponse(users);

@@ -24,7 +24,7 @@ import java.security.interfaces.RSAPublicKey;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity // Habilita a anotação @PreAuthorize no controllers
 public class SecurityConfig {
 
     @Value("${jwt.public.key}")
@@ -38,9 +38,16 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/login").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/users").permitAll()
+
+                        .requestMatchers(HttpMethod.GET,"/users/**").permitAll()
+
+                        //.requestMatchers(HttpMethod.POST,"/users").permitAll()
+
                         //.requestMatchers(HttpMethod.GET,"/users").permitAll()
                         //.requestMatchers(HttpMethod.POST,"/user/clientes").permitAll()
+
+                        //.requestMatchers(HttpMethod.GET, "/users/**").hasAuthority("SCOPE_ADMIN") Ex: /users/** é para todos os endpoints que começam com /users/
+
 
                         .anyRequest().authenticated()) // O resto exige autenticação
 

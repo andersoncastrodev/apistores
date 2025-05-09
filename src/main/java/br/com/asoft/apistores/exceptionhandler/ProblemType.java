@@ -16,6 +16,7 @@ public enum ProblemType {
     ERRO_DE_SISTEMA("Erro de sistema"),
     TIPO_INVALIDO("Um ou mais campos estão com valores inválidos para o tipo do campo requerido. Corrija o valor e tente novamente."),
     TIPO_METODO_INVALIDO ("Método não permitido."),
+    ACESSO_NEGADO("Acesso negado. Usuario sem permissão."),
     HELP("https://asoft.com.br/help");
 
     private final String type;
