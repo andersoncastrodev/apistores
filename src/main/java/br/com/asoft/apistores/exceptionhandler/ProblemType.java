@@ -11,7 +11,7 @@ public enum ProblemType {
     DADOS_INVALIDOS("Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente."),
     PARAMETRO_INVALIDO("Parâmetros inválido. Algum dos campos estão com valores incorretos"),
     PARAMETRO_OBRIGATORIOS("Um ou mais campos obrigatorios estão faltando. Corrija e tente novamente."),
-    ERRO_NEGOCIO("Violação de regra de negócio"),
+    ERRO_NEGOCIO("Violação da regra de negócio"),
     URL_NAO_ENCONTRADA("Url não encontrada ou inválida"),
     ERRO_DE_SISTEMA("Erro de sistema"),
     TIPO_INVALIDO("Um ou mais campos estão com valores inválidos para o tipo do campo requerido. Corrija o valor e tente novamente."),

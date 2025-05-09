@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.exceptions.BusinessException;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Users;
 import br.com.asoft.apistores.respository.UsersRepository;
@@ -31,7 +32,7 @@ public class UsersService {
 
         //Verificar se a pessoas esta cadastrada
         usersRepository.findByCpf(users.getCpf()).ifPresent(
-                u -> { throw new RuntimeException("Cpf ja cadastrado");
+                u -> { throw new BusinessException("Cpf ja cadastrado");
             }
         );
 

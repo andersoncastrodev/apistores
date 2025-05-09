@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -74,12 +73,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<Object> handlerBusinessException(BusinessException exception, WebRequest request){
 
-        HttpStatus badRequest = HttpStatus.BAD_REQUEST;
+        HttpStatus badRequest = HttpStatus.INTERNAL_SERVER_ERROR;
 
         Problem errorMessage = Problem.builder()
                 .type(badRequest.series().name())
                 .title(badRequest.getReasonPhrase())
-                .detail(ProblemType.RECURSO_NAO_ENCONTRADO.getType())
+                .detail(ProblemType.ERRO_NEGOCIO.getType())
                 .timestamp(LocalDateTime.now())
                 .status(badRequest.value())
                 .userMessage(exception.getMessage())

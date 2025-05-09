@@ -2,7 +2,6 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.dto.LoginRequest;
 import br.com.asoft.apistores.dto.LoginResponse;
-import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.service.TokenService;
 import br.com.asoft.apistores.service.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 @RequiredArgsConstructor
 public class LoginController {
-
-    private final UsersService usersService;
 
     private final TokenService tokenService;
 
