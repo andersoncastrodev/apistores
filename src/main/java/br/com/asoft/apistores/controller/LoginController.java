@@ -3,7 +3,6 @@ package br.com.asoft.apistores.controller;
 import br.com.asoft.apistores.dto.LoginRequest;
 import br.com.asoft.apistores.dto.LoginResponse;
 import br.com.asoft.apistores.service.TokenService;
-import br.com.asoft.apistores.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
