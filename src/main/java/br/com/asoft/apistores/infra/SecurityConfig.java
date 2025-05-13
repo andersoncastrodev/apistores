@@ -19,8 +19,12 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -36,6 +40,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors()// Habilita o cors
+                .and()
+                .csrf( csrf -> csrf.disable()) // Habilita o csrf quando for para produção
+
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"/login").permitAll()
 
@@ -51,11 +59,30 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()) // O resto exige autenticação
 
-                .csrf( csrf -> csrf.disable()) // Habilita o csrf quando for para produção
                 .oauth2ResourceServer( oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
+    }
+
+    //Configuracao do cors
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Definir quais origens podem ser usadas
+
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Definir quais metodos podem ser usados
+
+        configuration.setAllowedHeaders(List.of("*"));// Definir quais headers podem ser usados
+
+        configuration.setAllowCredentials(true); // Habilitar credenciais
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration); // Definir quais endpoints podem ser usados
+
+        return source;
     }
 
     @Bean
