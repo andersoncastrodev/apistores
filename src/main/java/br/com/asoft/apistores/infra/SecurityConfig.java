@@ -45,7 +45,8 @@ public class SecurityConfig {
                 .csrf( csrf -> csrf.disable()) // Habilita o csrf quando for para produção
 
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST,"/login").permitAll()
+                        .requestMatchers(HttpMethod.POST,"auth/login").permitAll() // Habilita o login e gera o token
+                        .requestMatchers(HttpMethod.GET,"auth/validate").permitAll()// Habilita a validação do token
 
                         .requestMatchers(HttpMethod.GET,"/users/**").permitAll()
 
