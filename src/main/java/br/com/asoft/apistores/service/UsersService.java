@@ -9,8 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +22,7 @@ public class UsersService {
         return usersRepository.findAll(pageable);
     }
 
-    public Users findId(Long id) {
+    public Users findById(Long id) {
         return tryOrFail(id);
     }
 
@@ -48,7 +46,7 @@ public class UsersService {
 
     public void deleteUsuario(Long id) {
 
-        Users users = findId(id);
+        Users users = findById(id);
 
         usersRepository.delete(users);
         usersRepository.flush();

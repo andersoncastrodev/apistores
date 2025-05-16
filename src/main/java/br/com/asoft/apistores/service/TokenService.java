@@ -39,16 +39,17 @@ public class TokenService {
         }
 
         var now = Instant.now(); // hora atual
-        var expiresIn = 300L; // 5 minutos tempo do expira o token
+        var expiresIn = 1800L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+        var refreshTokenExpiresIn = 86400L; // 24 horas
 
-        // Montagem do token
+        // Montagem do Access Token
 
         //Pegar os papeis,Permissoes (Roles) do usuario
         var scopes = user.getRoles().stream()
                 .map(Roles::getName)
                 .collect(Collectors.toUnmodifiableList()); //Monta uma lista
 
-        var clains = JwtClaimsSet.builder()
+        var accessTokenClaims = JwtClaimsSet.builder()
                 .issuer("https://asoftsistemas.com.br")
                 .subject(user.getId().toString())
                 .claim("scope", scopes) // adicionando os papeis,Permissoes (Roles) do usuario
@@ -56,11 +57,21 @@ public class TokenService {
                 .issuedAt(now.plusSeconds(expiresIn))
                 .build();
 
-        // Gerar o token
-        var jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(clains));
+        var accessToken =  jwtEncoder.encode(JwtEncoderParameters.from(accessTokenClaims)).getTokenValue();
+
+
+        // Gera o Refresh Token (sem scope, apenas para renovar)
+        var refreshTokenClaims = JwtClaimsSet.builder()
+                .issuer("https://asoftsistemas.com.br")
+                .subject(user.getId().toString())
+                .issuedAt(now)
+                .expiresAt(now.plusSeconds(refreshTokenExpiresIn))
+                .build();
+
+        var refreshToken = jwtEncoder.encode(JwtEncoderParameters.from(refreshTokenClaims)).getTokenValue();
 
         // Retornar objeto e o token
-        return new LoginResponse(jwtValue.getTokenValue(), expiresIn);
+        return new LoginResponse(accessToken,refreshToken, expiresIn);
 
     }
 
@@ -81,6 +92,41 @@ public class TokenService {
         } catch (JwtException e) {
             throw new RuntimeException("Token inválido ou expirado", e);
         }
+    }
+
+
+    public LoginResponse gerarTokenComRefresh(String refreshToken) {
+
+        Jwt decodedToken;
+
+        try {
+            decodedToken = jwtDecoder.decode(refreshToken);
+        } catch (JwtException e) {
+            throw new EntityNotFoundExceptions("Refresh token inválido ou expirado.");
+        }
+
+        // Recupera o usuário com base no subject do token
+        Long userId = Long.valueOf(decodedToken.getSubject());
+        Users user = usersService.findById(userId); // certifique-se que esse método existe
+
+        var now = Instant.now();
+        var accessTokenExpiresIn = 900L; //300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+
+        var scopes = user.getRoles().stream()
+                .map(Roles::getName)
+                .collect(Collectors.toUnmodifiableList());
+
+        var accessTokenClaims = JwtClaimsSet.builder()
+                .issuer("https://asoftsistemas.com.br")
+                .subject(user.getId().toString())
+                .claim("scope", scopes)
+                .issuedAt(now)
+                .expiresAt(now.plusSeconds(accessTokenExpiresIn))
+                .build();
+
+        var accessToken = jwtEncoder.encode(JwtEncoderParameters.from(accessTokenClaims)).getTokenValue();
+
+        return new LoginResponse(accessToken, refreshToken, accessTokenExpiresIn);
     }
 
 }

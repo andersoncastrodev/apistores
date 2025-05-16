@@ -2,6 +2,7 @@ package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.dto.LoginRequest;
 import br.com.asoft.apistores.dto.LoginResponse;
+import br.com.asoft.apistores.dto.RefreshRequest;
 import br.com.asoft.apistores.service.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,13 @@ public class LoginController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token inválido");
         }
+    }
+
+    //Valida o Refresh Token jwt que foi gerado pela API
+    @PostMapping("/refresh")
+    public ResponseEntity<LoginResponse> refresh(@RequestBody RefreshRequest refreshRequest) {
+        LoginResponse response = tokenService.gerarTokenComRefresh(refreshRequest.getRefreshToken());
+        return ResponseEntity.ok(response);
     }
 
 }
