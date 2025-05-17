@@ -13,7 +13,12 @@ public class LoginResponse {
 
     private String accessToken;
 
+    private Long expiresToken; //tempo de expiração do token
+
     private String refreshToken;
 
-    private Long expiresIn;
+    private Long expiresRefToken; //tempo de expiração do refresh token
+
+
+
 }

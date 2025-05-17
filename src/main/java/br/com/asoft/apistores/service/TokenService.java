@@ -39,8 +39,11 @@ public class TokenService {
         }
 
         var now = Instant.now(); // hora atual
-        var expiresIn = 1800L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
-        var refreshTokenExpiresIn = 86400L; // 24 horas
+        //var expiresToken = 1800L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+        //var expiresRefToken = 86400L; // 24 horas
+
+        var expiresToken = 60L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+        var expiresRefToken = 120L; // 24 horas
 
         // Montagem do Access Token
 
@@ -54,7 +57,7 @@ public class TokenService {
                 .subject(user.getId().toString())
                 .claim("scope", scopes) // adicionando os papeis,Permissoes (Roles) do usuario
                 .issuedAt(now)
-                .issuedAt(now.plusSeconds(expiresIn))
+                .issuedAt(now.plusSeconds(expiresToken))
                 .build();
 
         var accessToken =  jwtEncoder.encode(JwtEncoderParameters.from(accessTokenClaims)).getTokenValue();
@@ -65,13 +68,13 @@ public class TokenService {
                 .issuer("https://asoftsistemas.com.br")
                 .subject(user.getId().toString())
                 .issuedAt(now)
-                .expiresAt(now.plusSeconds(refreshTokenExpiresIn))
+                .expiresAt(now.plusSeconds(expiresRefToken))
                 .build();
 
         var refreshToken = jwtEncoder.encode(JwtEncoderParameters.from(refreshTokenClaims)).getTokenValue();
 
         // Retornar objeto e o token
-        return new LoginResponse(accessToken,refreshToken, expiresIn);
+        return new LoginResponse(accessToken,expiresToken,refreshToken,expiresRefToken);
 
     }
 
@@ -110,7 +113,8 @@ public class TokenService {
         Users user = usersService.findById(userId); // certifique-se que esse método existe
 
         var now = Instant.now();
-        var accessTokenExpiresIn = 900L; //300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+        //var expiresToken = 900L; //300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+        var expiresToken = 60L;
 
         var scopes = user.getRoles().stream()
                 .map(Roles::getName)
@@ -121,12 +125,12 @@ public class TokenService {
                 .subject(user.getId().toString())
                 .claim("scope", scopes)
                 .issuedAt(now)
-                .expiresAt(now.plusSeconds(accessTokenExpiresIn))
+                .expiresAt(now.plusSeconds(expiresToken))
                 .build();
 
         var accessToken = jwtEncoder.encode(JwtEncoderParameters.from(accessTokenClaims)).getTokenValue();
 
-        return new LoginResponse(accessToken, refreshToken, accessTokenExpiresIn);
+        return new LoginResponse(accessToken,expiresToken,null,null);
     }
 
 }

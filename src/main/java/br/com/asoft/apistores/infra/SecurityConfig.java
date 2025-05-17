@@ -7,6 +7,7 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -73,13 +74,15 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:3000")); // Definir quais origens podem ser usadas
+        configuration.setAllowedOrigins(List.of("http://localhost:3000" , "http://127.0.0.1:3000")); // Definir quais origens podem ser usadas
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Definir quais metodos podem ser usados
 
         configuration.setAllowedHeaders(List.of("*"));// Definir quais headers podem ser usados
 
         configuration.setAllowCredentials(true); // Habilitar credenciais
+
+        //configuration.addExposedHeader(HttpHeaders.SET_COOKIE); // Habilitar cookies.
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration); // Definir quais endpoints podem ser usados
