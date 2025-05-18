@@ -43,7 +43,7 @@ public class TokenService {
         //var expiresRefToken = 86400L; // 24 horas
 
         var expiresToken = 60L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
-        var expiresRefToken = 120L; // 24 horas
+        var expiresRefToken = 300L; // 120 24 horas
 
         // Montagem do Access Token
 
@@ -78,24 +78,24 @@ public class TokenService {
 
     }
 
-    //Metodo para validar o token JWT se foi gerado pela API
-    public Map<String, Object> validateToken(String token) {
-        try {
-            Jwt decodedJwt = jwtDecoder.decode(token); // Usa o JwtDecoder do Spring
-
-            Map<String, Object> claims = new HashMap<>();
-            claims.put("subject", decodedJwt.getSubject());
-            claims.put("issuer", decodedJwt.getIssuer());
-            claims.put("issuedAt", decodedJwt.getIssuedAt());
-            claims.put("expiresAt", decodedJwt.getExpiresAt());
-            claims.put("scope", decodedJwt.getClaim("scope"));
-
-            return claims;
-
-        } catch (JwtException e) {
-            throw new RuntimeException("Token inválido ou expirado", e);
-        }
-    }
+    //Metodo para validar o token JWT se foi gerado pela API - ANTIGO NAO DELETAR AGORA
+//    public Map<String, Object> validateToken(String token) {
+//        try {
+//            Jwt decodedJwt = jwtDecoder.decode(token); // Usa o JwtDecoder do Spring
+//
+//            Map<String, Object> claims = new HashMap<>();
+//            claims.put("subject", decodedJwt.getSubject());
+//            claims.put("issuer", decodedJwt.getIssuer());
+//            claims.put("issuedAt", decodedJwt.getIssuedAt());
+//            claims.put("expiresAt", decodedJwt.getExpiresAt());
+//            claims.put("scope", decodedJwt.getClaim("scope"));
+//
+//            return claims;
+//
+//        } catch (JwtException e) {
+//            throw new RuntimeException("Token inválido ou expirado", e);
+//        }
+//    }
 
 
     public LoginResponse gerarTokenComRefresh(String refreshToken) {
@@ -131,6 +131,15 @@ public class TokenService {
         var accessToken = jwtEncoder.encode(JwtEncoderParameters.from(accessTokenClaims)).getTokenValue();
 
         return new LoginResponse(accessToken,expiresToken,null,null);
+    }
+
+    public void validateToken(String token) {
+        try {
+            jwtDecoder.decode(token);
+            // If no exception is thrown, token is valid
+        } catch (JwtException e) {
+            throw new EntityNotFoundExceptions("Token inválido ou expirado.");
+        }
     }
 
 }

@@ -7,9 +7,7 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,12 +18,10 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
-import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -38,19 +34,36 @@ public class SecurityConfig {
     @Value("${jwt.private.key}")
     private RSAPrivateKey privateKey;
 
+    private final CorsFilter corsFilter;
+
+    private final CookieTokenResolver cookieTokenResolver;
+
+    public SecurityConfig(CorsFilter corsFilter, CookieTokenResolver cookieTokenResolver) {
+        this.corsFilter = corsFilter;
+        this.cookieTokenResolver = cookieTokenResolver;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors()// Habilita o cors
-                .and()
-                .csrf( csrf -> csrf.disable()) // Habilita o csrf quando for para produção
+//                .cors()// Habilita o cors
+//                .and()
+//                .csrf( csrf -> csrf.disable()) // Habilita o csrf quando for para produção
+
+                //.cors(cors -> cors.configurationSource(corsConfigurationSource))
+
+                .csrf(csrf -> csrf.disable()) // Habilita o csrf quando for para produção
+
+                // Add the CORS filter before the security filters
+                .addFilter(corsFilter)
 
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST,"auth/login").permitAll() // Habilita o login e gera o token
                         .requestMatchers(HttpMethod.GET,"auth/validate").permitAll()// Habilita a validação do token
                         .requestMatchers(HttpMethod.POST,"auth/refresh").permitAll()// Habilita a refresh do token
-
+                        .requestMatchers(HttpMethod.POST,"/auth/logout").permitAll()
                         .requestMatchers(HttpMethod.GET,"/users/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS requests for CORS preflight
 
                         //.requestMatchers(HttpMethod.POST,"/users").permitAll()
 
@@ -62,33 +75,35 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()) // O resto exige autenticação
 
-                .oauth2ResourceServer( oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+                .oauth2ResourceServer(oauth2 -> oauth2
+                        .jwt(jwt -> jwt.decoder(jwtDecoder()))
+                        .bearerTokenResolver(cookieTokenResolver)) // Habilita o cookie para autenticação IMPORTANTE
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();
     }
 
     //Configuracao do cors
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(List.of("http://localhost:3000" , "http://127.0.0.1:3000")); // Definir quais origens podem ser usadas
-
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE")); // Definir quais metodos podem ser usados
-
-        configuration.setAllowedHeaders(List.of("*"));// Definir quais headers podem ser usados
-
-        configuration.setAllowCredentials(true); // Habilitar credenciais
-
-        //configuration.addExposedHeader(HttpHeaders.SET_COOKIE); // Habilitar cookies.
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Definir quais endpoints podem ser usados
-
-        return source;
-    }
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//
+//        CorsConfiguration configuration = new CorsConfiguration();
+//
+//        configuration.setAllowedOrigins(List.of("http://localhost:8080")); // Definir quais origens podem ser usadas
+//
+//        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")); // Definir quais metodos podem ser usados
+//
+//        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
+//
+//        configuration.setExposedHeaders(Arrays.asList("Authorization"));
+//
+//        configuration.setAllowCredentials(true); // Important for cookies
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration); // Definir quais endpoints podem ser usados
+//
+//        return source;
+//    }
 
     @Bean
     public JwtDecoder jwtDecoder() {
