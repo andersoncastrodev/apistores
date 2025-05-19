@@ -84,21 +84,8 @@ public class LoginController {
     @PostMapping("/logout")
     public ResponseEntity<Void> logout() {
 
-        ResponseCookie accessTokenCookie = ResponseCookie.from("access_token", "")
-                .httpOnly(true)//Segurança do token
-                .secure(false) // Setar para true em produção
-                .path("/")
-                .maxAge(0)
-                .sameSite("Lax") // 'Strict' ou ('Lax' melhor para fluxos entre paginas )
-                .build();
-
-        ResponseCookie refreshTokenCookie = ResponseCookie.from("refresh_token", "")
-                .httpOnly(true)//Segurança do token
-                .secure(false) // Setar para true em produção
-                .path("/")
-                .maxAge(0)
-                .sameSite("Lax") // 'Strict' ou ('Lax' melhor para fluxos entre paginas )
-                .build();
+        ResponseCookie accessTokenCookie = clearCookie("access_token");
+        ResponseCookie refreshTokenCookie = clearCookie("refresh_token");
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, accessTokenCookie.toString())
@@ -106,6 +93,7 @@ public class LoginController {
                 .build();
     }
 
+    //Gerar o cookie para o access token
     private ResponseCookie createAccessTokenCookie(String token, Long expiresIn) {
         return ResponseCookie.from("access_token", token)
                 .httpOnly(true) //Segurança do token
@@ -116,6 +104,7 @@ public class LoginController {
                 .build();
     }
 
+    //Gerar o cookie para o refresh token
     private ResponseCookie createRefreshTokenCookie(String token, Long expiresIn) {
         return ResponseCookie.from("refresh_token", token)
                 .httpOnly(true)//Segurança do token
@@ -126,6 +115,7 @@ public class LoginController {
                 .build();
     }
 
+    //Limpa o cookie
     private ResponseCookie clearCookie(String cookieName) {
         return ResponseCookie.from(cookieName, "")
                 .httpOnly(true)//Segurança do token
