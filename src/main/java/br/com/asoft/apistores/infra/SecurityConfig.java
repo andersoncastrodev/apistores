@@ -19,7 +19,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.CorsFilter;
-
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
@@ -46,12 +45,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-//                .cors()// Habilita o cors
-//                .and()
-//                .csrf( csrf -> csrf.disable()) // Habilita o csrf quando for para produção
-
-                //.cors(cors -> cors.configurationSource(corsConfigurationSource))
-
                 .csrf(csrf -> csrf.disable()) // Habilita o csrf quando for para produção
 
                 // Add the CORS filter before the security filters
@@ -61,7 +54,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"auth/login").permitAll() // Habilita o login e gera o token
                         .requestMatchers(HttpMethod.GET,"auth/validate").permitAll()// Habilita a validação do token
                         .requestMatchers(HttpMethod.POST,"auth/refresh").permitAll()// Habilita a refresh do token
-                        .requestMatchers(HttpMethod.POST,"/auth/logout").permitAll()
+                        .requestMatchers(HttpMethod.POST,"/auth/logout").permitAll()// Habilita o logout
                         .requestMatchers(HttpMethod.GET,"/users/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow OPTIONS requests for CORS preflight
 
@@ -82,28 +75,6 @@ public class SecurityConfig {
 
         return http.build();
     }
-
-    //Configuracao do cors
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//
-//        CorsConfiguration configuration = new CorsConfiguration();
-//
-//        configuration.setAllowedOrigins(List.of("http://localhost:8080")); // Definir quais origens podem ser usadas
-//
-//        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")); // Definir quais metodos podem ser usados
-//
-//        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
-//
-//        configuration.setExposedHeaders(Arrays.asList("Authorization"));
-//
-//        configuration.setAllowCredentials(true); // Important for cookies
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration); // Definir quais endpoints podem ser usados
-//
-//        return source;
-//    }
 
     @Bean
     public JwtDecoder jwtDecoder() {

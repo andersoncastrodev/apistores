@@ -10,8 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,26 +75,6 @@ public class TokenService {
         return new LoginResponse(accessToken,expiresToken,refreshToken,expiresRefToken);
 
     }
-
-    //Metodo para validar o token JWT se foi gerado pela API - ANTIGO NAO DELETAR AGORA
-//    public Map<String, Object> validateToken(String token) {
-//        try {
-//            Jwt decodedJwt = jwtDecoder.decode(token); // Usa o JwtDecoder do Spring
-//
-//            Map<String, Object> claims = new HashMap<>();
-//            claims.put("subject", decodedJwt.getSubject());
-//            claims.put("issuer", decodedJwt.getIssuer());
-//            claims.put("issuedAt", decodedJwt.getIssuedAt());
-//            claims.put("expiresAt", decodedJwt.getExpiresAt());
-//            claims.put("scope", decodedJwt.getClaim("scope"));
-//
-//            return claims;
-//
-//        } catch (JwtException e) {
-//            throw new RuntimeException("Token inválido ou expirado", e);
-//        }
-//    }
-
 
     public LoginResponse gerarTokenComRefresh(String refreshToken) {
 
