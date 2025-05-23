@@ -37,11 +37,11 @@ public class TokenService {
         }
 
         var now = Instant.now(); // hora atual
-        //var expiresToken = 1800L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
-        //var expiresRefToken = 86400L; // 24 horas
+        var expiresToken = 1800L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+        var expiresRefToken = 86400L; // 24 horas
 
-        var expiresToken = 60L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
-        var expiresRefToken = 300L; // 120 24 horas
+        //var expiresToken = 60L; // 300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+        //var expiresRefToken = 300L; // 120 24 horas
 
         // Montagem do Access Token
 
@@ -91,8 +91,8 @@ public class TokenService {
         Users user = usersService.findById(userId); // certifique-se que esse método existe
 
         var now = Instant.now();
-        //var expiresToken = 900L; //300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
-        var expiresToken = 60L;
+        var expiresToken = 1800L; //300L 5 minutos , 900L 15 minutos, 1800L 30 minutos
+       // var expiresToken = 60L;
 
         var scopes = user.getRoles().stream()
                 .map(Roles::getName)
