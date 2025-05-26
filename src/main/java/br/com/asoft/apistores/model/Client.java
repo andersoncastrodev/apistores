@@ -1,5 +1,7 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.SexValue;
+import br.com.asoft.apistores.enums.StatusValue;
 import br.com.asoft.apistores.enums.TypePerson;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -7,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -27,13 +30,21 @@ public class Client {
 
     private String name;
 
-    private String nameFantasy;
+    private SexValue sex;
 
     private LocalDate dateBirth;
 
-    private String phoneNumber;
+    private String telephoneFirst;
+
+    private String telephoneSecond;
 
     private String email;
+
+    private LocalDateTime dateRegister;
+
+    private StatusValue status;
+
+    private String observation;
 
     @OneToOne
     @JoinColumn(name = "id_address")

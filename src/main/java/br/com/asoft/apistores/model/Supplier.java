@@ -1,17 +1,20 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.StatusValue;
 import br.com.asoft.apistores.enums.TypePerson;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "supplier")
-public class Supplier {
+public class Supplier { // Fornecedor
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +31,18 @@ public class Supplier {
 
     private String nameFantasy;
 
-    private String phoneNumber;
+    private String telephoneFirst;
+
+    private String telephoneSecond;
 
     private String email;
+
+    private LocalDateTime dateRegister;
+
+    private StatusValue status;
+
+    private String observation;
+
 
     @OneToOne
     @JoinColumn(name = "id_address")

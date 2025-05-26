@@ -1,10 +1,12 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.StatusValue;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 
@@ -26,13 +28,21 @@ public class Users {
 
     private String email;
 
-    private String phone;
+    private String telephoneFirst;
+
+    private String telephoneSecond;
 
     private String cpf;
 
     private String login;
 
     private String password;
+
+    private LocalDateTime dateRegister;
+
+    private StatusValue status;
+
+    private String observation;
 
     //@ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.EAGER)
