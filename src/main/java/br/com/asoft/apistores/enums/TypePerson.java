@@ -6,9 +6,13 @@ public enum TypePerson {
 
     JURIDICA("Juridica");
 
-    private String description;
+    private String label;
 
-    TypePerson(String description) {
-        this.description = description;
+    TypePerson(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
     }
 }

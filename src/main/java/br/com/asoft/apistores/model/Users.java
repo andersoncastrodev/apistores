@@ -40,6 +40,7 @@ public class Users {
 
     private LocalDateTime dateRegister;
 
+    @Enumerated(EnumType.STRING)
     private StatusValue status;
 
     private String observation;

@@ -6,7 +6,7 @@ public enum RolesValue {
 
     USER(2L);
 
-    private long id_role;
+    private Long id_role;
 
     RolesValue(Long id_role) {
         this.id_role = id_role;

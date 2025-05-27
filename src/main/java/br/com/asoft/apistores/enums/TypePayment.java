@@ -7,10 +7,14 @@ public enum TypePayment {
     PIX     ("Pix"),
     BOLETO  ("Boleto");
 
-    private String description;
+    private String label;
 
-    TypePayment(String description) {
-        this.description = description;
+    TypePayment(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
     }
 
 }

@@ -6,10 +6,14 @@ public enum StatusSales {
     PAGO ("Pago"),
     CANCELADO ("Cancelado");
 
-    private String description;
+    private String label;
 
-    StatusSales(String description) {
-        this.description = description;
+    StatusSales(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
     }
 
 }
