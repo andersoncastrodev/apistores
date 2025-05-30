@@ -40,7 +40,7 @@ public class Users {
 
     private LocalDateTime dateRegister;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
     private StatusValue status;
 
     private String observation;
