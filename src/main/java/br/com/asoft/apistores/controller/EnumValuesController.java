@@ -15,31 +15,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EnumValuesController {
 
-
     @GetMapping("/status")
-//    public List<Map<String, String>> getStatusValues() {
-//
-//        StatusValue[] values = StatusValue.values(); // Lista de Enuns
-//
-//        List<Map<String, String>> result = new ArrayList<>();
-//
-//        for (StatusValue value : values) {
-//            Map<String, String> map = new HashMap<>(); // Cria um Map
-//            map.put( value.name(), value.getLabel() ); // Adiciona a chave e o valor
-//            result.add(map); // Adiciona o Map na Lista
-//        }
-//
-//        return result;
-//    }
-//    public List<Map<String, String>> getStatusValues() {
-//        return Arrays.stream(StatusValue.values())
-//                .map(value -> {
-//                    Map<String, String> map = new HashMap<>();
-//                    map.put(value.name(), value.getLabel());
-//                    return map;
-//                })
-//                .collect(Collectors.toList());
-//    }
 
     public List<Map<String, String>> getStatusValues() {
         return Arrays.stream(StatusValue.values())
