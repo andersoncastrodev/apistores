@@ -24,17 +24,17 @@ public class SalesController {
 
     private final SalesMapper salesMapper;
 
-    @GetMapping
-    public Page<VendaOut> listaVendas(Pageable pageable) {
-
-        Page<Sales> vendaPage = salesService.allTodas(pageable);
-
-        List<VendaOut> vendaOutsList = salesMapper.toListVendaOut(vendaPage.getContent());
-
-        Page<VendaOut> vendaOutPage = new PageImpl<>(vendaOutsList,pageable, vendaPage.getTotalElements());
-
-        return vendaOutPage;
-    }
+//    @GetMapping
+//    public Page<VendaOut> listaVendas(Pageable pageable) {
+//
+//        Page<Sales> vendaPage = salesService.allTodas(pageable);
+//
+//        List<VendaOut> vendaOutsList = salesMapper.toListVendaOut(vendaPage.getContent());
+//
+//        Page<VendaOut> vendaOutPage = new PageImpl<>(vendaOutsList,pageable, vendaPage.getTotalElements());
+//
+//        return vendaOutPage;
+//    }
 
 //    @GetMapping
 //    public List<VendaOut> listaVendas(){
