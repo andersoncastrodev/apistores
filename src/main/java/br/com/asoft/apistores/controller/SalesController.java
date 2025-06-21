@@ -47,11 +47,11 @@ public class SalesController {
     }
 
     @PostMapping
-    public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp) {
-
-        Sales sales = salesService.saveVenda(salesMapper.toVenda(vendaInp));
-       return salesMapper.toVendaOut(sales);
-    }
+//    public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp) {
+//
+//        Sales sales = salesService.saveVenda(salesMapper.toVenda(vendaInp));
+//       return salesMapper.toVendaOut(sales);
+//    }
 
     @PutMapping("/{id}")
     public VendaOut alterarVenda(@RequestBody VendaInp vendaInp, @PathVariable Long id){
