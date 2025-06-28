@@ -52,16 +52,16 @@ public class CityController {
         return cityMapper.toCidadeOut(cityService.findId(id));
     }
 
-    @PostMapping
-    public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp) {
-
-        City city = cityMapper.toCidade(cidadeInp);
-
-        CidadeOut cidadeOut = cityMapper.toCidadeOut( cityService.saveCidade(city));
-
-        return cidadeOut;
-
-    }
+//    @PostMapping
+//    public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp) {
+//
+//        City city = cityMapper.toCidade(cidadeInp);
+//
+//        CidadeOut cidadeOut = cityMapper.toCidadeOut( cityService.saveCidade(city));
+//
+//        return cidadeOut;
+//
+//    }
 
 //    @PutMapping("/{id}")
 //    public CidadeOut atualizarCidade(@RequestBody @Valid CidadeInp cidadeInp, @PathVariable Long id) {

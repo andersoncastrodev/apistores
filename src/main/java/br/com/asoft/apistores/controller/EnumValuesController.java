@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/enum-values")
+@RequestMapping("/enum")
 @RequiredArgsConstructor
 public class EnumValuesController {
 
@@ -23,10 +23,10 @@ public class EnumValuesController {
                 .toList();
     }
 
-    @GetMapping("/sex")
-    public List<Map<String, String>> getSexValues() {
-        return Arrays.stream(SexValue.values())
-                .map(sex -> Map.of("value", sex.name(), "label", sex.getLabel()))
+    @GetMapping("/gender")
+    public List<Map<String, String>> getGenderValues() {
+        return Arrays.stream(GenderValue.values())
+                .map(gen -> Map.of("value", gen.name(), "label", gen.getLabel()))
                 .toList();
     }
 

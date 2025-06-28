@@ -5,6 +5,7 @@ create table supplier (
     rg_ie varchar(15) not null,
     name varchar(100) not null,
     name_fantasy varchar(100) not null,
+    gender varchar(15) not null,
     telephone_first varchar(15) not null,
     telephone_second varchar(15) not null,
     email varchar(100) not null,

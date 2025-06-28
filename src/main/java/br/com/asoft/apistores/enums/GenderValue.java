@@ -1,13 +1,13 @@
 package br.com.asoft.apistores.enums;
 
-public enum SexValue {
+public enum GenderValue { //Enum Generos
 
     MASCULINO ("Masculino"),
     FEMININO ("Feminino");
 
     private String label;
 
-    SexValue(String description) {
+    GenderValue(String description) {
         this.label = description;
     }
 

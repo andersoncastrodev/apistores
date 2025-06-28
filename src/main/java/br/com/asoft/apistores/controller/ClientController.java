@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/client")
 @RequiredArgsConstructor
 public class ClientController {
 
@@ -92,4 +92,6 @@ public class ClientController {
 //        }
 //
 //    }
+
+
 }

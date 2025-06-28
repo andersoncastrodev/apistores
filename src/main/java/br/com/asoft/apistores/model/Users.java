@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.GenderValue;
 import br.com.asoft.apistores.enums.StatusValue;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -23,6 +24,9 @@ public class Users {
     private Long id;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)// Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
+    private GenderValue gender;//Genero
 
     private LocalDate dateBirth;
 

@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.GenderValue;
 import br.com.asoft.apistores.enums.StatusValue;
 import br.com.asoft.apistores.enums.TypePerson;
 import jakarta.persistence.*;
@@ -28,6 +29,8 @@ public class Supplier { // Fornecedor
     private String rgIe;
 
     private String name;
+
+    private GenderValue gender;//Genero
 
     private String nameFantasy;
 

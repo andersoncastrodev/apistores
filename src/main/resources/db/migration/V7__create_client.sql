@@ -4,7 +4,7 @@ create table client (
 	cpf_cnpj varchar(15) not null,
     rg_ie varchar(15) not null,
     name varchar(100) not null,
-    sex varchar(15) not null,
+    gender varchar(15) not null,
     date_birth date not null,
     telephone_first varchar(15) not null,
     telephone_second varchar(15) not null,

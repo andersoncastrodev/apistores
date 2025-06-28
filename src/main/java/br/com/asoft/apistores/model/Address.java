@@ -19,6 +19,8 @@ public class Address {
 
     private String street;
 
+    private String numbers;
+
     private String cep;
 
     @ManyToOne

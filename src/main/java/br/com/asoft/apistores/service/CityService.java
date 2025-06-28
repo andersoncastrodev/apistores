@@ -38,16 +38,16 @@ public class CityService {
         return tryOrFail(id);
     }
 
-    public City saveCidade(City city){
-
-        Long estadoId = city.getState().getId();
-
-        State state = stateService.tryOrFail(estadoId);
-
-        city.setState(state);
-
-        return cityRepository.save(city);
-    }
+//    public City saveCidade(City city){
+//
+//        Long estadoId = city.getState().getId();
+//
+//        State state = stateService.tryOrFail(estadoId);
+//
+//        city.setState(state);
+//
+//        return cityRepository.save(city);
+//    }
 
     public void deletarCidade(Long id){
 

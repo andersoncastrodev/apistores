@@ -1,6 +1,7 @@
 create table users (
    id serial not null,
    name varchar(50) not null,
+   gender varchar(15) not null,
    date_birth date not null,
    email varchar(50) not null,
    telephone_first varchar(15) not null,

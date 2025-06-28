@@ -1,6 +1,6 @@
 package br.com.asoft.apistores.model;
 
-import br.com.asoft.apistores.enums.SexValue;
+import br.com.asoft.apistores.enums.GenderValue;
 import br.com.asoft.apistores.enums.StatusValue;
 import br.com.asoft.apistores.enums.TypePerson;
 import jakarta.persistence.*;
@@ -30,7 +30,7 @@ public class Client {
 
     private String name;
 
-    private SexValue sex;
+    private GenderValue gender;//Genero
 
     private LocalDate dateBirth;
 
