@@ -1,7 +1,6 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.dto.UsersRequest;
-import br.com.asoft.apistores.dto.UsersResponse;
+import br.com.asoft.apistores.dto.UsersDto;
 import br.com.asoft.apistores.mapper.UsersMapper;
 import br.com.asoft.apistores.model.Users;
 import br.com.asoft.apistores.service.UsersService;
@@ -24,10 +23,10 @@ public class UsersController {
     private final UsersMapper usersMapper;
 
     @GetMapping
-    public Page<UsersResponse> listUsers(Pageable pageable) {
+    public Page<UsersDto> listUsers(Pageable pageable) {
         Page<Users> usersPage = usersService.findAllUsers(pageable);
-        List<UsersResponse> usersResponseList = usersMapper.toListUsersResponse(usersPage.getContent());
-        Page<UsersResponse> usersResponsePage = new PageImpl<>(usersResponseList,pageable,usersPage.getTotalPages());
+        List<UsersDto> usersDtoList = usersMapper.toListUsersDto(usersPage.getContent());
+        Page<UsersDto> usersResponsePage = new PageImpl<>(usersDtoList,pageable,usersPage.getTotalPages());
         return usersResponsePage;
     }
 
@@ -43,9 +42,9 @@ public class UsersController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
-    public UsersResponse saveUsers(@RequestBody @Valid UsersRequest usersRequest ) {
-        Users users = usersService.saverUsers( usersMapper.toUsers(usersRequest) );
-        return usersMapper.toUsersResponse(users);
+    public UsersDto saveUsers(@RequestBody @Valid UsersDto userDto ) {
+        Users users = usersService.saverUsers( usersMapper.toUsers(userDto) );
+        return usersMapper.toUsersDto(users);
     }
 
 //    @PutMapping("/{id}")

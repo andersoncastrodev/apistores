@@ -27,9 +27,9 @@ public class AddressService {
 
     private final CityService cityService;
 
-    public Page<Address> allEnderecoPage(AddressFilter addressFilter, Pageable pageable){
-        return addressRepository.findAll(EnderecoSpecification.filter(addressFilter), pageable);
-    }
+//    public Page<Address> allEnderecoPage(AddressFilter addressFilter, Pageable pageable){
+//        return addressRepository.findAll(EnderecoSpecification.filter(addressFilter), pageable);
+//    }
 
     public List<Address> allEndereco(){
         return addressRepository.findAll();
@@ -41,11 +41,11 @@ public class AddressService {
 
     public Address saveEndereco(Address address){
 
-        Long cidadeId = address.getCity().getId();
+        //Long cidadeId = address.getCity().getId();
 
-        City city = cityService.tryOrFail(cidadeId);
+        //City city = cityService.tryOrFail(cidadeId);
 
-        address.setCity(city);
+        //address.setCity(city);
 
         return addressRepository.save(address);
     }

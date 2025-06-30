@@ -1,22 +1,15 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.filter.CityFilter;
-import br.com.asoft.apistores.inp.CidadeInp;
 import br.com.asoft.apistores.mapper.CityMapper;
 import br.com.asoft.apistores.model.City;
-import br.com.asoft.apistores.out.CidadeOut;
 import br.com.asoft.apistores.service.CityService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.io.IOException;
+
 import java.util.List;
 
 @RestController
@@ -28,17 +21,17 @@ public class CityController {
 
     private final CityMapper cityMapper;
 
-    @GetMapping
-    public Page<CidadeOut> buscarTodas(CityFilter cityFilter, Pageable pageable) {
-
-        Page<City> cidadesPage = cityService.allCidadesPage(cityFilter, pageable);
-
-        List<CidadeOut> cidadesOutList = cityMapper.toListCidadeOut(cidadesPage.getContent());
-
-        Page<CidadeOut> cidadesPageOut = new PageImpl<>(cidadesOutList,pageable,cidadesPage.getTotalElements());
-
-        return cidadesPageOut;
-    }
+//    @GetMapping
+//    public Page<CidadeOut> buscarTodas(CityFilter cityFilter, Pageable pageable) {
+//
+//        Page<City> cidadesPage = cityService.allCidadesPage(cityFilter, pageable);
+//
+//        List<CidadeOut> cidadesOutList = cityMapper.toListCidadeOut(cidadesPage.getContent());
+//
+//        Page<CidadeOut> cidadesPageOut = new PageImpl<>(cidadesOutList,pageable,cidadesPage.getTotalElements());
+//
+//        return cidadesPageOut;
+//    }
 
     // SEM PAGINAÇÃO
 //    @GetMapping
@@ -47,10 +40,10 @@ public class CityController {
 //        return cidades;
 //    }
 
-    @GetMapping("/{id}")
-    public CidadeOut buscarPorId(@PathVariable Long id){
-        return cityMapper.toCidadeOut(cityService.findId(id));
-    }
+//    @GetMapping("/{id}")
+//    public CidadeOut buscarPorId(@PathVariable Long id){
+//        return cityMapper.toCidadeOut(cityService.findId(id));
+//    }
 
 //    @PostMapping
 //    public CidadeOut salvarCidade(@RequestBody @Valid CidadeInp cidadeInp) {
@@ -73,11 +66,11 @@ public class CityController {
 //        return cityMapper.toCidadeOut(cityService.saveCidade(cidadeNova));
 //    }
 
-    @DeleteMapping("/{id}")
-    public void excluirCidade(@PathVariable Long id){
-
-        cityService.deletarCidade(id);
-    }
+//    @DeleteMapping("/{id}")
+//    public void excluirCidade(@PathVariable Long id){
+//
+//        cityService.deletarCidade(id);
+//    }
 
 //    @GetMapping("/relatoriocidades")
 //    public ResponseEntity<InputStreamResource> relatorioCidades() {

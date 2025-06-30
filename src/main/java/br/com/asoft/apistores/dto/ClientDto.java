@@ -1,24 +1,26 @@
-package br.com.asoft.apistores.model;
+package br.com.asoft.apistores.dto;
 
 import br.com.asoft.apistores.enums.GenderValue;
 import br.com.asoft.apistores.enums.StatusValue;
 import br.com.asoft.apistores.enums.TypePerson;
-import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
+
+/**
+ * Classe de Dto = Objeto de Transferência de Dados (do inglês, Data Transfer Object),
+ * No projeto vou usar O mesmo Dto tanto para entra de dados com a saida de dados.
+ *
+ * 'UsersRequest ou Inp' = Dados de Entrada e 'UsersDto ou Out' = Dados de saida.
+ *
+ * Para o projeto não repetir muito codigo desnecessários.
+ */
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Client {
+public class ClientDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long id;
 
     private TypePerson typePerson;
@@ -45,8 +47,5 @@ public class Client {
 
     private String observation;
 
-    @OneToOne
-    @JoinColumn(name = "id_address")
-    private Address address;
-
+    private AddressDto address;
 }

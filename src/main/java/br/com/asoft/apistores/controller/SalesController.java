@@ -1,10 +1,8 @@
 package br.com.asoft.apistores.controller;
 
 
-import br.com.asoft.apistores.inp.VendaInp;
 import br.com.asoft.apistores.mapper.SalesMapper;
 import br.com.asoft.apistores.model.Sales;
-import br.com.asoft.apistores.out.VendaOut;
 import br.com.asoft.apistores.service.SalesService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -24,47 +22,47 @@ public class SalesController {
 
     private final SalesMapper salesMapper;
 
-    @GetMapping
-    public Page<VendaOut> listaVendas(Pageable pageable) {
-
-        Page<Sales> vendaPage = salesService.allTodas(pageable);
-
-        List<VendaOut> vendaOutsList = salesMapper.toListVendaOut(vendaPage.getContent());
-
-        Page<VendaOut> vendaOutPage = new PageImpl<>(vendaOutsList,pageable, vendaPage.getTotalElements());
-
-        return vendaOutPage;
-    }
-
 //    @GetMapping
-//    public List<VendaOut> listaVendas(){
-//        return  salesMapper.toListVendaOut( salesService.allTodas());
+//    public Page<VendaOut> listaVendas(Pageable pageable) {
+//
+//        Page<Sales> vendaPage = salesService.allTodas(pageable);
+//
+//        List<VendaOut> vendaOutsList = salesMapper.toListVendaOut(vendaPage.getContent());
+//
+//        Page<VendaOut> vendaOutPage = new PageImpl<>(vendaOutsList,pageable, vendaPage.getTotalElements());
+//
+//        return vendaOutPage;
 //    }
-
-    @GetMapping("/{id}")
-    public VendaOut buscaPorId(@PathVariable Long id){
-        return salesMapper.toVendaOut( salesService.findId(id));
-    }
-
-    @PostMapping
-    public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp) {
-
-        Sales sales = salesService.saveVenda(salesMapper.toVenda(vendaInp));
-       return salesMapper.toVendaOut(sales);
-    }
-
-    @PutMapping("/{id}")
-    public VendaOut alterarVenda(@RequestBody VendaInp vendaInp, @PathVariable Long id){
-        Sales salesAtual = salesService.findId(id);
-
-        Sales salesNova = salesMapper.copyToVendaInp(vendaInp, salesAtual);
-
-        return salesMapper.toVendaOut(salesService.saveVenda(salesNova));
-    }
-    @DeleteMapping("/{id}")
-    public void excluirVenda(@PathVariable Long id){
-            salesService.deleteVenda(id);
-    }
+//
+////    @GetMapping
+////    public List<VendaOut> listaVendas(){
+////        return  salesMapper.toListVendaOut( salesService.allTodas());
+////    }
+//
+//    @GetMapping("/{id}")
+//    public VendaOut buscaPorId(@PathVariable Long id){
+//        return salesMapper.toVendaOut( salesService.findId(id));
+//    }
+//
+//    @PostMapping
+//    public VendaOut salvaVenda(@RequestBody @Valid VendaInp vendaInp) {
+//
+//        Sales sales = salesService.saveVenda(salesMapper.toVenda(vendaInp));
+//       return salesMapper.toVendaOut(sales);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public VendaOut alterarVenda(@RequestBody VendaInp vendaInp, @PathVariable Long id){
+//        Sales salesAtual = salesService.findId(id);
+//
+//        Sales salesNova = salesMapper.copyToVendaInp(vendaInp, salesAtual);
+//
+//        return salesMapper.toVendaOut(salesService.saveVenda(salesNova));
+//    }
+//    @DeleteMapping("/{id}")
+//    public void excluirVenda(@PathVariable Long id){
+//            salesService.deleteVenda(id);
+//    }
 
 
 //    @GetMapping("/relatoriovendas")
