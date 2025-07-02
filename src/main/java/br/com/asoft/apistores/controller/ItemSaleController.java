@@ -34,10 +34,7 @@ public class ItemSaleController {
 //        return itemSaleMapper.toListItemVendaOut(itemSaleService.allTodos());
 //    }
 
-    @GetMapping("/{id}")
-    public ItemVendaOut buscaIdVenda(@PathVariable Long id) {
-        return itemSaleMapper.toItenVendaOut(itemSaleService.findId(id));
-    }
+///
 
 //    @PostMapping
 //    public ItemVendaOut salvarItemVenda(@RequestBody ItemVendaInp itenVendaInp) {
