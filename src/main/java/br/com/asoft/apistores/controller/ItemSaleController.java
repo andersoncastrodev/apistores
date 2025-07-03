@@ -21,14 +21,14 @@ public class ItemSaleController {
 
     private final ItemSaleMapper itemSaleMapper;
 
-    @GetMapping
-    public Page<ItemVendaOut> todasItenVendas(Pageable pageable) {
-
-        Page<ItemSale> itemVendaPage = itemSaleService.allTodosPage(pageable);
-        List<ItemVendaOut> itemVendaOutsList = itemSaleMapper.toListItemVendaOut(itemVendaPage.getContent());
-        Page<ItemVendaOut> itemVendaOutPage = new PageImpl<>(itemVendaOutsList,pageable,itemVendaPage.getTotalPages());
-        return itemVendaOutPage;
-    }
+//    @GetMapping
+//    public Page<ItemVendaOut> todasItenVendas(Pageable pageable) {
+//
+//        Page<ItemSale> itemVendaPage = itemSaleService.allTodosPage(pageable);
+//        List<ItemVendaOut> itemVendaOutsList = itemSaleMapper.toListItemVendaOut(itemVendaPage.getContent());
+//        Page<ItemVendaOut> itemVendaOutPage = new PageImpl<>(itemVendaOutsList,pageable,itemVendaPage.getTotalPages());
+//        return itemVendaOutPage;
+//    }
 //    @GetMapping
 //    public List<ItemVendaOut> todasItenVendas() {
 //        return itemSaleMapper.toListItemVendaOut(itemSaleService.allTodos());
