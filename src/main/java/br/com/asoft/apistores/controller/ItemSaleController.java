@@ -43,15 +43,15 @@ public class ItemSaleController {
 //
 //    }
 
-    @PutMapping("/{id}")
-    public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id) {
-
-        ItemSale itemSaleAtual = itemSaleService.findId(id);
-
-        ItemSale itemSaleNovo = itemSaleMapper.copyToItemVenda(itemVendaInp, itemSaleAtual);
-
-        return itemSaleMapper.toItenVendaOut(itemSaleService.saveItemVenda(itemSaleNovo));
-    }
+//    @PutMapping("/{id}")
+//    public ItemVendaOut alterarItemVenda(@RequestBody @Valid ItemVendaInp itemVendaInp, @PathVariable Long id) {
+//
+//        ItemSale itemSaleAtual = itemSaleService.findId(id);
+//
+//        ItemSale itemSaleNovo = itemSaleMapper.copyToItemVenda(itemVendaInp, itemSaleAtual);
+//
+//        return itemSaleMapper.toItenVendaOut(itemSaleService.saveItemVenda(itemSaleNovo));
+//    }
 
     @DeleteMapping("/{id}")
     public void excluirItemVenda(@PathVariable Long id) {
