@@ -34,10 +34,10 @@ public class CityService {
         return cityRepository.save(city);
     }
 
-    public void deletarCity(City city) {
-        cityRepository.delete(city);
-        cityRepository.flush();
-    }
+//    public void deletarCity(City city) {
+//        cityRepository.delete(city);
+//        cityRepository.flush();
+//    }
 
 
 }
