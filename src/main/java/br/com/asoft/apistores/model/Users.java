@@ -25,7 +25,7 @@ public class Users {
 
     private String name;
 
-    @Enumerated(EnumType.STRING)// Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
+    @Enumerated(EnumType.STRING)// Para salvar a Constante do Enum 'MASCULINO' ou 'FEMININO'
     private GenderValue gender;//Genero
 
     private LocalDate dateBirth;
