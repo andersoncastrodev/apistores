@@ -1,16 +1,9 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.mapper.ItemSaleMapper;
-import br.com.asoft.apistores.model.ItemSale;
 import br.com.asoft.apistores.service.ItemSaleService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/itenvendas")

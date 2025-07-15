@@ -2,43 +2,37 @@ package br.com.asoft.apistores.service;
 
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.model.ItemSale;
+import br.com.asoft.apistores.model.SaleItem;
 import br.com.asoft.apistores.model.Sales;
-import br.com.asoft.apistores.respository.ItemSaleRepository;
-import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.property.TextAlignment;
+import br.com.asoft.apistores.respository.SaleItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ItemSaleService {
 
-    private final ItemSaleRepository itemSaleRepository;
+    private final SaleItemRepository saleItemRepository;
 
     private final SalesService salesService;
 
-    public Page<ItemSale> allTodosPage(Pageable pageable){
-        return itemSaleRepository.findAll(pageable);
+    public Page<SaleItem> allTodosPage(Pageable pageable){
+        return saleItemRepository.findAll(pageable);
     }
 
-    public List<ItemSale> allTodos(){
-       return itemSaleRepository.findAll();
+    public List<SaleItem> allTodos(){
+       return saleItemRepository.findAll();
     }
 
-    public ItemSale findId(Long id){
+    public SaleItem findId(Long id){
         return tryOrFaill(id);
     }
 
-    public ItemSale saveItemVenda(ItemSale itenVenda){
+    public SaleItem saveItemVenda(SaleItem itenVenda){
 
         Long vendaId = itenVenda.getSales().getId();
 
@@ -46,17 +40,17 @@ public class ItemSaleService {
 
         itenVenda.setSales(sales);
 
-        return itemSaleRepository.save(itenVenda);
+        return saleItemRepository.save(itenVenda);
     }
 
     public void deletarItemVenda(Long id){
-        ItemSale itemSale = findId(id);
-        itemSaleRepository.delete(itemSale);
-        itemSaleRepository.flush();
+        SaleItem saleItem = findId(id);
+        saleItemRepository.delete(saleItem);
+        saleItemRepository.flush();
     }
 
-    public ItemSale tryOrFaill(Long id){
-        return itemSaleRepository.findById(id)
+    public SaleItem tryOrFaill(Long id){
+        return saleItemRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("ItenVenda",id));
     }
 

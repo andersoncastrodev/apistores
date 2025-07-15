@@ -1,16 +1,12 @@
 package br.com.asoft.apistores.specifications;
 
 import br.com.asoft.apistores.filter.ClientFilter;
-import br.com.asoft.apistores.model.Client;
-import jakarta.persistence.criteria.Join;
-import jakarta.persistence.criteria.Predicate;
+import br.com.asoft.apistores.model.Customer;
 import org.springframework.data.jpa.domain.Specification;
-
-import java.util.ArrayList;
 
 public class ClienteSpecification {
 
-    public static Specification<Client> filter(ClientFilter clientFilter) {
+    public static Specification<Customer> filter(ClientFilter clientFilter) {
 //        return (root, query, criteriaBuilder) -> {
 //
 //            var preditaces = new ArrayList<Predicate>();

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ItemSale {
+public class SaleItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-create table client (
+create table customer (
 	id serial not null,
 	type_person varchar(10) not null,
 	cpf_cnpj varchar(15) not null,
@@ -13,6 +13,6 @@ create table client (
     status varchar(10) not null,
     observation varchar(100),
     id_address bigint not null,
- constraint client_pk primary key (id),
- constraint client_fk foreign key (id_address) references address(id)
+ constraint customer_pk primary key (id),
+ constraint customer_fk foreign key (id_address) references address(id)
 );

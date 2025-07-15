@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-public class ClientDto {
+public class CustomerDto {
 
     private Long id;
 

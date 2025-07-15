@@ -19,6 +19,4 @@ public class LoginResponse {
 
     private Long expiresRefToken; //tempo de expiração do refresh token
 
-
-
 }

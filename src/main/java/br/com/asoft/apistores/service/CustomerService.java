@@ -2,8 +2,8 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.filter.ClientFilter;
-import br.com.asoft.apistores.model.Client;
-import br.com.asoft.apistores.respository.ClientRepository;
+import br.com.asoft.apistores.model.Customer;
+import br.com.asoft.apistores.respository.CustomerRepository;
 import br.com.asoft.apistores.specifications.ClienteSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,47 +13,47 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ClientService {
+public class CustomerService {
 
-    private final ClientRepository clientRepository;
+    private final CustomerRepository customerRepository;
 
-    public Page<Client> allClientePage(ClientFilter clientFilter, Pageable pageable){
+    public Page<Customer> allClientePage(ClientFilter clientFilter, Pageable pageable){
 
-        return clientRepository.findAll(ClienteSpecification.filter(clientFilter),pageable);
+        return customerRepository.findAll(ClienteSpecification.filter(clientFilter),pageable);
     }
 
-    public Page<Client> allClientePage2(Pageable pageable){
-        return clientRepository.findAll(pageable);
+    public Page<Customer> allClientePage2(Pageable pageable){
+        return customerRepository.findAll(pageable);
     }
 
-    public List<Client> findAllCliente() {
-        return clientRepository.findAll();
+    public List<Customer> findAllCliente() {
+        return customerRepository.findAll();
     }
 
-    public Client findId(Long id){
+    public Customer findId(Long id){
         return tryOrFail(id);
     }
 
-    public Client saveCliente(Client client){
+    public Customer saveCliente(Customer customer){
 //
 //        Pessoa pessoa = pessoaService.findId(client.getPessoa().getId());
 //
 //        client.setPessoa(pessoa);
 
-        return clientRepository.save(client);
+        return customerRepository.save(customer);
     }
 
     public void deleteCliente(Long id){
 
-        Client client = findId(id);
+        Customer customer = findId(id);
 
-        clientRepository.delete(client);
+        customerRepository.delete(customer);
 
-        clientRepository.flush();
+        customerRepository.flush();
     }
 
-    public Client tryOrFail(Long id){
-        return clientRepository.findById(id)
+    public Customer tryOrFail(Long id){
+        return customerRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Client",id));
     }
 

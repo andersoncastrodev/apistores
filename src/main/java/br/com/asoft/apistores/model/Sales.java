@@ -37,7 +37,7 @@ public class Sales {
 
     @ManyToOne
     @JoinColumn(name = "id_client")
-    private Client client;
+    private Customer customer;
 
 
 }

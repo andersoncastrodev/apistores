@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.mapper.ClientMapper;
-import br.com.asoft.apistores.service.ClientService;
+import br.com.asoft.apistores.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/client")
 @RequiredArgsConstructor
-public class ClientController {
+public class CustomerController {
 
-    private final ClientService clientService;
+    private final CustomerService customerService;
 
     private final ClientMapper clientMapper;
 
