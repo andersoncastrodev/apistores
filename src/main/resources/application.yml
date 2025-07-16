@@ -24,11 +24,11 @@ spring:
       add-mappings: false
 
 # JWT Configuration
-jwt:
-  public:
-    key: classpath:app.pub
-  private:
-    key: classpath:app.key
+#jwt:
+#  public:
+#    key: classpath:app.pub
+#  private:
+#    key: classpath:app.key
 
 # Server Configuration (uncomment and modify as needed)
 #server:
