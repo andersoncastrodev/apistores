@@ -6,7 +6,6 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,8 +18,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.CorsFilter;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -174,60 +171,4 @@ public class SecurityConfig {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    @Bean
-//    public RSAPublicKey publicKey() {
-//        try {
-//            ClassPathResource resource = new ClassPathResource("app.pub");
-//            String publicKeyPem;
-//            try (InputStream inputStream = resource.getInputStream()) {
-//                publicKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-//            }
-//
-//            publicKeyPem = publicKeyPem
-//                    .replace("-----BEGIN PUBLIC KEY-----", "")
-//                    .replace("-----END PUBLIC KEY-----", "")
-//                    .replaceAll("\\s", "");
-//
-//            byte[] keyBytes = Base64.getDecoder().decode(publicKeyPem);
-//            X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
-//            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-//
-//            return (RSAPublicKey) keyFactory.generatePublic(spec);
-//        } catch (Exception e) {
-//            throw new IllegalStateException("Failed to load public key", e);
-//        }
-//    }
-//
-//    @Bean
-//    public RSAPrivateKey privateKey() {
-//        try {
-//            // Carrega o recurso do classpath
-//            ClassPathResource resource = new ClassPathResource("app.key");
-//            String privateKeyPem;
-//
-//            // Lê o conteúdo do arquivo de forma segura (funciona dentro do JAR também)
-//            try (InputStream inputStream = resource.getInputStream()) {
-//                privateKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-//            }
-//
-//            // Remove cabeçalhos, rodapés e espaços em branco
-//            privateKeyPem = privateKeyPem
-//                    .replace("-----BEGIN PRIVATE KEY-----", "")
-//                    .replace("-----END PRIVATE KEY-----", "")
-//                    .replaceAll("\\s", "");
-//
-//            // Decodifica a chave Base64
-//            byte[] keyBytes = Base64.getDecoder().decode(privateKeyPem);
-//
-//            // Especificação para chave privada PKCS#8
-//            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-//            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-//
-//            return (RSAPrivateKey) keyFactory.generatePrivate(spec);
-//        } catch (Exception e) {
-//            throw new IllegalStateException("Failed to load private key", e);
-//        }
-//    }
-
 }
