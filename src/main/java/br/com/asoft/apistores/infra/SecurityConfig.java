@@ -123,7 +123,7 @@ public class SecurityConfig {
 
     @Bean
     public RSAPrivateKey privateKey() throws Exception {
-        ClassPathResource resource = new ClassPathResource("app.priv");
+        ClassPathResource resource = new ClassPathResource("app.key");
         String privateKeyPem = new String(Files.readAllBytes(resource.getFile().toPath()));
 
         privateKeyPem = privateKeyPem
