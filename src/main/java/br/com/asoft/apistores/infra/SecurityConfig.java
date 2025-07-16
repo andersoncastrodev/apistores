@@ -49,6 +49,81 @@ public class SecurityConfig {
     }
 
     @Bean
+    public RSAPublicKey publicKey() {
+        try {
+            // Conteúdo da chave pública diretamente no código
+            String publicKeyPem = """
+                    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtrSdSV4gYhN4ogW4rW1Y
+                    9C2Hj+JBULpPjsSeYlAPzpMnI3v8/OTt7K0YeT89nMEG37wmiMrB9MsBan37wwtZ
+                    NLuN4DlR5bYtRz+rDjp9Ul3f3JrPuLVCHSUedx72jCzp9v95FUXtv73dLzwCcJLO
+                    VE1v8JCgwyBanu/0awSL8CnCL7/ONDMMZr9r41PdrdtwRAxuh9g0FlhGTA4+hJQo
+                    waqjZTJEaZb0aS6H2xnOa3rfbDspaSSQbBZNB8VG/S3yMVfN2F01L4yIxpMe8WW8
+                    8N5ZbB4lwKSlO0DM9gWoV3bVArBiskciw7tr6DvC4lx0c3LEUX+5WUgFDSWn38bx
+                    pwIDAQAB
+                    """;
+
+            // Remove quebras de linha e espaços
+            publicKeyPem = publicKeyPem.replaceAll("\\s", "");
+
+            // Decodifica a chave
+            byte[] keyBytes = Base64.getDecoder().decode(publicKeyPem);
+            X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return (RSAPublicKey) keyFactory.generatePublic(spec);
+
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to load public key", e);
+        }
+    }
+
+    @Bean
+    public RSAPrivateKey privateKey() {
+        try {
+            // Conteúdo da chave privada diretamente no código
+            String privateKeyPem = """
+                    MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC2tJ1JXiBiE3ii
+                    BbitbVj0LYeP4kFQuk+OxJ5iUA/Okycje/z85O3srRh5Pz2cwQbfvCaIysH0ywFq
+                    ffvDC1k0u43gOVHlti1HP6sOOn1SXd/cms+4tUIdJR53HvaMLOn2/3kVRe2/vd0v
+                    PAJwks5UTW/wkKDDIFqe7/RrBIvwKcIvv840Mwxmv2vjU92t23BEDG6H2DQWWEZM
+                    Dj6ElCjBqqNlMkRplvRpLofbGc5ret9sOylpJJBsFk0HxUb9LfIxV83YXTUvjIjG
+                    kx7xZbzw3llsHiXApKU7QMz2BahXdtUCsGKyRyLDu2voO8LiXHRzcsRRf7lZSAUN
+                    JaffxvGnAgMBAAECggEAB+GUo1SPGwvx+TM7+ycrXiUUou1EmgHfaq4qkt0XQXbx
+                    ikNP72zEop/43UoQE1H0RPRtyRrN8QxMvFZA5PH5YB/zB8gRM1J/c4JYk52MSGBK
+                    Rs7axQH0nyM5xDOuuO87DG+KvpMspUfAYcg55rc+dT595Keod6JOpmp9ZZxlmO9x
+                    ZMPehXdmIh7UQaIKPQcr+SweyzPZ1FdLw62zW90JbuiucGZKQ+qbPVk/o2eG3Tpb
+                    8ZGDovU07X4wWkLBQVsvxsXb82ul18ppOfIWs5Dr3KUb+G3nsgYBRExxlWzbm6FV
+                    tY91vJsbg5sBbuMp+55jsW8u/RDmjz2WxfvzCPFkoQKBgQD1mDwslBylKqJkRW2j
+                    MKS/C0CRt6UzQwoz1bvhu3tHd9I/weMN/4aAb7az7Hm1RqV56FSTaq/+LKm8KpTo
+                    /DH3pFuXGWSg1LQwm56q6V2zTfJtmOJMN6j5IwjM+6YlBDKgZSwRkWx32aLhE5dl
+                    VB2JP3ZJr3tgfa+Ku3NmI0GH9wKBgQC+ckWqYPpG3Amd5ZejWJeWHVl+hBMIxuM1
+                    DoDQX6eosj7Gm4vTDm8Rudqf/BpqCDKnLKeKc2BjRtbNIheCIBhmrW/gyJsxbb+H
+                    27C/8rHKSXSao4W7S8t4c1f6A2N+knqwafm9hGN8ZR0RCxowkb5keQAnTKIg4b1s
+                    Ulr1rf5X0QKBgGJbyOW1n89KRuVPpPwxdBmLIR365a+lDsX5uJhMJLBXvZ2JQi0O
+                    BEkV9J8Uex3toEI1mQG9PaTXMFdK2n6A2mYqrf/SzKlY5p19Bcu/UKaJ9iiMjT0n
+                    IYY90L1/n2e9yaTRQBf9HOrW/9OSrBSJ3pZkEzSpkgjv7Ujrj+j8/7a7AoGANPmo
+                    c0pilA9lBWz2D1P3ZqRnXo/yk4BvdzS/lDbndj+OwsRF0sGzF6UxMUt5NYFuRZ5g
+                    RFzvtO3hllIjY+j1oKoh8s8ajFdQ7cOomNwzpGdmbhWKf50HzkuXb04+ANlSE3yH
+                    IbaPzex6d2E1OclwwpX9+vCQMMFaZaVK9AggNeECgYAN+s9cdLKSsqyYuAnGJyh/
+                    uA4filegrPUmz2u6iNUvMON45W6xLXQGN1GCYVxiV4tfAw+f80rv7mM3ue+2JMqm
+                    2gvxPo43Nwkmm7Ztgrq3I5b687vGoZJb6rNXl1BwCqnqDYGtYK+da96/azSmv4WM
+                    6r0oTF3ezsR9lpPbZkHAYA==
+                    """;
+
+            // Remove quebras de linha e espaços
+            privateKeyPem = privateKeyPem.replaceAll("\\s", "");
+
+            // Decodifica a chave
+            byte[] keyBytes = Base64.getDecoder().decode(privateKeyPem);
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            return (RSAPrivateKey) keyFactory.generatePrivate(spec);
+
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to load private key", e);
+        }
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable()) // Habilita o csrf quando for para produção
@@ -100,59 +175,59 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public RSAPublicKey publicKey() {
-        try {
-            ClassPathResource resource = new ClassPathResource("app.pub");
-            String publicKeyPem;
-            try (InputStream inputStream = resource.getInputStream()) {
-                publicKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-            }
-
-            publicKeyPem = publicKeyPem
-                    .replace("-----BEGIN PUBLIC KEY-----", "")
-                    .replace("-----END PUBLIC KEY-----", "")
-                    .replaceAll("\\s", "");
-
-            byte[] keyBytes = Base64.getDecoder().decode(publicKeyPem);
-            X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-
-            return (RSAPublicKey) keyFactory.generatePublic(spec);
-        } catch (Exception e) {
-            throw new IllegalStateException("Failed to load public key", e);
-        }
-    }
-
-    @Bean
-    public RSAPrivateKey privateKey() {
-        try {
-            // Carrega o recurso do classpath
-            ClassPathResource resource = new ClassPathResource("app.key");
-            String privateKeyPem;
-
-            // Lê o conteúdo do arquivo de forma segura (funciona dentro do JAR também)
-            try (InputStream inputStream = resource.getInputStream()) {
-                privateKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-            }
-
-            // Remove cabeçalhos, rodapés e espaços em branco
-            privateKeyPem = privateKeyPem
-                    .replace("-----BEGIN PRIVATE KEY-----", "")
-                    .replace("-----END PRIVATE KEY-----", "")
-                    .replaceAll("\\s", "");
-
-            // Decodifica a chave Base64
-            byte[] keyBytes = Base64.getDecoder().decode(privateKeyPem);
-
-            // Especificação para chave privada PKCS#8
-            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-
-            return (RSAPrivateKey) keyFactory.generatePrivate(spec);
-        } catch (Exception e) {
-            throw new IllegalStateException("Failed to load private key", e);
-        }
-    }
+//    @Bean
+//    public RSAPublicKey publicKey() {
+//        try {
+//            ClassPathResource resource = new ClassPathResource("app.pub");
+//            String publicKeyPem;
+//            try (InputStream inputStream = resource.getInputStream()) {
+//                publicKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+//            }
+//
+//            publicKeyPem = publicKeyPem
+//                    .replace("-----BEGIN PUBLIC KEY-----", "")
+//                    .replace("-----END PUBLIC KEY-----", "")
+//                    .replaceAll("\\s", "");
+//
+//            byte[] keyBytes = Base64.getDecoder().decode(publicKeyPem);
+//            X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
+//            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+//
+//            return (RSAPublicKey) keyFactory.generatePublic(spec);
+//        } catch (Exception e) {
+//            throw new IllegalStateException("Failed to load public key", e);
+//        }
+//    }
+//
+//    @Bean
+//    public RSAPrivateKey privateKey() {
+//        try {
+//            // Carrega o recurso do classpath
+//            ClassPathResource resource = new ClassPathResource("app.key");
+//            String privateKeyPem;
+//
+//            // Lê o conteúdo do arquivo de forma segura (funciona dentro do JAR também)
+//            try (InputStream inputStream = resource.getInputStream()) {
+//                privateKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+//            }
+//
+//            // Remove cabeçalhos, rodapés e espaços em branco
+//            privateKeyPem = privateKeyPem
+//                    .replace("-----BEGIN PRIVATE KEY-----", "")
+//                    .replace("-----END PRIVATE KEY-----", "")
+//                    .replaceAll("\\s", "");
+//
+//            // Decodifica a chave Base64
+//            byte[] keyBytes = Base64.getDecoder().decode(privateKeyPem);
+//
+//            // Especificação para chave privada PKCS#8
+//            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
+//            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+//
+//            return (RSAPrivateKey) keyFactory.generatePrivate(spec);
+//        } catch (Exception e) {
+//            throw new IllegalStateException("Failed to load private key", e);
+//        }
+//    }
 
 }
