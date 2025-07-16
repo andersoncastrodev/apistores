@@ -22,6 +22,8 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.filter.CorsFilter;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.KeyFactory;
 import java.security.interfaces.RSAPrivateKey;
@@ -102,41 +104,59 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-
-    //Carrega as chaves publica e privada - Para Deploy da Aplicação
     @Bean
-    public RSAPublicKey publicKey() throws Exception {
-        ClassPathResource resource = new ClassPathResource("app.pub");
-        String publicKeyPem = new String(Files.readAllBytes(resource.getFile().toPath()));
+    public RSAPublicKey publicKey() {
+        try {
+            ClassPathResource resource = new ClassPathResource("app.pub");
+            String publicKeyPem;
+            try (InputStream inputStream = resource.getInputStream()) {
+                publicKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+            }
 
-        publicKeyPem = publicKeyPem
-                .replace("-----BEGIN PUBLIC KEY-----", "")
-                .replace("-----END PUBLIC KEY-----", "")
-                .replaceAll("\\s", "");
+            publicKeyPem = publicKeyPem
+                    .replace("-----BEGIN PUBLIC KEY-----", "")
+                    .replace("-----END PUBLIC KEY-----", "")
+                    .replaceAll("\\s", "");
 
-        byte[] keyBytes = Base64.getDecoder().decode(publicKeyPem);
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            byte[] keyBytes = Base64.getDecoder().decode(publicKeyPem);
+            X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 
-        return (RSAPublicKey) keyFactory.generatePublic(spec);
+            return (RSAPublicKey) keyFactory.generatePublic(spec);
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to load public key", e);
+        }
     }
 
     @Bean
-    public RSAPrivateKey privateKey() throws Exception {
-        ClassPathResource resource = new ClassPathResource("app.key");
-        String privateKeyPem = new String(Files.readAllBytes(resource.getFile().toPath()));
+    public RSAPrivateKey privateKey() {
+        try {
+            // Carrega o recurso do classpath
+            ClassPathResource resource = new ClassPathResource("app.key");
+            String privateKeyPem;
 
-        privateKeyPem = privateKeyPem
-                .replace("-----BEGIN PRIVATE KEY-----", "")
-                .replace("-----END PRIVATE KEY-----", "")
-                .replaceAll("\\s", "");
+            // Lê o conteúdo do arquivo de forma segura (funciona dentro do JAR também)
+            try (InputStream inputStream = resource.getInputStream()) {
+                privateKeyPem = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+            }
 
-        byte[] keyBytes = Base64.getDecoder().decode(privateKeyPem);
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            // Remove cabeçalhos, rodapés e espaços em branco
+            privateKeyPem = privateKeyPem
+                    .replace("-----BEGIN PRIVATE KEY-----", "")
+                    .replace("-----END PRIVATE KEY-----", "")
+                    .replaceAll("\\s", "");
 
-        return (RSAPrivateKey) keyFactory.generatePrivate(spec);
+            // Decodifica a chave Base64
+            byte[] keyBytes = Base64.getDecoder().decode(privateKeyPem);
+
+            // Especificação para chave privada PKCS#8
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+
+            return (RSAPrivateKey) keyFactory.generatePrivate(spec);
+        } catch (Exception e) {
+            throw new IllegalStateException("Failed to load private key", e);
+        }
     }
-    //FIM - Carrega as chaves publica e privada - Para Deploy da Aplicação
 
 }
