@@ -13,7 +13,9 @@ WORKDIR /app
 # Copia o JAR (que já contém as chaves em src/main/resources/)
 COPY --from=build /app/target/*.jar app.jar
 
-EXPOSE 8080
+# Definindo o perfil prod como padrão
 ENV SPRING_PROFILES_ACTIVE=prod
+
+EXPOSE 8080
 ENV JAVA_OPTS="-Xmx512m -Xms256m"
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
