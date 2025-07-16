@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: apistores
+    env: docker
+    plan: free
+    region: sao
+    buildCommand: ./mvnw clean package -DskipTests
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: apistores-db
+          property: connectionString
+      # Add other environment variables from your .env.example here
+      # They can be set in the Render dashboard
+
+databases:
+  - name: apistores-db
+    databaseName: apistores
+    user: apistores_user
+    plan: free

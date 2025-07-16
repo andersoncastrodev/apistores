@@ -1,10 +1,6 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.dto.CustomerDto;
-import br.com.asoft.apistores.mapper.AddressMapper;
-import br.com.asoft.apistores.mapper.CustomerMapper;
-import br.com.asoft.apistores.model.*;
-import br.com.asoft.apistores.service.AddressService;
 import br.com.asoft.apistores.service.CustomerService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -18,23 +14,13 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
 
     private final CustomerService customerService;
-    private final CustomerMapper customerMapper;
-    private final AddressService addressService;
-    private final AddressMapper addressMapper;
+
 
     @PostMapping
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerDto createCustomer(@RequestBody @Valid CustomerDto customerDto) {
-        // Salvando o endereço
-        Address address = null;
-        if (customerDto.getAddress() != null) {
-            address = addressService.saveAddress(addressMapper.toAddress(customerDto.getAddress()));
-        }
-        Customer customer = customerMapper.toCustomer(customerDto);
-        customer.setAddress(address);
-        return customerMapper.toCustomerDto(customerService.saveCustomer(customer));
-
+        return customerService.saveCustomerWithAddress(customerDto);
     }
 
 //    @GetMapping

@@ -1,7 +1,11 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.dto.CustomerDto;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.filter.ClientFilter;
+import br.com.asoft.apistores.mapper.AddressMapper;
+import br.com.asoft.apistores.mapper.CustomerMapper;
+import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.model.Customer;
 import br.com.asoft.apistores.respository.CustomerRepository;
 import br.com.asoft.apistores.specifications.ClienteSpecification;
@@ -9,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,6 +21,10 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final CustomerMapper customerMapper;
+
+    private final AddressService addressService;
+    private final AddressMapper addressMapper;
 
     public Page<Customer> allClientePage(ClientFilter clientFilter, Pageable pageable){
 
@@ -36,9 +43,15 @@ public class CustomerService {
         return tryOrFail(id);
     }
 
-    public Customer saveCustomer(Customer customer) {
-        customer.setDateRegister(LocalDateTime.now());
-        return customerRepository.save(customer);
+
+    public CustomerDto saveCustomerWithAddress(CustomerDto customerDto) {
+        Customer customer = customerMapper.toCustomer(customerDto); //Converte o Dto para o Objeto Customer
+        if(customerDto.getAddress() != null) {
+            Address address = addressService.saveAddress(addressMapper.toAddress(customerDto.getAddress())); //Salva o endereco
+            customer.setAddress(address); //Associa o endereco ao cliente
+        }
+        customer.setDateRegister(LocalDateTime.now());//Adiciona a data de cadastro
+        return customerMapper.toCustomerDto(customerRepository.save(customer));
     }
 
     public void deleteCliente(Long id){
@@ -54,38 +67,4 @@ public class CustomerService {
         return customerRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Client",id));
     }
-
-//    public ByteArrayInputStream relatorioCliente() throws IOException {
-//
-//        Reports reports = new Reports(Reports.Page.HORIZONTAL);
-//
-//        reports.addParagraph( new Paragraph("Lista de Client")
-//                .setMargins(1f,5f,1f,5f)
-//                .setFontSize(28)
-//                .setTextAlignment(TextAlignment.CENTER)
-//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-//
-//        reports.addNewLine();
-//
-//        reports.openTable(1f,1f,1f,1f);
-//
-//        reports.addTableHeader("Codigo Pessoa","Nome","Telefone","Tipo");
-//
-//        List<Client> clients = findAllCliente();
-//
-//        for (Client client : clients) {
-//
-//            reports.addCellCenter(client.getPessoa().getId());
-//            reports.addCellCenter(client.getPessoa().getNome());
-//            reports.addCellCenter(client.getPessoa().getTelefone());
-//            reports.addCellCenter(client.getTipo());
-//
-//        }
-//
-//        reports.closeTable();
-//        reports.closeDocument();
-//
-//        return reports.getByteArrayInputStream();
-//
-//    }
 }
