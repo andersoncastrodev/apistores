@@ -1,20 +1,13 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.filter.AddressFilter;
 import br.com.asoft.apistores.mapper.AddressMapper;
-import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.service.AddressService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("enderecos")
+@RequestMapping("/address")
 @RequiredArgsConstructor
 public class AddressController {
 

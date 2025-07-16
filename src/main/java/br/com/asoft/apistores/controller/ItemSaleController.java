@@ -1,7 +1,7 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.mapper.ItemSaleMapper;
-import br.com.asoft.apistores.service.ItemSaleService;
+import br.com.asoft.apistores.service.ItemsSaleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ItemSaleController {
 
-    private final ItemSaleService itemSaleService;
+    private final ItemsSaleService itemsSaleService;
 
     private final ItemSaleMapper itemSaleMapper;
 
@@ -48,7 +48,7 @@ public class ItemSaleController {
 
     @DeleteMapping("/{id}")
     public void excluirItemVenda(@PathVariable Long id) {
-        itemSaleService.deletarItemVenda(id);
+        itemsSaleService.deletarItemVenda(id);
     }
 
 

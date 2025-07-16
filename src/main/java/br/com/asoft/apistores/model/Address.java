@@ -1,5 +1,6 @@
 package br.com.asoft.apistores.model;
 
+import br.com.asoft.apistores.enums.StateValue;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,14 +18,21 @@ public class Address {
     @EqualsAndHashCode.Include
     private Long id;
 
-    private String street;
+    private String street; //Rua, Logradouro
 
     private String numbers;
 
+    private String neighborhood; //Bairro
+
+    private String city; //Cidade
+
+    @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum
+    private StateValue state; //Estado
+
     private String cep;
 
-    @ManyToOne
-    @JoinColumn(name = "id_city")
-    private City city;
+    private String complement;
+
+    private String typeAddress; //Residencial, Comercial
 
 }

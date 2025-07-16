@@ -21,6 +21,7 @@ public class Customer {
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
     private TypePerson typePerson;
 
     private String cpfCnpj;
@@ -29,6 +30,7 @@ public class Customer {
 
     private String name;
 
+    @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
     private GenderValue gender;//Genero
 
     private LocalDate dateBirth;
@@ -41,6 +43,7 @@ public class Customer {
 
     private LocalDateTime dateRegister;
 
+    @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
     private StatusValue status;
 
     private String observation;

@@ -1,4 +1,4 @@
-create table sale_item (
+create table items_sale (
 	id serial not null,
 	quant bigint not null,
 	value_unid bigint not null,

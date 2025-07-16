@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class StateFilter {
 
-    //Campos da Entidade State
+    //Campos da Entidade StateValue
     private Long id;
 
     private String nome;

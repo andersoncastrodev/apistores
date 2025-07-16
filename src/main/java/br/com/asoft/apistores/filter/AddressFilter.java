@@ -15,9 +15,9 @@ public class AddressFilter {
 
     //Colocar os campos ( Atributos ) da Entidade City:
     private String nomecidade; //aqui temos que mudar pq
-    // em State tambem temos um "Nome"
+    // em StateValue tambem temos um "Nome"
 
-    // E dentro de City Temos o State, Colocar
+    // E dentro de City Temos o StateValue, Colocar
     // os campos ( Atributos ).
     private String nomeestado;
 
@@ -26,6 +26,6 @@ public class AddressFilter {
     //Resumindo. Vamos pesquisa por id,rua e cep da
     // Entidade(Address)
     // e por nomeCidade da Entidade(City)
-    // e por nomeEstado e Sigla da Entidade(State.)
+    // e por nomeEstado e Sigla da Entidade(StateValue.)
 
 }

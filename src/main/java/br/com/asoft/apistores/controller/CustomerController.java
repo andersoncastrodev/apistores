@@ -1,19 +1,41 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.mapper.ClientMapper;
+import br.com.asoft.apistores.dto.CustomerDto;
+import br.com.asoft.apistores.mapper.AddressMapper;
+import br.com.asoft.apistores.mapper.CustomerMapper;
+import br.com.asoft.apistores.model.*;
+import br.com.asoft.apistores.service.AddressService;
 import br.com.asoft.apistores.service.CustomerService;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/client")
+@RequestMapping("/customers")
 @RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final CustomerMapper customerMapper;
+    private final AddressService addressService;
+    private final AddressMapper addressMapper;
 
-    private final ClientMapper clientMapper;
+    @PostMapping
+    @Transactional
+    @ResponseStatus(HttpStatus.CREATED)
+    public CustomerDto createCustomer(@RequestBody @Valid CustomerDto customerDto) {
+        // Salvando o endereço
+        Address address = null;
+        if (customerDto.getAddress() != null) {
+            address = addressService.saveAddress(addressMapper.toAddress(customerDto.getAddress()));
+        }
+        Customer customer = customerMapper.toCustomer(customerDto);
+        customer.setAddress(address);
+        return customerMapper.toCustomerDto(customerService.saveCustomer(customer));
+
+    }
 
 //    @GetMapping
 //    public Page<ClienteOut> todosClientes(ClientFilter clientFilter, Pageable pageable) {
@@ -21,7 +43,7 @@ public class CustomerController {
 //
 //        Page<Client> clientePage = clientService.allClientePage(clientFilter, pageable);
 //
-//        List<ClienteOut> clienteOutList = clientMapper.toListClienteOut(clientePage.getContent());
+//        List<ClienteOut> clienteOutList = customerMapper.toListClienteOut(clientePage.getContent());
 //
 //        Page<ClienteOut> clientePageOut = new PageImpl<>(clienteOutList,pageable,clientePage.getTotalPages());
 //
@@ -32,19 +54,19 @@ public class CustomerController {
 //// SEM PAGINACAO
 ////    @GetMapping
 ////   public List<ClienteOut> todosClientes(){
-////        return clientMapper.toListClienteOut(clientService.findAllCliente());
+////        return customerMapper.toListClienteOut(clientService.findAllCliente());
 ////    }
 ////    }
 //
 //    @GetMapping("/{id}")
 //    public ClienteOut buscarPorId(@PathVariable Long id){
-//        return clientMapper.toClienteOut(clientService.findId(id));
+//        return customerMapper.toClienteOut(clientService.findId(id));
 //    }
 //
 //    @PostMapping
 //    public ClienteOut salvaCliente(@RequestBody @Valid ClientInp clientInp) {
-//        Client client = clientMapper.toCliente(clientInp);
-//        return clientMapper.toClienteOut(clientService.saveCliente(client));
+//        Client client = customerMapper.toCliente(clientInp);
+//        return customerMapper.toClienteOut(clientService.saveCliente(client));
 //    }
 //
 //    @PutMapping("/{id}")
@@ -52,9 +74,9 @@ public class CustomerController {
 //
 //        Client clientAtual = clientService.findId(id);
 //
-//        Client clientUpdate = clientMapper.copyToCliente(clientInp, clientAtual);
+//        Client clientUpdate = customerMapper.copyToCliente(clientInp, clientAtual);
 //
-//        return clientMapper.toClienteOut(clientService.saveCliente(clientUpdate));
+//        return customerMapper.toClienteOut(clientService.saveCliente(clientUpdate));
 //
 //    }
 //

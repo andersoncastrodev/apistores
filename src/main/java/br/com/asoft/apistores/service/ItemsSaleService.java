@@ -2,9 +2,9 @@ package br.com.asoft.apistores.service;
 
 
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.model.SaleItem;
+import br.com.asoft.apistores.model.ItemsSale;
 import br.com.asoft.apistores.model.Sales;
-import br.com.asoft.apistores.respository.SaleItemRepository;
+import br.com.asoft.apistores.respository.ItemsSaleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,25 +14,25 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ItemSaleService {
+public class ItemsSaleService {
 
-    private final SaleItemRepository saleItemRepository;
+    private final ItemsSaleRepository itemsSaleRepository;
 
     private final SalesService salesService;
 
-    public Page<SaleItem> allTodosPage(Pageable pageable){
-        return saleItemRepository.findAll(pageable);
+    public Page<ItemsSale> allTodosPage(Pageable pageable){
+        return itemsSaleRepository.findAll(pageable);
     }
 
-    public List<SaleItem> allTodos(){
-       return saleItemRepository.findAll();
+    public List<ItemsSale> allTodos(){
+       return itemsSaleRepository.findAll();
     }
 
-    public SaleItem findId(Long id){
+    public ItemsSale findId(Long id){
         return tryOrFaill(id);
     }
 
-    public SaleItem saveItemVenda(SaleItem itenVenda){
+    public ItemsSale saveItemVenda(ItemsSale itenVenda){
 
         Long vendaId = itenVenda.getSales().getId();
 
@@ -40,17 +40,17 @@ public class ItemSaleService {
 
         itenVenda.setSales(sales);
 
-        return saleItemRepository.save(itenVenda);
+        return itemsSaleRepository.save(itenVenda);
     }
 
     public void deletarItemVenda(Long id){
-        SaleItem saleItem = findId(id);
-        saleItemRepository.delete(saleItem);
-        saleItemRepository.flush();
+        ItemsSale itemsSale = findId(id);
+        itemsSaleRepository.delete(itemsSale);
+        itemsSaleRepository.flush();
     }
 
-    public SaleItem tryOrFaill(Long id){
-        return saleItemRepository.findById(id)
+    public ItemsSale tryOrFaill(Long id){
+        return itemsSaleRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("ItenVenda",id));
     }
 
