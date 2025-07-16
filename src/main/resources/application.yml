@@ -1,18 +1,20 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:apistore}
-    username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD:123456}
+    url: jdbc:postgresql://${POSTERES_HOST}:${POSTERES_PORT}/${POSTERES_DB}?sslmode=require
+    username: ${POSTERES_USER}
+    password: ${POSTERES_PASSWORD}
     driver-class-name: org.postgresql.Driver
   
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none  # update, create, or none
+       ddl-auto: update # Mude para "create-drop" se for desenvolvimento
+#      ddl-auto: none  # update, create, or none
   
   flyway:
     enabled: true
     locations: classpath:db/migration
+    baseline-on-migrate: true # Adicione esta linha
   
   mvc:
     throw-exception-if-no-handler-found: true
