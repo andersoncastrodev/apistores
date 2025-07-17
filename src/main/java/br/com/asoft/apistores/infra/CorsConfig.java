@@ -13,23 +13,43 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
+
         config.setAllowedOriginPatterns(List.of(
-                "http://localhost:3000",
-                "https://*.vercel.app",
-                "https://*.vusercontent.net",
-                "https://apistores.onrender.com"
+                "http://localhost:3000",                        // Desenvolvimento local
+                "https://v0-asoft-sistema-clone.vercel.app",    // Seu projeto v0
+                "https://apistores.onrender.com"                // Sua API no Render
         ));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        config.setExposedHeaders(List.of("Authorization", "Set-Cookie"));
         config.setAllowCredentials(true);
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
-
         return new CorsFilter(source);
     }
+
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowedOriginPatterns(List.of(
+//                "http://localhost:3000",
+//                "https://*.vercel.app",
+//                "https://*.vusercontent.net",
+//                "https://apistores.onrender.com"
+//        ));
+//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+//        config.setAllowedHeaders(List.of("*"));
+//        config.setExposedHeaders(List.of("Authorization", "Set-Cookie"));
+//        config.setAllowCredentials(true);
+//        config.setMaxAge(3600L);
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", config);
+//
+//        return new CorsFilter(source);
+//    }
 
 //    @Bean
 //    public CorsFilter corsFilter() {
