@@ -13,7 +13,12 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:3000", "https://preview-asoft-sistema-clone-kzmk6jdzqdnvsulewr4b.vusercontent.net")); // inclua ambos
+        config.setAllowedOriginPatterns(List.of(
+                "http://localhost:3000",
+                "https://*.vercel.app",
+                "https://*.vusercontent.net",
+                "https://apistores.onrender.com"
+        ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setExposedHeaders(List.of("Authorization", "Set-Cookie"));
@@ -25,4 +30,24 @@ public class CorsConfig {
 
         return new CorsFilter(source);
     }
+
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowedOrigins(
+//                List.of("http://localhost:3000",
+//                        "https://apistores.onrender.com", // URL do render Api Cloud
+//                        "https://preview-asoft-sistema-clone-kzmk6jdzqdnvsulewr4b.vusercontent.net") // URL do V0 FrontEnd
+//                        ); // inclua ambos
+//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+//        config.setAllowedHeaders(List.of("*"));
+//        config.setExposedHeaders(List.of("Authorization", "Set-Cookie"));
+//        config.setAllowCredentials(true);
+//        config.setMaxAge(3600L);
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", config);
+//
+//        return new CorsFilter(source);
+//    }
 }
