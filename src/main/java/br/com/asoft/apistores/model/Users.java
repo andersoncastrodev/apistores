@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-
 @Entity
 @Getter
 @Setter
@@ -42,12 +41,14 @@ public class Users {
 
     private String password;
 
-    private LocalDateTime dateRegister;
-
     @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
     private StatusValue status;
 
     private String observation;
+
+    private LocalDateTime dateRegister;
+
+    private LocalDateTime dateUpdate;
 
     //@ManyToMany(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     @ManyToMany(fetch = FetchType.EAGER)
@@ -57,7 +58,6 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "id_roles")
     )
     private Set<Roles> roles; // roles = papéis, são as premissões
-
 
     @OneToOne
     @JoinColumn(name = "id_address")

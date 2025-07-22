@@ -1,22 +1,16 @@
-package br.com.asoft.apistores.model;
+package br.com.asoft.apistores.dto;
 
 import br.com.asoft.apistores.enums.StatusValue;
-import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
+import br.com.asoft.apistores.model.Category;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Entity
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Product {
+public class ProductDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long id;
 
     private String description;
@@ -41,12 +35,7 @@ public class Product {
 
     private Date dateRegister; //Data de cadastro
 
-    @ManyToOne
-    @JoinColumn(name = "id_supplier")
-    private Supplier supplier; //fornecedor
+    private SupplierDto supplier; //fornecedor
 
-    @ManyToOne
-    @JoinColumn(name = "id_category")
     private Category category; //categoria
-
 }

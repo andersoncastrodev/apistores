@@ -1,6 +1,7 @@
 package br.com.asoft.apistores.model;
 
 import br.com.asoft.apistores.enums.StateValue;
+import br.com.asoft.apistores.enums.TypeAddress;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -33,6 +34,7 @@ public class Address {
 
     private String complement;
 
-    private String typeAddress; //Residencial, Comercial
+    @Enumerated(EnumType.STRING)
+    private TypeAddress typeAddress; //Residencial, Comercial
 
 }

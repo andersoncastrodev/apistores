@@ -1,16 +1,14 @@
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
+
   datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:dev_db}
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:apistore}
     username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD:postgres}
+    password: ${POSTGRES_PASSWORD:123456}
     driver-class-name: org.postgresql.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: update # útil para desenvolvimento
-
-  flyway:
-    enabled: true
-    locations: classpath:/db/migration
-    baseline-on-migrate: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: update # Sobrescreve o ddl-auto do profile geral

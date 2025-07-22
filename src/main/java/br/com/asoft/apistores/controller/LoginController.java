@@ -25,7 +25,10 @@ public class LoginController {
         ResponseCookie clearRefresh = clearCookie("refresh_token");
 
         //Verifica se os campos de usuario e senha estao vazios
-        if (loginRequest.getUsername().equals("") || loginRequest.getPassword().equals("")) {
+//        if (loginRequest.getUsername().equals("") || loginRequest.getPassword().equals("")) {
+//            return ResponseEntity.badRequest().build();
+//        }
+        if (loginRequest.getEmail().equals("") || loginRequest.getPassword().equals("")) {
             return ResponseEntity.badRequest().build();
         }
 

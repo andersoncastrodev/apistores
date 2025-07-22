@@ -28,7 +28,8 @@ public class TokenService {
 
         //Verificar se o login e senha estão corretos
 
-        Users user = usersService.findByLogin(loginRequest.getUsername());
+        //Users user = usersService.findByLogin(loginRequest.getUsername());
+        Users user = usersService.findByEmail(loginRequest.getEmail());
 
         boolean matches = bCryptPasswordEncoder.matches(loginRequest.getPassword(), user.getPassword());
 

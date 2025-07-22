@@ -1,20 +1,16 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.dto.SupplierDto;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.mapper.AddressMapper;
+import br.com.asoft.apistores.mapper.SupplierMapper;
+import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.model.Supplier;
 import br.com.asoft.apistores.respository.SuppilerRepository;
-import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.property.TextAlignment;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -22,27 +18,39 @@ public class SuppilerService {
 
     private final SuppilerRepository suppilerRepository;
 
-    public Page<Supplier> allTodosPage(Pageable pageable){
-        return suppilerRepository.findAll(pageable);
-    }
+    private final SupplierMapper supplierMapper;
 
-    public List<Supplier> allTodos(){
-        return suppilerRepository.findAll();
-    }
+    private final AddressService addressService;
+    private final AddressMapper addressMapper;
+
+//    public Page<Supplier> allTodosPage(Pageable pageable){
+//        return suppilerRepository.findAll(pageable);
+//    }
+
+//    public List<Supplier> allTodos(){
+//        return suppilerRepository.findAll();
+//    }
 
     public Supplier findId(Long id){
         return tryOrFail(id);
     }
 
-    public Supplier saveFonecedor(Supplier supplier){
-        return suppilerRepository.save(supplier);
+    public SupplierDto saveSupplierWithAddress(SupplierDto supplierDto) {
+        Supplier supplier = supplierMapper.toSupplier(supplierDto);
+        if(supplierDto.getAddress() != null){
+            Address address = addressService.saveAddress(addressMapper.toAddress(supplierDto.getAddress()));
+            supplier.setAddress(address);
+        }
+        supplier.setDateRegister(LocalDateTime.now());
+        supplier.setDateUpdate(LocalDateTime.now());
+        return supplierMapper.toSupplierDto(suppilerRepository.save(supplier));
     }
 
-    public void deletarFornecedor(Long id){
-        Supplier supplier = findId(id);
-        suppilerRepository.delete(supplier);
-        suppilerRepository.flush();
-    }
+//    public void deletarFornecedor(Long id){
+//        Supplier supplier = findId(id);
+//        suppilerRepository.delete(supplier);
+//        suppilerRepository.flush();
+//    }
     public Supplier tryOrFail(Long id){
         return suppilerRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundExceptions("Supplier", id));

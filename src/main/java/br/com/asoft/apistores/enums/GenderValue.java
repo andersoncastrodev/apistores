@@ -3,7 +3,8 @@ package br.com.asoft.apistores.enums;
 public enum GenderValue { //Enum Generos
 
     MASCULINO ("Masculino"),
-    FEMININO ("Feminino");
+    FEMININO ("Feminino"),
+    OUTRO ("Outro");
 
     private String label;
 

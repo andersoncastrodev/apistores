@@ -30,22 +30,20 @@ public class Supplier { // Fornecedor
 
     private String name;
 
-    private GenderValue gender;//Genero
-
-    private String nameFantasy;
-
     private String telephoneFirst;
 
     private String telephoneSecond;
 
     private String email;
 
-    private LocalDateTime dateRegister;
-
-    private StatusValue status;
-
     private String observation;
 
+    @Enumerated(EnumType.STRING)
+    private StatusValue status;
+
+    private LocalDateTime dateRegister;
+
+    private LocalDateTime dateUpdate;
 
     @OneToOne
     @JoinColumn(name = "id_address")

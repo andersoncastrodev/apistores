@@ -30,7 +30,7 @@ public class Customer {
 
     private String name;
 
-    @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
+    @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'MASCULINO' ou 'FEMININO'
     private GenderValue gender;//Genero
 
     private LocalDate dateBirth;
@@ -41,12 +41,14 @@ public class Customer {
 
     private String email;
 
-    private LocalDateTime dateRegister;
+    private String observation;
 
     @Enumerated(EnumType.STRING) // Para salvar a Constante do Enum 'ATIVO' ou 'INATIVO'
     private StatusValue status;
 
-    private String observation;
+    private LocalDateTime dateRegister;
+
+    private LocalDateTime dateUpdate;
 
     @OneToOne
     @JoinColumn(name = "id_address")

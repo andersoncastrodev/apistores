@@ -43,7 +43,6 @@ public class CustomerService {
         return tryOrFail(id);
     }
 
-
     public CustomerDto saveCustomerWithAddress(CustomerDto customerDto) {
         Customer customer = customerMapper.toCustomer(customerDto); //Converte o Dto para o Objeto Customer
         if(customerDto.getAddress() != null) {
@@ -51,7 +50,9 @@ public class CustomerService {
             customer.setAddress(address); //Associa o endereco ao cliente
         }
         customer.setDateRegister(LocalDateTime.now());//Adiciona a data de cadastro
+        customer.setDateUpdate(LocalDateTime.now());//Adiciona a data de atualizacao
         return customerMapper.toCustomerDto(customerRepository.save(customer));
+        //return null;
     }
 
     public void deleteCliente(Long id){

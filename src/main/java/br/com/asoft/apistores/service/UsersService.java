@@ -40,17 +40,17 @@ public class UsersService {
         return usersRepository.save(users);
     }
 
-    public Users findByLogin(String login) {
-        return usersRepository.findByLogin(login).orElseThrow(() -> new EntityNotFoundExceptions("Usuário não encontrado"));
+//    public Users findByLogin(String login) {
+//        return usersRepository.findByLogin(login).orElseThrow(() -> new EntityNotFoundExceptions("Usuário não encontrado"));
+//    }
+    public Users findByEmail(String email) {
+        return usersRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundExceptions("Usuário não encontrado"));
     }
 
     public void deleteUsuario(Long id) {
-
         Users users = findById(id);
-
         usersRepository.delete(users);
         usersRepository.flush();
-
     }
 
     public Users tryOrFail(Long id){
