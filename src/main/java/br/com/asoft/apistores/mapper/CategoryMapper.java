@@ -6,5 +6,6 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
+    //Copy os dados do customerDto para o customer
     Category copyToCustomer(Category category, @MappingTarget Category categoryToUpdate);
 }
