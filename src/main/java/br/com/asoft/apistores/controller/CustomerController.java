@@ -1,10 +1,13 @@
 package br.com.asoft.apistores.controller;
 
 import br.com.asoft.apistores.dto.CustomerDto;
+import br.com.asoft.apistores.filter.CustomerFilter;
 import br.com.asoft.apistores.service.CustomerService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +26,13 @@ public class CustomerController {
         return customerService.saveCustomerWithAddress(customerDto);
     }
 
+    @GetMapping
+    public Page<CustomerDto> findCustomers(CustomerFilter customerFilter, Pageable pageable) {
+        return customerService.allCustomerPage(customerFilter, pageable);
+    }
+
 //    @GetMapping
-//    public Page<ClienteOut> todosClientes(ClientFilter clientFilter, Pageable pageable) {
+//    public Page<ClienteOut> todosClientes(CustomerFilter clientFilter, Pageable pageable) {
 //
 //
 //        Page<Client> clientePage = clientService.allClientePage(clientFilter, pageable);

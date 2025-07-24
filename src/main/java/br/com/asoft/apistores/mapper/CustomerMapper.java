@@ -4,7 +4,6 @@ import br.com.asoft.apistores.dto.CustomerDto;
 import br.com.asoft.apistores.model.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-
 import java.util.List;
 
 @Mapper(componentModel = "spring")

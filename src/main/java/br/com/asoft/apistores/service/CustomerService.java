@@ -2,15 +2,16 @@ package br.com.asoft.apistores.service;
 
 import br.com.asoft.apistores.dto.CustomerDto;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
-import br.com.asoft.apistores.filter.ClientFilter;
+import br.com.asoft.apistores.filter.CustomerFilter;
 import br.com.asoft.apistores.mapper.AddressMapper;
 import br.com.asoft.apistores.mapper.CustomerMapper;
 import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.model.Customer;
 import br.com.asoft.apistores.respository.CustomerRepository;
-import br.com.asoft.apistores.specifications.ClienteSpecification;
+import br.com.asoft.apistores.specifications.CustomerSpec;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -26,20 +27,14 @@ public class CustomerService {
     private final AddressService addressService;
     private final AddressMapper addressMapper;
 
-    public Page<Customer> allClientePage(ClientFilter clientFilter, Pageable pageable){
-
-        return customerRepository.findAll(ClienteSpecification.filter(clientFilter),pageable);
+    public Page<CustomerDto> allCustomerPage(CustomerFilter customerFilter, Pageable pageable) {
+       Page<Customer> customer =  customerRepository.findAll(CustomerSpec.filter(customerFilter),pageable);
+       List<CustomerDto> customerDto = customerMapper.toListCustomerDto(customer.getContent()); //.getContent() Importante
+       Page<CustomerDto> customerDtoPage = new PageImpl<>(customerDto,pageable,customer.getTotalElements()); // new PageImpl<> e .getTotalElements() Importante
+       return customerDtoPage;
     }
 
-    public Page<Customer> allClientePage2(Pageable pageable){
-        return customerRepository.findAll(pageable);
-    }
-
-    public List<Customer> findAllCliente() {
-        return customerRepository.findAll();
-    }
-
-    public Customer findId(Long id){
+    public Customer findId(Long id) {
         return tryOrFail(id);
     }
 
@@ -56,11 +51,8 @@ public class CustomerService {
     }
 
     public void deleteCliente(Long id){
-
         Customer customer = findId(id);
-
         customerRepository.delete(customer);
-
         customerRepository.flush();
     }
 
