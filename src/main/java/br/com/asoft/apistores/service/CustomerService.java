@@ -9,6 +9,7 @@ import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.model.Customer;
 import br.com.asoft.apistores.respository.CustomerRepository;
 import br.com.asoft.apistores.specifications.CustomerSpec;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -38,6 +39,7 @@ public class CustomerService {
         return tryOrFail(id);
     }
 
+    @Transactional
     public CustomerDto saveCustomerWithAddress(CustomerDto customerDto) {
         Customer customer = customerMapper.toCustomer(customerDto); //Converte o Dto para o Objeto Customer
         if(customerDto.getAddress() != null) {
@@ -45,9 +47,24 @@ public class CustomerService {
             customer.setAddress(address); //Associa o endereco ao cliente
         }
         customer.setDateRegister(LocalDateTime.now());//Adiciona a data de cadastro
-        customer.setDateUpdate(LocalDateTime.now());//Adiciona a data de atualizacao
         return customerMapper.toCustomerDto(customerRepository.save(customer));
-        //return null;
+    }
+    @Transactional
+    public CustomerDto updateCustomerWithAddress(Long id, CustomerDto customerDto) {
+        Customer customerUpdate = tryOrFail(id);
+
+        if (customerDto.getAddress() != null) {
+            Address newAddress = addressMapper.toAddress(customerDto.getAddress());
+            Address savedAddress = addressService.saveAddress(newAddress);
+            customerUpdate.setAddress(savedAddress);
+        }
+        //Garanta que copyToCustomer NÃO sobrescreve .setAddress()
+        customerMapper.copyToCustomer(customerDto, customerUpdate);
+
+        customerUpdate.setDateUpdate(LocalDateTime.now());
+
+        Customer savedCustomer = customerRepository.save(customerUpdate);
+        return customerMapper.toCustomerDto(savedCustomer);
     }
 
     public void deleteCliente(Long id){

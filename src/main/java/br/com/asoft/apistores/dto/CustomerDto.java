@@ -6,6 +6,8 @@ import br.com.asoft.apistores.enums.TypePerson;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * Classe de Dto = Objeto de Transferência de Dados (do inglês, Data Transfer Object),
  * No projeto vou usar O mesmo Dto tanto para entra de dados com a saida de dados.
@@ -41,6 +43,10 @@ public class CustomerDto {
     private String observation;
 
     private StatusValue status;
+
+    private LocalDateTime dateRegister;
+
+    private LocalDateTime dateUpdate;
 
     private AddressDto address;
 }

@@ -15,10 +15,10 @@ public class CustomerSpec {
                 preditaces.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%"+ customerFilter.getName().toLowerCase()+"%"));
             }
             if (customerFilter.getCpfCnpj() != null) {
-                preditaces.add(criteriaBuilder.equal(root.get("cpfCnpj"), customerFilter.getCpfCnpj()));
+                preditaces.add(criteriaBuilder.like(root.get("cpfCnpj"),"%"+customerFilter.getCpfCnpj() +"%"));
             }
             if (customerFilter.getEmail() != null) {
-                preditaces.add(criteriaBuilder.equal(root.get("email"), customerFilter.getEmail()));
+                preditaces.add(criteriaBuilder.like(criteriaBuilder.lower(root.get("email")), "%"+ customerFilter.getEmail().toLowerCase()+"%"));
             }
             return criteriaBuilder.and(preditaces.toArray(new Predicate[0]));
         };

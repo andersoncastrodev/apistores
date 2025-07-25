@@ -3,6 +3,7 @@ package br.com.asoft.apistores.service;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
 import br.com.asoft.apistores.model.Address;
 import br.com.asoft.apistores.respository.AddressRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -21,14 +22,13 @@ public class AddressService {
         return tryOrFail(id);
     }
 
+    @Transactional
     public Address saveAddress(Address address) {
         return addressRepository.save(address);
     }
 
     public void deleteEndereco(Long id) {
-
         Address address = findId(id);
-
         addressRepository.delete(address);
         addressRepository.flush();
     }
