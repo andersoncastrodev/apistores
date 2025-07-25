@@ -32,4 +32,10 @@ public class CustomerController {
         return customerService.updateCustomerWithAddress(id, customerDto);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomerWithAddress(id);
+    }
+
 }

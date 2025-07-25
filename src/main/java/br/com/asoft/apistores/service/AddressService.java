@@ -27,6 +27,7 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
+    @Transactional
     public void deleteEndereco(Long id) {
         Address address = findId(id);
         addressRepository.delete(address);

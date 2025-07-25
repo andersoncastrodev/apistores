@@ -50,7 +50,7 @@ public class Customer {
 
     private LocalDateTime dateUpdate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true) //Para deletar o endereco junto com o cliente
     @JoinColumn(name = "id_address")
     private Address address;
 

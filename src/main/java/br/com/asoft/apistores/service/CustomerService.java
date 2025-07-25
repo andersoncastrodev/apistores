@@ -35,7 +35,7 @@ public class CustomerService {
        return customerDtoPage;
     }
 
-    public Customer findId(Long id) {
+    public Customer findCustomerById(Long id) {
         return tryOrFail(id);
     }
 
@@ -67,14 +67,16 @@ public class CustomerService {
         return customerMapper.toCustomerDto(savedCustomer);
     }
 
-    public void deleteCliente(Long id){
-        Customer customer = findId(id);
+    @Transactional
+    public void deleteCustomerWithAddress(Long id) {
+        Customer customer = tryOrFail(id);
         customerRepository.delete(customer);
         customerRepository.flush();
     }
 
+
     public Customer tryOrFail(Long id){
         return customerRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Client",id));
+                .orElseThrow(()-> new EntityNotFoundExceptions("Customer not found",id));
     }
 }
