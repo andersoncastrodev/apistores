@@ -1,11 +1,11 @@
 package br.com.asoft.apistores.controller;
 
-import br.com.asoft.apistores.model.Category;
+import br.com.asoft.apistores.dto.CategoryDto;
+import br.com.asoft.apistores.dto.CategorySimpleDto;
 import br.com.asoft.apistores.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -17,18 +17,23 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Category createCategory(@RequestBody Category category) {
-        return categoryService.saveCategory(category);
+    public CategoryDto createCategory(@RequestBody CategoryDto categoryDto) {
+        return categoryService.saveCategory(categoryDto);
     }
 
     @PutMapping("/{id}")
-    public Category updateCategory(@PathVariable Long id, @RequestBody Category category) {
-        return categoryService.updateCategory(id,category);
+    public CategoryDto updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
+        return categoryService.updateCategory(id, categoryDto);
     }
 
     @GetMapping
-    public List<Category> findAll() {
+    public List<CategoryDto> findAll() {
         return categoryService.findAll();
+    }
+
+    @GetMapping("/simple")
+    public List<CategorySimpleDto> findCategorySimple() {
+        return categoryService.findCategorySimple();
     }
 
     @DeleteMapping("/{id}")

@@ -11,8 +11,8 @@ create table users (
    password varchar(100) not null,
    status varchar(10) not null,
    observation varchar(100),
-   date_register date not null,
-   date_update date not null,
+   date_register date,
+   date_update date,
    id_address bigint not null,
    constraint users_pk primary key (id),
    constraint address_fk foreign key (id_address) references address(id)

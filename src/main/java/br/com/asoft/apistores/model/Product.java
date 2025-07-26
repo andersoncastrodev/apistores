@@ -41,6 +41,8 @@ public class Product {
 
     private Date dateRegister; //Data de cadastro
 
+    private Date dateUpdate; //Data de atualizacao
+
     @ManyToOne
     @JoinColumn(name = "id_supplier")
     private Supplier supplier; //fornecedor

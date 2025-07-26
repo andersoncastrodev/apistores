@@ -11,8 +11,8 @@ create table customer (
     email varchar(100) not null,
     observation varchar(100),
     status varchar(10) not null,
-    date_register date not null,
-    date_update date not null,
+    date_register date,
+    date_update date,
     id_address bigint not null,
  constraint customer_pk primary key (id),
  constraint customer_fk foreign key (id_address) references address(id)

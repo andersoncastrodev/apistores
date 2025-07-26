@@ -5,6 +5,8 @@ import br.com.asoft.apistores.enums.TypePerson;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class SupplierDto {
@@ -28,6 +30,10 @@ public class SupplierDto {
     private String observation;
 
     private StatusValue status;
+
+    private LocalDateTime dateRegister;
+
+    private LocalDateTime dateUpdate;
 
     private AddressDto address;
 }

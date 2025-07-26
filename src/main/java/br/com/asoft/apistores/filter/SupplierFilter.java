@@ -7,6 +7,9 @@ import lombok.Setter;
 @Setter
 public class SupplierFilter {
 
-    private String nome;
-    private String sigla;
+    private String name;
+
+    private String cpfCnpj;
+
+    private String email;
 }

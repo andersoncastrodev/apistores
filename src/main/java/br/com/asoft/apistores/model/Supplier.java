@@ -1,13 +1,11 @@
 package br.com.asoft.apistores.model;
 
-import br.com.asoft.apistores.enums.GenderValue;
 import br.com.asoft.apistores.enums.StatusValue;
 import br.com.asoft.apistores.enums.TypePerson;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +20,7 @@ public class Supplier { // Fornecedor
     @EqualsAndHashCode.Include
     private Long id;
 
+    @Enumerated(EnumType.STRING)// Para salvar a Constante do Enum
     private TypePerson typePerson;
 
     private String cpfCnpj;
@@ -45,7 +44,7 @@ public class Supplier { // Fornecedor
 
     private LocalDateTime dateUpdate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)//Para deletar o endereco junto com o fornecedor
     @JoinColumn(name = "id_address")
     private Address address;
 }
