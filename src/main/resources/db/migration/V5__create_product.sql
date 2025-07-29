@@ -1,6 +1,6 @@
 create table product (
    id serial not null,
-   description varchar(150) not null,
+   description varchar(100) not null,
    barcode varchar(100) not null,
    unit varchar(10) not null,
    quant bigint not null,
@@ -8,7 +8,7 @@ create table product (
    value_buy decimal(10,2),
    value_sell decimal(10,2),
    date_last_buy date,
-   observation text,
+   observation varchar(100),
    status varchar(10) not null,
    date_register date,
    date_update date,

@@ -1,20 +1,20 @@
 package br.com.asoft.apistores.service;
 
+import br.com.asoft.apistores.dto.ProductDto;
 import br.com.asoft.apistores.exceptions.EntityNotFoundExceptions;
+import br.com.asoft.apistores.filter.ProductFilter;
+import br.com.asoft.apistores.mapper.ProductMapper;
+import br.com.asoft.apistores.model.Category;
 import br.com.asoft.apistores.model.Product;
 import br.com.asoft.apistores.model.Supplier;
 import br.com.asoft.apistores.respository.ProductRepository;
-import com.itextpdf.io.font.constants.StandardFonts;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.property.TextAlignment;
+import br.com.asoft.apistores.specifications.ProductSpec;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -22,79 +22,60 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
-
     private final SuppilerService suppilerService;
+    private final CategoryService categoryService;
+    private final ProductMapper productMapper;
 
-    public Page<Product> allTodosPage(Pageable pageable) {
-        return productRepository.findAll(pageable);
+    public Page<ProductDto> allProductPage(ProductFilter productFilter, Pageable pageable) {
+        Page<Product> product = productRepository.findAll(ProductSpec.filter(productFilter), pageable);
+        List<ProductDto> listProductDto = productMapper.toListProductDto(product.getContent());
+        Page<ProductDto> productDtoPage = new PageImpl<>(listProductDto, pageable, product.getTotalElements());
+        return productDtoPage;
     }
 
-    public List<Product> allTodos(){
-        return productRepository.findAll();
+    @Transactional
+    public ProductDto createProduct(ProductDto productDto) {
+        //Busca o fornecedor e a categoria. O objeto mesmo pelo ID.
+        Supplier supplier = suppilerService.tryOrFail(productDto.getSupplierId());
+        Category category = categoryService.tryOrFail(productDto.getCategoryId());
+
+        Product product = productMapper.toProduct(productDto);
+
+        product.setSupplier(supplier); //setando o fornecedor
+        product.setCategory(category); //setando a categoria
+
+        return productMapper.toProductDto( productRepository.save(product));
     }
 
-    public Product findId(Long id){
-        return tryOrFail(id);
+    @Transactional
+    public ProductDto updateProduct(Long id, ProductDto productDto) {
+        //Busca o fornecedor e a categoria. O objeto mesmo pelo ID.
+        Supplier supplier = suppilerService.tryOrFail(productDto.getSupplierId());
+        Category category = categoryService.tryOrFail(productDto.getCategoryId());
+
+        Product product = tryOrFail(id);
+
+        productMapper.copyToProduct(productDto, product);
+
+        product.setSupplier(supplier); //setando o fornecedor
+        product.setCategory(category); //setando a categoria
+
+        return productMapper.toProductDto(productRepository.save(product));
     }
 
-    public Product salvaProduto(Product product){
-
-        Long fornecedorId = product.getSupplier().getId();
-
-        Supplier supplier = suppilerService.tryOrFail(fornecedorId);
-
-        product.setSupplier(supplier);
-
-        return productRepository.save(product);
-    }
-
-    public void deletarProduto(Long id){
-
-        Product product = findId(id);
-
+    @Transactional
+    public void deleteProduct(Long id) {
+        Product product = tryOrFail(id);
         productRepository.delete(product);
         productRepository.flush();
     }
 
-    public Product tryOrFail(Long id){
-        return productRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundExceptions("Product",id));
+    public Product findProductId(Long id){
+        return tryOrFail(id);
     }
 
-//    public ByteArrayInputStream relatorioTodosProdutos() throws IOException {
-//
-//        Reports reports = new Reports(Reports.Page.VERTICAL);
-//
-//        reports.addParagraph( new Paragraph("Lista de Produtos")
-//                .setMargins(1f,5f,1f,5f)
-//                .setFontSize(28)
-//                .setTextAlignment(TextAlignment.CENTER)
-//                .setFont(PdfFontFactory.createFont(StandardFonts.COURIER_BOLD)));
-//
-//        reports.addNewLine();
-//
-//        reports.openTable(1f,1f,1f,1f,1f);
-//
-//        reports.addTableHeader("Codigo","Descrição","Valor Comprar","Valor Sales","Supplier");
-//
-//        List<Product> products = allTodos();
-//
-//        for (Product product : products) {
-//
-//            reports.addCellCenter(product.getId());
-//            reports.addCellCenter(product.getDescricao());
-//            reports.addCellCenter(product.getValorCompra());
-//            reports.addCellCenter(product.getValorVenda());
-//            reports.addCellCenter(product.getSupplier().getNome());
-//        }
-//
-//        reports.closeTable();
-//        reports.closeDocument();
-//
-//        return reports.getByteArrayInputStream();
-//
-//    }
-
-
-
+    public Product tryOrFail(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundExceptions("Product not found",id));
+    }
 }

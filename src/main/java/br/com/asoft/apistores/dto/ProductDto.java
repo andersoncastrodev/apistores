@@ -1,7 +1,6 @@
 package br.com.asoft.apistores.dto;
 
 import br.com.asoft.apistores.enums.StatusValue;
-import br.com.asoft.apistores.model.Category;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
@@ -35,7 +34,7 @@ public class ProductDto {
 
     private Date dateRegister; //Data de cadastro
 
-    private SupplierDto supplier; //fornecedor
+    private Long supplierId; //Somente o ID do fornecedor
 
-    private Category category; //categoria
+    private Long categoryId; //Somente o ID da categoria
 }
