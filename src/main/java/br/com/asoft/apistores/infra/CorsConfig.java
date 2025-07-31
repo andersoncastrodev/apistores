@@ -12,14 +12,10 @@ public class CorsConfig {
 
     @Bean
     public CorsFilter corsFilter() {
+
         CorsConfiguration config = new CorsConfiguration();
-
-        config.setAllowedOriginPatterns(List.of(
-                "http://localhost:3000",                        // Desenvolvimento local
-                "https://v0-asoft-sistema-clone.vercel.app",    // Seu projeto v0
-                "https://apistores.onrender.com"                // Sua API no Render
-        ));
-
+        //Lista de origens permitidas . Localhost 3000 e Render Hospedagem
+        config.setAllowedOriginPatterns(List.of("http://localhost:3000","https://asoftsistema.onrender.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
