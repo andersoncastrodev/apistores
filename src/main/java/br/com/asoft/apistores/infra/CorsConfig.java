@@ -14,11 +14,16 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
 
         CorsConfiguration config = new CorsConfiguration();
-        //Lista de origens permitidas . Localhost 3000 e Render Hospedagem
-        config.setAllowedOriginPatterns(List.of("http://localhost:3000","https://asoftsistema.onrender.com"));
+
+        // Use origens explícitas (não use pattern com allowCredentials=true)
+        config.setAllowedOrigins(List.of(
+                "http://localhost:3000",
+                "https://asoftsistema.onrender.com"
+        ));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true); //Permitir credenciais para cookies em Produção.
+        config.setAllowCredentials(true); // necessário para envio de cookies
         config.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
