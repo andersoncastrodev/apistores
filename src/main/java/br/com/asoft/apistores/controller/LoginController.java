@@ -100,10 +100,10 @@ public class LoginController {
     private ResponseCookie createAccessTokenCookie(String token, Long expiresIn) {
         return ResponseCookie.from("access_token", token)
                 .httpOnly(true) //Segurança do token
-                .secure(false) // Setar para true em produção
+                .secure(true) // É obrigatorio setar para true quando estiver em produção
                 .path("/")
                 .maxAge(expiresIn)
-                .sameSite("Lax") // 'Strict' ou ('Lax' melhor para fluxos entre paginas )
+                .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
                 .build();
     }
 
@@ -111,10 +111,10 @@ public class LoginController {
     private ResponseCookie createRefreshTokenCookie(String token, Long expiresIn) {
         return ResponseCookie.from("refresh_token", token)
                 .httpOnly(true)//Segurança do token
-                .secure(false) // Setar para true em produção
+                .secure(true) // É obrigatorio setar para true quando estiver em produção
                 .path("/")
                 .maxAge(expiresIn)
-                .sameSite("Lax") // 'Strict' ou ('Lax' melhor para fluxos entre paginas )
+                .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
                 .build();
     }
 
@@ -122,10 +122,10 @@ public class LoginController {
     private ResponseCookie clearCookie(String cookieName) {
         return ResponseCookie.from(cookieName, "")
                 .httpOnly(true)//Segurança do token
-                .secure(false) // Setar para true em produção ou https
+                .secure(true) // É obrigatorio setar para true quando estiver em produção
                 .path("/")
                 .maxAge(0)
-                .sameSite("Lax") // 'Strict' ou ('Lax' melhor para fluxos entre paginas )
+                .sameSite("Nome") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
                 .build();
     }
 }
