@@ -104,7 +104,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
-                .domain("asoftsistema.onrender.com") // ADICIONADO: Para funcionar entre subdomínios
+                //.domain("asoftsistema.onrender.com") // ADICIONADO: Para funcionar entre subdomínios
                 .build();
     }
 
@@ -116,7 +116,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
-                .domain("asoftsistema.onrender.com") // ADICIONADO: Para funcionar entre subdomínios
+                //.domain("asoftsistema.onrender.com") // ADICIONADO: Para funcionar entre subdomínios
                 .build();
     }
 
@@ -128,7 +128,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(0)
                 .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
-                .domain("asoftsistema.onrender.com") // ADICIONADO: Para funcionar entre subdomínios
+                //.domain("asoftsistema.onrender.com") // ADICIONADO: Para funcionar entre subdomínios
                 .build();
     }
 }
