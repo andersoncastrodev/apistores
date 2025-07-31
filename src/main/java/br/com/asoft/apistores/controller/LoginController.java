@@ -104,6 +104,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
+                .domain(".onrender.com") // ADICIONADO: Para funcionar entre subdomínios
                 .build();
     }
 
@@ -115,6 +116,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
+                .domain(".onrender.com") // ADICIONADO: Para funcionar entre subdomínios
                 .build();
     }
 
@@ -125,7 +127,8 @@ public class LoginController {
                 .secure(true) // É obrigatorio setar para true quando estiver em produção
                 .path("/")
                 .maxAge(0)
-                .sameSite("Nome") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
+                .sameSite("None") // É obrigatorio setar para 'None'quando estiver em produção 'Strict' e 'Lax' em desenvolvimento
+                .domain(".onrender.com") // ADICIONADO: Para funcionar entre subdomínios
                 .build();
     }
 }
