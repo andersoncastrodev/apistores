@@ -42,20 +42,12 @@ public class LoginController {
         System.out.println("Enviando cookie refresh_token: " + refreshTokenCookie.toString());
 
         // Set cookies in response headers
-//        return ResponseEntity.ok()
-//                .header(HttpHeaders.SET_COOKIE, clearAccess.toString())
-//                .header(HttpHeaders.SET_COOKIE, clearRefresh.toString())
-//                .header(HttpHeaders.SET_COOKIE, accessTokenCookie.toString())
-//                .header(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString())
-//                .body(loginResponse); // Still include tokens in body for compatibility
         return ResponseEntity.ok()
-                .headers(headers -> {
-                    headers.add(HttpHeaders.SET_COOKIE, clearAccess.toString());
-                    headers.add(HttpHeaders.SET_COOKIE, clearRefresh.toString());
-                    headers.add(HttpHeaders.SET_COOKIE, accessTokenCookie.toString());
-                    headers.add(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString());
-                })
-                .body(loginResponse);
+                .header(HttpHeaders.SET_COOKIE, clearAccess.toString())
+                .header(HttpHeaders.SET_COOKIE, clearRefresh.toString())
+                .header(HttpHeaders.SET_COOKIE, accessTokenCookie.toString())
+                .header(HttpHeaders.SET_COOKIE, refreshTokenCookie.toString())
+                .body(loginResponse); // Still include tokens in body for compatibility
     }
 
     // Valida o Refresh Token JWT
