@@ -26,6 +26,9 @@ public class CorsConfig {
         config.setAllowCredentials(true); // necessário para envio de cookies
         config.setMaxAge(3600L);
 
+        // Expor headers importantes para o frontend
+        config.setExposedHeaders(List.of("Set-Cookie", "Authorization"));
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
