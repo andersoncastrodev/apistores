@@ -88,7 +88,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite("None")
-                .domain(".onrender.com") // Para funcionar entre subdomínios do Render
+                //.domain(".onrender.com") // Para funcionar entre subdomínios do Render
                 .build();
     }
 
@@ -99,7 +99,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite("None")
-                .domain(".onrender.com")
+                //.domain(".onrender.com")
                 .build();
     }
 
@@ -110,7 +110,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(0)
                 .sameSite("None")
-                .domain(".onrender.com")
+                //.domain(".onrender.com")
                 .build();
     }
 }
