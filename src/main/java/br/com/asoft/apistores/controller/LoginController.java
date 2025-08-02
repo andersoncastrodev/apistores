@@ -4,7 +4,6 @@ import br.com.asoft.apistores.dto.LoginRequest;
 import br.com.asoft.apistores.dto.LoginResponse;
 import br.com.asoft.apistores.service.TokenService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -100,7 +99,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite(isProduction ? "None" : "Lax") // None apenas em produção
-                .domain(isProduction ? ".onrender.com" : null) // Domain apenas em produção
+                //.domain(isProduction ? ".onrender.com" : null) // Domain apenas em produção
                 .build();
     }
 
@@ -113,7 +112,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(expiresIn)
                 .sameSite(isProduction ? "None" : "Lax")
-                .domain(isProduction ? ".onrender.com" : null)
+                //.domain(isProduction ? ".onrender.com" : null)
                 .build();
     }
 
@@ -126,7 +125,7 @@ public class LoginController {
                 .path("/")
                 .maxAge(0)
                 .sameSite(isProduction ? "None" : "Lax")
-                .domain(isProduction ? ".onrender.com" : null)
+                //.domain(isProduction ? ".onrender.com" : null)
                 .build();
     }
 }
