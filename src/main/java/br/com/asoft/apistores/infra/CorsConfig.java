@@ -12,32 +12,59 @@ public class CorsConfig {
 
     @Bean
     public CorsFilter corsFilter() {
-
         CorsConfiguration config = new CorsConfiguration();
 
-        // Use origens explícitas (não use pattern com allowCredentials=true)
+        // Permitir apenas requisições do seu Next.js
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",
-                "https://asoftsistema.onrender.com"
+                "https://asoftsistema.onrender.com" // Substitua pelo seu domínio em produção
         ));
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(true); // necessário para envio de cookies
+        config.setAllowCredentials(true);
         config.setMaxAge(3600L);
-
-        // Headers expostos importantes
-        config.setExposedHeaders(List.of(
-                "Set-Cookie",
-                "Authorization",
-                "Access-Control-Allow-Origin",
-                "Access-Control-Allow-Credentials"
-        ));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+//    @Bean
+//    public CorsFilter corsFilter() {
+//
+//        CorsConfiguration config = new CorsConfiguration();
+//
+//        // Use origens explícitas (não use pattern com allowCredentials=true)
+//        config.setAllowedOrigins(List.of(
+//                "http://localhost:3000",
+//                "https://asoftsistema.onrender.com"
+//        ));
+//
+//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+//        config.setAllowedHeaders(List.of("*"));
+//        config.setAllowCredentials(true); // necessário para envio de cookies
+//        config.setMaxAge(3600L);
+//
+//        // Headers expostos importantes
+//        config.setExposedHeaders(List.of(
+//                "Set-Cookie",
+//                "Authorization",
+//                "Access-Control-Allow-Origin",
+//                "Access-Control-Allow-Credentials"
+//        ));
+//
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", config);
+//        return new CorsFilter(source);
+//    }
+
+
+
+
+
+
+
 
 //    @Bean
 //    public CorsFilter corsFilter() {
