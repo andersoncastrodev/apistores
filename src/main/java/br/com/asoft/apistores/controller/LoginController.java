@@ -5,9 +5,6 @@ import br.com.asoft.apistores.dto.LoginResponse;
 import br.com.asoft.apistores.dto.RefreshResponse;
 import br.com.asoft.apistores.service.TokenService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

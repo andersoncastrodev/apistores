@@ -25,6 +25,14 @@ public class CorsConfig {
         config.setAllowCredentials(true);
         config.setMaxAge(3600L);
 
+        config.setExposedHeaders(List.of(
+                "Set-Cookie",
+                "Authorization",
+                "Access-Control-Allow-Origin",
+                "Access-Control-Allow-Credentials"
+        ));
+//
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
