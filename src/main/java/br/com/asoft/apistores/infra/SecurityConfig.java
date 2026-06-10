@@ -129,6 +129,13 @@ public class SecurityConfig {
                 .addFilter(corsFilter)
 
                 .authorizeHttpRequests(authorize -> authorize
+                        //Permite acesso público aos endpoints do Swagger
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**"
+                        ).permitAll()
+                        //Fim - Permite acesso público aos endpoints do Swagger
                         .requestMatchers(HttpMethod.POST,"auth/login").permitAll() // Habilita o login e gera o token
                         .requestMatchers(HttpMethod.GET,"auth/validate").permitAll()// Habilita a validação do token
                         .requestMatchers(HttpMethod.POST,"auth/refresh").permitAll()// Habilita a refresh do token
